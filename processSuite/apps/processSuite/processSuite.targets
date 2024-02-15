@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <!-- Main Targets: -->
+  <!-- EXAMPLE:
+    Call from Project or SolutionFolder:
+    dotnet msbuild -t:Start
+  -->
+  <Target Name="Start">
+    <Message Importance="High" Text="Starting Project with Docker" />
+    <CallTarget Targets="BuildApp" />
+    <CallTarget Targets="DockerComposeUp" />
+  </Target>
+  <Target Name="Setup">
+    <Message Importance="High" Text="Starting 'Setup'" />
+    <CallTarget Targets="BuildApp" />
+  </Target>
+  <Target Name="Up">
+    <Message Importance="High" Text="Starting 'Up'" />
+    <CallTarget Targets="DockerComposeUp" />
+  </Target>
+  <Target Name="Clear" AfterTargets="Clean">
+    <Message Importance="High" Text="Starting Clean of App $(MSBuildProjectName)" />
+    <CallTarget Targets="DockerComposeDown" />
+    <CallTarget Targets="RemoveDockerImage" />
+    <CallTarget Targets="NpmClean" />
+    <CallTarget Targets="DeleteEngineDB" />
+  </Target>
+
+  <!-- SubTargets that can be called by Standard Targets  -->
+  <Target Name="BuildApp">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Build" />
+    <CallTarget Targets="NpmInstall" />
+    <CallTarget Targets="NpmRunBuild" />
+    <CallTarget Targets="DockerComposeBuild" />
+  </Target>
+  <!-- DOCKER SUB-TARGETS:-->
+  <Target Name="DockerComposeBuild">
+    <Message Importance="High" Text="docker compose build:" />
+    <Exec Command="docker compose build" WorkingDirectory="$(DockerRoot)" ConsoleToMSBuild="true" />
+  </Target>
+  <Target Name="DockerComposeUp">
+    <Message Importance="High" Text="docker compose up:" />
+    <Exec Command="docker compose up" WorkingDirectory="$(DockerRoot)" ConsoleToMSBuild="true" />
+  </Target>
+  <Target Name="DockerComposeDown">
+    <Message Importance="High" Text="docker compose down:" />
+    <Exec Command="docker compose down" WorkingDirectory="$(DockerRoot)" ConsoleToMSBuild="true" />
+    <Exec Command="docker compose rm -f app" WorkingDirectory="$(DockerRoot)"
+      ConsoleToMSBuild="true" />
+  </Target>
+  <Target Name="GetDockerImage">
+    <Message Importance="High" Text="Get Docker Image Id for ( $(DockerImageName) )" />
+    <Exec Command="docker images --filter=reference=$(DockerImageName) -q"
+      WorkingDirectory="$(DockerRoot)" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="DockerImageId" />
+    </Exec>
+    <Message Importance="High" Text="Found DockerImage: $(DockerImageId)" />
+  </Target>
+  <Target Name="RemoveDockerImage" DependsOnTargets="GetDockerImage">
+    <!-- Access CallTarget Properties: https://stackoverflow.com/a/5641849 -->
+    <Message Importance="High" Text="Remove DockerImage: $(DockerImageId)" />
+    <Exec Command="docker rmi $(DockerImageId) --force"
+      Condition="'$(DockerImageId)' != ''"
+      WorkingDirectory="$(DockerRoot)"
+      ConsoleToMSBuild="true" />
+  </Target>
+  <!-- NPM SUB-TARGETS -->
+  <Target Name="NpmInstall">
+    <Exec Command="npm install --verbose" WorkingDirectory="$(SpaRoot)" ConsoleToMSBuild="true" StandardOutputImportance="high" />
+  </Target>
+  <Target Name="NpmRunBuild">
+    <Exec Command="npm run build" WorkingDirectory="$(SpaRoot)" ConsoleToMSBuild="true" />
+  </Target>
+  <Target Name="NpmClean">
+    <RemoveDir Directories="$(NodeModulesPath)" />
+    <Delete Files="$(PackageLockJsonFile)" />
+  </Target>
+  <!-- Engine/ProcessCube Targets -->
+  <Target Name="DeleteEngineDB">
+    <Delete Files="$(AtlasEngineDbFile)" />
+  </Target>
+</Project>

@@ -1,0 +1,27 @@
+{
+  "useAuthority": false,
+  "authorityConfiguration": {
+    "clientId": "atlasui",
+    "scopes": "test_resource"
+  },
+  "applicationBaseUrl": "http://localhost:8082",
+  "engineUrl": "http://localhost:8000",
+  "customForms": {
+    "/.*/": "http://localhost:5111"
+  },
+  "processModels": {
+    "include": ["example"]
+  },
+  "startDialogs": {
+    "ExampleStartDialog": {
+      "title": "Example Start Dialog",
+      "url": "http://localhost:5111",
+      "startButtonTitle": "Öffnen",
+      "id": "ExampleStartDialog"
+    }
+  },
+  "translationFolder": "/etc/portal/config/translation",
+  "languages": {
+    "de": "Deutsch"
+  }
+}

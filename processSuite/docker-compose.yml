@@ -1,0 +1,63 @@
+version: "3.5"
+services:
+  engine:
+    image: 5minds/engine:15
+    ports:
+      - 8000:8000
+    volumes:
+      - ./.processcube/engine/config/config.json:/etc/engine/config/config.json:ro
+      - ./.processcube/engine/db:/root/.config/AtlasEngineFullstackServer/databases:rw
+      - ./processes:/processes:ro
+    command: --seed-dir=/processes --port 8000
+    environment:
+      CONFIG_PATH: /etc/engine/config/config.json
+
+  portal:
+    image: 5minds/portal:4
+    volumes:
+      - ./.processcube/portal/theme.css:/etc/portal/config/theme.css:ro
+      - ./.processcube/portal/config.json:/etc/portal/config/config.json:ro
+      - ./.processcube/portal/assets:/etc/portal/config/assets:ro
+      - ./.processcube/portal/translation:/etc/portal/config/translation:ro
+    command: "--config-path /etc/portal/config/config.json --theme /etc/portal/config/theme.css --assets /etc/portal/config/assets"
+    ports:
+      - 8082:8082
+
+  app:
+    image: processsuite
+    build:
+      context: ./
+      dockerfile: apps/processSuite/Dockerfile
+    volumes:
+      - ./apps/processSuite/frontend/src/config/config.json:/apps/processSuite/wwwroot/config.json
+      - ./apps/processSuite/Properties/:/apps/processSuite/Properties/
+      - ./apps/processSuite/appsettings.json:/apps/processSuite/appsettings.json
+      - ./apps/processSuite/appsettings.Development.json:/apps/processSuite/appsettings.Development.json
+      - ./apps/processSuite/Program.cs:/apps/processSuite/Program.cs
+      - ./apps/processSuite/Worker/:/apps/processSuite/Worker/
+    ports:
+      - 5111:5111
+    working_dir: /apps/processSuite
+    command: dotnet run
+
+  frontend:
+    image: processsuite
+    volumes:
+      - ./apps/processSuite/frontend/public/:/apps/processSuite/frontend/public/
+      - ./apps/processSuite/frontend/src/:/apps/processSuite/frontend/src/
+      - ./apps/processSuite/frontend/.env:/apps/processSuite/frontend/.env
+      - ./apps/processSuite/frontend/.env.development:/apps/processSuite/frontend/.env.development
+      - ./apps/processSuite/frontend/aspnetcore-https.js:/apps/processSuite/frontend/aspnetcore-https.js
+      - ./apps/processSuite/frontend/aspnetcore-react.js:/apps/processSuite/frontend/aspnetcore-react.js
+      - ./apps/processSuite/frontend/tsconfig.json:/apps/processSuite/frontend/tsconfig.json
+    working_dir: /apps/processSuite/frontend/
+    command: npm start
+    ports:
+      - 3000:3000
+
+  activeMQ:
+    image: apache/activemq-classic:5.18.3
+    ports:
+      - 61616:61616
+      - 8161:8161
+    

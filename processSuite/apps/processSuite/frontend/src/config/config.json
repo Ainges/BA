@@ -1,0 +1,6 @@
+{
+    "processEngineConfig": {
+      "processModelId": "example",
+      "uri": "http://localhost:8000"
+    }
+}

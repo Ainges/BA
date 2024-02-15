@@ -1,0 +1,30 @@
+{
+  "httpServer": {
+    "host": "0.0.0.0",
+    "port": 8000
+  },
+  "logging": {
+    "outputPath": "logs"
+  },
+  "database": {
+    "username": null,
+    "password": null,
+    "database": null,
+    "host": null,
+    "port": null,
+    "dialect": "sqlite",
+    "storage": "atlasengine.sqlite",
+    "supportBigNumbers": true,
+    "resetPasswordRequestTimeToLive": 12,
+    "logging": false
+  },
+  "iam": {
+    "allowAnonymousRootAccess": true
+  },
+  "extraInfo": {
+    "portalUrl": "http://localhost:8082/"
+  },
+  "application": {
+    "name": "5Minds processSuite"
+  }
+}

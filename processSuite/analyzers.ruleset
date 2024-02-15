@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Rules for StyleCop.Analyzers" Description="Code analysis rules." ToolsVersion="14.0">
+    <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+        <Rule Id="CA1001" Action="Warning" />
+        <Rule Id="CA1009" Action="Warning" />
+        <Rule Id="CA1016" Action="Warning" />
+        <Rule Id="CA1033" Action="Warning" />
+        <Rule Id="CA1049" Action="Warning" />
+        <Rule Id="CA1060" Action="Warning" />
+        <Rule Id="CA1061" Action="Warning" />
+        <Rule Id="CA1063" Action="Warning" />
+        <Rule Id="CA1065" Action="Warning" />
+        <Rule Id="CA1301" Action="Warning" />
+        <Rule Id="CA1400" Action="Warning" />
+        <Rule Id="CA1401" Action="Warning" />
+        <Rule Id="CA1403" Action="Warning" />
+        <Rule Id="CA1404" Action="Warning" />
+        <Rule Id="CA1405" Action="Warning" />
+        <Rule Id="CA1410" Action="Warning" />
+        <Rule Id="CA1415" Action="Warning" />
+        <Rule Id="CA1821" Action="Warning" />
+        <Rule Id="CA1900" Action="Warning" />
+        <Rule Id="CA1901" Action="Warning" />
+        <Rule Id="CA2002" Action="Warning" />
+        <Rule Id="CA2100" Action="Warning" />
+        <Rule Id="CA2101" Action="Warning" />
+        <Rule Id="CA2108" Action="Warning" />
+        <Rule Id="CA2111" Action="Warning" />
+        <Rule Id="CA2112" Action="Warning" />
+        <Rule Id="CA2114" Action="Warning" />
+        <Rule Id="CA2116" Action="Warning" />
+        <Rule Id="CA2117" Action="Warning" />
+        <Rule Id="CA2122" Action="Warning" />
+        <Rule Id="CA2123" Action="Warning" />
+        <Rule Id="CA2124" Action="Warning" />
+        <Rule Id="CA2126" Action="Warning" />
+        <Rule Id="CA2131" Action="Warning" />
+        <Rule Id="CA2132" Action="Warning" />
+        <Rule Id="CA2133" Action="Warning" />
+        <Rule Id="CA2134" Action="Warning" />
+        <Rule Id="CA2137" Action="Warning" />
+        <Rule Id="CA2138" Action="Warning" />
+        <Rule Id="CA2140" Action="Warning" />
+        <Rule Id="CA2141" Action="Warning" />
+        <Rule Id="CA2146" Action="Warning" />
+        <Rule Id="CA2147" Action="Warning" />
+        <Rule Id="CA2149" Action="Warning" />
+        <Rule Id="CA2200" Action="Warning" />
+        <Rule Id="CA2202" Action="Warning" />
+        <Rule Id="CA2207" Action="Warning" />
+        <Rule Id="CA2212" Action="Warning" />
+        <Rule Id="CA2213" Action="Warning" />
+        <Rule Id="CA2214" Action="Warning" />
+        <Rule Id="CA2216" Action="Warning" />
+        <Rule Id="CA2220" Action="Warning" />
+        <Rule Id="CA2229" Action="Warning" />
+        <Rule Id="CA2231" Action="Warning" />
+        <Rule Id="CA2232" Action="Warning" />
+        <Rule Id="CA2235" Action="Warning" />
+        <Rule Id="CA2236" Action="Warning" />
+        <Rule Id="CA2237" Action="Warning" />
+        <Rule Id="CA2238" Action="Warning" />
+        <Rule Id="CA2240" Action="Warning" />
+        <Rule Id="CA2241" Action="Warning" />
+        <Rule Id="CA2242" Action="Warning" />
+        <Rule Id="CS1591" Action="None" />
+    </Rules>
+    <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
+        <Rule Id="IDE0003" Action="None" />
+    </Rules>
+    <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+        <Rule Id="SA0001" Action="None" />
+        <Rule Id="SA1305" Action="None" />
+        <Rule Id="SA1609" Action="None" />
+        <Rule Id="SA1610" Action="Warning" />
+        <Rule Id="SA1623" Action="None" />
+        <Rule Id="SA1629" Action="None" />
+        <Rule Id="SA1633" Action="None" />
+        <Rule Id="SA1634" Action="None" />
+        <Rule Id="SA1635" Action="None" />
+        <Rule Id="SA1636" Action="None" />
+        <Rule Id="SA1637" Action="None" />
+        <Rule Id="SA1638" Action="None" />
+        <Rule Id="SA1639" Action="None" />
+        <Rule Id="SA1640" Action="None" />
+        <Rule Id="SA1641" Action="None" />
+        <Rule Id="SA1412" Action="None" />
+    </Rules>
+    <!-- Rules for Meziantou.Analyzer -->
+    <Rules AnalyzerId="Meziantou.Analyzer" RuleNamespace="Meziantou.Analyzer">
+        <Rule Id="MA0002" Action="None" />
+        <Rule Id="MA0004" Action="None" />
+        <Rule Id="MA0006" Action="None" />
+        <Rule Id="MA0007" Action="Warning" />
+        <Rule Id="MA0020" Action="Warning" />
+        <Rule Id="MA0026" Action="Hidden"/>
+        <Rule Id="MA0028" Action="Warning" />
+        <Rule Id="MA0029" Action="Warning" />
+        <Rule Id="MA0030" Action="Warning" />
+        <Rule Id="MA0038" Action="Hidden" />
+        <Rule Id="MA0039" Action="Hidden"/>
+        <Rule Id="MA0042" Action="Warning" />
+        <Rule Id="MA0043" Action="Warning" />
+        <Rule Id="MA0044" Action="Warning" />
+        <Rule Id="MA0052" Action="Warning" />
+        <Rule Id="MA0053" Action="Warning" />
+        <Rule Id="MA0057" Action="Warning" />
+        <Rule Id="MA0058" Action="Warning" />
+        <Rule Id="MA0059" Action="Warning" />
+        <Rule Id="MA0063" Action="Warning" />
+        <Rule Id="MA0067" Action="Warning" />
+        <Rule Id="MA0071" Action="Warning" />
+        <Rule Id="MA0073" Action="Warning" />
+        <Rule Id="MA0074" Action="None" />
+        <Rule Id="MA0075" Action="Warning" />
+        <Rule Id="MA0076" Action="Warning" />
+        <Rule Id="MA0098" Action="None" />
+    </Rules>
+    <!-- Rules for xunit.analyzers -->
+    <Rules AnalyzerId="Xunit.Analyzers.XunitDiagnosticAnalyzer" RuleNamespace="Xunit.Analyzers.Descriptors">
+        <Rule Id="xUnit1004" Action="Warning" />
+    </Rules>
+    <!-- Microsoft.VisualStudio.Threading.Analyzers -->
+    <Rules AnalyzerId="Microsoft.VisualStudio.Threading.Analyzers" RuleNamespace="Microsoft.VisualStudio.Threading.Analyzers">
+        <Rule Id="VSTHRD002" Action="None" />
+        <Rule Id="VSTHRD100" Action="Warning" />
+        <Rule Id="VSTHRD104" Action="Warning" />
+    </Rules>
+    <!-- FluentAssertions.Analyzers -->
+    <Rules AnalyzerId="FluentAssertions.Analyzers" RuleNamespace="FluentAssertions.Analyzers">
+        <Rule Id="CollectionsShouldBeEmpty" Action="Warning"/>
+        <Rule Id="CollectionsShouldNotBeEmpty" Action="Warning"/>
+        <Rule Id="CollectionShouldContainProperty" Action="Warning"/>
+        <Rule Id="CollectionShouldNotContainProperty" Action="Warning"/>
+        <Rule Id="CollectionShouldContainItem" Action="Warning"/>
+        <Rule Id="CollectionShouldNotContainItem" Action="Warning"/>
+        <Rule Id="CollectionShouldHaveCount" Action="Warning"/>
+        <Rule Id="CollectionShouldHaveCountGreaterThan" Action="Warning"/>
+        <Rule Id="CollectionShouldHaveCountGreaterOrEqualTo" Action="Warning"/>
+        <Rule Id="CollectionShouldHaveCountLessThan" Action="Warning"/>
+        <Rule Id="CollectionShouldHaveCountLessOrEqualTo" Action="Warning"/>
+        <Rule Id="CollectionShouldNotHaveCount" Action="Warning"/>
+        <Rule Id="CollectionShouldContainSingle" Action="Warning"/>
+        <Rule Id="CollectionShouldOnlyContainProperty" Action="Warning"/>
+        <Rule Id="CollectionShouldHaveSameCount" Action="Warning"/>
+        <Rule Id="CollectionShouldNotHaveSameCount" Action="Warning"/>
+        <Rule Id="CollectionShouldContainSingleProperty" Action="Warning"/>
+        <Rule Id="CollectionShouldNotBeNullOrEmpty" Action="Warning"/>
+        <Rule Id="CollectionShouldHaveElementAt" Action="Warning"/>
+        <Rule Id="CollectionShouldBeInAscendingOrder" Action="Warning"/>
+        <Rule Id="CollectionShouldBeInDescendingOrder" Action="Warning"/>
+        <Rule Id="CollectionShouldEqualOtherCollectionByComparer" Action="Warning"/>
+        <Rule Id="CollectionShouldNotIntersectWith" Action="Warning"/>
+        <Rule Id="CollectionShouldIntersectWith" Action="Warning"/>
+        <Rule Id="CollectionShouldNotContainNulls" Action="Warning"/>
+        <Rule Id="CollectionShouldOnlyHaveUniqueItems" Action="Warning"/>
+        <Rule Id="CollectionShouldOnlyHaveUniqueItemsByComparer" Action="Warning"/>
+        <Rule Id="CollectionShouldHaveElementAt0Null" Action="Warning"/>
+        <Rule Id="DictionaryShouldContainKey" Action="Warning"/>
+        <Rule Id="DictionaryShouldContainValue" Action="Warning"/>
+        <Rule Id="DictionaryShouldContainKeyAndValue" Action="Warning"/>
+        <Rule Id="DictionaryShouldContainPair" Action="Warning"/>
+        <Rule Id="DictionaryShouldNotContainKey" Action="Warning"/>
+        <Rule Id="DictionaryShouldNotContainValue" Action="Warning"/>
+        <Rule Id="StringShouldStartWith" Action="Warning"/>
+        <Rule Id="StringShouldEndWith" Action="Warning"/>
+        <Rule Id="StringShouldNotBeNullOrEmpty" Action="Warning"/>
+        <Rule Id="StringShouldBeNullOrEmpty" Action="Warning"/>
+        <Rule Id="StringShouldBeNullOrWhiteSpace" Action="Warning"/>
+        <Rule Id="StringShouldNotBeNullOrWhiteSpace" Action="Warning"/>
+        <Rule Id="StringShouldHaveLength" Action="Warning"/>
+        <Rule Id="ComparableShouldBePositive" Action="Warning"/>
+        <Rule Id="NumericShouldBePositive" Action="Warning"/>
+        <Rule Id="NumericShouldBeNegative" Action="Warning"/>
+        <Rule Id="NumericShouldBeInRange" Action="Warning"/>
+        <Rule Id="NumericShouldBeApproximately" Action="Warning"/>
+        <Rule Id="ExceptionShouldThrowWithMessage" Action="Warning"/>
+        <Rule Id="ExceptionShouldThrowWithInnerException" Action="Warning"/>
+    </Rules>
+</RuleSet>

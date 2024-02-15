@@ -1,0 +1,103 @@
+{
+    "ApplicationTitle": "5Minds Portal",
+    "ErrorTitle": "Fehler",
+    "ApplicationLoading": "Lädt…",
+    "PageWillRefreshAutomatically": "Die Seite wird sich automatisch aktualisieren.",
+    "AtlasEngineOutdated": "Die verbundene Engine hat eine inkompatible Version. Die Funktion des Portals ist dadurch möglicherweise beeinträchtigt. Es wird empfohlen die Engine auf Version {{version}} oder neuer zu aktualisieren.",
+    "TryAgain": "Erneut versuchen",
+    "BackToHomepage":  {
+      "DefaultTitle": "Zurück zum Dashboard"
+    },
+    "Auth": {
+      "LoginInProgress": "Anmeldung läuft…",
+      "LoadingUserInformation": "Benutzerinformationen werden geladen…",
+      "RedirectionInProgress": "Weiterleitung läuft…",
+      "LoginNecessary": "Anmeldung über 5Minds Authority notwendig.",
+      "ProblemsWithLogin": "Probleme mit der automatischen Anmeldung?",
+      "LoginNow": "Jetzt anmelden",
+      "ErrorDuringLogin": "Fehler während des Logins"
+    },
+    "CorrelationTracker": {
+      "ProcessAborted ": "Der Prozess wurde von dem Benutzer {{userId}} abgebrochen.",
+      "UserIdUnknown": "(Unbekannt)",
+      "ProcessInstancePathUnknown": "(Unbekannt)",
+      "CorrelationNameUnknown": "(Unbekannt)",
+      "ErrorProcessExecution": "Fehler bei der Ausführung des Prozesses {{processModelId}}.",
+      "ProcessSuccessfullyCompleted": "Der Prozess wurde erfolgreich beendet.",
+      "SwitchToOverview": "Zur Übersicht wechseln.",
+      "CurrentlyNoTasksAvailable": "Derzeit liegen keine Aufgaben vor.",
+      "DataLoading":"Daten werden geladen.",
+      "ProcessDefinitionNameNotSet": "(Nicht gesetzt)",
+      "Continue": "\"{{taskName}}\" fortsetzen",
+      "TasksOrigin": "Ursprung: <span>{{ProcessInstancePath}}</span>",
+      "HeaderProcessModel": "Ursprung",
+      "HeaderTasks": "Aufgaben",
+      "ProcessWorksInBackground": "Der Prozess arbeitet im Hintergrund. Neue Aufgaben werden hier angezeigt, sobald vorhanden."
+    },
+    "StartableList": {
+      "DuplicateIdsFound": "Die Sortierung der Prozesse ist nicht möglich, da folgende IDs mehrfach vorkommen: {{duplicateIds}}.",
+      "NoProcessesFound": "Keine Prozesse gefunden.",
+      "DataLoading": "Prozesse werden geladen…"
+    },
+    "Homepage": {
+      "ProcessCompletedSuccessfully": "Der Prozess wurde erfolgreich beendet."
+    },
+    "TaskList": {
+      "Header": "Meine Aufgaben",
+      "DataLoading":"Aufgaben werden geladen…",
+      "TasksForCorrelationName": "{{correlationName}}",
+      "NoTasksFound": "Keine Aufgaben gefunden.",
+      "NoTasks": "Derzeit liegen keine Aufgaben vor.",
+      "SearchTasks":"Aufgaben durchsuchen",
+      "CorrelationNameUnknown": "(Unbekannt)",
+      "HeaderProcessModel": "Prozess",
+      "HeaderTasks": "Aufgaben",
+      "NoTaskName": "Unbenannte Aufgabe"
+    },
+    "TaskView": {
+      "Loading": "Lädt…",
+      "SwitchToOverview": "Zur Übersicht wechseln.",
+      "TasksNotFound": "Aufgabe nicht gefunden."
+    },
+    "ErrorRenderer": {
+      "AtlasAuthorityUnreachableError": "Netzwerkfehler: Die 5Minds Authority ist nicht erreichbar.",
+      "AtlasEngineUnreachableError": "Netzwerkfehler: Die 5Minds Engine ist nicht erreichbar.",
+      "NoPermissions": "Keine Rechte",
+      "MissingClaim": "Es fehlt das Recht <code>{{missingClaim}}</code>",
+      "ConfigurationError": "Konfigurationsfehler",
+      "UnknownError": "Unbekannter Fehler"
+    },
+    "Header": {
+      "TitleHomepage": "Dashboard",
+      "TitleStartableList": "Meine Prozesse",
+      "TitleTaskList": "Meine Aufgaben",
+      "TitleUserSettings": "Meine Einstellungen",
+      "SearchPlaceholder": "Suche…"
+    },
+    "Sidebar": {
+      "Title": "5Minds Portal",
+      "LinkHomepage": "Dashboard",
+      "LinkStartableList": "Meine Prozesse",
+      "LinkTaskList": "Meine Aufgaben",
+      "LinkSettings": "Einstellungen",
+      "Logout": "Logout"
+    },
+    "StartProcessViaURL": {
+      "ProcessIsStarting":"Prozess wird gestartet…"
+    },
+    "StartDialogView": {
+      "StartDialogNotFound": "Kein Startdialog mit dem Namen <code>{{startDialogId}}</code> gefunden.",
+      "BackToHomepageLink": "Zurück zur Startseite"
+    },
+    "UserSettings": {
+      "HeaderLanguages": "Language / Sprache",
+      "HeaderLogout": "Session",
+      "Logout": "Ausloggen"
+    },
+    "TerminationModal": {
+      "Title": "Prozess beenden",
+      "Body": "Sind Sie sicher, dass Sie den Prozess vorzeitig beenden wollen? <br /><br /><b>WICHTIG:</b> Diese Aktion kann nicht rückgängig gemacht werden!",
+      "CancelButton": "Abbrechen",
+      "ConfirmButton": "Prozess beenden"
+    }
+  }
