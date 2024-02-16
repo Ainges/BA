@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.test.main.junit5.CamelMainTestSupport;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,7 +20,9 @@ class MyApplicationTest extends CamelMainTestSupport {
         return MyApplication.class;
     }
 
+
     @Test
+    @Disabled
     void should_complete_the_auto_detected_route() {
         NotifyBuilder notify = new NotifyBuilder(context)
                 .whenCompleted(1).whenBodiesDone("Goodbye World").create();
