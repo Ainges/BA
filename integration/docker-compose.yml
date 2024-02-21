@@ -1,0 +1,9 @@
+services:
+  artemis:
+    image: apache/activemq-artemis
+    ports:
+      - "8161:8161"   # Web Console
+      - "61616:61616" # AMQP
+      - "5672:5672"   # MQTT
+      - "1883:1883"   # STOMP
+      - "61613:61613" # OpenWire
