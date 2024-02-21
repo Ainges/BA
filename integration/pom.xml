@@ -125,7 +125,7 @@
                 <version>4.0.0</version>
                 <configuration>
                     <logClasspath>true</logClasspath>
-                    <mainClass>org.example.MyApplication</mainClass>
+                    <mainClass>com.hubertusseitz.MyApplication</mainClass>
                 </configuration>
             </plugin>
 

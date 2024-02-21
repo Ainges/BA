@@ -1,4 +1,4 @@
-package org.example;
+package com.hubertusseitz;
 
 import org.apache.camel.main.Main;
 

@@ -1,2 +1,3 @@
-org/example/MyRouteBuilder.class
-org/example/MyApplication.class
+com/hubertusseitz/MyApplication.class
+com/hubertusseitz/TestRoute.class
+com/hubertusseitz/MailToNewEmployyeRoute.class
