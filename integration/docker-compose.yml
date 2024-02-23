@@ -5,5 +5,9 @@ services:
       - "8161:8161"   # Web Console
       - "61616:61616" # AMQP
       - "5672:5672"   # MQTT
-      - "1883:1883"   # STOMP
-      - "61613:61613" # OpenWire
+
+  smtp4dev:
+    image: rnwood/smtp4dev
+    ports:
+      - "3000:80"
+      - "2525:25"

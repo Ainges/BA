@@ -10,17 +10,16 @@ public class RestAPITest extends RouteBuilder {
     public void configure() throws Exception {
 
 
-
         // return a simple message when the rest API is called
         rest("/test")
-.get("/").produces("text/plain").to("direct:testoverview")
-            .get("/hello").produces("text/plain")
-            .to("direct:GET_test")
+                .get("/").produces("text/plain").to("direct:testoverview")
+                .get("/hello").produces("text/plain")
+                .to("direct:GET_test")
                 .get("json").produces("application/json")
                 .to("direct:GET_json");
 
         from("direct:GET_test")
-            .setBody().simple(this.testMessage);
+                .setBody().simple(this.testMessage);
 
         //return a json message when the rest API is called
         from("direct:GET_json")

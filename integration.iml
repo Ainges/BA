@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
+  <component name="Quarkus Tools">
+    <option name="hash" value="1994394059" />
+    <option name="version" value="1" />
+  </component>
   <component name="SonarLintModuleSettings">
     <option name="uniqueId" value="ba868e11-c7dc-4441-9389-6432c20980e5" />
   </component>

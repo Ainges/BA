@@ -44,8 +44,17 @@
     </dependencyManagement>
     <dependencies>
         <dependency>
+            <groupId>org.apache.camel.quarkus</groupId>
+            <artifactId>camel-quarkus-mail</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>io.quarkiverse.artemis</groupId>
             <artifactId>quarkus-artemis-jms</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.quarkus</groupId>
+            <artifactId>camel-quarkus-sjms2</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.camel.quarkus</groupId>
@@ -92,7 +101,6 @@
             <artifactId>quarkus-junit5</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.apache.camel.quarkus</groupId>
             <artifactId>camel-quarkus-rest</artifactId>
@@ -102,8 +110,6 @@
             <artifactId>json</artifactId>
             <version>20230227</version>
         </dependency>
-
-
     </dependencies>
     <build>
         <plugins>

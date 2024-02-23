@@ -16,8 +16,7 @@ public class MessagingTestRoute extends RouteBuilder {
                 .log("Message received from Artemis: ${body}")
                 .to("log: LOG:");
 
-        // Build new Route for another Queue
-        
+
 
     }
 }
