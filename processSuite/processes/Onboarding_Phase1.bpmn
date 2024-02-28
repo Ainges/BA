@@ -80,6 +80,9 @@
     <bpmn:sequenceFlow id="Flow_020fp2m" sourceRef="Gateway_08gq0uy" targetRef="Gateway_0vy7lxq" />
     <bpmn:startEvent id="StartEvent_OnboardingPhase1" name="Onboarding von Mitarbeiter steht an">
       <bpmn:outgoing>Flow_0alw6fb</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1ndumyw">
+        <bpmn:targetRef>DataObjectReference_newEmployeeData</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:startEvent>
     <bpmn:parallelGateway id="Gateway_0vy7lxq">
       <bpmn:incoming>Flow_1sxu1fe</bpmn:incoming>
@@ -102,9 +105,9 @@
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="firstWorkingDay" label="Erster Arbeitstag" type="date" />
-          <camunda:formField id="contactPerson" label="Ansprechpartner" type="string" />
-          <camunda:formField id="beginOfFirstWorkingDay" label="Beginn des ersten Arbeitstages" type="string" />
-          <camunda:formField id="documentsNeededForFirstWorkingDay" label="Folgende Dokumente werden für den erste Arbeitstag benötigt" type="string" />
+          <camunda:formField id="contactPerson" label="Ansprechpartner" type="string" defaultValue="Dirk Müller" />
+          <camunda:formField id="beginOfFirstWorkingDay" label="Beginn des ersten Arbeitstages" type="string" defaultValue="08:00 Uhr" />
+          <camunda:formField id="documentsNeededForFirstWorkingDay" label="Folgende Dokumente werden für den erste Arbeitstag benötigt" type="string" defaultValue="Personalausweis" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0579xkg</bpmn:incoming>
@@ -121,7 +124,7 @@
       <bpmn:incoming>Flow_10b9tgi</bpmn:incoming>
       <bpmn:outgoing>Flow_0l95km6</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_14oefnv">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT30S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:parallelGateway id="Gateway_1pwvone">
@@ -180,10 +183,16 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="payload" value="token.current" />
+          <camunda:property name="engine.runPreScript" value="return {&#10;  ...token.current,&#10;  &#34;newEmployeeData&#34;:dataObjects.DataObjectReference_newEmployeeData&#10;};" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0l95km6</bpmn:incoming>
       <bpmn:outgoing>Flow_1sxu1fe</bpmn:outgoing>
+      <bpmn:property id="Property_1oxx966" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_080jnhl">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1oxx966</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:subProcess id="Activity_0bx4zme" triggeredByEvent="true">
       <bpmn:endEvent id="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay" name="Vorbereitung nicht vollständig abgeschlossen">
@@ -199,19 +208,13 @@
       </bpmn:startEvent>
       <bpmn:association id="Association_0gqo4r9" sourceRef="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay" targetRef="TextAnnotation_1hmlaoo" />
     </bpmn:subProcess>
+    <bpmn:dataObjectReference id="DataObjectReference_newEmployeeData" name="Daten zu neuem Mitarbeiter" dataObjectRef="DataObject_1wriav3" />
+    <bpmn:dataObject id="DataObject_1wriav3" />
     <bpmn:textAnnotation id="TextAnnotation_1g7nhah">
       <bpmn:text>Unterprozess:
 - Equipment
 - Berechtigungen auch physisch usw.</bpmn:text>
     </bpmn:textAnnotation>
-    <bpmn:textAnnotation id="TextAnnotation_0nv5fnu">
-      <bpmn:text>Inhalt: 
-- Wo melden am ersten Arbeitstag?
-- Wer ist Ansprechpartner?
-- Wann da sein?
-- Benötigte Unterlagen?</bpmn:text>
-    </bpmn:textAnnotation>
-    <bpmn:association id="Association_1tvuib4" sourceRef="Activity_0ve80u6" targetRef="TextAnnotation_0nv5fnu" />
     <bpmn:association id="Association_16n593h" sourceRef="Activity_1mnv47x" targetRef="TextAnnotation_1g7nhah" />
     <bpmn:textAnnotation id="TextAnnotation_0n4yrd5">
       <bpmn:text>wird im Moment noch nicht unterstützt...</bpmn:text>
@@ -220,6 +223,14 @@
       <bpmn:text>Sollte ein Eskalationsereignis sein, da es ein fachlicher Fehler ist</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_0zmrjxy" sourceRef="Activity_0bx4zme" targetRef="TextAnnotation_0n4yrd5" />
+    <bpmn:textAnnotation id="TextAnnotation_0nv5fnu">
+      <bpmn:text>Inhalt: 
+- Wo melden am ersten Arbeitstag?
+- Wer ist Ansprechpartner?
+- Wann da sein?
+- Benötigte Unterlagen?</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1tvuib4" sourceRef="Activity_0ve80u6" targetRef="TextAnnotation_0nv5fnu" />
   </bpmn:process>
   <bpmn:escalation id="Escalation_crvS1NUq" name="test" escalationCode="test" />
   <bpmn:error id="Error_E8RuFXba" errorCode="failedToPrepareFirstWorkingDay" camunda:errorMessage="Der Erste Arbeitstag wurde vor der Beendigung der Vorbereitungen erreicht!" />
@@ -318,7 +329,7 @@
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_OnboardingPhase1">
         <dc:Bounds x="92" y="442" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="71" y="485" width="79" height="40" />
+          <dc:Bounds x="70" y="490" width="79" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_05lwk3e_di" bpmnElement="Gateway_0vy7lxq">
@@ -400,12 +411,14 @@
         <di:waypoint x="1390" y="782" />
         <di:waypoint x="1390" y="672" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="DataObjectReference_0oullfp_di" bpmnElement="DataObjectReference_newEmployeeData">
+        <dc:Bounds x="244" y="295" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="221" y="258" width="81" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1g7nhah_di" bpmnElement="TextAnnotation_1g7nhah">
         <dc:Bounds x="720" y="610" width="270" height="55" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_0nv5fnu_di" bpmnElement="TextAnnotation_0nv5fnu">
-        <dc:Bounds x="360" y="278" width="220" height="84" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0n4yrd5_di" bpmnElement="TextAnnotation_0n4yrd5">
@@ -414,6 +427,10 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1hmlaoo_di" bpmnElement="TextAnnotation_1hmlaoo">
         <dc:Bounds x="1340" y="590" width="100" height="82" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0nv5fnu_di" bpmnElement="TextAnnotation_0nv5fnu">
+        <dc:Bounds x="360" y="520" width="220" height="84" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0alw6fb_di" bpmnElement="Flow_0alw6fb">
@@ -550,10 +567,6 @@
         <di:waypoint x="642" y="720" />
         <di:waypoint x="642" y="915" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_1tvuib4_di" bpmnElement="Association_1tvuib4">
-        <di:waypoint x="464" y="420" />
-        <di:waypoint x="440" y="362" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_16n593h_di" bpmnElement="Association_16n593h">
         <di:waypoint x="517" y="780" />
         <di:waypoint x="720" y="656" />
@@ -561,6 +574,10 @@
       <bpmndi:BPMNEdge id="Association_0zmrjxy_di" bpmnElement="Association_0zmrjxy">
         <di:waypoint x="1262" y="740" />
         <di:waypoint x="1222" y="652" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1tvuib4_di" bpmnElement="Association_1tvuib4">
+        <di:waypoint x="458" y="500" />
+        <di:waypoint x="447" y="520" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_1bljbac_di" bpmnElement="Participant_1ejbgs2" isHorizontal="true">
         <dc:Bounds x="680" y="1400" width="600" height="60" />
@@ -613,6 +630,15 @@
       <bpmndi:BPMNEdge id="Flow_0km0dgg_di" bpmnElement="Flow_0km0dgg">
         <di:waypoint x="358" y="-200" />
         <di:waypoint x="412" y="-200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1ndumyw_di" bpmnElement="DataOutputAssociation_1ndumyw">
+        <di:waypoint x="110" y="442" />
+        <di:waypoint x="110" y="325" />
+        <di:waypoint x="244" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_080jnhl_di" bpmnElement="DataInputAssociation_080jnhl">
+        <di:waypoint x="280" y="322" />
+        <di:waypoint x="1225" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ma1iz7_di" bpmnElement="Flow_0ma1iz7">
         <di:waypoint x="980" y="188" />
