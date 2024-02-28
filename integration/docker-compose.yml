@@ -9,5 +9,5 @@ services:
   smtp4dev:
     image: rnwood/smtp4dev
     ports:
-      - "3000:80"
+      - "3300:80"
       - "2525:25"

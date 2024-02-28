@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   engine:
-    image: 5minds/engine:15
+    image: 5minds/processcube_engine:2024-1
     ports:
       - 8000:8000
     volumes:
@@ -54,10 +54,3 @@ services:
     command: npm start
     ports:
       - 3000:3000
-
-  activeMQ:
-    image: apache/activemq-classic:5.18.3
-    ports:
-      - 61616:61616
-      - 8161:8161
-    

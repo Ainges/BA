@@ -1,3 +1,5 @@
+package examples;
+
 import org.apache.camel.builder.RouteBuilder;
 import org.json.JSONObject;
 
@@ -23,6 +25,7 @@ public class RestAPITest extends RouteBuilder {
 
         //return a json message when the rest API is called
         from("direct:GET_json")
+                .log("GET successfully called!")
                 // return properly formatted JSON
                 .process(exchange -> {
 

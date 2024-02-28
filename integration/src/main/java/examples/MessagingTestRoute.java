@@ -1,3 +1,5 @@
+package examples;
+
 import org.apache.camel.builder.RouteBuilder;
 
 public class MessagingTestRoute extends RouteBuilder {

@@ -3,13 +3,13 @@
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
     <bpmn:participant id="Participant_0px403d" name="Onboarding_Phase1" processRef="Onboarding_Phase1_Process" />
     <bpmn:participant id="Participant_1ejbgs2" name="Wohnungssuche Prozess" />
-    <bpmn:participant id="Participant_1tetnf2" name="SCIL" processRef="Process_0oql0f7" />
+    <bpmn:participant id="Participant_1tetnf2" name="SCIL" processRef="SCIL_OnboardingPhase1" />
     <bpmn:messageFlow id="Flow_0ma1iz7" sourceRef="Event_1d8bbu9" targetRef="Participant_1ejbgs2" />
-    <bpmn:messageFlow id="Flow_0idtrqy" sourceRef="Activity_1eyq305" targetRef="Participant_1tetnf2" />
-    <bpmn:messageFlow id="Flow_00brnr4" sourceRef="Participant_1tetnf2" targetRef="Event_17whont" />
+    <bpmn:messageFlow id="Flow_0idtrqy" sourceRef="Activity_1eyq305" targetRef="Event_1uese52" />
     <bpmn:messageFlow id="Flow_1n74xo3" sourceRef="Activity_1l0s39s" targetRef="Event_0n2t9hy" />
+    <bpmn:messageFlow id="Flow_1aoistr" sourceRef="Event_0u1z24k" targetRef="Event_17whont" />
   </bpmn:collaboration>
-  <bpmn:process id="Onboarding_Phase1_Process" name="Onboarding_Phase1" isExecutable="true">
+  <bpmn:process id="Onboarding_Phase1_Process" name="Onboarding_Phase1" isExecutable="true" camunda:versionTag="0.1">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1pyr36n" name="Vorgesetzter">
         <bpmn:flowNodeRef>Activity_1eyq305</bpmn:flowNodeRef>
@@ -231,7 +231,7 @@
   <bpmn:message id="Message_eBIO3DQK" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_2Sz5EKXp" name="Message_Send_MoveNecessary" />
   <bpmn:message id="Message_uZq3k32L" name="Message_Send_WelcomeMessageToNewEmployee" />
-  <bpmn:process id="Process_0oql0f7" name="SCIL" isExecutable="true">
+  <bpmn:process id="SCIL_OnboardingPhase1" name="SCIL" isExecutable="true" camunda:versionTag="0.1">
     <bpmn:startEvent id="Event_0n2t9hy">
       <bpmn:outgoing>Flow_1gbvat2</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_16zkewi" messageRef="Message_scqRgCad" />
@@ -246,17 +246,38 @@
         <camunda:properties>
           <camunda:property name="module" value="HttpClient" />
           <camunda:property name="method" value="post" />
-          <camunda:property name="params" value="[&#34;http://0.0.0.0:8080/onboarding/phase1/SendWelcomeMessageToNewEmployee&#34;, &#34;token.current\n&#34;]" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/phase1/SendWelcomeMessageToNewEmployee&#34;, &#34;token.current\n&#34;]" />
           <camunda:property name="studio.paramBody" value="token.current&#10;" />
-          <camunda:property name="studio.paramUrl" value="http://0.0.0.0:8080/onboarding/phase1/SendWelcomeMessageToNewEmployee" />
+          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/phase1/SendWelcomeMessageToNewEmployee" />
           <camunda:property name="studio.paramAuthorization" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1gbvat2</bpmn:incoming>
       <bpmn:outgoing>Flow_01gmqey</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:startEvent id="Event_1uese52">
+      <bpmn:outgoing>Flow_1diyb40</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0o1c6j8" messageRef="Message_fqaaQpdU" />
+    </bpmn:startEvent>
+    <bpmn:task id="Activity_0xyob35" name="TODO">
+      <bpmn:incoming>Flow_1diyb40</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kgd6t7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1diyb40" sourceRef="Event_1uese52" targetRef="Activity_0xyob35" />
+    <bpmn:sequenceFlow id="Flow_1kgd6t7" sourceRef="Activity_0xyob35" targetRef="Event_0u1z24k" />
+    <bpmn:intermediateThrowEvent id="Event_0u1z24k">
+      <bpmn:incoming>Flow_1kgd6t7</bpmn:incoming>
+      <bpmn:outgoing>Flow_0km0dgg</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1w68v6z" messageRef="Message_oPx4KAVx" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:endEvent id="Event_0v73clf">
+      <bpmn:incoming>Flow_0km0dgg</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0km0dgg" sourceRef="Event_0u1z24k" targetRef="Event_0v73clf" />
   </bpmn:process>
   <bpmn:message id="Message_scqRgCad" name="Message_Send_WelcomeMessageToNewEmployee" />
+  <bpmn:message id="Message_fqaaQpdU" name="Message_Send_IsMoveNecessary" />
+  <bpmn:message id="Message_oPx4KAVx" name="Message_Receive_IsMoveNecessary" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
@@ -560,6 +581,19 @@
       <bpmndi:BPMNShape id="Activity_0qpbepo_di" bpmnElement="Activity_SendWelcomeMessageToNewEmployee">
         <dc:Bounds x="1390" y="-240" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1pyowqg_di" bpmnElement="Event_1uese52">
+        <dc:Bounds x="82" y="-218" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xyob35_di" bpmnElement="Activity_0xyob35">
+        <dc:Bounds x="170" y="-240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0z03bff_di" bpmnElement="Event_0u1z24k">
+        <dc:Bounds x="322" y="-218" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0v73clf_di" bpmnElement="Event_0v73clf">
+        <dc:Bounds x="412" y="-218" width="36" height="36" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1gbvat2_di" bpmnElement="Flow_1gbvat2">
         <di:waypoint x="1338" y="-200" />
         <di:waypoint x="1390" y="-200" />
@@ -568,21 +602,37 @@
         <di:waypoint x="1490" y="-200" />
         <di:waypoint x="1542" y="-200" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1diyb40_di" bpmnElement="Flow_1diyb40">
+        <di:waypoint x="118" y="-200" />
+        <di:waypoint x="170" y="-200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kgd6t7_di" bpmnElement="Flow_1kgd6t7">
+        <di:waypoint x="270" y="-200" />
+        <di:waypoint x="322" y="-200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0km0dgg_di" bpmnElement="Flow_0km0dgg">
+        <di:waypoint x="358" y="-200" />
+        <di:waypoint x="412" y="-200" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ma1iz7_di" bpmnElement="Flow_0ma1iz7">
         <di:waypoint x="980" y="188" />
         <di:waypoint x="980" y="1400" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0idtrqy_di" bpmnElement="Flow_0idtrqy">
         <di:waypoint x="450" y="130" />
-        <di:waypoint x="450" y="-80" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_00brnr4_di" bpmnElement="Flow_00brnr4">
-        <di:waypoint x="730" y="-80" />
-        <di:waypoint x="730" y="152" />
+        <di:waypoint x="450" y="-60" />
+        <di:waypoint x="100" y="-60" />
+        <di:waypoint x="100" y="-182" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1n74xo3_di" bpmnElement="Flow_1n74xo3">
         <di:waypoint x="1320" y="420" />
         <di:waypoint x="1320" y="-182" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1aoistr_di" bpmnElement="Flow_1aoistr">
+        <di:waypoint x="340" y="-182" />
+        <di:waypoint x="340" y="-130" />
+        <di:waypoint x="730" y="-130" />
+        <di:waypoint x="730" y="152" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

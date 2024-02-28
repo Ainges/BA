@@ -21,9 +21,9 @@
         <bpmn:flowNodeRef>Activity_00g90w4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_15mx8y8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0vx3t9l</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_058r1tp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_Boundary_FailedToPrepareFirstWorkingDay</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1r5zr3t</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_058r1tp</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_1qsxxjx" sourceRef="Event_058r1tp" targetRef="Activity_1y3blpl" />
@@ -77,9 +77,6 @@
       <bpmn:incoming>Flow_157f7ur</bpmn:incoming>
       <bpmn:outgoing>Flow_0gqjk37</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:startEvent id="Event_058r1tp" name="Vertrag wurde unterschrieben">
-      <bpmn:outgoing>Flow_1qsxxjx</bpmn:outgoing>
-    </bpmn:startEvent>
     <bpmn:boundaryEvent id="Event_Boundary_FailedToPrepareFirstWorkingDay" attachedToRef="Activity_1y3blpl">
       <bpmn:outgoing>Flow_1cck4sn</bpmn:outgoing>
       <bpmn:errorEventDefinition id="ErrorEventDefinition_18rvp6g" errorRef="Error_XHZ93uIl" />
@@ -88,12 +85,17 @@
       <bpmn:incoming>Flow_1cck4sn</bpmn:incoming>
       <bpmn:outgoing>Flow_157f7ur</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:startEvent id="Event_058r1tp" name="Vertrag wurde unterschrieben">
+      <bpmn:outgoing>Flow_1qsxxjx</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0k4wxt7" messageRef="Message_0FYJvnR1" />
+    </bpmn:startEvent>
     <bpmn:association id="Association_080djnz" sourceRef="Event_Boundary_FailedToPrepareFirstWorkingDay" targetRef="TextAnnotation_0xdesjf" />
   </bpmn:process>
   <bpmn:escalation id="Escalation_94tue9vH" name="test" escalationCode="test" />
   <bpmn:escalation id="Escalation_tGv3yfxn" name="test" escalationCode="test" />
   <bpmn:escalation id="Escalation_0aod7RuA" name="test" escalationCode="test" />
   <bpmn:error id="Error_XHZ93uIl" errorCode="failedToPrepareFirstWorkingDay" camunda:errorMessage="Der Erste Arbeitstag wurde vor der Beendigung der Vorbereitungen erreicht!" />
+  <bpmn:message id="Message_0FYJvnR1" name="employeeHasSignedContract" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
@@ -133,19 +135,15 @@
       <bpmndi:BPMNShape id="Gateway_0vx3t9l_di" bpmnElement="Gateway_0vx3t9l" isMarkerVisible="true">
         <dc:Bounds x="495" y="145" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_17aub2a_di" bpmnElement="Event_058r1tp">
+      <bpmndi:BPMNShape id="Activity_095u357_di" bpmnElement="Activity_1r5zr3t">
+        <dc:Bounds x="320" y="250" width="175" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0drxucv_di" bpmnElement="Event_058r1tp">
         <dc:Bounds x="102" y="152" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="84" y="195" width="73" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_095u357_di" bpmnElement="Activity_1r5zr3t">
-        <dc:Bounds x="320" y="250" width="175" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Association_080djnz_di" bpmnElement="Association_080djnz">
-        <di:waypoint x="300" y="195" />
-        <di:waypoint x="443" y="-15" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_0fnjykj_di" bpmnElement="Event_Boundary_FailedToPrepareFirstWorkingDay">
         <dc:Bounds x="272" y="192" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -186,6 +184,10 @@
         <di:waypoint x="495" y="290" />
         <di:waypoint x="520" y="290" />
         <di:waypoint x="520" y="195" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_080djnz_di" bpmnElement="Association_080djnz">
+        <di:waypoint x="300" y="195" />
+        <di:waypoint x="443" y="-15" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="TextAnnotation_0xdesjf_di" bpmnElement="TextAnnotation_0xdesjf">
         <dc:Bounds x="440" y="-100" width="99.99510188087774" height="84.63949843260188" />

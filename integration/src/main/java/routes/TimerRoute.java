@@ -1,3 +1,5 @@
+package routes;
+
 import org.apache.camel.builder.RouteBuilder;
 
 public class TimerRoute extends RouteBuilder {

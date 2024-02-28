@@ -1,5 +1,9 @@
+package routes;
+
+import jakarta.inject.Inject;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.builder.RouteBuilder;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +12,8 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
+
+
 
         rest("/onboarding/phase1")
                 .post("/SendWelcomeMessageToNewEmployee")
@@ -33,16 +39,16 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
                     headers.put("To", "test@thi.de");
                     headers.put("From", "hus4725@thi.de");
                     headers.put("Subject", "Grüße von Camel!");
-                    headers.put("CamelFileName", "fileOne");
-                    headers.put("org.apache.camel.test", "value");
 
-                    String body = "Hallo THI.\nGreetings form a process driven Application!.\n\nRegards Hubertus.";
+                    String body = "Hallo THI.\nGreetings form a process driven Application!\n\nRegards Hubertus.";
                     exchange.getMessage().setHeaders(headers);
                     exchange.getMessage().setBody(body);
 
 
                 })
-                .to("smtp://0.0.0.0:2525");
+                // SMTP Host and Port are set in the application.properties file
+                // Note: It is not possible to use the @ConfigProperty annotation in the from() method -> will evaluate to null
+                .to("smtp://" + "{{smtp.host}}" + ":" + "{{smtp.port}}" + "?username=" + "{{smtp.username}}" + "&password=" + "{{smtp.password}}");
 
     }
 }
