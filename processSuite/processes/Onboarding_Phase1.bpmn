@@ -4,10 +4,13 @@
     <bpmn:participant id="Participant_0px403d" name="Onboarding_Phase1" processRef="Onboarding_Phase1_Process" />
     <bpmn:participant id="Participant_1ejbgs2" name="Wohnungssuche Prozess" />
     <bpmn:participant id="Participant_1tetnf2" name="SCIL" processRef="SCIL_OnboardingPhase1" />
+    <bpmn:participant id="Participant_1t25cj3" name="Neuer Mitarbeiter" />
     <bpmn:messageFlow id="Flow_0ma1iz7" sourceRef="Event_1d8bbu9" targetRef="Participant_1ejbgs2" />
     <bpmn:messageFlow id="Flow_0idtrqy" sourceRef="Activity_1eyq305" targetRef="Event_1uese52" />
     <bpmn:messageFlow id="Flow_1n74xo3" sourceRef="Activity_1l0s39s" targetRef="Event_0n2t9hy" />
     <bpmn:messageFlow id="Flow_1aoistr" sourceRef="Event_0u1z24k" targetRef="Event_17whont" />
+    <bpmn:messageFlow id="Flow_1wm23xv" sourceRef="Participant_1t25cj3" targetRef="Event_1g2yil3" />
+    <bpmn:messageFlow id="Flow_1k4ejzu" sourceRef="Activity_0xyob35" targetRef="Participant_1t25cj3" />
   </bpmn:collaboration>
   <bpmn:process id="Onboarding_Phase1_Process" name="Onboarding_Phase1" isExecutable="true" camunda:versionTag="0.1">
     <bpmn:laneSet>
@@ -47,6 +50,11 @@
     <bpmn:sendTask id="Activity_1eyq305" name="Mitarbeiter fragen ob durch den Jobwechsel ein Umzug ansteht" messageRef="Message_Jkc2PIH2">
       <bpmn:incoming>Flow_0cnjnkh</bpmn:incoming>
       <bpmn:outgoing>Flow_0hvkfna</bpmn:outgoing>
+      <bpmn:property id="Property_0jahgm4" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0sohxcq">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0jahgm4</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:eventBasedGateway id="Gateway_0e9psvj">
       <bpmn:incoming>Flow_0hvkfna</bpmn:incoming>
@@ -270,25 +278,42 @@
       <bpmn:outgoing>Flow_1diyb40</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0o1c6j8" messageRef="Message_fqaaQpdU" />
     </bpmn:startEvent>
-    <bpmn:task id="Activity_0xyob35" name="TODO">
-      <bpmn:incoming>Flow_1diyb40</bpmn:incoming>
-      <bpmn:outgoing>Flow_1kgd6t7</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:sequenceFlow id="Flow_1diyb40" sourceRef="Event_1uese52" targetRef="Activity_0xyob35" />
-    <bpmn:sequenceFlow id="Flow_1kgd6t7" sourceRef="Activity_0xyob35" targetRef="Event_0u1z24k" />
-    <bpmn:intermediateThrowEvent id="Event_0u1z24k">
-      <bpmn:incoming>Flow_1kgd6t7</bpmn:incoming>
+    <bpmn:sequenceFlow id="Flow_1kgd6t7" sourceRef="Activity_0xyob35" targetRef="Event_1g2yil3" />
+    <bpmn:sequenceFlow id="Flow_0km0dgg" sourceRef="Event_0u1z24k" targetRef="Event_0v73clf" />
+    <bpmn:intermediateThrowEvent id="Event_0u1z24k" name="Antwort zu Umzugsfrage mitteilen">
+      <bpmn:incoming>Flow_07438p2</bpmn:incoming>
       <bpmn:outgoing>Flow_0km0dgg</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1w68v6z" messageRef="Message_oPx4KAVx" />
     </bpmn:intermediateThrowEvent>
-    <bpmn:endEvent id="Event_0v73clf">
+    <bpmn:endEvent id="Event_0v73clf" name="Umzugsfrage geklärt">
       <bpmn:incoming>Flow_0km0dgg</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0km0dgg" sourceRef="Event_0u1z24k" targetRef="Event_0v73clf" />
+    <bpmn:sequenceFlow id="Flow_07438p2" sourceRef="Event_1g2yil3" targetRef="Event_0u1z24k" />
+    <bpmn:intermediateCatchEvent id="Event_1g2yil3" name="Antwort auf Umzugsfrage erhalten">
+      <bpmn:incoming>Flow_1kgd6t7</bpmn:incoming>
+      <bpmn:outgoing>Flow_07438p2</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0uha2nu" messageRef="Message_5LrM6H59" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:serviceTask id="Activity_0xyob35" name="Bei Mitarbeiter per Mail nachfragen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="module" value="HttpClient" />
+          <camunda:property name="method" value="post" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/phase1/MovingRequest&#34;, &#34;token.current&#34;]" />
+          <camunda:property name="studio.paramBody" value="token.current" />
+          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/phase1/MovingRequest" />
+          <camunda:property name="studio.paramContentType" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1diyb40</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kgd6t7</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:message id="Message_scqRgCad" name="Message_Send_WelcomeMessageToNewEmployee" />
   <bpmn:message id="Message_fqaaQpdU" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_oPx4KAVx" name="Message_Receive_IsMoveNecessary" />
+  <bpmn:message id="Message_5LrM6H59" name="Message_ResponseForMove" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
@@ -601,15 +626,27 @@
       <bpmndi:BPMNShape id="Event_1pyowqg_di" bpmnElement="Event_1uese52">
         <dc:Bounds x="82" y="-218" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0xyob35_di" bpmnElement="Activity_0xyob35">
-        <dc:Bounds x="170" y="-240" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0z03bff_di" bpmnElement="Event_0u1z24k">
-        <dc:Bounds x="322" y="-218" width="36" height="36" />
+        <dc:Bounds x="512" y="-218" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="497" y="-280" width="66" height="40" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0v73clf_di" bpmnElement="Event_0v73clf">
-        <dc:Bounds x="412" y="-218" width="36" height="36" />
+        <dc:Bounds x="602" y="-218" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="587" y="-175" width="66" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0pmoold_di" bpmnElement="Event_1g2yil3">
+        <dc:Bounds x="382" y="-218" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="367" y="-175" width="66" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0tqk6p4_di" bpmnElement="Activity_0xyob35">
+        <dc:Bounds x="170" y="-240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1gbvat2_di" bpmnElement="Flow_1gbvat2">
         <di:waypoint x="1338" y="-200" />
@@ -625,12 +662,20 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1kgd6t7_di" bpmnElement="Flow_1kgd6t7">
         <di:waypoint x="270" y="-200" />
-        <di:waypoint x="322" y="-200" />
+        <di:waypoint x="382" y="-200" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0km0dgg_di" bpmnElement="Flow_0km0dgg">
-        <di:waypoint x="358" y="-200" />
-        <di:waypoint x="412" y="-200" />
+        <di:waypoint x="548" y="-200" />
+        <di:waypoint x="602" y="-200" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07438p2_di" bpmnElement="Flow_07438p2">
+        <di:waypoint x="418" y="-200" />
+        <di:waypoint x="512" y="-200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_0btx4xq_di" bpmnElement="Participant_1t25cj3" isHorizontal="true">
+        <dc:Bounds x="5" y="-450" width="600" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1ndumyw_di" bpmnElement="DataOutputAssociation_1ndumyw">
         <di:waypoint x="110" y="442" />
         <di:waypoint x="110" y="325" />
@@ -655,10 +700,22 @@
         <di:waypoint x="1320" y="-182" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1aoistr_di" bpmnElement="Flow_1aoistr">
-        <di:waypoint x="340" y="-182" />
-        <di:waypoint x="340" y="-130" />
+        <di:waypoint x="530" y="-182" />
+        <di:waypoint x="530" y="-130" />
         <di:waypoint x="730" y="-130" />
         <di:waypoint x="730" y="152" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0sohxcq_di" bpmnElement="DataInputAssociation_0sohxcq">
+        <di:waypoint x="280" y="303" />
+        <di:waypoint x="378" y="209" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wm23xv_di" bpmnElement="Flow_1wm23xv">
+        <di:waypoint x="400" y="-390" />
+        <di:waypoint x="400" y="-218" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1k4ejzu_di" bpmnElement="Flow_1k4ejzu">
+        <di:waypoint x="220" y="-240" />
+        <di:waypoint x="220" y="-390" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

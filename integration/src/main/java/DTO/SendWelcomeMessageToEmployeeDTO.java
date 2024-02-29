@@ -1,5 +1,7 @@
 package DTO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -24,7 +26,8 @@ public class SendWelcomeMessageToEmployeeDTO {
     private String contactPerson;
     private String beginOfFirstWorkingDay;
     private String documentsNeededForFirstWorkingDay;
-    private NewEmployeeData newEmployeeData;
+    @JsonProperty("newEmployeeData")
+    private NewEmployeeDataDTO newEmployeeDataDTO;
 
     public String getFirstWorkingDay() {
         return firstWorkingDay;
@@ -58,43 +61,15 @@ public class SendWelcomeMessageToEmployeeDTO {
         this.documentsNeededForFirstWorkingDay = documentsNeededForFirstWorkingDay;
     }
 
-    public NewEmployeeData getNewEmployeeData() {
-        return newEmployeeData;
+    public NewEmployeeDataDTO getNewEmployeeData() {
+        return newEmployeeDataDTO;
     }
 
-    public void setNewEmployeeData(NewEmployeeData newEmployeeData) {
-        this.newEmployeeData = newEmployeeData;
+    public void setNewEmployeeData(NewEmployeeDataDTO newEmployeeData) {
+        this.newEmployeeDataDTO = newEmployeeData;
     }
 
-    public static class NewEmployeeData {
-    private String firstName;
-    private String lastName;
-    private String email;
 
-        public String getFirstName() {
-            return firstName;
-        }
-
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
-        }
-
-        public String getLastName() {
-            return lastName;
-        }
-
-        public void setLastName(String lastName) {
-            this.lastName = lastName;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-    }
 
 
 
