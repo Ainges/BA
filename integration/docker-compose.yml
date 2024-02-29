@@ -11,3 +11,14 @@ services:
     ports:
       - "3300:80"
       - "2525:25"
+
+  postgres:
+    image: postgres:bookworm
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: oneTimePasswordForMoveRequest
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init_schema.sql:/docker-entrypoint-initdb.d/init_schema.sql
