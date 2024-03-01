@@ -5,6 +5,7 @@ import org.apache.camel.builder.RouteBuilder;
 import processors.IsMovingNecessaryRequestProcessor;
 import processors.OnTimePasswordGenerator;
 import processors.SendWelcomeMessageToEmployeeProcessor;
+import processors.ValidateOneTimePasswordProcessor;
 
 public class SCIL_OnboardingPhase1 extends RouteBuilder {
 
@@ -20,9 +21,12 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
             .post("/MovingRequest")
                 .consumes("application/json")
                 .to("direct:MovingRequest")
+
             .get("/MovingRequest/accept")
-                .to("log:MovingRequestAccept")
+                .produces("text/html")
+                .to("direct:MovingRequestAccept")
             .get("/MovingRequest/decline")
+                .produces("text/html")
                 .to("log:MovingRequestDecline");
 
         // ############### Welcome Message ################
@@ -72,15 +76,10 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
 
         from("direct:MovingRequestAccept")
                 .id("moving-request-accept-to-jms-route")
-                .log("Moving request accepted")
-                .to("jms:MovingRequestAccept");
+                .log("Moving request accepted!")
+                .process(new ValidateOneTimePasswordProcessor())
+                        .end();
 
-        from("jms:MovingRequestAccept")
-                .id("moving-request-accept-from-jms-route")
-                .process(exchange -> {
-
-                })
-                .log("Moving request accepted");
 
 
         // ############### Moving Request Decline ################
