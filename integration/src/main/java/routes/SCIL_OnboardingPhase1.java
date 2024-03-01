@@ -27,7 +27,7 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
                 .to("direct:MovingRequestAccept")
             .get("/MovingRequest/decline")
                 .produces("text/html")
-                .to("log:MovingRequestDecline");
+                .to("direct:MovingRequestDecline");
 
         // ############### Welcome Message ################
 
@@ -76,8 +76,10 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
 
         from("direct:MovingRequestAccept")
                 .id("moving-request-accept-to-jms-route")
-                .log("Moving request accepted!")
+                .log("Acceptence of moving request called!")
+                .setHeader("answerOfNewEmployee", constant("accepted"))
                 .process(new ValidateOneTimePasswordProcessor())
+                //TODO: inform the process of the Acceptance
                         .end();
 
 
@@ -86,8 +88,11 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
 
         from("direct:MovingRequestDecline")
                 .id("moving-request-decline-route")
-                .log("Moving request declined")
-                .to("jms:MovingRequestDecline");
+                .log("Decline of moving request called!")
+                .setHeader("answerOfNewEmployee", constant("declined"))
+                .process(new ValidateOneTimePasswordProcessor())
+                //TODO: inform the process of the Decline
+                        .end();
 
         }
 }

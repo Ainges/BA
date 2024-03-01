@@ -17,7 +17,10 @@ public class IsMovingNecessaryRequestProcessor implements Processor {
         ObjectMapper objectMapper = new ObjectMapper();
         NewEmployeeDataDTO newEmployeeDataDTO = objectMapper.readValue(inbody, NewEmployeeDataDTO.class);
 
+        // get information needed for the email
         String oneTimePassword = exchange.getMessage().getHeader("OneTimePassword").toString();
+        String firstName = newEmployeeDataDTO.getFirstName();
+        String lastName = newEmployeeDataDTO.getLastName();
 
 
         Map<String, Object> headers = new HashMap<String, Object>();
@@ -32,11 +35,17 @@ public class IsMovingNecessaryRequestProcessor implements Processor {
                       "<p>Wir freuen uns auf Ihre Rückmeldung.</p>" +
                       // Add two links either to accept or decline the moving request
                       "<p>Bitte klicken Sie auf einen der folgenden Links, um uns mitzuteilen, ob Sie Hilfe bei Ihrem Umzug benötigen:</p>" +
-                      "<p> Ihr einmaliges Passwort lautet: " + exchange.getMessage().getHeader("OneTimePassword").toString() + "</p>"+
+                      "<p> Ihr einmaliges Passwort lautet: " + oneTimePassword + "</p>"+
                       "<p>(Sie benötigen das Passwort nur, wenn die Links nicht funktionieren sollten)"+"</p>"+
-                      "<a href=\"http://localhost:8080/onboarding/phase1/MovingRequest/accept?oneTimePassword="+exchange.getMessage().getHeader("OneTimePassword").toString()+
+                      "<a href=\"http://localhost:8080/onboarding/phase1/MovingRequest/accept"+
+                      "?oneTimePassword="+oneTimePassword+"&"+
+                        "firstName="+firstName+"&"+
+                        "lastName="+lastName+
                       "\">Hilfe bei Umzug gewünscht</a><br>" +
-                      "<a href=\"http://localhost:8080/onboarding/phase1/MovingRequest/decline?oneTimePassword="+exchange.getMessage().getHeader("OneTimePassword").toString() +
+                      "<a href=\"http://localhost:8080/onboarding/phase1/MovingRequest/decline"+
+                      "?oneTimePassword="+oneTimePassword+"&"+
+                        "firstName="+firstName+"&"+
+                        "lastName="+lastName+
                       "\">Es steht kein Umzug an, Hilfe wird nicht gewünscht</a>" +
                       "<br>" +
                       "<p>Viele Grüße</p><p>Ihr Onboarding Team</p></body></html>";
