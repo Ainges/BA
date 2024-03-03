@@ -10,7 +10,7 @@ public class SCIL_OnboardingTop extends RouteBuilder {
 
     // Bearer token for the engine
     // TODO: Check why {{engine.bearer}} is not working
-    String bearerToken = ConfigProvider.getConfig().getValue("engine.bearer", String.class);;
+    String bearerToken = ConfigProvider.getConfig().getValue("engine.bearer", String.class);
 
     @Override
     public void configure() throws Exception {

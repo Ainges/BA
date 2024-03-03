@@ -1,4 +1,4 @@
-package routes;
+package examples;
 
 import org.apache.camel.builder.RouteBuilder;
 

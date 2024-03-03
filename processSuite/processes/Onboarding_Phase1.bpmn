@@ -47,8 +47,12 @@
     <bpmn:sequenceFlow id="Flow_02pc3pw" sourceRef="Gateway_0e9psvj" targetRef="Event_17whont" />
     <bpmn:sequenceFlow id="Flow_1sxu1fe" sourceRef="Activity_1l0s39s" targetRef="Gateway_0vy7lxq" />
     <bpmn:sequenceFlow id="Flow_00gf1n7" sourceRef="Event_17whont" targetRef="Gateway_15ozkw0" />
-    <bpmn:sequenceFlow id="Flow_03ldj38" name="ja" sourceRef="Gateway_15ozkw0" targetRef="Event_1d8bbu9" />
-    <bpmn:sequenceFlow id="Flow_0pkp1ay" name="nein" sourceRef="Gateway_15ozkw0" targetRef="Gateway_1n7xkno" />
+    <bpmn:sequenceFlow id="Flow_03ldj38" name="ja" sourceRef="Gateway_15ozkw0" targetRef="Event_1d8bbu9">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.help_wanted === true;</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0pkp1ay" name="nein" sourceRef="Gateway_15ozkw0" targetRef="Gateway_1n7xkno">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.help_wanted === false;</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0cxmjjd" sourceRef="Event_1d8bbu9" targetRef="Gateway_1n7xkno" />
     <bpmn:sendTask id="Activity_1eyq305" name="Mitarbeiter fragen ob durch den Jobwechsel ein Umzug ansteht" messageRef="Message_Jkc2PIH2">
       <bpmn:incoming>Flow_0cnjnkh</bpmn:incoming>
@@ -128,7 +132,7 @@
       <bpmn:incoming>Flow_0b711zh</bpmn:incoming>
       <bpmn:outgoing>Flow_1j6gdlh</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_1ir7347">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT30S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P1D</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:intermediateCatchEvent id="Event_0iqejj2" name="14 Tage vor Eintritt">
@@ -306,7 +310,7 @@
           <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/phase1/MovingRequest&#34;, &#34;token.current&#34;]" />
           <camunda:property name="studio.paramBody" value="token.current" />
           <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/phase1/MovingRequest" />
-          <camunda:property name="studio.paramAuthorization" />
+          <camunda:property name="studio.paramContentType" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1diyb40</bpmn:incoming>
@@ -652,10 +656,6 @@
         <dc:Bounds x="210" y="-240" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Association_01pwqnz_di" bpmnElement="Association_01pwqnz">
-        <di:waypoint x="310" y="-221" />
-        <di:waypoint x="670" y="-374" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1gbvat2_di" bpmnElement="Flow_1gbvat2">
         <di:waypoint x="1338" y="-200" />
         <di:waypoint x="1390" y="-200" />
@@ -679,6 +679,10 @@
       <bpmndi:BPMNEdge id="Flow_0hpgl2e_di" bpmnElement="Flow_0hpgl2e">
         <di:waypoint x="748" y="-200" />
         <di:waypoint x="822" y="-200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_01pwqnz_di" bpmnElement="Association_01pwqnz">
+        <di:waypoint x="310" y="-221" />
+        <di:waypoint x="670" y="-374" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_0btx4xq_di" bpmnElement="Participant_1t25cj3" isHorizontal="true">
         <dc:Bounds x="5" y="-490" width="600" height="60" />

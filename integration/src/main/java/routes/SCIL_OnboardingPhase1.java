@@ -1,7 +1,11 @@
 package routes;
 
 import org.apache.camel.ExchangePattern;
+import org.apache.camel.Message;
 import org.apache.camel.builder.RouteBuilder;
+import org.eclipse.microprofile.config.ConfigProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import processors.IsMovingNecessaryRequestProcessor;
 import processors.OnTimePasswordGenerator;
 import processors.SendWelcomeMessageToEmployeeProcessor;
@@ -9,23 +13,26 @@ import processors.ValidateOneTimePasswordProcessor;
 
 public class SCIL_OnboardingPhase1 extends RouteBuilder {
 
+    String bearerToken = ConfigProvider.getConfig().getValue("engine.bearer", String.class);
+
+    Logger logger = LoggerFactory.getLogger(SCIL_OnboardingPhase1.class);
+
     @Override
     public void configure() throws Exception {
 
 
-
         rest("/onboarding/phase1")
-            .post("/SendWelcomeMessageToNewEmployee")
+                .post("/SendWelcomeMessageToNewEmployee")
                 .consumes("application/json")
                 .to("direct:SendWelcomeMessageToNewEmployee")
-            .post("/MovingRequest")
+                .post("/MovingRequest")
                 .consumes("application/json")
                 .to("direct:MovingRequest")
 
-            .get("/MovingRequest/accept")
+                .get("/MovingRequest/accept")
                 .produces("text/html")
                 .to("direct:MovingRequestAccept")
-            .get("/MovingRequest/decline")
+                .get("/MovingRequest/decline")
                 .produces("text/html")
                 .to("direct:MovingRequestDecline");
 
@@ -75,24 +82,62 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
         // ############### Moving Request Accept ################
 
         from("direct:MovingRequestAccept")
-                .id("moving-request-accept-to-jms-route")
+                .id("moving-request-accept-produces-jms-queue-route")
                 .log("Acceptence of moving request called!")
                 .setHeader("answerOfNewEmployee", constant("accepted"))
                 .process(new ValidateOneTimePasswordProcessor())
                 //TODO: inform the process of the Acceptance
-                        .end();
+                .to(ExchangePattern.InOnly, "jms:queue:MovingRequestAccept");
 
+        from("jms:queue:MovingRequestAccept")
+                .id("moving-request-accept-consume-jms-queue-route")
+                .log("Informing the process of the Acceptance of the moving request")
+                .process(exchange -> {
+
+                    Message message = exchange.getMessage();
+                    //remove all headers to delete the query parameters
+                    message.removeHeaders("*");
+                    message.setHeader("Authorization", "Bearer " + bearerToken);
+                    message.setHeader("Content-Type", "application/json");
+                    message.setBody("{\n" +
+                                    "  \"help_wanted\": true\n" +
+                                    "}");
+
+                })
+                .toD("http://localhost:8000/atlas_engine/api/v1/messages/Message_ResponseForMove/trigger?bridgeEndpoint=true")
+                .log("Process informed!");
 
 
         // ############### Moving Request Decline ################
 
         from("direct:MovingRequestDecline")
-                .id("moving-request-decline-route")
+                .id("moving-request-decline-produces-jms-queue-route")
                 .log("Decline of moving request called!")
                 .setHeader("answerOfNewEmployee", constant("declined"))
                 .process(new ValidateOneTimePasswordProcessor())
                 //TODO: inform the process of the Decline
-                        .end();
+                .to(ExchangePattern.InOnly, "jms:queue:MovingRequestDecline");
 
-        }
+        from("jms:queue:MovingRequestDecline")
+                .id("moving-request-decline-consume-jms-queue-route")
+                .log("Informing the process of the Decline of the moving request")
+                .process(exchange -> {
+
+                    Message message = exchange.getMessage();
+                    //remove all headers to delete the query parameters
+                    message.removeHeaders("*");
+                    message.setHeader("Authorization", "Bearer " + bearerToken);
+                    message.setHeader("Content-Type", "application/json");
+                    message.setBody("{\n" +
+                                    "  \"help_wanted\": false\n" +
+                                    "}");
+
+                })
+
+                .to("http://localhost:8000/atlas_engine/api/v1/messages/Message_ResponseForMove/trigger?bridgeEndpoint=true")
+        .log("Process informed!");
+
+
+
+    }
 }
