@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$/integration" dumb="true">
+      <excludeFolder url="file://$MODULE_DIR$/integration/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/integration/dev/minio/.minio.sys/buckets" />
+      <excludeFolder url="file://$MODULE_DIR$/integration/dev/minio/.minio.sys/config" />
+      <excludeFolder url="file://$MODULE_DIR$/integration/dev/minio/.minio.sys/multipart" />
+      <excludeFolder url="file://$MODULE_DIR$/integration/dev/minio/.minio.sys/tmp/.trash" />
+      <excludeFolder url="file://$MODULE_DIR$/integration/dev/minio/data/.minio.sys/buckets" />
+      <excludeFolder url="file://$MODULE_DIR$/integration/dev/minio/data/.minio.sys/config" />
+      <excludeFolder url="file://$MODULE_DIR$/integration/dev/minio/data/.minio.sys/multipart" />
+      <excludeFolder url="file://$MODULE_DIR$/integration/dev/minio/data/.minio.sys/pool.bin" />
+      <excludeFolder url="file://$MODULE_DIR$/integration/dev/minio/data/.minio.sys/tmp/.trash" />
+    </content>
+  </component>
   <component name="Quarkus Tools">
     <option name="hash" value="-1756815239" />
     <option name="version" value="1" />

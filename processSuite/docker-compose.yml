@@ -54,3 +54,27 @@ services:
     command: npm start
     ports:
       - 3000:3000
+
+  artemis:
+    image: apache/activemq-artemis
+    ports:
+      - "8161:8161"   # Web Console
+      - "61616:61616" # AMQP
+      - "5672:5672"   # MQTT
+
+  smtp4dev:
+    image: rnwood/smtp4dev
+    ports:
+      - "3300:80"
+      - "2525:25"
+
+  postgres:
+    image: postgres:bookworm
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: oneTimePasswordForMoveRequest
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../integration/dev/postgres/init_schema.sql:/docker-entrypoint-initdb.d/init_schema.sql
