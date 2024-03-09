@@ -12,3 +12,5 @@
         MINIO_ROOT_USER: admin123456
         MINIO_ROOT_PASSWORD: admin123456
       command: server /data --console-address ":9001"
+
+
