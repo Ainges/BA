@@ -109,7 +109,7 @@ public class ValidateOneTimePasswordProcessor implements Processor {
     public boolean validateOneTimePassword(String oneTimePassword, String firstName, String lastName) throws java.sql.SQLException {
 
         // load config
-        String url = ConfigProvider.getConfig().getValue("quarkus.datasource.jdbc.url.oneTimePasswordForMoveRequest", String.class);
+        String url = ConfigProvider.getConfig().getValue("quarkus.datasource.jdbc.url", String.class);
         String username = ConfigProvider.getConfig().getValue("quarkus.datasource.username", String.class);
         String password = ConfigProvider.getConfig().getValue("quarkus.datasource.password", String.class);
 

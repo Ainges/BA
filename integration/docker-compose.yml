@@ -13,4 +13,18 @@
         MINIO_ROOT_PASSWORD: admin123456
       command: server /data --console-address ":9001"
 
+    authority:
+      image: 5minds/processcube_authority:2023-2
+      environment:
+        CONFIG_PATH: /etc/authority/config/config.json
+        UPE_SEED_PATH: /etc/authority/config/upeSeedingData.json
+        LOG_LEVEL: info
+      volumes:
+        - ./config.json:/etc/authority/config/config.json
+        - ./upeSeedingData.json:/etc/authority/config/upeSeedingData.json
+        - authority_storage:/app/backend/storage/:rw
+      ports:
+        - 11560:11560
+
+
 

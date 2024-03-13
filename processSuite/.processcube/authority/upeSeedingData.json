@@ -1,0 +1,59 @@
+{
+    "users": [
+      {
+        "username": "admin",
+        "password": "admin",
+        "scopes": ["openid", "profile", "email", "engine_read", "engine_write", "upe_admin"],
+        "claims": { "name": "Admin", "email": "admin@processcube.example" }
+      },
+      {
+        "username": "test",
+        "password": "test",
+        "scopes": ["openid", "profile", "email", "engine_read", "engine_write", "upe_admin"],
+        "claims": { "name": "testName", "email": "testEmail@processcube.example" }
+      },
+      {
+        "username": "Michael",
+        "password": "Michael",
+        "scopes": ["openid", "profile", "email", "engine_read", "engine_write", "upe_admin"],
+        "claims": { "name": "Michael Scott", "email": "michael.scott@dundermifflin.com" }
+      },
+      {
+        "username": "Jim",
+        "password": "Jim",
+        "scopes": ["openid", "profile", "email", "engine_read", "engine_write", "upe_admin"],
+        "claims": { "name": "Jim Halpert", "email": "jim.halpert@dundermifflin.com" }
+      },
+      {
+        "username": "Pam",
+        "password": "Pam",
+        "scopes": ["openid", "profile", "email", "engine_read", "engine_write", "upe_admin"],
+        "claims": { "name": "Pam Beesly", "email": "pam.beesly@dundermifflin.com" }
+      },
+      {
+        "username": "Dwight",
+        "password": "Dwight",
+        "scopes": ["openid", "profile", "email", "engine_read", "engine_write", "upe_admin"],
+        "claims": { "name": "Dwight Schrute", "email": "dwight.schrute@dundermifflin.com" }
+      },
+      {
+        "username": "Angela",
+        "password": "Angela",
+        "scopes": ["openid", "profile", "email", "engine_read", "engine_write", "upe_admin"],
+        "claims": { "name": "Angela Martin", "email": "angela.martin@dundermifflin.com" }
+      },
+      {
+        "username": "Stanley",
+        "password": "Stanley",
+        "scopes": ["openid", "profile", "email", "engine_read", "engine_write", "upe_admin"],
+        "claims": { "name": "Stanley Hudson", "email": "stanley.hudson@dundermifflin.com" }
+      },
+      {
+        "username": "Phyllis",
+        "password": "Phyllis",
+        "scopes": ["openid", "profile", "email", "engine_read", "engine_write", "upe_admin"],
+        "claims": { "name": "Phyllis Vance", "email": "phyllis.vance@dundermifflin.com" }
+      }
+      
+    ]
+  }

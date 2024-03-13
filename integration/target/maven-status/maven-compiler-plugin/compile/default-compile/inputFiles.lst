@@ -1,0 +1,14 @@
+/Users/hubertus/Developer/BA/integration/src/main/java/DTO/NewEmployeeDataDTO.java
+/Users/hubertus/Developer/BA/integration/src/main/java/DTO/SendWelcomeMessageToEmployeeDTO.java
+/Users/hubertus/Developer/BA/integration/src/main/java/examples/GetEmployeeRoute.java
+/Users/hubertus/Developer/BA/integration/src/main/java/examples/MessagingTestRoute.java
+/Users/hubertus/Developer/BA/integration/src/main/java/examples/RestAPITest.java
+/Users/hubertus/Developer/BA/integration/src/main/java/examples/RestCallTest.java
+/Users/hubertus/Developer/BA/integration/src/main/java/examples/TimerRoute.java
+/Users/hubertus/Developer/BA/integration/src/main/java/processors/IsMovingNecessaryRequestProcessor.java
+/Users/hubertus/Developer/BA/integration/src/main/java/processors/OnTimePasswordGenerator.java
+/Users/hubertus/Developer/BA/integration/src/main/java/processors/OneTimePasswordValidator.java
+/Users/hubertus/Developer/BA/integration/src/main/java/processors/SendWelcomeMessageToEmployeeProcessor.java
+/Users/hubertus/Developer/BA/integration/src/main/java/processors/ValidateOneTimePasswordProcessor.java
+/Users/hubertus/Developer/BA/integration/src/main/java/routes/SCIL_OnboardingPhase1.java
+/Users/hubertus/Developer/BA/integration/src/main/java/routes/SCIL_OnboardingTop.java

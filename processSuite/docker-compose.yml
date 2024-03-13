@@ -1,5 +1,21 @@
 version: "3.5"
 services:
+
+  authority:
+    image: 5minds/processcube_authority:2023-2
+    depends_on: 
+    - db_authority
+    environment:
+      #ONFIG_PATH: /etc/authority/config/config.json
+      UPE_SEED_PATH: /etc/authority/config/upeSeedingData.json
+      LOG_LEVEL: debug
+    volumes:
+     - ./.processcube/authority/config.json:/etc/authority/config/config.json
+     #- ./.processcube/authority/options.json:/app/extensions/username_password/options.json
+     - ./.processcube/authority/upeSeedingData.json:/etc/authority/config/upeSeedingData.json
+    ports:
+      - 11560:11560 
+
   engine:
     image: 5minds/processcube_engine:2024-1
     ports:
@@ -73,8 +89,17 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-      POSTGRES_DB: oneTimePasswordForMoveRequest
+      POSTGRES_DB: SCIL_DB
     ports:
       - "5432:5432"
     volumes:
       - ../integration/dev/postgres/init_schema.sql:/docker-entrypoint-initdb.d/init_schema.sql
+
+  db_authority:
+    image: postgres:bookworm
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: authority
+    ports:
+      - "5433:5432"

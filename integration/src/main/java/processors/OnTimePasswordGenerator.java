@@ -69,7 +69,7 @@ public class OnTimePasswordGenerator implements Processor {
 
 
         // load config
-        String url = ConfigProvider.getConfig().getValue("quarkus.datasource.jdbc.url.oneTimePasswordForMoveRequest", String.class);
+        String url = ConfigProvider.getConfig().getValue("quarkus.datasource.jdbc.url", String.class);
         String username = ConfigProvider.getConfig().getValue("quarkus.datasource.username", String.class);
         String password = ConfigProvider.getConfig().getValue("quarkus.datasource.password", String.class);
 

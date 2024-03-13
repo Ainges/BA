@@ -1,0 +1,289 @@
+{
+    "issuerUrl": "http://authority:11560/",
+    "development": { "disableHttpsEnforcement": true },
+    "clients": [
+      {
+        "client_id": "portal",
+        "redirect_uris": ["http://portal:8082/signin-oidc"],
+        "post_logout_redirect_uris": ["http://portal:8082/signout-oidc"],
+        "corsOrigins": ["http://portal:8082"],
+        "scope": "openid profile email engine_read engine_write",
+        "response_types": ["code"],
+        "grant_types": ["authorization_code", "refresh_token"],
+        "token_endpoint_auth_method": "none"
+      },
+      {
+        "scope": "openid profile email engine_read engine_write",
+        "client_id": "atlas_studio",
+        "redirect_uris": [
+          "https://chrn-10d4dacf-4a55-4c00-9cb0-57fd7676fa45/popup-oidc-signin.html"
+        ],
+        "post_logout_redirect_uris": [
+          "https://chrn-10d4dacf-4a55-4c00-9cb0-57fd7676fa45/popup-oidc-signout.html"
+        ],
+        "response_types": ["id_token token"],
+        "grant_types": ["implicit"],
+        "token_endpoint_auth_method": "none"
+      },
+      {
+        "client_id": "atlas_engine",
+        "client_secret": "atlas_engine",
+        "scope": "openid profile email engine_read engine_write",
+        "response_types": ["id_token token"],
+        "grant_types": ["client_credentials"],
+        "redirect_uris": []
+      }
+    ],
+    "scopes": [
+      {
+        "name": "openid",
+        "description": "Informs the Authorization Server that the Client is making an OpenID Connect request."
+      },
+      {
+        "name": "profile",
+        "description": "This scope value requests access to the End-User's default profile Claims, which are: name, family_name, given_name, middle_name, nickname, preferred_username, profile, picture, website, gender, birthdate, zoneinfo, locale, and updated_at.",
+        "claims": [
+          "name",
+          "family_name",
+          "given_name",
+          "middle_name",
+          "company",
+          "nickname",
+          "preferred_username",
+          "profile",
+          "picture",
+          "website",
+          "gender",
+          "birthdate",
+          "zoneinfo",
+          "locale",
+          "updated_at"
+        ]
+      },
+      {
+        "name": "email",
+        "description": "This scope value requests access to the email and email_verified Claims. ",
+        "claims": ["email", "email_verified"]
+      },
+      {
+        "name": "address",
+        "description": "This scope value requests access to the address Claim. ",
+        "claims": ["address"]
+      },
+      {
+        "name": "phone",
+        "description": "This scope value requests access to the phone_number and phone_number_verified Claims. ",
+        "claims": ["phone_number", "phone_number_verified"]
+      },
+      {
+        "name": "engine_read",
+        "description": "Indicates whether the user is allowed to read process models, cronjob history and subscribe to events.",
+        "claims": [
+          "can_read_cronjob_history",
+          "can_read_process_model",
+          "can_subscribe_to_events"
+        ]
+      },
+      {
+        "name": "engine_write",
+        "description": "Indicates whether the user is allowed to modify and manage process models and process instances.",
+        "claims": [
+          "can_delete_process_model",
+          "can_manage_process_instances",
+          "can_terminate_process",
+          "can_trigger_messages",
+          "can_trigger_signals",
+          "can_write_process_model"
+        ]
+      },
+      {
+        "name": "engine_etw",
+        "description": "Indicates whether the user is allowed to access external tasks.",
+        "claims": ["can_access_external_tasks"]
+      },
+      {
+        "name": "engine_models_write",
+        "description": "Indicates whether the user is allowed to modify and manage process models.",
+        "claims": ["can_delete_process_model", "can_write_process_model"]
+      },
+      { "name": "stable", "claims": ["canDownloadStable"] },
+      { "name": "insiders", "claims": ["canDownloadInsiders"] }
+    ],
+    "claims": [
+      {
+        "name": "name",
+        "type": "string",
+        "description": "End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences."
+      },
+      {
+        "name": "given_name",
+        "type": "string",
+        "description": "Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters."
+      },
+      {
+        "name": "family_name",
+        "type": "string",
+        "description": "Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters."
+      },
+      {
+        "name": "company",
+        "type": "string",
+        "description": "The company of the user."
+      },
+      {
+        "name": "middle_name",
+        "type": "string",
+        "description": "Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used."
+      },
+      {
+        "name": "nickname",
+        "type": "string",
+        "description": "Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael."
+      },
+      {
+        "name": "preferred_username",
+        "type": "string",
+        "description": "Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique, as discussed in Section 5.7."
+      },
+      {
+        "name": "profile",
+        "type": "string",
+        "description": "URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User."
+      },
+      {
+        "name": "picture",
+        "type": "string",
+        "description": "URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User."
+      },
+      {
+        "name": "website",
+        "type": "string",
+        "description": "URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with."
+      },
+      {
+        "name": "email",
+        "type": "string",
+        "description": "End-User's preferred e-mail address. Its value MUST conform to the RFC 5322 [RFC5322] addr-spec syntax. The RP MUST NOT rely upon this value being unique, as discussed in Section 5.7."
+      },
+      {
+        "name": "email_verified",
+        "type": "boolean",
+        "description": "True if the End-User's e-mail address has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this e-mail address was controlled by the End-User at the time the verification was performed. The means by which an e-mail address is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating."
+      },
+      {
+        "name": "gender",
+        "type": "string",
+        "description": "End-User's gender. Values defined by this specification are female and male. Other values MAY be used when neither of the defined values are applicable."
+      },
+      {
+        "name": "birthdate",
+        "type": "string",
+        "description": "End-User's birthday, represented as an ISO 8601:2004 [ISO8601‑2004] YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates."
+      },
+      {
+        "name": "zoneinfo",
+        "type": "string",
+        "description": "String from zoneinfo [zoneinfo] time zone database representing the End-User's time zone. For example, Europe/Paris or America/Los_Angeles."
+      },
+      {
+        "name": "locale",
+        "type": "string",
+        "description": "End-User's locale, represented as a BCP47 [RFC5646] language tag. This is typically an ISO 639-1 Alpha-2 [ISO639‑1] language code in lowercase and an ISO 3166-1 Alpha-2 [ISO3166‑1] country code in uppercase, separated by a dash. For example, en-US or fr-CA. As a compatibility note, some implementations have used an underscore as the separator rather than a dash, for example, en_US; Relying Parties MAY choose to accept this locale syntax as well."
+      },
+      {
+        "name": "phone_number",
+        "type": "string",
+        "description": "End-User's preferred telephone number. E.164 [E.164] is RECOMMENDED as the format of this Claim, for example, +1 (425) 555-1212 or +56 (2) 687 2400. If the phone number contains an extension, it is RECOMMENDED that the extension be represented using the RFC 3966 [RFC3966] extension syntax, for example, +1 (604) 555-1234;ext=5678."
+      },
+      {
+        "name": "phone_number_verified",
+        "type": "boolean",
+        "description": "True if the End-User's phone number has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this phone number was controlled by the End-User at the time the verification was performed. The means by which a phone number is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating. When true, the phone_number Claim MUST be in E.164 format and any extensions MUST be represented in RFC 3966 format."
+      },
+      {
+        "name": "address",
+        "type": "object",
+        "description": "End-User's preferred postal address. The value of the address member is a JSON [RFC4627] structure containing some or all of the members defined in Section 5.1.1."
+      },
+      {
+        "name": "updated_at",
+        "type": "int",
+        "description": "Time the End-User's information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time."
+      },
+      {
+        "name": "can_access_external_tasks",
+        "type": "boolean",
+        "description": "Indicates whether the user is allowed to access external tasks."
+      },
+      {
+        "name": "can_delete_process_model",
+        "type": "boolean",
+        "description": "Indicates whether the user is allowed to delete process models."
+      },
+      {
+        "name": "can_manage_process_instances",
+        "type": "boolean",
+        "description": "Indicates whether the user is allowed to manage process instances."
+      },
+      {
+        "name": "can_read_cronjob_history",
+        "type": "boolean",
+        "description": "Indicates whether the user is allowed to read the cronjob history."
+      },
+      {
+        "name": "can_read_process_model",
+        "type": "boolean",
+        "description": "Indicates whether the user is allowed to read process models."
+      },
+      {
+        "name": "can_subscribe_to_events",
+        "type": "boolean",
+        "description": "Indicates whether the user is allowed to subscribe to events."
+      },
+      {
+        "name": "can_terminate_process",
+        "type": "boolean",
+        "description": "Indicates whether the user is allowed to terminate process instances."
+      },
+      {
+        "name": "can_trigger_messages",
+        "type": "boolean",
+        "description": "Indicates whether the user is allowed to trigger messages."
+      },
+      {
+        "name": "can_trigger_signals",
+        "type": "boolean",
+        "description": "Indicates whether the user is allowed to trigger signals."
+      },
+      {
+        "name": "can_write_process_model",
+        "type": "boolean",
+        "description": "Indicates whether the user is allowed to write process models."
+      },
+      { "name": "canDownloadStable", "type": "boolean" },
+      { "name": "canDownloadInsiders", "type": "boolean" }
+    ],
+    "extensions": {
+      "configs": {
+        "username_password": {
+          "skipConsentPageForClientIds": [
+            "upe_client",
+            "portal",
+            "atlas_studio"
+          ],
+          "customization": {
+            "title": "5Minds Authority",
+            "logoPath": "/etc/authority/config/assets/logo.png"
+          }
+        }
+      }
+    },
+    "database": {
+      "dialect": "sqlite",
+      "storage": "storage/database.sqlite",
+      "logging": false
+    },
+    "applicationPort": 11560,
+    "accessTokenTTL": 3600,
+    "idTokenTTL": 3600
+  }
