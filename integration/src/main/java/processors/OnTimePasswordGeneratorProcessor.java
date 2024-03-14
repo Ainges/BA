@@ -19,9 +19,9 @@ import java.sql.SQLException;
  * Generates and stores a one-time password.
  * This is usefully for sending a one-time password to a new employee, who has not yet received his/her credentials.
  */
-public class OnTimePasswordGenerator implements Processor {
+public class OnTimePasswordGeneratorProcessor implements Processor {
 
-    Logger logger = LoggerFactory.getLogger(OnTimePasswordGenerator.class);
+    Logger logger = LoggerFactory.getLogger(OnTimePasswordGeneratorProcessor.class);
 
     @Override
     public void process(Exchange exchange) throws Exception {

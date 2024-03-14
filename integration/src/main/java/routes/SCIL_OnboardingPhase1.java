@@ -7,7 +7,7 @@ import org.eclipse.microprofile.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import processors.IsMovingNecessaryRequestProcessor;
-import processors.OnTimePasswordGenerator;
+import processors.OnTimePasswordGeneratorProcessor;
 import processors.SendWelcomeMessageToEmployeeProcessor;
 import processors.ValidateOneTimePasswordProcessor;
 
@@ -73,7 +73,7 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
                 // Bearbeite Anfrage zur Umzugsnotwendigkeit in Englisch
                 .log("Processing \"MovingRequest\" from Artemis: ${body}")
                 .log("Generating one-time password...")
-                .process(new OnTimePasswordGenerator())
+                .process(new OnTimePasswordGeneratorProcessor())
                 .log("Generating email with one-time password...")
                 .process(new IsMovingNecessaryRequestProcessor())
                 .to("smtp://" + "{{smtp.host}}" + ":" + "{{smtp.port}}" + "?username=" + "{{smtp.username}}" + "&password=" + "{{smtp.password}}");

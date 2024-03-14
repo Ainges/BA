@@ -7,7 +7,7 @@ public class GetEmployeeRoute extends RouteBuilder {
 
 
         @Override
-        public void configure() throws Exception {
+        public void configure() throws Exception {/*
             rest("/onboarding/employee")
                     .get("/byMail/{email}")
                     .to("direct:getEmployeeByMail")
@@ -52,5 +52,6 @@ public class GetEmployeeRoute extends RouteBuilder {
         }
 
 
-
+*/
+}
 }

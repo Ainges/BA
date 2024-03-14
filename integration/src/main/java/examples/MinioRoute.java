@@ -1,11 +1,15 @@
 package examples;
 
+import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.commons.compress.utils.IOUtils;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.InputStream;
 
 @RegisterForReflection // Erforderlich für die Verwendung von Reflection in Quarkus
 public class MinioRoute extends RouteBuilder {
@@ -26,13 +30,23 @@ public class MinioRoute extends RouteBuilder {
                 .credentials(accessKey, secretKey)
                 .build();
 
-        // Camel Route mit Minio-Client konfigurieren
-//        from("timer:myTimer?period=5000") // Beispielhafte Timer-Auslösung alle 5 Sekunden
-//            .process(exchange -> {
-//                // Beispiel: Minio-Operationen hier ausführen
-//                 logger.info(minioClient.listBuckets().toString());
-//                // Weitere Informationen finden Sie in der Minio-Dokumentation.
-//            })
-//            .log("Minio Route executed");
+
+        rest("/minio")
+                .get("/picture/")
+                .to("direct:getPicture");
+
+        // Example for getting a picture from Minio
+        from("direct:getPicture")
+                .process(exchange -> {
+                    try (InputStream stream = minioClient.getObject(
+                            GetObjectArgs.builder()
+                                    .bucket("profilepictures")
+                                    .object("angelamartin.png")
+                                    .build())) {
+                        byte[] imageBytes = IOUtils.toByteArray(stream);
+                        exchange.getIn().setBody(imageBytes);
+                    }
+                })
+                .log("Minio Route executed");
     }
 }

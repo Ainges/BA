@@ -3,7 +3,7 @@ package processors;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
-public class OneTimePasswordValidator implements Processor {
+public class OneTimePasswordValidatorProcessor implements Processor {
 
     /**
      * Processes the message exchange

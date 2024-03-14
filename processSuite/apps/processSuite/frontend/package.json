@@ -8,8 +8,12 @@
   "dependencies": {
     "@atlas-engine-contrib/atlas-ui_sdk": "^3.0.0",
     "@atlas-engine/atlas_engine_client": "^4.2.5",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
     "@types/react-native": "^0.71.2",
     "bootstrap": "5.2.3",
+    "framer-motion": "^11.0.13",
     "http-proxy-middleware": "2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

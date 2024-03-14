@@ -21,7 +21,14 @@ CREATE TABLE IF NOT EXISTS OneTimePasswords (
     LastName VARCHAR(255),
     OneTimePassword VARCHAR(255)
 );
--- Example Employees
+
+-- Create table for employee picture mapping
+CREATE TABLE employee_picture_mapping (
+    email VARCHAR(255) PRIMARY KEY,
+    file_name VARCHAR(255) NOT NULL
+);
+
+/*-- Example Employees
 INSERT INTO Employees (FirstName, LastName, Email, JobTitle, ProfileImageURL)
 VALUES
     ('Michael', 'Scott', 'michael.scott@dundermifflin.com', 'Regionalleiter', '/profilepictures/MichaelScott.png'),
@@ -30,5 +37,15 @@ VALUES
     ('Dwight', 'Schrute', 'dwight.schrute@dundermifflin.com', 'Assistent des Regionalleiters', '/profilepictures/DwightSchrute.png'),
     ('Angela', 'Martin', 'angela.martin@dundermifflin.com', 'Leiterin des Partyplanungsausschusses', '/profilepictures/AngelaMartin.png'),
     ('Stanley', 'Hudson', 'stanley.hudson@dundermifflin.com', 'Vertriebsmitarbeiter', '/profilepictures/StandleyHudson.png'),
-    ('Phyllis', 'Vance', 'phyllis.vance@dundermifflin.com', 'Vertriebsmitarbeiterin', '/profilepictures/PhyllisVance.png');
+    ('Phyllis', 'Vance', 'phyllis.vance@dundermifflin.com', 'Vertriebsmitarbeiterin', '/profilepictures/PhyllisVance.png');*/
 
+INSERT INTO employee_picture_mapping (email, file_name)
+VALUES
+    ('michael.scott@dundermifflin.com', 'michaelscott.png'),
+    ('jim.halpert@dundermifflin.com', 'jimhalpert.png'),
+    ('pam.beesly@dundermifflin.com', 'pambeesly.png'),
+    ('dwight.schrute@dundermifflin.com', 'dwightschrute.png'),
+    ('angela.martin@dundermifflin.com', 'angelamartin.png'),
+    ('stanley.hudson@dundermifflin.com', 'standleyhudson.png'),
+    ('phyllis.vance@dundermifflin.com', 'phyllisvance.png'),
+    ('toby.flenderson@dundermifflin.com', 'tobyflenderson.png');

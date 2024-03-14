@@ -22,7 +22,7 @@
       volumes:
         - ./config.json:/etc/authority/config/config.json
         - ./upeSeedingData.json:/etc/authority/config/upeSeedingData.json
-        - authority_storage:/app/backend/storage/:rw
+
       ports:
         - 11560:11560
 
