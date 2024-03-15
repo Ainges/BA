@@ -11,6 +11,7 @@ public class EmployeeRoute extends RouteBuilder {
 
         rest("/employee")
                 .get("/all/")
+                .produces("application/json")
                 .to("direct:getAllEmployees")
                 .get("/picture/{email}")
                 .to("direct:getProfilePicture");

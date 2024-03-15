@@ -134,7 +134,7 @@
         "name": "Stanley Hudson",
         "email": "stanley.hudson@dundermifflin.com",
         "company": "Dunder Mifflin - Vertrieb",
-        "picture": "//localhost:8080/employee/picture/"
+        "picture": "//localhost:8080/employee/picture/stanley.hudson%40dundermifflin.com"
       }
     },
     {

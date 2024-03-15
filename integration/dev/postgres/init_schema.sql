@@ -46,6 +46,6 @@ VALUES
     ('pam.beesly@dundermifflin.com', 'pambeesly.png'),
     ('dwight.schrute@dundermifflin.com', 'dwightschrute.png'),
     ('angela.martin@dundermifflin.com', 'angelamartin.png'),
-    ('stanley.hudson@dundermifflin.com', 'standleyhudson.png'),
+    ('stanley.hudson@dundermifflin.com', 'stanleyhudson.png'),
     ('phyllis.vance@dundermifflin.com', 'phyllisvance.png'),
     ('toby.flenderson@dundermifflin.com', 'tobyflenderson.png');

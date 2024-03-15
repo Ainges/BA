@@ -23,6 +23,7 @@ import java.util.List;
 public class GetAllUsersProcessor implements Processor {
 
     Logger logger = LoggerFactory.getLogger(GetAllUsersProcessor.class);
+
     /**
      * Processes the message exchange
      *
@@ -71,17 +72,23 @@ public class GetAllUsersProcessor implements Processor {
 
                 );
 
-                employeeDTOList.add(employeeDTO);
+                // Exclude admin and test user
+                if (employeeDTO.getUsername().equals("admin") ||
+                    employeeDTO.getUsername().equals("test")) {
+                    continue;
+                }
+
+                    employeeDTOList.add(employeeDTO);
+
+
             }
 
             // format the list of employees to json and set it as the body of the exchange
             String json = new com.fasterxml.jackson.databind.ObjectMapper().writeValueAsString(employeeDTOList);
             // format json pretty
-            json = json.replace(",", ",\n");
             exchange.getMessage().setBody(json);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("ERROR WHILE GETTING ALL USERS: " + e.getMessage());
         }
         logger.info("...Received Users.");

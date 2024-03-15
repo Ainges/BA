@@ -5,6 +5,7 @@ services:
     image: 5minds/processcube_authority:2023-2
     depends_on: 
     - db_authority
+    restart: always
     environment:
       #ONFIG_PATH: /etc/authority/config/config.json
       UPE_SEED_PATH: /etc/authority/config/upeSeedingData.json
@@ -109,6 +110,7 @@ services:
 
   db_authority:
     image: postgres:bookworm
+    
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
