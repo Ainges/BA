@@ -13,5 +13,5 @@ The Services are containerised with Docker
 
 # Getting Started
 
-**You have to disable CORS in your Browser to run this application locally, otherwise the FE will not function proberbly**
+**You have to disable CORS in your Browser to run this application locally, otherwise the FE will not function probably**
 
