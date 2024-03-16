@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CustomFormProps } from "../DialogRenderer";
 import {
   Avatar,
+  Button,
   Card,
   Checkbox,
   Col,
@@ -13,7 +14,7 @@ import {
 import axios from "axios";
 import styles from "./ExampleEmployeeList.module.css";
 import Meta from "antd/es/card/Meta";
-import { SettingOutlined, PlusOutlined } from "@ant-design/icons";
+import { SendOutlined, PlusOutlined } from "@ant-design/icons";
 
 const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
   const { Header, Footer, Sider, Content } = Layout;
@@ -29,6 +30,20 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
 
   const employeeAPIgetAllurl = "http://localhost:8080/employee/all";
   const test = "https://reqres.in/api/users?page=2";
+
+  // TODO: REMOVE THIS
+  // ### Loading Delay moked ###
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Effect to handle loading delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500); // 500ms delay
+
+    // Cleanup function to clear the timer
+    return () => clearTimeout(timer);
+  }, []);
 
   // ### React State ###
 
@@ -65,37 +80,50 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
 
   return (
     <>
-      {/* <Card className={styles.instructionCard}>
-        <Typography.Title level={4}>Mitarbeiter Auswahl</Typography.Title>
-        <Typography.Paragraph>
-          Wählen Sie die Mitarbeiter aus, mit denen der neue Miarbeiter ein Gesprächstermin ausmachen soll.
-        </Typography.Paragraph>
-      </Card> */}
       <div className={styles.outerStyle}>
-        <Card className={styles.cardContainerStyle} title="Mitarbeiter">
-          {employees.map((employee) => (
-            // <Card className={styles.employeeOuterCard}>
-            //   <div onClick={() => alert("Hello from here")}>
-            <Card
-              className={
-                cardselected.includes(employee.username)
-                  ? styles.employeeCardSelected
-                  : styles.employeeCard
-              }
-              key={employee.username}
-              onClick={() => handleEmployeeCardClick(employee.username)}
-              actions={[<PlusOutlined selected key="add" />]}
-            >
-              <Meta
-                avatar={<Avatar size={100} src={employee.pictureURI} />}
-                title={employee.fullName}
-                description={employee.companyAndPosition}
-              />
-            </Card>
-            //   </div>
-            //   <Checkbox className={styles.checkboxStyle}></Checkbox>
-            // </Card>
-          ))}
+        {/* <Card className={styles.instructionCard}>
+          <Button
+            type="primary"
+            icon={<SendOutlined/>}
+            className={styles.buttonStyle}
+          >
+            Senden
+          </Button>
+        </Card> */}
+        <Card
+          className={styles.cardContainerStyle}
+          title="Bitte wählen Sie alle Mitarbeiter aus, mit denen ein Kennenlerntermin stattfinden soll."
+        >
+          <Button
+            type="primary"
+            icon={<SendOutlined />}
+            className={styles.buttonStyle}
+          >
+            Senden
+          </Button>
+          <div className={styles.cardContainerContentStyle}>
+            {employees.map((employee) => (
+              // <Card className={styles.employeeOuterCard}>
+              //   <div onClick={() => alert("Hello from here")}>
+              <Card
+                className={
+                  cardselected.includes(employee.username)
+                    ? styles.employeeCardSelected
+                    : styles.employeeCard
+                }
+                loading={employees.length === 0 || isLoading}
+                key={employee.username}
+                onClick={() => handleEmployeeCardClick(employee.username)}
+                actions={[<PlusOutlined selected key="add" />]}
+              >
+                <Meta
+                  avatar={<Avatar size={100} src={employee.pictureURI} />}
+                  title={employee.fullName}
+                  description={employee.companyAndPosition}
+                />
+              </Card>
+            ))}
+          </div>
         </Card>
       </div>
     </>
