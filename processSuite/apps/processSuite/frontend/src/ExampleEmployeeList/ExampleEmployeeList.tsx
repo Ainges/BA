@@ -29,7 +29,6 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
   }
 
   const employeeAPIgetAllurl = "http://localhost:8080/employee/all";
-  const test = "https://reqres.in/api/users?page=2";
 
   // TODO: REMOVE THIS
   // ### Loading Delay moked ###
@@ -78,53 +77,115 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
     console.log("Click ");
   };
 
+  //   return (
+  //     <>
+  //       <div className={styles.outerStyle}>
+  //         <Card
+  //           className={styles.cardContainerStyle}
+  //           title={
+  //             <>
+  //               <Typography.Text>
+  //                 Bitte wählen Sie die Mitarbeiter aus, für die ein
+  //                 Kennenlerntermin mit dem neuen Mitarbeiter gefunden werden soll.
+  //               </Typography.Text>
+  //               <Button
+  //                 type="primary"
+  //                 icon={<SendOutlined />}
+  //                 className={styles.buttonStyle}
+  //               >
+  //                 Senden
+  //               </Button>
+  //             </>
+  //           }
+  //         >
+  //           <div className={styles.contentContainerStyle}>
+  //             <Row gutter={[16, 16]}>
+  //               {employees.map((employee) => (
+  //                 <Col
+  //                   xs={{ flex: "100%" }}
+  //                   sm={{ flex: "50%" }}
+  //                   md={{ flex: "40%" }}
+  //                   lg={{ flex: "20%" }}
+  //                   xl={{ flex: "10%" }}
+  //                 >
+  //                   <Card
+  //                     className={
+  //                       cardselected.includes(employee.username)
+  //                         ? styles.employeeCardSelected
+  //                         : styles.employeeCard
+  //                     }
+
+  //                     loading={employees.length === 0 || isLoading}
+  //                     key={employee.username}
+  //                     onClick={() => handleEmployeeCardClick(employee.username)}
+  //                     actions={[<PlusOutlined selected key="add" />]}
+  //                   >
+  //                     <Meta
+  //                       avatar={<Avatar size={100} src={employee.pictureURI} />}
+  //                       title={employee.fullName}
+  //                       description={employee.companyAndPosition}
+  //                     />
+  //                   </Card>
+  //                 </Col>
+  //               ))}
+  //             </Row>
+  //           </div>
+  //         </Card>
+  //       </div>
+  //     </>
+  //   );
+
   return (
     <>
-      <div className={styles.outerStyle}>
-        {/* <Card className={styles.instructionCard}>
-          <Button
-            type="primary"
-            icon={<SendOutlined/>}
-            className={styles.buttonStyle}
-          >
-            Senden
-          </Button>
-        </Card> */}
-        <Card
-          className={styles.cardContainerStyle}
-          title="Bitte wählen Sie alle Mitarbeiter aus, mit denen ein Kennenlerntermin stattfinden soll."
-        >
-          <Button
-            type="primary"
-            icon={<SendOutlined />}
-            className={styles.buttonStyle}
-          >
-            Senden
-          </Button>
-          <div className={styles.cardContainerContentStyle}>
-            {employees.map((employee) => (
-              // <Card className={styles.employeeOuterCard}>
-              //   <div onClick={() => alert("Hello from here")}>
-              <Card
-                className={
-                  cardselected.includes(employee.username)
-                    ? styles.employeeCardSelected
-                    : styles.employeeCard
-                }
-                loading={employees.length === 0 || isLoading}
-                key={employee.username}
-                onClick={() => handleEmployeeCardClick(employee.username)}
-                actions={[<PlusOutlined selected key="add" />]}
-              >
-                <Meta
-                  avatar={<Avatar size={100} src={employee.pictureURI} />}
-                  title={employee.fullName}
-                  description={employee.companyAndPosition}
-                />
-              </Card>
-            ))}
-          </div>
+    <Card title="Test" className={styles.leftCard}>Test</Card>
+      <div className={styles.outerContainer}>
+                   {employees.map((employee) => (
+                  <Col
+                  >
+                    <Card
+                      className={
+                        cardselected.includes(employee.username)
+                          ? styles.employeeCardSelected
+                          : styles.employeeCard
+                      }
+
+                      loading={employees.length === 0 || isLoading}
+                      key={employee.username}
+                      onClick={() => handleEmployeeCardClick(employee.username)}
+                      actions={[<PlusOutlined selected key="add" />]}
+                    >
+                      <Meta
+                        avatar={<Avatar size={100} src={employee.pictureURI} />}
+                        title={employee.fullName}
+                        description={employee.companyAndPosition}
+                      />
+                    </Card>
+                  </Col>
+                ))}
+        {/* <Card className={styles.cards} title="1">
+          Test1
         </Card>
+        <Card className={styles.cards} title="2">
+          Test2
+        </Card>
+        <Card className={styles.cards} title="3">
+          Test3
+        </Card>
+        <Card className={styles.cards} title="4">
+          Test4
+        </Card>
+        <Card className={styles.cards} title="5">
+          Test5
+        </Card>
+        <Card className={styles.cards} title="6">
+          Test6
+        </Card>
+        <Card className={styles.cards} title="7">
+          Test7
+        </Card>
+        <Card className={styles.cards} title="8">
+          Test8
+        </Card> */}
       </div>
     </>
   );
