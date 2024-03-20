@@ -2,18 +2,18 @@ version: "3.5"
 services:
 
   authority:
-    image: 5minds/processcube_authority:2023-2
+    image: 5minds/processcube_authority:2024-1
     depends_on: 
     - db_authority
-    restart: always
+    # restart: always
     environment:
-      #ONFIG_PATH: /etc/authority/config/config.json
-      UPE_SEED_PATH: /etc/authority/config/upeSeedingData.json
+      ONFIG_PATH: /etc/authority/config/config.json
+      # UPE_SEED_PATH: /etc/authority/config/upeSeedingData.json
       LOG_LEVEL: debug
     volumes:
      - ./.processcube/authority/config.json:/etc/authority/config/config.json
-     #- ./.processcube/authority/options.json:/app/extensions/username_password/options.json
-     - ./.processcube/authority/upeSeedingData.json:/etc/authority/config/upeSeedingData.json
+    # - ./.processcube/authority/options.json:/app/extensions/username_password/options.json
+    # - ./.processcube/authority/upeSeedingData.json:/etc/authority/config/upeSeedingData.json
     ports:
       - 11560:11560 
 
