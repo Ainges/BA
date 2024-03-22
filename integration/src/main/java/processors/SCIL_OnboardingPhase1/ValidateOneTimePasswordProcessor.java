@@ -1,4 +1,4 @@
-package processors;
+package processors.SCIL_OnboardingPhase1;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;

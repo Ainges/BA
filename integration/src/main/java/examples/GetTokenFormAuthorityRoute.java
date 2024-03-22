@@ -18,10 +18,10 @@ public class GetTokenFormAuthorityRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        from("timer:foo?period=5000")
+        /*from("timer:foo?period=5000")
                 .process(exchange -> {
                     logger.info("Token: " + tokenManagerAuthority.getToken());
                 })
-                .to("log:foo");
+                .to("log:foo");*/
     }
 }

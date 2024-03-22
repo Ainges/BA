@@ -1,4 +1,4 @@
-package processors;
+package processors.deprecated;
 
 import DTO.EmployeeDTO;
 import org.apache.camel.Exchange;

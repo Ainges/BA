@@ -1,4 +1,4 @@
-package processors;
+package processors.deprecated;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;

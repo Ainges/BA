@@ -6,10 +6,10 @@ import org.apache.camel.builder.RouteBuilder;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import processors.IsMovingNecessaryRequestProcessor;
-import processors.OnTimePasswordGeneratorProcessor;
-import processors.SendWelcomeMessageToEmployeeProcessor;
-import processors.ValidateOneTimePasswordProcessor;
+import processors.SCIL_OnboardingPhase1.IsMovingNecessaryRequestProcessor;
+import processors.SCIL_OnboardingPhase1.OnTimePasswordGeneratorProcessor;
+import processors.SCIL_OnboardingPhase1.SendWelcomeMessageToEmployeeProcessor;
+import processors.SCIL_OnboardingPhase1.ValidateOneTimePasswordProcessor;
 
 public class SCIL_OnboardingPhase1 extends RouteBuilder {
 

@@ -1,9 +1,9 @@
 package routes;
 
 import org.apache.camel.builder.RouteBuilder;
-import processors.GetFilenameOfProfilePictureProcessor;
-import processors.GetAllUsersProcessor;
-import processors.GetProfileFromS3Processor;
+import processors.deprecated.GetFilenameOfProfilePictureProcessor;
+import processors.deprecated.GetAllUsersProcessor;
+import processors.CanonicalDataModel.GetProfileFromS3Processor;
 
 public class EmployeeRoute extends RouteBuilder {
 
@@ -11,10 +11,10 @@ public class EmployeeRoute extends RouteBuilder {
 
         rest("/employee")
                 .get("/all/")
-                .produces("application/json")
-                .to("direct:getAllEmployees")
+                    .produces("application/json")
+                    .to("direct:getAllEmployees")
                 .get("/picture/{email}")
-                .to("direct:getProfilePicture");
+                    .to("direct:getProfilePicture");
 
 
         from("direct:getAllEmployees")

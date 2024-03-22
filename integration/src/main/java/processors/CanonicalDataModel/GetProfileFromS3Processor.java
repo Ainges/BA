@@ -1,4 +1,4 @@
-package processors;
+package processors.CanonicalDataModel;
 
 import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
@@ -34,6 +34,8 @@ public class GetProfileFromS3Processor implements Processor {
         try (InputStream stream = minioClient.getObject(
                 GetObjectArgs.builder()
                         .bucket("profilepictures")
+
+                        // Get the picture_file_name from the header
                         .object(exchange.getMessage().getHeader("picture_file_name", String.class))
                         .build())) {
             byte[] imageBytes = IOUtils.toByteArray(stream);

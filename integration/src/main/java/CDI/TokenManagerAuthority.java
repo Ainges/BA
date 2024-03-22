@@ -5,6 +5,7 @@ import Singeltons.OkHttpClientSingelton;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.enterprise.context.ApplicationScoped;
 import okhttp3.*;
+import org.eclipse.microprofile.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,10 +15,14 @@ import java.time.Instant;
 
 @ApplicationScoped
 public class TokenManagerAuthority {
-    Logger logger = LoggerFactory.getLogger(TokenManagerAuthority.class);
+
     private String token;
     private Instant expirationTime;
     private AuthorityTokenResponseDTO rawResponse;
+
+
+
+    Logger logger = LoggerFactory.getLogger(TokenManagerAuthority.class);
 
     // is only called by the getToken method
     private synchronized void setToken(String token, Instant expirationTime) {
@@ -31,7 +36,8 @@ public class TokenManagerAuthority {
     public synchronized String getToken() {
         if (expirationTime == null || expirationTime.isBefore(Instant.now())) {
             obtainNewToken();
-            setToken(this.rawResponse.getAccess_token(), calculateExpirationTime());
+
+
         }
         return token;
     }
@@ -47,17 +53,23 @@ public class TokenManagerAuthority {
 
         OkHttpClient client = OkHttpClientSingelton.getInstance();
 
-        //TODO: replace with dynamic values from application.properties
+        // load config
+        String grant_type_value = ConfigProvider.getConfig().getValue("tokenmanager.authority.grant_type.value", String.class);
+        String client_id_value = ConfigProvider.getConfig().getValue("tokenmanager.authority.client_id.value", String.class);
+        String client_secret_value = ConfigProvider.getConfig().getValue("tokenmanager.authority.client_secret.value", String.class);
+        String scope_value = ConfigProvider.getConfig().getValue("tokenmanger.authority.scope.value", String.class);
+
+        String authority_url = ConfigProvider.getConfig().getValue("authority.url", String.class);
+
         RequestBody requestBody = new FormBody.Builder()
-                .add("grant_type", "client_credentials")
-                .add("client_id", "camel")
-                .add("client_secret", "camel")
-                .add("scope", "upe_admin")
+                .add("grant_type", grant_type_value)
+                .add("client_id", client_id_value)
+                .add("client_secret", client_secret_value)
+                .add("scope", scope_value)
                 .build();
 
-        // TODO: replace with url from application.properties
         Request request = new Request.Builder()
-                .url("http://localhost:11560/token")
+                .url(authority_url + "/token")
                 .post(requestBody)
                 .build();
 
@@ -71,16 +83,25 @@ public class TokenManagerAuthority {
                 ObjectMapper objectMapper = new ObjectMapper();
                 AuthorityTokenResponseDTO authorityTokenDTO = objectMapper.readValue(responseBody, AuthorityTokenResponseDTO.class);
 
-                this.rawResponse = authorityTokenDTO;
+                if (response.isSuccessful()) {
+                    logger.info("Token obtained successfully");
+                    this.rawResponse = authorityTokenDTO;
 
-            } catch (Exception ex) {
-                logger.error("Error parsing response body of Token Request: " + responseBody);
-                ex.printStackTrace();
+                    // Set token and expiration time
+                    setToken(this.rawResponse.getAccess_token(), calculateExpirationTime());
+
+                } else {
+                    throw new IOException("Request was not successfull! " + response.code() + " " + response.message() + " " + responseBody);
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
 
         } catch (IOException e) {
-            logger.error("Error obtaining new token");
+            logger.error("Error obtaining new token - is the authority running?");
             e.printStackTrace();
         }
 

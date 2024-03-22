@@ -1,4 +1,4 @@
-package processors;
+package processors.SCIL_OnboardingPhase1;
 
 import DTO.NewEmployeeDataDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
