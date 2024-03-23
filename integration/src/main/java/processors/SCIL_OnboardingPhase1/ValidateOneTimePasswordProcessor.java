@@ -6,10 +6,7 @@ import org.eclipse.microprofile.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 import static org.apache.camel.language.constant.ConstantLanguage.constant;
 
@@ -32,9 +29,7 @@ public class ValidateOneTimePasswordProcessor implements Processor {
         if (validateOneTimePassword(oneTimePassword, firstName, lastName)) {
             logger.info("One-time password is valid");
             exchange = success(exchange);
-        }
-
-        else {
+        } else {
             logger.info("One-time password is invalid! \n Abborting...");
             exchange = failure(exchange);
         }
@@ -73,11 +68,10 @@ public class ValidateOneTimePasswordProcessor implements Processor {
 
         exchange.getMessage().setHeader("Content-Type", constant("text/html;charset=UTF-8"));
 
-        if(exchange.getMessage().getHeader("answerOfNewEmployee").equals("accepted")) {
+        if (exchange.getMessage().getHeader("answerOfNewEmployee").equals("accepted")) {
             exchange.getMessage().setBody(htmlAccepted);
             logger.info("Responding to acceptance of moving request.");
-        }
-        else {
+        } else {
             exchange.getMessage().setBody(htmlDeclined);
             logger.info("Responding to declination of moving request.");
         }
@@ -106,7 +100,7 @@ public class ValidateOneTimePasswordProcessor implements Processor {
         return exchange;
     }
 
-    public boolean validateOneTimePassword(String oneTimePassword, String firstName, String lastName) throws java.sql.SQLException {
+    public boolean validateOneTimePassword(String oneTimePassword, String firstName, String lastName) {
 
         // load config
         String url = ConfigProvider.getConfig().getValue("quarkus.datasource.jdbc.url", String.class);
@@ -114,30 +108,34 @@ public class ValidateOneTimePasswordProcessor implements Processor {
         String password = ConfigProvider.getConfig().getValue("quarkus.datasource.password", String.class);
 
         // create connection
-        Connection connection = DriverManager.getConnection(url, username, password);
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
 
-        // create statement
-        String sql = "SELECT * FROM ba.onetimepasswords WHERE onetimepassword = ? AND firstname = ? AND lastname = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, oneTimePassword);
-        preparedStatement.setString(2, firstName);
-        preparedStatement.setString(3, lastName);
-        ResultSet resultSet = preparedStatement.executeQuery();
+            // create statement
+            String sql = "SELECT * FROM ba.onetimepasswords WHERE onetimepassword = ? AND firstname = ? AND lastname = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, oneTimePassword);
+            preparedStatement.setString(2, firstName);
+            preparedStatement.setString(3, lastName);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-        if (resultSet.next()) {
+            if (resultSet.next()) {
 
-        // delete the one-time password from the database
-            String deleteSql = "DELETE FROM ba.onetimepasswords WHERE onetimepassword = ? AND firstname = ? AND lastname = ?";
-            PreparedStatement deletePreparedStatement = connection.prepareStatement(deleteSql);
-            deletePreparedStatement.setString(1, oneTimePassword);
-            deletePreparedStatement.setString(2, firstName);
-            deletePreparedStatement.setString(3, lastName);
-            deletePreparedStatement.executeUpdate();
-            return true;
+                // delete the one-time password from the database
+                String deleteSql = "DELETE FROM ba.onetimepasswords WHERE onetimepassword = ? AND firstname = ? AND lastname = ?";
+                PreparedStatement deletePreparedStatement = connection.prepareStatement(deleteSql);
+                deletePreparedStatement.setString(1, oneTimePassword);
+                deletePreparedStatement.setString(2, firstName);
+                deletePreparedStatement.setString(3, lastName);
+                deletePreparedStatement.executeUpdate();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            logger.error("Error when validating the password with the database");
+
         }
-        else {
-            return false;
-        }
-
+        // TODO: is this the correct way to handle this?
+        return false;
     }
 }

@@ -1,6 +1,7 @@
 package processors.deprecated;
 
 import DTO.EmployeeDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.eclipse.microprofile.config.ConfigProvider;
@@ -13,6 +14,7 @@ import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,17 +37,23 @@ public class GetAllUsersProcessor implements Processor {
 
         logger.info("Requesting Users from Authority DB...");
 
-        try {
+
 
             // Get the database connection of Authority
             String url = ConfigProvider.getConfig().getValue("quarkus.datasource.authority.jdbc.url", String.class);
             String username = ConfigProvider.getConfig().getValue("quarkus.datasource.authority.username", String.class);
             String password = ConfigProvider.getConfig().getValue("quarkus.datasource.authority.password", String.class);
 
-            Connection connection = DriverManager.getConnection(url, username, password);
+            try(Connection connection = DriverManager.getConnection(url, username, password)){
 
             String sqlFilePath = "src/main/resources/sql/allUserDataQuery.sql";
-            String sql = new String(Files.readAllBytes(Path.of(sqlFilePath)), StandardCharsets.UTF_8);
+            String sql = "";
+            try {
+                sql = new String(Files.readAllBytes(Path.of(sqlFilePath)), StandardCharsets.UTF_8);
+            }
+            catch (Exception e) {
+                logger.error("ERROR WHILE READING SQL FILE: " + e.getMessage());
+            }
 
             ResultSet resultSet = connection.createStatement().executeQuery(sql);
 
@@ -84,13 +92,16 @@ public class GetAllUsersProcessor implements Processor {
             }
 
             // format the list of employees to json and set it as the body of the exchange
+
             String json = new com.fasterxml.jackson.databind.ObjectMapper().writeValueAsString(employeeDTOList);
             // format json pretty
             exchange.getMessage().setBody(json);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             logger.error("ERROR WHILE GETTING ALL USERS: " + e.getMessage());
-        }
+        } catch (JsonProcessingException e) {
+                logger.error("ERROR WHILE PARSING USERS TO JSON: " + e.getMessage());
+            }
         logger.info("...Received Users.");
     }
 }

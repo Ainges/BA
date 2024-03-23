@@ -65,7 +65,7 @@ public class OnTimePasswordGeneratorProcessor implements Processor {
 
     }
 
-    public void insertOneTimePasswordIntoDatabase(String oneTimePassword, String firstName, String lastName) throws SQLException {
+    public void insertOneTimePasswordIntoDatabase(String oneTimePassword, String firstName, String lastName) {
 
 
         // load config
@@ -74,17 +74,20 @@ public class OnTimePasswordGeneratorProcessor implements Processor {
         String password = ConfigProvider.getConfig().getValue("quarkus.datasource.password", String.class);
 
         // create connection
-        Connection connection = DriverManager.getConnection(url, username, password);
+        try(Connection connection = DriverManager.getConnection(url, username, password)) {
 
-        // create statement
-        String sql = "INSERT INTO ba.onetimepasswords (onetimepassword, firstname, lastname) VALUES (?, ?, ?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, oneTimePassword);
-        preparedStatement.setString(2, firstName);
-        preparedStatement.setString(3, lastName);
-        preparedStatement.executeUpdate();
+            // create statement
+            String sql = "INSERT INTO ba.onetimepasswords (onetimepassword, firstname, lastname) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, oneTimePassword);
+            preparedStatement.setString(2, firstName);
+            preparedStatement.setString(3, lastName);
+            preparedStatement.executeUpdate();
 
-
+        }
+        catch (SQLException e){
+            logger.error("Error when inserting the onetimepassword into the database ");
+        }
 
 
     }
