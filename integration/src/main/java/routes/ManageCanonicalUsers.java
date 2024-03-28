@@ -1,15 +1,12 @@
 package routes;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import processors.CanonicalDataModel.AddCanonicalUserToDBProcessor;
 import processors.CanonicalDataModel.HashPasswordProcessor;
-import processors.CanonicalDataModel.MapMessageToCanonicalUserDTOProcessor;
+import processors.CanonicalDataModel.MapMessageToEmployeeDTOProcessor;
 
 public class ManageCanonicalUsers extends RouteBuilder {
 
-    Logger logger = LoggerFactory.getLogger(ManageCanonicalUsers.class);
 
     @Override
     public void configure() throws Exception {
@@ -21,13 +18,11 @@ public class ManageCanonicalUsers extends RouteBuilder {
 
         from("direct:createCanonicalUser")
                 .id("create-Canonical-User-Route")
-                // map to CanonicalUserDTO
-                .process( new MapMessageToCanonicalUserDTOProcessor())
+                // map to EmployeeDTO
+                .process( new MapMessageToEmployeeDTOProcessor())
                 // hash password
                 .process(new HashPasswordProcessor())
                 // Create user in SCIL DB
-                .process(new AddCanonicalUserToDBProcessor())
-                .to("log: Canonical User created successfully");
-
+                .process(new AddCanonicalUserToDBProcessor());
     }
 }

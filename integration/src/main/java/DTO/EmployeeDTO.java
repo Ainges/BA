@@ -1,36 +1,34 @@
 package DTO;
 
+import java.util.Date;
+
 public class EmployeeDTO {
-    String id;
-    String username;
-    String email;
-    String fullName;
-    String pictureURI;
-    String companyAndPosition;
 
-    public EmployeeDTO(String id, String username, String email, String fullName, String pictureURI, String companyAndPosition) {
-        this.id = id;
-        this.username = username;
+    private String email;
+    private String password;
+    private String first_name;
+    private String last_name;
+    private String profile_picture_url;
+    private String position;
+    private String private_email;
+    private Date birth_date;
+    private String status;
+
+
+
+    public EmployeeDTO() {
+    }
+
+    public EmployeeDTO(String email, String password, String first_name, String last_name, String profile_picture_url, String position, String private_email, Date birth_date, String status) {
         this.email = email;
-        this.fullName = fullName;
-        this.pictureURI = pictureURI;
-        this.companyAndPosition = companyAndPosition;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+        this.password = password;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.profile_picture_url = profile_picture_url;
+        this.position = position;
+        this.private_email = private_email;
+        this.birth_date = birth_date;
+        this.status = status;
     }
 
     public String getEmail() {
@@ -41,27 +39,67 @@ public class EmployeeDTO {
         this.email = email;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getPictureURI() {
-        return pictureURI;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setPictureURI(String pictureURI) {
-        this.pictureURI = pictureURI;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getCompanyAndPosition() {
-        return companyAndPosition;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setCompanyAndPosition(String companyAndPosition) {
-        this.companyAndPosition = companyAndPosition;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public String getProfile_picture_url() {
+        return profile_picture_url;
+    }
+
+    public void setProfile_picture_url(String profile_picture_url) {
+        this.profile_picture_url = profile_picture_url;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getPrivate_email() {
+        return private_email;
+    }
+
+    public void setPrivate_email(String private_email) {
+        this.private_email = private_email;
+    }
+
+    public Date getBirth_date() {
+        return birth_date;
+    }
+
+    public void setBirth_date(Date birth_date) {
+        this.birth_date = birth_date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

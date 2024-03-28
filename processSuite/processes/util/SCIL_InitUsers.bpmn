@@ -45,11 +45,12 @@
           <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/api/canonical/user/create&#34;, &#34;token.current&#34;]" />
           <camunda:property name="studio.paramBody" value="token.current" />
           <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/api/canonical/user/create" />
-          <camunda:property name="studio.paramContentType" />
+          <camunda:property name="studio.paramAuthorization" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1lrf0y2</bpmn:incoming>
       <bpmn:outgoing>Flow_0f7if9b</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics />
     </bpmn:serviceTask>
     <bpmn:serviceTask id="Activity_1rxv0hh" name="Create Users in Authority">
       <bpmn:documentation>token.current</bpmn:documentation>
@@ -66,6 +67,7 @@
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0r3ndhh</bpmn:incoming>
       <bpmn:outgoing>Flow_0lp57a1</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics />
     </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:message id="Message_nDILiVUK" name="init" />

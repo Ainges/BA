@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Onboarding_Phase1_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Preonboarding_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
-    <bpmn:participant id="Participant_0px403d" name="Onboarding_Phase1" processRef="Onboarding_Phase1_Process" />
+    <bpmn:participant id="Participant_0px403d" name="Onboarding_Phase1" processRef="Preonboarding_Process" />
     <bpmn:participant id="Participant_1ejbgs2" name="Wohnungssuche Prozess" />
-    <bpmn:participant id="Participant_1tetnf2" name="SCIL" processRef="SCIL_OnboardingPhase1" />
+    <bpmn:participant id="Participant_1tetnf2" name="SCIL" processRef="SCIL_Preonboarding" />
     <bpmn:participant id="Participant_1t25cj3" name="Neuer Mitarbeiter" />
     <bpmn:messageFlow id="Flow_0ma1iz7" sourceRef="Event_1d8bbu9" targetRef="Participant_1ejbgs2" />
     <bpmn:messageFlow id="Flow_0idtrqy" sourceRef="Activity_1eyq305" targetRef="Event_1uese52" />
@@ -29,8 +29,12 @@
 - Berechtigungen auch physisch usw.</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_16n593h" sourceRef="Activity_1mnv47x" targetRef="TextAnnotation_1g7nhah" />
+    <bpmn:textAnnotation id="TextAnnotation_0fvktqb">
+      <bpmn:text>Mitarbeiterbindung</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1ehklkg" associationDirection="None" sourceRef="Activity_05jr9ed" targetRef="TextAnnotation_0fvktqb" />
   </bpmn:collaboration>
-  <bpmn:process id="Onboarding_Phase1_Process" name="Onboarding_Phase1" isExecutable="true" camunda:versionTag="0.1">
+  <bpmn:process id="Preonboarding_Process" name="Onboarding_Phase1" isExecutable="true" camunda:versionTag="0.1">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1pyr36n" name="Vorgesetzter">
         <bpmn:flowNodeRef>Activity_1eyq305</bpmn:flowNodeRef>
@@ -42,7 +46,6 @@
         <bpmn:flowNodeRef>StartEvent_OnboardingPhase1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0vy7lxq</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_18vvqsr</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0ve80u6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1cannnv</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0iqejj2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1pwvone</bpmn:flowNodeRef>
@@ -55,6 +58,8 @@
         <bpmn:flowNodeRef>Activity_1l0s39s</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0bx4zme</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0vwo47g</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0ve80u6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_05jr9ed</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_0alw6fb" sourceRef="StartEvent_OnboardingPhase1" targetRef="Gateway_0vfwlrv" />
@@ -70,6 +75,7 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0cxmjjd" sourceRef="Event_1d8bbu9" targetRef="Gateway_1n7xkno" />
     <bpmn:sendTask id="Activity_1eyq305" name="Mitarbeiter fragen ob durch den Jobwechsel ein Umzug ansteht" messageRef="Message_Jkc2PIH2">
+      <bpmn:documentation />
       <bpmn:incoming>Flow_0cnjnkh</bpmn:incoming>
       <bpmn:outgoing>Flow_0hvkfna</bpmn:outgoing>
       <bpmn:property id="Property_0jahgm4" name="__targetRef_placeholder" />
@@ -133,7 +139,7 @@
         <bpmn:targetRef>Property_0v4am1s</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0579xkg" sourceRef="Gateway_0vfwlrv" targetRef="Activity_0ve80u6" />
+    <bpmn:sequenceFlow id="Flow_0579xkg" sourceRef="Gateway_0vfwlrv" targetRef="Activity_05jr9ed" />
     <bpmn:sequenceFlow id="Flow_10b9tgi" sourceRef="Activity_0ve80u6" targetRef="Event_0iqejj2" />
     <bpmn:sequenceFlow id="Flow_0l95km6" sourceRef="Event_0iqejj2" targetRef="Activity_1l0s39s" />
     <bpmn:sequenceFlow id="Flow_1yza01d" sourceRef="Gateway_1n7xkno" targetRef="Gateway_0vy7lxq">
@@ -141,18 +147,6 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1j6gdlh" sourceRef="Event_1cannnv" targetRef="Gateway_1n7xkno" />
     <bpmn:sequenceFlow id="Flow_0b711zh" sourceRef="Gateway_0e9psvj" targetRef="Event_1cannnv" />
-    <bpmn:userTask id="Activity_0ve80u6" name="Eckpunkte für ersten Arbeitstag definieren">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="firstWorkingDay" label="Erster Arbeitstag" type="date" />
-          <camunda:formField id="contactPerson" label="Ansprechpartner" type="string" defaultValue="Dirk Müller" />
-          <camunda:formField id="beginOfFirstWorkingDay" label="Beginn des ersten Arbeitstages" type="string" defaultValue="08:00 Uhr" />
-          <camunda:formField id="documentsNeededForFirstWorkingDay" label="Folgende Dokumente werden für den erste Arbeitstag benötigt" type="string" defaultValue="Personalausweis" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0579xkg</bpmn:incoming>
-      <bpmn:outgoing>Flow_10b9tgi</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:intermediateCatchEvent id="Event_1cannnv" name="14 Tage vor Eintritt">
       <bpmn:incoming>Flow_0b711zh</bpmn:incoming>
       <bpmn:outgoing>Flow_1j6gdlh</bpmn:outgoing>
@@ -279,6 +273,23 @@
     <bpmn:dataObject id="DataObject_04vns1l" />
     <bpmn:dataObjectReference id="DataObjectReference_newEmployeeData" name="Daten zu neuem Mitarbeiter" dataObjectRef="DataObject_1wriav3" />
     <bpmn:dataObject id="DataObject_1wriav3" />
+    <bpmn:userTask id="Activity_0ve80u6" name="Eckpunkte für ersten Arbeitstag definieren">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="firstWorkingDay" label="Erster Arbeitstag" type="date" />
+          <camunda:formField id="contactPerson" label="Ansprechpartner" type="string" defaultValue="Dirk Müller" />
+          <camunda:formField id="beginOfFirstWorkingDay" label="Beginn des ersten Arbeitstages" type="string" defaultValue="08:00 Uhr" />
+          <camunda:formField id="documentsNeededForFirstWorkingDay" label="Folgende Dokumente werden für den erste Arbeitstag benötigt" type="string" defaultValue="Personalausweis" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1aclm6n</bpmn:incoming>
+      <bpmn:outgoing>Flow_10b9tgi</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:task id="Activity_05jr9ed" name="Wilkommensnachricht">
+      <bpmn:incoming>Flow_0579xkg</bpmn:incoming>
+      <bpmn:outgoing>Flow_1aclm6n</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1aclm6n" sourceRef="Activity_05jr9ed" targetRef="Activity_0ve80u6" />
     <bpmn:textAnnotation id="TextAnnotation_0nv5fnu">
       <bpmn:text>Inhalt: 
 - Wo melden am ersten Arbeitstag?
@@ -298,7 +309,7 @@
   <bpmn:message id="Message_eBIO3DQK" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_2Sz5EKXp" name="Message_Send_MoveNecessary" />
   <bpmn:message id="Message_uZq3k32L" name="Message_Send_WelcomeMessageToNewEmployee" />
-  <bpmn:process id="SCIL_OnboardingPhase1" name="SCIL" isExecutable="true" camunda:versionTag="0.1">
+  <bpmn:process id="SCIL_Preonboarding" name="SCIL" isExecutable="true" camunda:versionTag="0.1">
     <bpmn:startEvent id="Event_0n2t9hy">
       <bpmn:outgoing>Flow_1gbvat2</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_16zkewi" messageRef="Message_scqRgCad" />
@@ -354,8 +365,8 @@
         <camunda:properties>
           <camunda:property name="module" value="HttpClient" />
           <camunda:property name="method" value="post" />
-          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/phase1/MovingRequest&#34;, &#34;return {\n\&#34;email\&#34;: token.current.employeeData.email,\n\&#34;firstName\&#34;: token.current.employeeData.firstName,\n\&#34;lastName\&#34;: token.current.employeeData.lastName\n}&#34;]" />
-          <camunda:property name="studio.paramBody" value="return {&#10;&#34;email&#34;: token.current.employeeData.email,&#10;&#34;firstName&#34;: token.current.employeeData.firstName,&#10;&#34;lastName&#34;: token.current.employeeData.lastName&#10;}" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/phase1/MovingRequest&#34;, &#34;return {\n\&#34;email\&#34;: token.current.OnboardingData.private_email,\n\&#34;first_name\&#34;: token.current.OnboardingData.first_name,\n\&#34;last_name\&#34;: token.current.OnboardingData.last_name\n}&#34;]" />
+          <camunda:property name="studio.paramBody" value="return {&#10;&#34;email&#34;: token.current.OnboardingData.private_email,&#10;&#34;first_name&#34;: token.current.OnboardingData.first_name,&#10;&#34;last_name&#34;: token.current.OnboardingData.last_name&#10;}" />
           <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/phase1/MovingRequest" />
           <camunda:property name="studio.paramContentType" />
         </camunda:properties>
@@ -421,9 +432,6 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1720" y="404.5" width="79" height="27" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0ab0bmi_di" bpmnElement="Activity_0ve80u6">
-        <dc:Bounds x="370" y="420" width="160" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1ei46km" bpmnElement="Event_1cannnv">
         <dc:Bounds x="1022" y="302" width="36" height="36" />
@@ -499,6 +507,13 @@
           <dc:Bounds x="409" y="354.5" width="81" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ab0bmi_di" bpmnElement="Activity_0ve80u6">
+        <dc:Bounds x="570" y="420" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_05jr9ed_di" bpmnElement="Activity_05jr9ed">
+        <dc:Bounds x="330" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0nv5fnu_di" bpmnElement="TextAnnotation_0nv5fnu">
         <dc:Bounds x="360" y="520" width="220" height="84" />
         <bpmndi:BPMNLabel />
@@ -564,10 +579,10 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0579xkg_di" bpmnElement="Flow_0579xkg">
         <di:waypoint x="225" y="460" />
-        <di:waypoint x="370" y="460" />
+        <di:waypoint x="330" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10b9tgi_di" bpmnElement="Flow_10b9tgi">
-        <di:waypoint x="530" y="460" />
+        <di:waypoint x="730" y="460" />
         <di:waypoint x="1022" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0l95km6_di" bpmnElement="Flow_0l95km6">
@@ -637,9 +652,13 @@
         <di:waypoint x="642" y="720" />
         <di:waypoint x="642" y="915" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1aclm6n_di" bpmnElement="Flow_1aclm6n">
+        <di:waypoint x="430" y="460" />
+        <di:waypoint x="570" y="460" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_1tvuib4_di" bpmnElement="Association_1tvuib4">
-        <di:waypoint x="458" y="500" />
-        <di:waypoint x="447" y="520" />
+        <di:waypoint x="580" y="500" />
+        <di:waypoint x="529" y="520" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_1bljbac_di" bpmnElement="Participant_1ejbgs2" isHorizontal="true">
         <dc:Bounds x="680" y="1270" width="600" height="60" />
@@ -733,6 +752,10 @@
         <dc:Bounds x="710" y="650" width="270" height="55" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0fvktqb_di" bpmnElement="TextAnnotation_0fvktqb">
+        <dc:Bounds x="500" y="370" width="99.99156545209178" height="40.48582995951417" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataInputAssociation_0sohxcq_di" bpmnElement="DataInputAssociation_0sohxcq">
         <di:waypoint x="450" y="295" />
         <di:waypoint x="450" y="210" />
@@ -766,6 +789,10 @@
       <bpmndi:BPMNEdge id="Association_16n593h_di" bpmnElement="Association_16n593h">
         <di:waypoint x="526" y="780" />
         <di:waypoint x="710" y="684" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1ehklkg_di" bpmnElement="Association_1ehklkg">
+        <di:waypoint x="430" y="438" />
+        <di:waypoint x="500" y="407" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ma1iz7_di" bpmnElement="Flow_0ma1iz7">
         <di:waypoint x="980" y="188" />

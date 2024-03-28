@@ -1,6 +1,7 @@
-package processors.SCIL_OnboardingPhase1;
+package processors.SCIL_Preonboarding;
 
-import DTO.NewEmployeeDataDTO;
+import DTO.EmployeeDTO;
+import DTO.IsMovingRequestNecessaryDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -26,18 +27,19 @@ public class OnTimePasswordGeneratorProcessor implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
 
-        // Generate oneTimePassword and store it in header
-        String oneTimePassword = generateOneTimePassword(5);
-        logger.info("One-time password generated: " + oneTimePassword);
-        exchange.getMessage().setHeader("OneTimePassword", oneTimePassword);
+        // Generate one_time_password and store it in header
+        int lengthOfOneTimePassword = 5;
+        String one_time_password = generateOneTimePassword(lengthOfOneTimePassword);
+        logger.info("One-time password generated: " + one_time_password);
+        exchange.getMessage().setHeader("one_time_password", one_time_password);
 
         // Get the body of the message
         String body = exchange.getMessage().getBody().toString();
-        NewEmployeeDataDTO newEmployeeDataDTO = new ObjectMapper().readValue(body, NewEmployeeDataDTO.class);
+        IsMovingRequestNecessaryDTO isMovingRequestNecessaryDTO = new ObjectMapper().readValue(body, IsMovingRequestNecessaryDTO.class);
 
         // Insert one-time password into database
         logger.info("Inserting one-time password into database...");
-        insertOneTimePasswordIntoDatabase(oneTimePassword, newEmployeeDataDTO.getFirstName(), newEmployeeDataDTO.getLastName());
+        insertOneTimePasswordIntoDatabase(one_time_password, isMovingRequestNecessaryDTO.getFirst_name(), isMovingRequestNecessaryDTO.getLast_name());
         logger.info("One-time password successfully inserted into database.");
 
 
@@ -46,7 +48,7 @@ public class OnTimePasswordGeneratorProcessor implements Processor {
     /**
      * Found in: https://stackoverflow.com/questions/7111651/how-to-generate-a-secure-random-alphanumeric-string-in-java-efficiently
      *
-     * @param lenght the length of the one-time password
+     * @param lenght the lengthOfone_time_password of the one-time password
      * @return a one-time password
      */
     public String generateOneTimePassword(int lenght) throws NoSuchAlgorithmException {
@@ -55,17 +57,17 @@ public class OnTimePasswordGeneratorProcessor implements Processor {
 
         final SecureRandom secureRandom = SecureRandom.getInstanceStrong();
 
-        final String oneTimePassword = secureRandom
-                .ints(lenght, 0, chrs.length()) // 9 is the length of the string you want
+        final String one_time_password = secureRandom
+                .ints(lenght, 0, chrs.length()) // 9 is the lengthOfone_time_password of the string you want
                 .mapToObj(i -> chrs.charAt(i))
                 .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
                 .toString();
 
-        return oneTimePassword;
+        return one_time_password;
 
     }
 
-    public void insertOneTimePasswordIntoDatabase(String oneTimePassword, String firstName, String lastName) {
+    public void insertOneTimePasswordIntoDatabase(String one_time_password, String first_name, String last_name) {
 
 
         // load config
@@ -77,16 +79,16 @@ public class OnTimePasswordGeneratorProcessor implements Processor {
         try(Connection connection = DriverManager.getConnection(url, username, password)) {
 
             // create statement
-            String sql = "INSERT INTO ba.onetimepasswords (onetimepassword, firstname, lastname) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO ba.one_time_passwords (one_time_password, first_name, last_name) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, oneTimePassword);
-            preparedStatement.setString(2, firstName);
-            preparedStatement.setString(3, lastName);
+            preparedStatement.setString(1, one_time_password);
+            preparedStatement.setString(2, first_name);
+            preparedStatement.setString(3, last_name);
             preparedStatement.executeUpdate();
 
         }
         catch (SQLException e){
-            logger.error("Error when inserting the onetimepassword into the database ");
+            logger.error("Error when inserting the one_time_password into the database ");
         }
 
 

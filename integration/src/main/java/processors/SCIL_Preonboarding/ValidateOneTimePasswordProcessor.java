@@ -1,4 +1,4 @@
-package processors.SCIL_OnboardingPhase1;
+package processors.SCIL_Preonboarding;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -19,14 +19,14 @@ public class ValidateOneTimePasswordProcessor implements Processor {
 
         logger.info("Validating request...");
 
-        String oneTimePassword = exchange.getMessage().getHeader("oneTimePassword").toString();
-        logger.info("Got: oneTimePassword: " + oneTimePassword);
-        String firstName = exchange.getMessage().getHeader("firstName").toString();
-        logger.info("Got: firstName: " + firstName);
-        String lastName = exchange.getMessage().getHeader("lastName").toString();
-        logger.info("Got: lastName: " + lastName);
+        String one_time_password = exchange.getMessage().getHeader("one_time_password").toString();
+        logger.info("Got: one_time_password: " + one_time_password);
+        String first_name = exchange.getMessage().getHeader("first_name").toString();
+        logger.info("Got: first_name: " + first_name);
+        String last_name = exchange.getMessage().getHeader("last_name").toString();
+        logger.info("Got: last_name: " + last_name);
 
-        if (validateOneTimePassword(oneTimePassword, firstName, lastName)) {
+        if (validateOneTimePassword(one_time_password, first_name, last_name)) {
             logger.info("One-time password is valid");
             exchange = success(exchange);
         } else {
@@ -100,7 +100,7 @@ public class ValidateOneTimePasswordProcessor implements Processor {
         return exchange;
     }
 
-    public boolean validateOneTimePassword(String oneTimePassword, String firstName, String lastName) {
+    public boolean validateOneTimePassword(String one_time_password, String first_name, String last_name) {
 
         // load config
         String url = ConfigProvider.getConfig().getValue("quarkus.datasource.jdbc.url", String.class);
@@ -111,21 +111,21 @@ public class ValidateOneTimePasswordProcessor implements Processor {
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
 
             // create statement
-            String sql = "SELECT * FROM ba.onetimepasswords WHERE onetimepassword = ? AND firstname = ? AND lastname = ?";
+            String sql = "SELECT * FROM ba.one_time_passwords WHERE one_time_password = ? AND first_name = ? AND last_name = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, oneTimePassword);
-            preparedStatement.setString(2, firstName);
-            preparedStatement.setString(3, lastName);
+            preparedStatement.setString(1, one_time_password);
+            preparedStatement.setString(2, first_name);
+            preparedStatement.setString(3, last_name);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
 
                 // delete the one-time password from the database
-                String deleteSql = "DELETE FROM ba.onetimepasswords WHERE onetimepassword = ? AND firstname = ? AND lastname = ?";
+                String deleteSql = "DELETE FROM ba.one_time_passwords WHERE one_time_password = ? AND first_name = ? AND last_name = ?";
                 PreparedStatement deletePreparedStatement = connection.prepareStatement(deleteSql);
-                deletePreparedStatement.setString(1, oneTimePassword);
-                deletePreparedStatement.setString(2, firstName);
-                deletePreparedStatement.setString(3, lastName);
+                deletePreparedStatement.setString(1, one_time_password);
+                deletePreparedStatement.setString(2, first_name);
+                deletePreparedStatement.setString(3, last_name);
                 deletePreparedStatement.executeUpdate();
                 return true;
             } else {

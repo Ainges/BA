@@ -6,16 +6,16 @@ import org.apache.camel.builder.RouteBuilder;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import processors.SCIL_OnboardingPhase1.IsMovingNecessaryRequestProcessor;
-import processors.SCIL_OnboardingPhase1.OnTimePasswordGeneratorProcessor;
-import processors.SCIL_OnboardingPhase1.SendWelcomeMessageToEmployeeProcessor;
-import processors.SCIL_OnboardingPhase1.ValidateOneTimePasswordProcessor;
+import processors.SCIL_Preonboarding.IsMovingNecessaryRequestProcessor;
+import processors.SCIL_Preonboarding.OnTimePasswordGeneratorProcessor;
+//import processors.SCIL_Preonboarding.SendWelcomeMessageToEmployeeProcessor;
+import processors.SCIL_Preonboarding.ValidateOneTimePasswordProcessor;
 
-public class SCIL_OnboardingPhase1 extends RouteBuilder {
+public class SCIL_Preonboarding extends RouteBuilder {
 
     String bearerToken = ConfigProvider.getConfig().getValue("engine.bearer", String.class);
 
-    Logger logger = LoggerFactory.getLogger(SCIL_OnboardingPhase1.class);
+    Logger logger = LoggerFactory.getLogger(SCIL_Preonboarding.class);
 
     @Override
     public void configure() throws Exception {
@@ -37,14 +37,16 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
                 .to("direct:MovingRequestDecline");
 
         // ############### Welcome Message ################
-
+/*
         from("direct:SendWelcomeMessageToNewEmployee")
                 // Send to Artemis queue
                 .log("Sending Welcome Message to new employee")
-                .process(exchange -> {
+
+                //TODO: Necessary?
+*//*                .process(exchange -> {
                     String message = exchange.getMessage().getBody(String.class);
                     exchange.getMessage().setBody(message);
-                })
+                })*//*
                 .to(ExchangePattern.InOnly, "jms:queue:SendWelcomeMessageToNewEmployeeQueue");
 
 
@@ -54,7 +56,7 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
                 .process(new SendWelcomeMessageToEmployeeProcessor())
                 // SMTP Host and Port are set in the application.properties file
                 // Note: It is not possible to use the @ConfigProperty annotation in the from() method -> will evaluate to null
-                .to("smtp://" + "{{smtp.host}}" + ":" + "{{smtp.port}}" + "?username=" + "{{smtp.username}}" + "&password=" + "{{smtp.password}}");
+                .to("smtp://" + "{{smtp.host}}" + ":" + "{{smtp.port}}" + "?username=" + "{{smtp.username}}" + "&password=" + "{{smtp.password}}");*/
 
 
         // ############### Moving Request ################
@@ -86,7 +88,6 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
                 .log("Acceptence of moving request called!")
                 .setHeader("answerOfNewEmployee", constant("accepted"))
                 .process(new ValidateOneTimePasswordProcessor())
-                //TODO: inform the process of the Acceptance
                 .to(ExchangePattern.InOnly, "jms:queue:MovingRequestAccept");
 
         from("jms:queue:MovingRequestAccept")
@@ -115,7 +116,6 @@ public class SCIL_OnboardingPhase1 extends RouteBuilder {
                 .log("Decline of moving request called!")
                 .setHeader("answerOfNewEmployee", constant("declined"))
                 .process(new ValidateOneTimePasswordProcessor())
-                //TODO: inform the process of the Decline
                 .to(ExchangePattern.InOnly, "jms:queue:MovingRequestDecline");
 
         from("jms:queue:MovingRequestDecline")

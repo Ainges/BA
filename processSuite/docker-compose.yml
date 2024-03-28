@@ -1,21 +1,20 @@
 version: "3.5"
 services:
-
   authority:
     image: 5minds/processcube_authority:2024-1
-    depends_on: 
-    - db_authority
-    # restart: always
+    depends_on:
+      - db_authority
+    restart: always
     environment:
       ONFIG_PATH: /etc/authority/config/config.json
       # UPE_SEED_PATH: /etc/authority/config/upeSeedingData.json
       LOG_LEVEL: debug
     volumes:
-     - ./.processcube/authority/config.json:/etc/authority/config/config.json
+      - ./.processcube/authority/config.json:/etc/authority/config/config.json
     # - ./.processcube/authority/options.json:/app/extensions/username_password/options.json
     # - ./.processcube/authority/upeSeedingData.json:/etc/authority/config/upeSeedingData.json
     ports:
-      - 11560:11560 
+      - 11560:11560
 
   engine:
     image: 5minds/processcube_engine:2024-1
@@ -75,9 +74,9 @@ services:
   artemis:
     image: apache/activemq-artemis
     ports:
-      - "8161:8161"   # Web Console
+      - "8161:8161" # Web Console
       - "61616:61616" # AMQP
-      - "5672:5672"   # MQTT
+      - "5672:5672" # MQTT
 
   smtp4dev:
     image: rnwood/smtp4dev
@@ -106,11 +105,11 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ../integration/dev/postgres/init_schema.sql:/docker-entrypoint-initdb.d/init_schema.sql
+      - ../integration/src/main/resources/sql/init/init_schema.sql:/docker-entrypoint-initdb.d/init_schema.sql
 
   db_authority:
     image: postgres:bookworm
-    
+
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin

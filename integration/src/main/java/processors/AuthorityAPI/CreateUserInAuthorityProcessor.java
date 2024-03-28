@@ -37,10 +37,14 @@ public class CreateUserInAuthorityProcessor implements Processor {
 
         try (Response response = client.newCall(request).execute()) {
             if(response.isSuccessful()){
-                logger.info("User '" + exchange.getMessage().getHeader("email", String.class)+ "' successfully created in authority. ");
-                exchange.getMessage().setBody(response.body().string());
+                String success = "Authority User '" + exchange.getMessage().getHeader("email", String.class)+ "' successfully created.";
+                logger.info(success);
+                exchange.getMessage().setBody(success);
+                exchange.getMessage().setHeader(Exchange.HTTP_RESPONSE_CODE, response.code());
             } else {
-                exchange.getMessage().setBody("Failed to create user in authority: " + response.body().string());
+                String error = "Failed to create user in authority: '" + exchange.getMessage().getHeader("email", String.class)+ "'.";
+                logger.info(error);
+                exchange.getMessage().setBody(error);
                 exchange.getMessage().setHeader(Exchange.HTTP_RESPONSE_CODE, response.code());
             }
         }

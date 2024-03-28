@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Onboarding_Phase2_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Onboarding_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
-    <bpmn:participant id="Participant_0px403d" name="Onboarding_Phase2" processRef="Onboarding_Phase2_Process" />
+    <bpmn:participant id="Participant_0px403d" name="Onboarding_Phase2" processRef="Onboarding_Process" />
     <bpmn:participant id="Participant_0cgswu4" name="SCIL Onboarding_Phase2" />
     <bpmn:messageFlow id="Flow_0u65bmz" sourceRef="Activity_0bcy5bx" targetRef="Participant_0cgswu4" />
     <bpmn:textAnnotation id="TextAnnotation_025i2hi">
@@ -12,9 +12,9 @@
     </bpmn:textAnnotation>
     <bpmn:association id="Association_043gqzy" sourceRef="Activity_0bcy5bx" targetRef="TextAnnotation_1j9yyob" />
   </bpmn:collaboration>
-  <bpmn:process id="Onboarding_Phase2_Process" name="Onboarding_Phase2" isExecutable="true">
+  <bpmn:process id="Onboarding_Process" name="Onboarding_Phase2" isExecutable="true">
     <bpmn:laneSet>
-      <bpmn:lane id="Lane_09nnrvj" name="Mitarbeiter">
+      <bpmn:lane id="Lane_09nnrvj" name="Neuer Mitarbeiter">
         <bpmn:flowNodeRef>Activity_1i8na2m</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_13zzz5k</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0arwjm6</bpmn:flowNodeRef>
@@ -449,10 +449,6 @@
         <di:waypoint x="1180" y="-70" />
         <di:waypoint x="1235" y="-70" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_1wmrxz9_di" bpmnElement="Association_1wmrxz9">
-        <di:waypoint x="1128" y="-240" />
-        <di:waypoint x="1170" y="-301" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0stv0ez_di" bpmnElement="Flow_0stv0ez">
         <di:waypoint x="460" y="420" />
         <di:waypoint x="555" y="420" />
@@ -475,16 +471,20 @@
         <di:waypoint x="1388" y="420" />
         <di:waypoint x="1430" y="420" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1wmrxz9_di" bpmnElement="Association_1wmrxz9">
+        <di:waypoint x="1128" y="-240" />
+        <di:waypoint x="1170" y="-301" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_1m5mzey_di" bpmnElement="Participant_0cgswu4" isHorizontal="true">
         <dc:Bounds x="-170" y="1150" width="1880" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Association_043gqzy_di" bpmnElement="Association_043gqzy">
-        <di:waypoint x="400" y="810" />
-        <di:waypoint x="400" y="660" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="TextAnnotation_025i2hi_di" bpmnElement="TextAnnotation_025i2hi">
         <dc:Bounds x="1170" y="-400" width="100" height="111" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1j9yyob_di" bpmnElement="TextAnnotation_1j9yyob">
+        <dc:Bounds x="332" y="590" width="135" height="70" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_06ipxj8_di" bpmnElement="DataOutputAssociation_06ipxj8">
@@ -506,16 +506,16 @@
         <di:waypoint x="990" y="-130" />
         <di:waypoint x="1028" y="-109" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_043gqzy_di" bpmnElement="Association_043gqzy">
+        <di:waypoint x="400" y="810" />
+        <di:waypoint x="400" y="660" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0u65bmz_di" bpmnElement="Flow_0u65bmz">
         <di:waypoint x="400" y="890" />
         <di:waypoint x="400" y="920" />
         <di:waypoint x="540" y="920" />
         <di:waypoint x="540" y="1150" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="TextAnnotation_1j9yyob_di" bpmnElement="TextAnnotation_1j9yyob">
-        <dc:Bounds x="332" y="590" width="135" height="70" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

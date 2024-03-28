@@ -1,11 +1,10 @@
-package processors.SCIL_OnboardingPhase1;
+/*
+package processors.SCIL_Preonboarding;
 
 import DTO.SendWelcomeMessageToEmployeeDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.camel.Processor;
 
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +22,7 @@ public class SendWelcomeMessageToEmployeeProcessor implements Processor {
                     headers.put("From", "onboarding@acme.de");
                     headers.put("Subject", "Wir freuen uns auf Sie!");
 
-                    String body = "Hallo " + sendWelcomeMessageToEmployeeDTO.getNewEmployeeData().getFirstName() + " " + sendWelcomeMessageToEmployeeDTO.getNewEmployeeData().getLastName() + ",\n" +
+                    String body = "Hallo " + sendWelcomeMessageToEmployeeDTO.getNewEmployeeData().getfirst_name() + " " + sendWelcomeMessageToEmployeeDTO.getNewEmployeeData().getlast_name() + ",\n" +
                                   "Wir freuen uns, dass Sie ab dem " + sendWelcomeMessageToEmployeeDTO.getFirstWorkingDay()+ " bei uns anfangen.\n" +
                                   "Ihr Ansprechpartner ist " + sendWelcomeMessageToEmployeeDTO.getContactPerson() + ".\n" +
                                   "Bitte bringen Sie am ersten Arbeitstag folgendes mit: " + sendWelcomeMessageToEmployeeDTO.getDocumentsNeededForFirstWorkingDay() + ".\n" +
@@ -34,3 +33,4 @@ public class SendWelcomeMessageToEmployeeProcessor implements Processor {
                     exchange.getMessage().setBody(body);
         }
 }
+*/
