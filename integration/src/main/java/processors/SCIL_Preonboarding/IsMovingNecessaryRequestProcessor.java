@@ -37,12 +37,12 @@ public class IsMovingNecessaryRequestProcessor implements Processor {
                       "<p>Bitte klicken Sie auf einen der folgenden Links, um uns mitzuteilen, ob Sie Hilfe bei Ihrem Umzug benötigen:</p>" +
                       "<p> Ihr einmaliges Passwort lautet: " + one_time_password + "</p>"+
                       "<p>(Sie benötigen das Passwort nur, wenn die Links nicht funktionieren sollten)"+"</p>"+
-                      "<a href=\"http://localhost:8080/onboarding/phase1/MovingRequest/accept"+
+                      "<a href=\"http://localhost:8080/onboarding/preonboarding/MovingRequest/accept"+
                       "?one_time_password="+one_time_password+"&"+
                         "first_name="+first_name+"&"+
                         "last_name="+last_name+
                       "\">Hilfe bei Umzug gewünscht</a><br>" +
-                      "<a href=\"http://localhost:8080/onboarding/phase1/MovingRequest/decline"+
+                      "<a href=\"http://localhost:8080/onboarding/preonboarding/MovingRequest/decline"+
                       "?one_time_password="+one_time_password+"&"+
                         "first_name="+first_name+"&"+
                         "last_name="+last_name+

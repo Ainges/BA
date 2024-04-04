@@ -21,8 +21,8 @@ public class SCIL_Preonboarding extends RouteBuilder {
     public void configure() throws Exception {
 
 
-        rest("/onboarding/phase1")
-                .post("/SendWelcomeMessageToNewEmployee")
+        rest("/onboarding/preonboarding")
+                .post("/SendLastMessageToNewEmployeeBeforeFirstWorkingDay")
                 .consumes("application/json")
                 .to("direct:SendWelcomeMessageToNewEmployee")
                 .post("/MovingRequest")
