@@ -104,8 +104,8 @@ services:
       POSTGRES_DB: SCIL_DB
     ports:
       - "5432:5432"
-    volumes:
-      - ../integration/src/main/resources/sql/init/init_schema.sql:/docker-entrypoint-initdb.d/init_schema.sql
+    # volumes:
+    #   - ../integration/src/main/resources/sql/init/init_schema.sql:/docker-entrypoint-initdb.d/init_schema.sql
 
   db_authority:
     image: postgres:bookworm
