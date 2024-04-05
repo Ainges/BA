@@ -7,12 +7,13 @@ import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.narayana.jta.QuarkusTransaction;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
 
 public class PersistEmployeeProcessor implements Processor {
 
-    Logger logger = Logger.getLogger(PersistEmployeeProcessor.class.getName());
+    Logger logger = LoggerFactory.getLogger(PersistEmployeeProcessor.class);
 
     @Override
     public void process(Exchange exchange) throws Exception {
@@ -32,6 +33,7 @@ public class PersistEmployeeProcessor implements Processor {
             employee.setPassword(hashedPassword);
 
 
+            //TODO: How to catch exception if email is not unique?
 
             // Persist
             QuarkusTransaction.requiringNew().run(() -> {
@@ -51,12 +53,16 @@ public class PersistEmployeeProcessor implements Processor {
                 //noinspection Convert2MethodRef
                 employee.persist();
             });
-            logger.info("Employee persisted successfully");
+            logger.info("Employee '"+ employee.getEmail() + "' persisted successfully");
+            exchange.getMessage().setBody("Employee '"+ employee.getEmail() + "' persisted successfully");
+            exchange.getMessage().setHeader(Exchange.HTTP_RESPONSE_CODE, 200);
+
 
         } catch (Exception e) {
 
-            logger.info("Error while persisting employee");
-            e.printStackTrace();
+            logger.error("Error while persisting employee");
+            exchange.getMessage().setBody("Employee not persisted, error while persisting employee");
+            exchange.getMessage().setHeader(Exchange.HTTP_RESPONSE_CODE, 500);
         }
     }
 }

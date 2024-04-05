@@ -10,7 +10,7 @@ import java.util.List;
 public class Employee extends PanacheEntity {
 
 
-
+    @Column(unique = true)
     private String email;
     private String password;
     private String first_name;

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +37,19 @@ public class ManageAuthorityUserRoutes extends RouteBuilder {
                     ObjectMapper mapper = new ObjectMapper();
                     JsonNode jsonNode = mapper.readTree(body);
 
-                    exchange.getMessage().setHeader("email", jsonNode.get("email").asText());
-                    exchange.getMessage().setHeader("password", jsonNode.get("password").asText());
+                    String email = jsonNode.get("email").asText();
+                    String password = jsonNode.get("password").asText();
+
+                    if (email == null || password == null) {
+                        logger.error("Could not create user in authority, email or password is null");
+                        exchange.getMessage().setHeader(Exchange.HTTP_RESPONSE_CODE, 500);
+                        return;
+                    }
+
+
+
+                    exchange.getMessage().setHeader("email", email);
+                    exchange.getMessage().setHeader("password", password);
 
                 })
                 .process( new CreateUserInAuthorityProcessor());

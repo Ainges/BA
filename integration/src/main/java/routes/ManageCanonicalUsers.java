@@ -10,13 +10,15 @@ public class ManageCanonicalUsers extends RouteBuilder {
     public void configure() throws Exception {
 
         rest("api/canonical/user/")
-            .post("/create/")
-            .to("direct:createCanonicalUser");
+                .post("/create/")
+                .to("direct:createCanonicalUser").consumes("application/json").produces("application/json");
 
 
         from("direct:createCanonicalUser")
                 .id("create-Canonical-User-Route")
                 // map to EmployeeDTO
-                .process( new PersistEmployeeProcessor());
+                .process(new PersistEmployeeProcessor())
+                .to("log:info?showAll=true&multiline=true");
+
     }
 }
