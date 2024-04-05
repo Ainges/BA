@@ -28,14 +28,16 @@ public class AddCanonicalUserToDBProcessor implements Processor {
         String password = ConfigProvider.getConfig().getValue("quarkus.datasource.password", String.class);
 
         try(Connection connection = DriverManager.getConnection(url, username, password)) {
-            String sql = "INSERT INTO ba.employees (email, pw, first_name, last_name, position, profile_picture_url) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO ba.employees (email, pw, first_name, last_name, position, private_email,employment_status, employment_status, postal_address) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, employeeDTO.getEmail());
             preparedStatement.setString(2, employeeDTO.getPassword());
             preparedStatement.setString(3, employeeDTO.getFirst_name());
             preparedStatement.setString(4, employeeDTO.getLast_name());
             preparedStatement.setString(5, employeeDTO.getPosition());
-            preparedStatement.setString(6, employeeDTO.getProfile_picture_url());
+            preparedStatement.setString(6, employeeDTO.getPrivate_email());
+            preparedStatement.setString(7, employeeDTO.getEmployment_status());
+            preparedStatement.setString(8, employeeDTO.getPostal_address());
             preparedStatement.executeUpdate();
 
             logger.info("Canonical User " + employeeDTO.getEmail() + " successfully created.");

@@ -33,7 +33,6 @@ public class ManageAuthorityUserRoutes extends RouteBuilder {
                 .process(exchange -> {
                     String body = exchange.getMessage().getBody(String.class);
 
-
                     ObjectMapper mapper = new ObjectMapper();
                     JsonNode jsonNode = mapper.readTree(body);
 

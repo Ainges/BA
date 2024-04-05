@@ -2,33 +2,34 @@ package DTO;
 
 import java.util.Date;
 
+
 public class EmployeeDTO {
 
     private String email;
     private String password;
     private String first_name;
     private String last_name;
-    private String profile_picture_url;
     private String position;
     private String private_email;
     private Date birth_date;
-    private String status;
-
+    private String employment_status;
+    private String postal_address;
 
 
     public EmployeeDTO() {
     }
 
-    public EmployeeDTO(String email, String password, String first_name, String last_name, String profile_picture_url, String position, String private_email, Date birth_date, String status) {
+
+    public EmployeeDTO(String email, String password, String first_name, String last_name, String profile_picture_url, String position, String private_email, Date birth_date, String status, String postal_address) {
         this.email = email;
         this.password = password;
         this.first_name = first_name;
         this.last_name = last_name;
-        this.profile_picture_url = profile_picture_url;
         this.position = position;
         this.private_email = private_email;
         this.birth_date = birth_date;
-        this.status = status;
+        this.employment_status = status;
+        this.postal_address = postal_address;
     }
 
     public String getEmail() {
@@ -63,14 +64,6 @@ public class EmployeeDTO {
         this.last_name = last_name;
     }
 
-    public String getProfile_picture_url() {
-        return profile_picture_url;
-    }
-
-    public void setProfile_picture_url(String profile_picture_url) {
-        this.profile_picture_url = profile_picture_url;
-    }
-
     public String getPosition() {
         return position;
     }
@@ -95,11 +88,19 @@ public class EmployeeDTO {
         this.birth_date = birth_date;
     }
 
-    public String getStatus() {
-        return status;
+    public String getEmployment_status() {
+        return employment_status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setEmployment_status(String employment_status) {
+        this.employment_status = employment_status;
+    }
+
+    public String getPostal_address() {
+        return postal_address;
+    }
+
+    public void setPostal_address(String postal_address) {
+        this.postal_address = postal_address;
     }
 }

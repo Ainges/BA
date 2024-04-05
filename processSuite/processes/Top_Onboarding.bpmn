@@ -16,6 +16,7 @@
   - Private E-Mail
   - Art der Anstellung
   - Position
+  - Adresse
 - Wöchentliche Arbeitsstunden
 - ggf. Immatrikulationsbeschscheinigung</bpmn:text>
     </bpmn:textAnnotation>
@@ -262,12 +263,12 @@
         <di:waypoint x="210" y="370" />
         <di:waypoint x="210" y="325" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_080djnz_di" bpmnElement="Association_080djnz">
-        <di:waypoint x="442" y="326" />
-        <di:waypoint x="566" y="180" />
-      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0xdesjf_di" bpmnElement="TextAnnotation_0xdesjf">
+        <dc:Bounds x="500" y="140" width="240" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1rpxthv_di" bpmnElement="TextAnnotation_1rpxthv">
-        <dc:Bounds x="-230" y="367" width="230" height="170" />
+        <dc:Bounds x="-230" y="367" width="229.9928616751269" height="185.27918781725884" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1cl2hgk_di" bpmnElement="DataOutputAssociation_1cl2hgk">
@@ -291,14 +292,14 @@
         <di:waypoint x="170" y="80" />
         <di:waypoint x="252" y="80" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_080djnz_di" bpmnElement="Association_080djnz">
+        <di:waypoint x="442" y="326" />
+        <di:waypoint x="566" y="180" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_0gte31q_di" bpmnElement="Association_0gte31q">
         <di:waypoint x="102" y="371" />
         <di:waypoint x="0" y="377" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="TextAnnotation_0xdesjf_di" bpmnElement="TextAnnotation_0xdesjf">
-        <dc:Bounds x="500" y="140" width="240" height="40" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
