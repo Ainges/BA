@@ -1,9 +1,7 @@
 package routes;
 
 import org.apache.camel.builder.RouteBuilder;
-import processors.CanonicalDataModel.AddCanonicalUserToDBProcessor;
-import processors.CanonicalDataModel.HashPasswordProcessor;
-import processors.CanonicalDataModel.MapMessageToEmployeeDTOProcessor;
+import processors.CanonicalDataModel.PersistEmployeeProcessor;
 
 public class ManageCanonicalUsers extends RouteBuilder {
 
@@ -19,10 +17,6 @@ public class ManageCanonicalUsers extends RouteBuilder {
         from("direct:createCanonicalUser")
                 .id("create-Canonical-User-Route")
                 // map to EmployeeDTO
-                .process( new MapMessageToEmployeeDTOProcessor())
-                // hash password
-                .process(new HashPasswordProcessor())
-                // Create user in SCIL DB
-                .process(new AddCanonicalUserToDBProcessor());
+                .process( new PersistEmployeeProcessor());
     }
 }

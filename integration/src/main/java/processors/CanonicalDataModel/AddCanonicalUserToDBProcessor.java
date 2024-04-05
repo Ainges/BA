@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
+@Deprecated
 public class AddCanonicalUserToDBProcessor implements Processor {
 
     Logger logger = LoggerFactory.getLogger(AddCanonicalUserToDBProcessor.class);

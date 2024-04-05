@@ -1,3 +1,4 @@
+/*
 package examples.hibernate;
 
 import io.quarkus.narayana.jta.QuarkusTransaction;
@@ -29,7 +30,7 @@ public class HibernateTestProcessor implements Processor {
         Benutzer benutzer = new Benutzer();
         benutzer.name = userDTO.name;
 
-        // Finden Sie die Rolle anhand des Rollennamens
+        // Create if not exists
         Role role = Role.find("roleName", userDTO.roleName).firstResult();
         if (role == null) {
             role = new Role();
@@ -45,3 +46,4 @@ public class HibernateTestProcessor implements Processor {
 
 
 }
+*/

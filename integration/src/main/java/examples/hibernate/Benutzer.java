@@ -1,3 +1,4 @@
+/*
 package examples.hibernate;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
@@ -10,4 +11,4 @@ public class Benutzer extends PanacheEntity {
 
     @ManyToOne
     public Role role;
-}
+}*/
