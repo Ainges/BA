@@ -1,6 +1,7 @@
 package processors.AuthorityAPI;
 
 import Singeltons.OkHttpClientSingelton;
+import jakarta.enterprise.context.ApplicationScoped;
 import okhttp3.*;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -8,6 +9,7 @@ import org.eclipse.microprofile.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@ApplicationScoped
 public class CreateUserInAuthorityProcessor implements Processor {
 
     Logger logger = LoggerFactory.getLogger(CreateUserInAuthorityProcessor.class);

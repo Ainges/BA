@@ -20,6 +20,9 @@ public class ManageAuthorityUserRoutes extends RouteBuilder {
     @Inject
     TokenManagerAuthority tokenManagerAuthority;
 
+    @Inject
+    CreateUserInAuthorityProcessor createUserInAuthorityProcessor;
+
     @Override
     public void configure() throws Exception  {
 
@@ -52,7 +55,7 @@ public class ManageAuthorityUserRoutes extends RouteBuilder {
                     exchange.getMessage().setHeader("password", password);
 
                 })
-                .process( new CreateUserInAuthorityProcessor());
+                .process(createUserInAuthorityProcessor);
 
 
 

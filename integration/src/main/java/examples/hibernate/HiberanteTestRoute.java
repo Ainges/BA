@@ -1,31 +1,38 @@
-/*
 package examples.hibernate;
 
+import CDI.TokenManagerAuthority;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.transaction.Transactional;
+import jakarta.inject.Inject;
 import org.apache.camel.builder.RouteBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @ApplicationScoped
 public class HiberanteTestRoute extends RouteBuilder {
-    */
-/**
-     * <b>Called on initialization to build the routes using the fluent builder syntax.</b>
-     * <p/>
-     * This is a central method for RouteBuilder implementations to implement the routes using the Java fluent builder
-     * syntax.
-     *
-     * @throws Exception can be thrown during configuration
-     *//*
+
+    @Inject
+    TokenManagerAuthority tokenManagerAuthority;
+
+
+    // You have to Inject the Processor to have CDI Injection working inside the Processor!
+    @Inject
+    HibernateTestProcessor hibernateTestProcessor;
+
+    Logger logger = LoggerFactory.getLogger(HiberanteTestRoute.class);
 
     @Override
     public void configure() throws Exception {
 
         from("timer:test?period=10000000")
                 .id("Panache-Test-Route")
-                .process(new HibernateTestProcessor())
-                .log("Test");
+                .process(exchange -> {
+
+                    logger.info("Token: " + tokenManagerAuthority.getToken());
+
+                })
+                .process(hibernateTestProcessor)
+                .log("Panache test route finished! sleeping now... ");
 
 
     }
 }
-*/

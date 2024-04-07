@@ -5,13 +5,24 @@ import Entities.Employment_status;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.narayana.jta.QuarkusTransaction;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import repositories.EmployeeRepository;
+import repositories.Employment_statusRepository;
 
-
+@ApplicationScoped
 public class PersistEmployeeProcessor implements Processor {
+
+
+    @Inject
+    EmployeeRepository employeeRepository;
+
+    @Inject
+    Employment_statusRepository employment_statusRepository;
 
     Logger logger = LoggerFactory.getLogger(PersistEmployeeProcessor.class);
 
@@ -40,18 +51,17 @@ public class PersistEmployeeProcessor implements Processor {
                 // #############################################
                 // TODO: Find better way init employment status
                 // When done like this, it will create a new employment status every time
-                Employment_status employment_status = Employment_status.find("status", employee.getEmployment_status().toString()).firstResult();
+                Employment_status employment_status = employment_statusRepository.find("status", employee.getEmployment_status().toString()).firstResult();
                 if (employment_status == null) {
                     employment_status = new Employment_status();
                     employment_status.setStatus(employee.getEmployment_status().getStatus());
-                    employment_status.persist();
+                    employment_statusRepository.persist(employment_status);
                 }
 
                 employee.setEmployment_status(employment_status);
                 // #############################################
 
-                //noinspection Convert2MethodRef
-                employee.persist();
+                employeeRepository.persist(employee);
             });
             logger.info("Employee '"+ employee.getEmail() + "' persisted successfully");
             exchange.getMessage().setBody("Employee '"+ employee.getEmail() + "' persisted successfully");

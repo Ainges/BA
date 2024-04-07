@@ -5,10 +5,13 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
-public class Employee extends PanacheEntity {
+public class Employee {
 
+    @Id @GeneratedValue
+    private UUID id;
 
     @Column(unique = true)
     private String email;
@@ -46,6 +49,14 @@ public class Employee extends PanacheEntity {
         this.birth_date = birth_date;
         this.employment_status = employment_status;
         this.postal_address = postal_address;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getEmail() {

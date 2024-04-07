@@ -131,7 +131,7 @@
     <bpmn:sequenceFlow id="Flow_153xh25" sourceRef="Event_1t0wxn9" targetRef="Event_0scggi2" />
     <bpmn:sequenceFlow id="Flow_0qct0o4" sourceRef="Event_0scggi2" targetRef="Gateway_0vfwlrv" />
     <bpmn:sendTask id="Activity_1eyq305" name="Mitarbeiter fragen ob durch den Jobwechsel ein Umzug ansteht" messageRef="Message_Jkc2PIH2">
-      <bpmn:documentation />
+      <bpmn:documentation></bpmn:documentation>
       <bpmn:incoming>Flow_0cnjnkh</bpmn:incoming>
       <bpmn:outgoing>Flow_0hvkfna</bpmn:outgoing>
       <bpmn:property id="Property_0jahgm4" name="__targetRef_placeholder" />

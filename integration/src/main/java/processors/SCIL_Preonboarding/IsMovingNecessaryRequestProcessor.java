@@ -1,13 +1,28 @@
 package processors.SCIL_Preonboarding;
 
 import DTO.IsMovingRequestNecessaryDTO;
+import Entities.OneTimePasswordEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.enterprise.context.ApplicationScoped;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ *
+ * IN:
+ *      Body: IsMovingRequestNecessaryDTO
+ *      Header: one_time_password
+ *
+ * Out:
+ *      Body: HTML email
+ *      Header: From, To, Subject, Content-Type
+ *
+ * */
+@ApplicationScoped
 public class IsMovingNecessaryRequestProcessor implements Processor {
 
     @Override
@@ -18,6 +33,7 @@ public class IsMovingNecessaryRequestProcessor implements Processor {
         IsMovingRequestNecessaryDTO isMovingRequestNecessaryDTO = objectMapper.readValue(inbody, IsMovingRequestNecessaryDTO.class);
 
         // get information needed for the email
+
         String one_time_password = exchange.getMessage().getHeader("one_time_password").toString();
         String first_name = isMovingRequestNecessaryDTO.getFirst_name();
         String last_name = isMovingRequestNecessaryDTO.getLast_name();

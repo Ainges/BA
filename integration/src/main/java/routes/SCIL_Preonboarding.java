@@ -1,5 +1,7 @@
 package routes;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.Message;
 import org.apache.camel.builder.RouteBuilder;
@@ -8,10 +10,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import processors.SCIL_Preonboarding.IsMovingNecessaryRequestProcessor;
 import processors.SCIL_Preonboarding.OnTimePasswordGeneratorProcessor;
-//import processors.SCIL_Preonboarding.SendWelcomeMessageToEmployeeProcessor;
 import processors.SCIL_Preonboarding.ValidateOneTimePasswordProcessor;
 
+@ApplicationScoped
 public class SCIL_Preonboarding extends RouteBuilder {
+
+    @Inject
+    IsMovingNecessaryRequestProcessor isMovingNecessaryRequestProcessor;
+
+    @Inject
+    OnTimePasswordGeneratorProcessor onTimePasswordGeneratorProcessor;
+
+    @Inject
+    ValidateOneTimePasswordProcessor validateOneTimePasswordProcessor;
+
 
     String bearerToken = ConfigProvider.getConfig().getValue("engine.bearer", String.class);
 
@@ -37,27 +49,27 @@ public class SCIL_Preonboarding extends RouteBuilder {
                 .to("direct:MovingRequestDecline");
 
         // ############### Welcome Message ################
-/*
-        from("direct:SendWelcomeMessageToNewEmployee")
+
+        /*from("direct:SendWelcomeMessageToNewEmployee")
                 // Send to Artemis queue
                 .log("Sending Welcome Message to new employee")
 
                 //TODO: Necessary?
-*//*                .process(exchange -> {
+                .process(exchange -> {
                     String message = exchange.getMessage().getBody(String.class);
                     exchange.getMessage().setBody(message);
-                })*//*
+                })
                 .to(ExchangePattern.InOnly, "jms:queue:SendWelcomeMessageToNewEmployeeQueue");
 
 
         from("jms:queue:SendWelcomeMessageToNewEmployeeQueue")
                 .id("send-welcome-message-to-new-employee-with-E-MAIL-route")
                 .log("Message received from Artemis: ${body}")
-                .process(new SendWelcomeMessageToEmployeeProcessor())
+                //.process(new SendWelcomeMessageToEmployeeProcessor())
                 // SMTP Host and Port are set in the application.properties file
                 // Note: It is not possible to use the @ConfigProperty annotation in the from() method -> will evaluate to null
-                .to("smtp://" + "{{smtp.host}}" + ":" + "{{smtp.port}}" + "?username=" + "{{smtp.username}}" + "&password=" + "{{smtp.password}}");*/
-
+                .to("smtp://" + "{{smtp.host}}" + ":" + "{{smtp.port}}" + "?username=" + "{{smtp.username}}" + "&password=" + "{{smtp.password}}");
+*/
 
         // ############### Moving Request ################
 
@@ -75,10 +87,12 @@ public class SCIL_Preonboarding extends RouteBuilder {
                 // Bearbeite Anfrage zur Umzugsnotwendigkeit in Englisch
                 .log("Processing \"MovingRequest\" from Artemis: ${body}")
                 .log("Generating one-time password...")
-                .process(new OnTimePasswordGeneratorProcessor())
+                .process(onTimePasswordGeneratorProcessor)
                 .log("Generating email with one-time password...")
-                .process(new IsMovingNecessaryRequestProcessor())
-                .to("smtp://" + "{{smtp.host}}" + ":" + "{{smtp.port}}" + "?username=" + "{{smtp.username}}" + "&password=" + "{{smtp.password}}");
+                .process(isMovingNecessaryRequestProcessor)
+                .log("Sending email to new employee...")
+                .to("smtp://" + "{{smtp.host}}" + ":" + "{{smtp.port}}" + "?username=" + "{{smtp.username}}" + "&password=" + "{{smtp.password}}")
+                .log("Email successfully sent to new employee!");
 
 
         // ############### Moving Request Accept ################
@@ -87,7 +101,7 @@ public class SCIL_Preonboarding extends RouteBuilder {
                 .id("moving-request-accept-produces-jms-queue-route")
                 .log("Acceptence of moving request called!")
                 .setHeader("answerOfNewEmployee", constant("accepted"))
-                .process(new ValidateOneTimePasswordProcessor())
+                .process(validateOneTimePasswordProcessor)
                 .to(ExchangePattern.InOnly, "jms:queue:MovingRequestAccept");
 
         from("jms:queue:MovingRequestAccept")
@@ -115,7 +129,7 @@ public class SCIL_Preonboarding extends RouteBuilder {
                 .id("moving-request-decline-produces-jms-queue-route")
                 .log("Decline of moving request called!")
                 .setHeader("answerOfNewEmployee", constant("declined"))
-                .process(new ValidateOneTimePasswordProcessor())
+                .process(validateOneTimePasswordProcessor)
                 .to(ExchangePattern.InOnly, "jms:queue:MovingRequestDecline");
 
         from("jms:queue:MovingRequestDecline")
@@ -135,8 +149,7 @@ public class SCIL_Preonboarding extends RouteBuilder {
                 })
 
                 .to("http://localhost:8000/atlas_engine/api/v1/messages/Message_ResponseForMove/trigger?bridgeEndpoint=true")
-        .log("Process informed!");
-
+                .log("Process informed!");
 
 
     }

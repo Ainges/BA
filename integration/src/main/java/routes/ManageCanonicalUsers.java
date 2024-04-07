@@ -1,9 +1,16 @@
 package routes;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import org.apache.camel.builder.RouteBuilder;
 import processors.CanonicalDataModel.PersistEmployeeProcessor;
 
+@ApplicationScoped
 public class ManageCanonicalUsers extends RouteBuilder {
+
+
+    @Inject
+    PersistEmployeeProcessor persistEmployeeProcessor;
 
 
     @Override
@@ -17,7 +24,7 @@ public class ManageCanonicalUsers extends RouteBuilder {
         from("direct:createCanonicalUser")
                 .id("create-Canonical-User-Route")
                 // map to EmployeeDTO
-                .process(new PersistEmployeeProcessor())
+                .process(persistEmployeeProcessor)
                 .to("log:info?showAll=true&multiline=true");
 
     }

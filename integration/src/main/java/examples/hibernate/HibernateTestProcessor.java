@@ -1,14 +1,21 @@
-/*
 package examples.hibernate;
 
 import io.quarkus.narayana.jta.QuarkusTransaction;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.jetbrains.annotations.NotNull;
 
 @ApplicationScoped
 public class HibernateTestProcessor implements Processor {
+
+
+    @Inject
+    BenutzerRepository benutzerRepository;
+
+    @Inject
+    RoleRepository roleRepository;
 
 
     @Override
@@ -28,22 +35,21 @@ public class HibernateTestProcessor implements Processor {
 
     public void testMethode(@NotNull UserDTO userDTO) {
         Benutzer benutzer = new Benutzer();
-        benutzer.name = userDTO.name;
+        benutzer.setName(userDTO.name);
 
         // Create if not exists
-        Role role = Role.find("roleName", userDTO.roleName).firstResult();
+        Role role = roleRepository.find("roleName", userDTO.roleName).firstResult();
         if (role == null) {
             role = new Role();
-            role.roleName = userDTO.roleName;
-            role.persist();
+            role.setRoleName(userDTO.roleName);
+            roleRepository.persist(role);
         }
 
-        benutzer.role = role;
+        benutzer.setRole(role);
 
 
-        benutzer.persist();
+        benutzerRepository.persist(benutzer);
     }
 
 
 }
-*/

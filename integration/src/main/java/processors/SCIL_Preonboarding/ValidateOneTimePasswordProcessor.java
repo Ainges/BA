@@ -1,16 +1,26 @@
 package processors.SCIL_Preonboarding;
 
+import Entities.OneTimePasswordEntity;
+import io.quarkus.narayana.jta.QuarkusTransaction;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import repositories.OneTimePasswordEntityRepository;
 
 import java.sql.*;
 
 import static org.apache.camel.language.constant.ConstantLanguage.constant;
 
+@ApplicationScoped
 public class ValidateOneTimePasswordProcessor implements Processor {
+
+    @Inject
+    OneTimePasswordEntityRepository oneTimePasswordEntityRepository;
 
     Logger logger = LoggerFactory.getLogger(ValidateOneTimePasswordProcessor.class);
 
@@ -100,42 +110,24 @@ public class ValidateOneTimePasswordProcessor implements Processor {
         return exchange;
     }
 
+    @Transactional
     public boolean validateOneTimePassword(String one_time_password, String first_name, String last_name) {
 
-        // load config
-        String url = ConfigProvider.getConfig().getValue("quarkus.datasource.jdbc.url", String.class);
-        String username = ConfigProvider.getConfig().getValue("quarkus.datasource.username", String.class);
-        String password = ConfigProvider.getConfig().getValue("quarkus.datasource.password", String.class);
+        // get one-time password from database with Panache
+        //QuarkusTransaction.requiringNew().run(() ->{});
+        OneTimePasswordEntity oneTimePasswordEntity = oneTimePasswordEntityRepository.findByPasswordAndName(one_time_password, first_name, last_name);
+        if (oneTimePasswordEntity != null) {
 
-        // create connection
-        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            //QuarkusTransaction.requiringNew().run(() -> {
+            logger.info("One-time password found in database. Deleting...");
+                oneTimePasswordEntityRepository.delete(oneTimePasswordEntity);
+            //});
 
-            // create statement
-            String sql = "SELECT * FROM ba.one_time_passwords WHERE one_time_password = ? AND first_name = ? AND last_name = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, one_time_password);
-            preparedStatement.setString(2, first_name);
-            preparedStatement.setString(3, last_name);
-            ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
-
-                // delete the one-time password from the database
-                String deleteSql = "DELETE FROM ba.one_time_passwords WHERE one_time_password = ? AND first_name = ? AND last_name = ?";
-                PreparedStatement deletePreparedStatement = connection.prepareStatement(deleteSql);
-                deletePreparedStatement.setString(1, one_time_password);
-                deletePreparedStatement.setString(2, first_name);
-                deletePreparedStatement.setString(3, last_name);
-                deletePreparedStatement.executeUpdate();
-                return true;
-            } else {
-                return false;
-            }
-        } catch (SQLException e) {
-            logger.error("Error when validating the password with the database");
-
+            return true;
+        } else {
+            return false;
         }
-        // TODO: is this the correct way to handle this?
-        return false;
+
     }
 }

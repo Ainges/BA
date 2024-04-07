@@ -1,11 +1,12 @@
 package routes;
 
 
+import jakarta.enterprise.context.ApplicationScoped;
 import org.apache.camel.Message;
 import org.apache.camel.builder.RouteBuilder;
 import org.eclipse.microprofile.config.ConfigProvider;
 
-
+@ApplicationScoped
 public class SCIL_OnboardingTop extends RouteBuilder {
 
     // Bearer token for the engine

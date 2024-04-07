@@ -2,12 +2,18 @@ package processors.SCIL_Preonboarding;
 
 import DTO.EmployeeDTO;
 import DTO.IsMovingRequestNecessaryDTO;
+import Entities.OneTimePasswordEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.quarkus.narayana.jta.QuarkusTransaction;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import repositories.OneTimePasswordEntityRepository;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -19,8 +25,22 @@ import java.sql.SQLException;
 /**
  * Generates and stores a one-time password.
  * This is usefully for sending a one-time password to a new employee, who has not yet received his/her credentials.
+ *
+ * IN:
+ *    Body: IsMovingRequestNecessaryDTO
+ *    Header: keine
+ *
+ * OUT:
+ *   Body: IsMovingRequestNecessaryDTO
+ *   Header: one_time_password
+ *
  */
+@ApplicationScoped
 public class OnTimePasswordGeneratorProcessor implements Processor {
+
+
+    @Inject
+    OneTimePasswordEntityRepository oneTimePasswordEntityRepository;
 
     Logger logger = LoggerFactory.getLogger(OnTimePasswordGeneratorProcessor.class);
 
@@ -48,7 +68,7 @@ public class OnTimePasswordGeneratorProcessor implements Processor {
     /**
      * Found in: https://stackoverflow.com/questions/7111651/how-to-generate-a-secure-random-alphanumeric-string-in-java-efficiently
      *
-     * @param lenght the lengthOfone_time_password of the one-time password
+     * @param lenght the length of one_time_password of the one-time password
      * @return a one-time password
      */
     public String generateOneTimePassword(int lenght) throws NoSuchAlgorithmException {
@@ -67,30 +87,12 @@ public class OnTimePasswordGeneratorProcessor implements Processor {
 
     }
 
+    @Transactional
     public void insertOneTimePasswordIntoDatabase(String one_time_password, String first_name, String last_name) {
 
-
-        // load config
-        String url = ConfigProvider.getConfig().getValue("quarkus.datasource.jdbc.url", String.class);
-        String username = ConfigProvider.getConfig().getValue("quarkus.datasource.username", String.class);
-        String password = ConfigProvider.getConfig().getValue("quarkus.datasource.password", String.class);
-
-        // create connection
-        try(Connection connection = DriverManager.getConnection(url, username, password)) {
-
-            // create statement
-            String sql = "INSERT INTO ba.one_time_passwords (one_time_password, first_name, last_name) VALUES (?, ?, ?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, one_time_password);
-            preparedStatement.setString(2, first_name);
-            preparedStatement.setString(3, last_name);
-            preparedStatement.executeUpdate();
-
-        }
-        catch (SQLException e){
-            logger.error("Error when inserting the one_time_password into the database ");
-        }
-
+        OneTimePasswordEntity oneTimePasswordEntity = new OneTimePasswordEntity(one_time_password, first_name, last_name);
+        // persist the one-time password
+        oneTimePasswordEntityRepository.persist(oneTimePasswordEntity);
 
     }
 
