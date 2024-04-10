@@ -1,35 +1,62 @@
-package DTO;
+package Entities;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
-@Deprecated
-public class EmployeeDTO {
+@Entity
+public class Employee {
 
+    @Id @GeneratedValue
+    private UUID id;
+
+    @Column(unique = true)
     private String email;
     private String password;
     private String first_name;
     private String last_name;
     private String position;
+
+    @OneToMany
+    private List<Document> document;
+
     private String private_email;
     private Date birth_date;
-    private String employment_status;
+    @ManyToOne
+    private Employment_status employment_status;
     private String postal_address;
 
 
-    public EmployeeDTO() {
+
+    public Employee(List<Document> doucment) {
+        this.document = doucment;
     }
 
+    public Employee() {
+    }
 
-    public EmployeeDTO(String email, String password, String first_name, String last_name, String profile_picture_url, String position, String private_email, Date birth_date, String status, String postal_address) {
+    public Employee(String email, String password, String first_name, String last_name, String position, List<Document> document, String private_email, Date birth_date, Employment_status employment_status, String postal_address) {
         this.email = email;
         this.password = password;
         this.first_name = first_name;
         this.last_name = last_name;
         this.position = position;
+        this.document = document;
         this.private_email = private_email;
         this.birth_date = birth_date;
-        this.employment_status = status;
+        this.employment_status = employment_status;
         this.postal_address = postal_address;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -72,6 +99,14 @@ public class EmployeeDTO {
         this.position = position;
     }
 
+    public List<Document> getDocument() {
+        return document;
+    }
+
+    public void setDocument(List<Document> document) {
+        this.document = document;
+    }
+
     public String getPrivate_email() {
         return private_email;
     }
@@ -88,11 +123,11 @@ public class EmployeeDTO {
         this.birth_date = birth_date;
     }
 
-    public String getEmployment_status() {
+    public Employment_status getEmployment_status() {
         return employment_status;
     }
 
-    public void setEmployment_status(String employment_status) {
+    public void setEmployment_status(Employment_status employment_status) {
         this.employment_status = employment_status;
     }
 
