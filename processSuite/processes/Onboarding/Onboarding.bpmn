@@ -5,7 +5,7 @@
     <bpmn:participant id="Participant_0cgswu4" name="SCIL Onboarding_Phase2" />
     <bpmn:messageFlow id="Flow_0u65bmz" sourceRef="Activity_0bcy5bx" targetRef="Participant_0cgswu4" />
     <bpmn:textAnnotation id="TextAnnotation_025i2hi">
-      <bpmn:text>Abhängig von der Anzahl der Kollegen, die vom Vorgesetzten ausgewählt wurden</bpmn:text>
+      <bpmn:text>TODO: Gespräche werden von Onboarding Team organisiert</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:textAnnotation id="TextAnnotation_1j9yyob">
       <bpmn:text>Außerhalb der Prozessgesteuerten Anwendung</bpmn:text>
@@ -39,13 +39,13 @@
         <bpmn:flowNodeRef>Gateway_0hrx094</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1scy8v4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_03</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1fhcx11</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0f1twgj</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1m9gml1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1bv6q8t</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_06i0vwt</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1bqyhsg</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_12w8fjn</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1m9gml1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0f1twgj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1fhcx11</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_1gb9nec" sourceRef="StartEvent_1" targetRef="Gateway_0d5ba9j" />
@@ -177,26 +177,14 @@
     <bpmn:sequenceFlow id="Flow_0p6vchv" sourceRef="Activity_1djptx9" targetRef="Gateway_0arwjm6" />
     <bpmn:dataObjectReference id="DataObjectReference_156hwch" name="Notnwendige (Compliance) Schulungen" dataObjectRef="DataObject_1g0ont2" />
     <bpmn:dataObject id="DataObject_1g0ont2" />
-    <bpmn:manualTask id="Activity_1fhcx11" name="Mitarbeiter persönlich begrüßen">
-      <bpmn:incoming>Flow_0awje8x</bpmn:incoming>
-      <bpmn:outgoing>Flow_188upwf</bpmn:outgoing>
-    </bpmn:manualTask>
-    <bpmn:manualTask id="Activity_0f1twgj" name="Firmenrundgang durchführen">
-      <bpmn:incoming>Flow_188upwf</bpmn:incoming>
-      <bpmn:outgoing>Flow_18fje4i</bpmn:outgoing>
-    </bpmn:manualTask>
     <bpmn:sequenceFlow id="Flow_0stv0ez" sourceRef="Activity_1m9gml1" targetRef="Gateway_1scy8v4" />
-    <bpmn:manualTask id="Activity_1m9gml1" name="Equipment übergeben">
-      <bpmn:incoming>Flow_18fje4i</bpmn:incoming>
-      <bpmn:outgoing>Flow_0stv0ez</bpmn:outgoing>
-    </bpmn:manualTask>
     <bpmn:sequenceFlow id="Flow_03py6kc" sourceRef="Gateway_1scy8v4" targetRef="Activity_1bv6q8t" />
     <bpmn:sequenceFlow id="Flow_0s9xent" sourceRef="Activity_1bv6q8t" targetRef="Gateway_0hrx094" />
     <bpmn:userTask id="Activity_1bv6q8t" name="Unternehmenswerte / Produkt näher bringen">
       <bpmn:incoming>Flow_03py6kc</bpmn:incoming>
       <bpmn:outgoing>Flow_0s9xent</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:endEvent id="Event_06i0vwt">
+    <bpmn:endEvent id="Event_06i0vwt" name="Mitarbeiter erfolgreich geonboarded">
       <bpmn:incoming>Flow_1mb2vh0</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:userTask id="Activity_1bqyhsg" name="Mitarbeitergespräch durchführen">
@@ -210,6 +198,18 @@
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="Flow_1mb2vh0" sourceRef="Activity_1bqyhsg" targetRef="Event_06i0vwt" />
     <bpmn:sequenceFlow id="Flow_17j4sbi" sourceRef="Event_12w8fjn" targetRef="Activity_1bqyhsg" />
+    <bpmn:manualTask id="Activity_1m9gml1" name="Equipment übergeben">
+      <bpmn:incoming>Flow_18fje4i</bpmn:incoming>
+      <bpmn:outgoing>Flow_0stv0ez</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="Activity_0f1twgj" name="Firmenrundgang durchführen">
+      <bpmn:incoming>Flow_188upwf</bpmn:incoming>
+      <bpmn:outgoing>Flow_18fje4i</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="Activity_1fhcx11" name="Mitarbeiter persönlich begrüßen">
+      <bpmn:incoming>Flow_0awje8x</bpmn:incoming>
+      <bpmn:outgoing>Flow_188upwf</bpmn:outgoing>
+    </bpmn:manualTask>
     <bpmn:association id="Association_1wmrxz9" sourceRef="Activity_1i8na2m" targetRef="TextAnnotation_025i2hi" />
   </bpmn:process>
   <bpmn:message id="Message_fXdIt8oL" name="Message_WelcomeFormHR" />
@@ -312,20 +312,14 @@
           <dc:Bounds x="-112" y="-200" width="66" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0nkwx80_di" bpmnElement="Activity_1fhcx11">
-        <dc:Bounds x="-20" y="380" width="120" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1umgif3_di" bpmnElement="Activity_0f1twgj">
-        <dc:Bounds x="160" y="380" width="140" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0z364fb_di" bpmnElement="Activity_1m9gml1">
-        <dc:Bounds x="330" y="380" width="130" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0v76a4u_di" bpmnElement="Activity_1bv6q8t">
         <dc:Bounds x="635" y="80" width="160" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_06i0vwt_di" bpmnElement="Event_06i0vwt">
         <dc:Bounds x="1632" y="402" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1618" y="445" width="65" height="40" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0w842mc_di" bpmnElement="Activity_1bqyhsg">
         <dc:Bounds x="1430" y="380" width="135" height="80" />
@@ -336,21 +330,31 @@
           <dc:Bounds x="1327" y="445" width="86" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0z364fb_di" bpmnElement="Activity_1m9gml1">
+        <dc:Bounds x="395" y="380" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1umgif3_di" bpmnElement="Activity_0f1twgj">
+        <dc:Bounds x="220" y="380" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0nkwx80_di" bpmnElement="Activity_1fhcx11">
+        <dc:Bounds x="80" y="380" width="120" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1gb9nec_di" bpmnElement="Flow_1gb9nec">
         <di:waypoint x="-62" y="850" />
         <di:waypoint x="15" y="850" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0awje8x_di" bpmnElement="Flow_0awje8x">
         <di:waypoint x="40" y="825" />
-        <di:waypoint x="40" y="460" />
+        <di:waypoint x="40" y="420" />
+        <di:waypoint x="80" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_048pb7s_di" bpmnElement="Flow_048pb7s">
         <di:waypoint x="65" y="850" />
         <di:waypoint x="300" y="850" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_188upwf_di" bpmnElement="Flow_188upwf">
-        <di:waypoint x="100" y="420" />
-        <di:waypoint x="160" y="420" />
+        <di:waypoint x="200" y="420" />
+        <di:waypoint x="220" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1o37sqf_di" bpmnElement="Flow_1o37sqf">
         <di:waypoint x="580" y="395" />
@@ -418,8 +422,8 @@
         <di:waypoint x="1642" y="850" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_18fje4i_di" bpmnElement="Flow_18fje4i">
-        <di:waypoint x="300" y="420" />
-        <di:waypoint x="330" y="420" />
+        <di:waypoint x="360" y="420" />
+        <di:waypoint x="395" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_17xqkm6_di" bpmnElement="Flow_17xqkm6">
         <di:waypoint x="570" y="405" />
@@ -450,7 +454,7 @@
         <di:waypoint x="1235" y="-70" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0stv0ez_di" bpmnElement="Flow_0stv0ez">
-        <di:waypoint x="460" y="420" />
+        <di:waypoint x="525" y="420" />
         <di:waypoint x="555" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_03py6kc_di" bpmnElement="Flow_03py6kc">
@@ -480,7 +484,7 @@
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_025i2hi_di" bpmnElement="TextAnnotation_025i2hi">
-        <dc:Bounds x="1170" y="-400" width="100" height="111" />
+        <dc:Bounds x="1170" y="-400" width="99.99156545209178" height="98.51551956815113" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1j9yyob_di" bpmnElement="TextAnnotation_1j9yyob">

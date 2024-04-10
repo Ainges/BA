@@ -37,6 +37,7 @@ public class CreateUserInAuthorityProcessor implements Processor {
                 .post(requestBody)
                 .build();
 
+
         try (Response response = client.newCall(request).execute()) {
             if(response.isSuccessful()){
                 String success = "Authority User '" + exchange.getMessage().getHeader("email", String.class)+ "' successfully created.";

@@ -24,8 +24,6 @@ public class ManageCanonicalUsers extends RouteBuilder {
         from("direct:createCanonicalUser")
                 .id("create-Canonical-User-Route")
                 // map to EmployeeDTO
-                .process(persistEmployeeProcessor)
-                .to("log:info?showAll=true&multiline=true");
-
+                .process(persistEmployeeProcessor);
     }
 }

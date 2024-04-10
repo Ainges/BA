@@ -18,6 +18,7 @@
   - Position
   - Adresse
 - Wöchentliche Arbeitsstunden
+- weitere Dokumente
 - ggf. Immatrikulationsbeschscheinigung</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_0gte31q" associationDirection="None" sourceRef="Event_058r1tp" targetRef="TextAnnotation_1rpxthv" />
@@ -268,7 +269,7 @@
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1rpxthv_di" bpmnElement="TextAnnotation_1rpxthv">
-        <dc:Bounds x="-230" y="367" width="229.9928616751269" height="185.27918781725884" />
+        <dc:Bounds x="-230" y="367" width="230" height="212.85714285714286" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1cl2hgk_di" bpmnElement="DataOutputAssociation_1cl2hgk">
