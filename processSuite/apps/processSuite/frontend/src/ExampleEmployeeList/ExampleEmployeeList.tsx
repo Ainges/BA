@@ -7,14 +7,19 @@ import {
   Checkbox,
   Col,
   DatePicker,
+  Divider,
   Layout,
   Row,
+  Table,
+  TableColumnsType,
   Typography,
 } from "antd";
 import axios from "axios";
 import styles from "./ExampleEmployeeList.module.css";
 import Meta from "antd/es/card/Meta";
 import { SendOutlined, PlusOutlined } from "@ant-design/icons";
+import Paragraph from "antd/es/typography/Paragraph";
+import test from "node:test";
 
 const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
   const { Header, Footer, Sider, Content } = Layout;
@@ -28,164 +33,156 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
     companyAndPosition: string;
   }
 
-  const employeeAPIgetAllurl = "http://localhost:8080/employee/all";
+  interface DataType {
+    key: React.Key;
+    name: string;
+    position: string;
+    email: string;
+    profilePictureURI: string;
+  }
 
-  // TODO: REMOVE THIS
-  // ### Loading Delay moked ###
-  const [isLoading, setIsLoading] = useState(true);
+  const columns: TableColumnsType<DataType> = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      render: (text, record) => (
+        <a>
+          <img
+            className={styles.profilePicture}
+            width={50}
+            height={50}
+            src={record.profilePictureURI}
+          ></img>
+          {"    " + text}
+        </a>
+      ),
+    },
+    {
+      title: "Position",
+      dataIndex: "position",
+    },
+    {
+      title: "E-mail",
+      dataIndex: "email",
+    },
+  ];
 
-  // Effect to handle loading delay
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500); // 500ms delay
+  const employeeArray: DataType[] = [
+    {
+      key: "1",
+      name: "John Brown",
+      position: "CEO",
+      email: "dunder@mifflin.de",
+      profilePictureURI: "https://picsum.photos/id/237/50/50",
+    },
+    {
+      key: "2",
+      name: "Jim Green",
+      position: "CTO",
+      email: "London No. 1 Lake Park",
+      profilePictureURI: "https://picsum.photos/id/232/50/50",
+    },
+    {
+      key: "3",
+      name: "Joe Black",
+      position: "COO",
+      email: "Sydney No. 1 Lake Park",
+      profilePictureURI: "https://picsum.photos/id/231/50/50",
+    },
+    {
+      key: "4",
+      name: "4",
+      position: "Leiterin des Partyplanungsausschusses",
+      email: "Sydney No. 1 Lake Park",
+      profilePictureURI: "https://picsum.photos/id/235/50/50",
+    },
+    {
+      key: "5",
+      name: "5",
+      position: "adasd",
+      email: "Sydney No. 1 Lake Park",
+      profilePictureURI: "https://picsum.photos/id/234/50/50",
+    },
+    {
+      key: "6",
+      name: "6",
+      position: "99",
+      email: "Sydney No. 1 Lake Park",
+      profilePictureURI: "https://picsum.photos/id/230/50/50",
+    },
+    {
+      key: "7",
+      name: "7",
+      position: "99",
+      email: "Sydney No. 1 Lake Park",
+      profilePictureURI: "https://picsum.photos/id/1/50/50",
+    },
+    {
+      key: "8",
+      name: "8",
+      position: "99",
+      email: "Sydney No. 1 Lake Park",
+      profilePictureURI: "https://picsum.photos/id/999/50/50",
+    },
+    {
+      key: "9",
+      name: "9",
+      position: "1000",
+      email: "Sydney No. 1 Lake Park",
+      profilePictureURI: "https://picsum.photos/id/1000/50/50",
+    },
+  ];
 
-    // Cleanup function to clear the timer
-    return () => clearTimeout(timer);
-  }, []);
-
-  // ### React State ###
-
-  // Array of Employees
-  const [employees, setEmployees] = useState<Employee[]>([]);
-
-  // State of the selected cards
-  const [cardselected, setcardSelected] = useState<String[]>([]);
-
-  useEffect(() => {
-    const fetchEmployees = async () => {
-      const response = await axios.get(employeeAPIgetAllurl);
-      setEmployees(response.data);
-      console.log(response.data);
-    };
-
-    fetchEmployees();
-  }, []);
-
-  const handleEmployeeCardClick = (employeeUsername: string) => {
-    if (cardselected.includes(employeeUsername)) {
-      // If the employee is already selected, remove them from the array
-      console.log("Unselecting Employee " + employeeUsername);
-      setcardSelected(
-        cardselected.filter((username) => username !== employeeUsername)
+  // rowSelection object indicates the need for row selection
+  const rowSelection = {
+    onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
+      console.log(
+        `selectedRowKeys: ${selectedRowKeys}`,
+        "selectedRows: ",
+        selectedRows
       );
-    } else {
-      // If the employee is not selected, add them to the array
-      console.log("Selecting Employee " + employeeUsername);
-      setcardSelected([...cardselected, employeeUsername]);
-    }
-    console.log("Click ");
+    },
+    getCheckboxProps: (record: DataType) => ({
+      disabled: record.name === "Disabled User1", // Column configuration not to be checked
+      name: record.name,
+    }),
   };
-
-  //   return (
-  //     <>
-  //       <div className={styles.outerStyle}>
-  //         <Card
-  //           className={styles.cardContainerStyle}
-  //           title={
-  //             <>
-  //               <Typography.Text>
-  //                 Bitte wählen Sie die Mitarbeiter aus, für die ein
-  //                 Kennenlerntermin mit dem neuen Mitarbeiter gefunden werden soll.
-  //               </Typography.Text>
-  //               <Button
-  //                 type="primary"
-  //                 icon={<SendOutlined />}
-  //                 className={styles.buttonStyle}
-  //               >
-  //                 Senden
-  //               </Button>
-  //             </>
-  //           }
-  //         >
-  //           <div className={styles.contentContainerStyle}>
-  //             <Row gutter={[16, 16]}>
-  //               {employees.map((employee) => (
-  //                 <Col
-  //                   xs={{ flex: "100%" }}
-  //                   sm={{ flex: "50%" }}
-  //                   md={{ flex: "40%" }}
-  //                   lg={{ flex: "20%" }}
-  //                   xl={{ flex: "10%" }}
-  //                 >
-  //                   <Card
-  //                     className={
-  //                       cardselected.includes(employee.username)
-  //                         ? styles.employeeCardSelected
-  //                         : styles.employeeCard
-  //                     }
-
-  //                     loading={employees.length === 0 || isLoading}
-  //                     key={employee.username}
-  //                     onClick={() => handleEmployeeCardClick(employee.username)}
-  //                     actions={[<PlusOutlined selected key="add" />]}
-  //                   >
-  //                     <Meta
-  //                       avatar={<Avatar size={100} src={employee.pictureURI} />}
-  //                       title={employee.fullName}
-  //                       description={employee.companyAndPosition}
-  //                     />
-  //                   </Card>
-  //                 </Col>
-  //               ))}
-  //             </Row>
-  //           </div>
-  //         </Card>
-  //       </div>
-  //     </>
-  //   );
 
   return (
     <>
-    <Card title="Test" className={styles.leftCard}>Test</Card>
-      <div className={styles.outerContainer}>
-                   {employees.map((employee) => (
-                  <Col
-                  >
-                    <Card
-                      className={
-                        cardselected.includes(employee.username)
-                          ? styles.employeeCardSelected
-                          : styles.employeeCard
-                      }
-
-                      loading={employees.length === 0 || isLoading}
-                      key={employee.username}
-                      onClick={() => handleEmployeeCardClick(employee.username)}
-                      actions={[<PlusOutlined selected key="add" />]}
-                    >
-                      <Meta
-                        avatar={<Avatar size={100} src={employee.pictureURI} />}
-                        title={employee.fullName}
-                        description={employee.companyAndPosition}
-                      />
-                    </Card>
-                  </Col>
-                ))}
-        {/* <Card className={styles.cards} title="1">
-          Test1
-        </Card>
-        <Card className={styles.cards} title="2">
-          Test2
-        </Card>
-        <Card className={styles.cards} title="3">
-          Test3
-        </Card>
-        <Card className={styles.cards} title="4">
-          Test4
-        </Card>
-        <Card className={styles.cards} title="5">
-          Test5
-        </Card>
-        <Card className={styles.cards} title="6">
-          Test6
-        </Card>
-        <Card className={styles.cards} title="7">
-          Test7
-        </Card>
-        <Card className={styles.cards} title="8">
-          Test8
-        </Card> */}
+      <div className={styles.outer}>
+        <Divider orientation="left">Mitarbeiter Auswahl</Divider>
+        <Row>
+          <Col span={2}></Col>
+          <Col span={20}>
+            <Paragraph>
+              Bitte wählen Sie alle Mitarbeiter aus, für die ein Kennenlertermin
+              mit dem neuen Mitarbeiter geplant werden soll
+            </Paragraph>
+          </Col>
+          <Col span={2}></Col>
+        </Row>
+        <br />
+        <Row>
+          <Col span={2}></Col>
+          <Col span={20}>
+            <div className={styles.card}>
+              <Card>
+                <Table
+                  pagination={{ position: [] }}
+                  scroll={{ y: 400 }}
+                  rowSelection={{
+                    type: "checkbox",
+                    ...rowSelection,
+                  }}
+                  columns={columns}
+                  dataSource={employeeArray}
+                />
+              </Card>
+            </div>
+          </Col>
+          <Col span={2}></Col>
+        </Row>
       </div>
     </>
   );
