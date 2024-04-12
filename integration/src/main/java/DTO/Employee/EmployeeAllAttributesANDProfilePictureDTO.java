@@ -42,6 +42,11 @@ public class EmployeeAllAttributesANDProfilePictureDTO extends EmployeeAllAttrib
         this.profile_picture_url = profile_picture_url;
     }
 
+    /**
+     *
+     * Extends the toString method from the EmployeeAllAttributesDTO class by adding the profile_picture_url attribute.
+     *
+     * */
     @Override
     public String toString() {
         String employeeAllAttributesAsString = super.toString();

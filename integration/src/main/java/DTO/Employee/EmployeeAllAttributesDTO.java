@@ -36,8 +36,11 @@ public class EmployeeAllAttributesDTO {
         this.postal_address = postal_address;
     }
 
-    // as Json with only the fields that are not null
-
+    /**
+     * Returns a JSON representation of the EmployeeAllAttributesDTO object
+     *
+     * */
+    @Override
     public String toString() {
         String result = "{";
         if (email != null) {
