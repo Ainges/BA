@@ -12,7 +12,7 @@ import java.util.UUID;
 public class OneTimePasswordEntity {
     @Id
     @GeneratedValue
-    private UUID id;
+    private long id;
     private String one_time_password;
     private String first_name;
     private String last_name;

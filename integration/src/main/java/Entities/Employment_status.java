@@ -10,7 +10,7 @@ import java.util.UUID;
 @Entity
 public class Employment_status {
     @Id @GeneratedValue
-    private UUID id;
+    private long id;
 
     private String status;
 
@@ -22,11 +22,11 @@ public class Employment_status {
         this.status = status;
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 
