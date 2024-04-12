@@ -9,6 +9,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import repositories.EmployeeRepository;
@@ -31,6 +32,9 @@ public class GetAllCanonicalUsersProcessor implements Processor {
 
     @Inject
     ProfilePicturePathRepository profilePicturePathRepository;
+
+    @ConfigProperty(name = "minio.url")
+    private String profile_picture_url_prefix;
 
     Logger logger = LoggerFactory.getLogger(GetAllCanonicalUsersProcessor.class);
 
@@ -76,7 +80,7 @@ public class GetAllCanonicalUsersProcessor implements Processor {
             ProfilepicturePath profilepicturePath = profilePicturePathRepository.findById(employee.getId());
 
             if(profilepicturePath != null) {
-                employeeAllAttributesANDProfilePictureDTO.setProfile_picture_url(profilepicturePath.getPath());
+                employeeAllAttributesANDProfilePictureDTO.setProfile_picture_url(profile_picture_url_prefix + profilepicturePath.getPath());
             }
 
         }
@@ -89,7 +93,10 @@ public class GetAllCanonicalUsersProcessor implements Processor {
         }
     }
 
-
+/**
+ * @param employeeAllAttributesANDProfilePictureDTOArrayList List of EmployeeAllAttributesANDProfilePictureDTO
+ * @return a JsonArray String of the List of EmployeeAllAttributesANDProfilePictureDTO
+ * */
     public String StringifyEmployeeAllAttributesANDProfilePictureDTO(List<EmployeeAllAttributesANDProfilePictureDTO> employeeAllAttributesANDProfilePictureDTOArrayList) {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
