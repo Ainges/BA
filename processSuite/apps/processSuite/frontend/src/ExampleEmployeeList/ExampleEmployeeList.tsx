@@ -24,16 +24,44 @@ import test from "node:test";
 const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
   const { Header, Footer, Sider, Content } = Layout;
 
-  interface Employee {
-    id: number;
-    username: string;
+
+  const [tableData, setTableData] = useState<TableDataType[]>([]);
+
+  useEffect(() => {
+    // Fetch employee data from API
+    const fetchEmployees = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/canonical/user/");
+        const employees = response.data;
+        // Transform employee data to TableDataType
+        const tableData = employees.map((employee: EmployeeDTO) => ({
+          key: employee.email,
+          name: `${employee.first_name} ${employee.last_name}`,
+          position: employee.position,
+          email: employee.email,
+          profilePictureURI: employee.profile_picture_url,
+        }));
+
+        setTableData(tableData);
+        console.log("Fetched employees:", tableData);
+      } catch (error) {
+        console.error("Error fetching employees:", error);
+      }
+    };
+
+    fetchEmployees();
+  }, []);
+
+  interface EmployeeDTO {
     email: string;
-    fullName: string;
-    pictureURI: string;
-    companyAndPosition: string;
+    first_name: string;
+    last_name: string;
+    position: string;
+    profile_picture_url: string;
   }
 
-  interface DataType {
+
+  interface TableDataType {
     key: React.Key;
     name: string;
     position: string;
@@ -41,7 +69,7 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
     profilePictureURI: string;
   }
 
-  const columns: TableColumnsType<DataType> = [
+  const columns: TableColumnsType<TableDataType> = [
     {
       title: "Name",
       dataIndex: "name",
@@ -67,7 +95,7 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
     },
   ];
 
-  const employeeArray: DataType[] = [
+  const employeeArray: TableDataType[] = [
     {
       key: "1",
       name: "John Brown",
@@ -135,14 +163,14 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
 
   // rowSelection object indicates the need for row selection
   const rowSelection = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
+    onChange: (selectedRowKeys: React.Key[], selectedRows: TableDataType[]) => {
       console.log(
         `selectedRowKeys: ${selectedRowKeys}`,
         "selectedRows: ",
         selectedRows
       );
     },
-    getCheckboxProps: (record: DataType) => ({
+    getCheckboxProps: (record: TableDataType) => ({
       disabled: record.name === "Disabled User1", // Column configuration not to be checked
       name: record.name,
     }),
@@ -176,7 +204,7 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
                     ...rowSelection,
                   }}
                   columns={columns}
-                  dataSource={employeeArray}
+                  dataSource={tableData}
                 />
               </Card>
             </div>
