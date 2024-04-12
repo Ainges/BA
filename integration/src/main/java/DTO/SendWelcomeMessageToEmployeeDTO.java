@@ -28,7 +28,7 @@ public class SendWelcomeMessageToEmployeeDTO {
     private String beginOfFirstWorkingDay;
     private String documentsNeededForFirstWorkingDay;
     @JsonProperty("newEmployeeData")
-    private EmployeeDTO employeeDTO;
+    private EmployeeAllAttributesDTO employeeDTO;
 
 
 
