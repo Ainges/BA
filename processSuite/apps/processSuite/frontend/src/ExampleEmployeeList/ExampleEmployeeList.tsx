@@ -20,18 +20,24 @@ import Meta from "antd/es/card/Meta";
 import { SendOutlined, PlusOutlined } from "@ant-design/icons";
 import Paragraph from "antd/es/typography/Paragraph";
 import test from "node:test";
+import config from "../config/config.json";
 
-const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
+const ExampleEmployeeList: React.FC<CustomFormProps> = (props) => {
   const { Header, Footer, Sider, Content } = Layout;
 
-
   const [tableData, setTableData] = useState<TableDataType[]>([]);
+  const [selectedRows, setSelectedRows] = useState<TableDataType[]>([]);
+
+  const camelHost = config.camel.host;
 
   useEffect(() => {
     // Fetch employee data from API
     const fetchEmployees = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/canonical/user/");
+        // Wait to simulate loading
+        await new Promise((resolve) => setTimeout(resolve, 300));
+
+        const response = await axios.get(camelHost + "/api/canonical/user/");
         const employees = response.data;
         // Transform employee data to TableDataType
         const tableData = employees.map((employee: EmployeeDTO) => ({
@@ -59,7 +65,6 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
     position: string;
     profile_picture_url: string;
   }
-
 
   interface TableDataType {
     key: React.Key;
@@ -95,6 +100,7 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
     },
   ];
 
+  // Only Sample Data
   const employeeArray: TableDataType[] = [
     {
       key: "1",
@@ -164,16 +170,17 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
   // rowSelection object indicates the need for row selection
   const rowSelection = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: TableDataType[]) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
-        selectedRows
-      );
+      console.log(`selectedRowKeys: ${selectedRowKeys}`);
     },
     getCheckboxProps: (record: TableDataType) => ({
       disabled: record.name === "Disabled User1", // Column configuration not to be checked
       name: record.name,
     }),
+  };
+
+  const sendSelectedEmployees = () => {
+    console.log("Selected employees:", selectedRows);
+    props.finishUserTask({ selectedEmployees: selectedRows });
   };
 
   return (
@@ -203,14 +210,27 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = () => {
                     type: "checkbox",
                     ...rowSelection,
                   }}
+                  loading={tableData.length === 0}
                   columns={columns}
                   dataSource={tableData}
+
                 />
               </Card>
             </div>
           </Col>
           <Col span={2}></Col>
         </Row>
+        <Button
+          type="primary"
+          icon={<SendOutlined />}
+          size="large"
+          onClick={() => {
+            sendSelectedEmployees();
+          }}
+          className={styles.button}
+        >
+          Senden
+        </Button>
       </div>
     </>
   );

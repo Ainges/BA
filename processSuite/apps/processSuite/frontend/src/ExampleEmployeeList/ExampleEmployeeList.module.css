@@ -6,3 +6,8 @@
 .profilePicture {
     border-radius: 15px;
 }
+
+.button {
+    margin: 10px;
+    float: right;
+}
