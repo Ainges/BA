@@ -1,5 +1,5 @@
 {
-  "useAuthority": true,
+  "useAuthority": false,
   "authorityConfiguration": {
     "clientId": "portal",
     "scopes": "test_resource"
@@ -10,7 +10,17 @@
     "/.*/": "http://localhost:5111"
   },
   "processModels": {
-    "include": ["example"]
+    "include": ["example", "UItest"],
+    "exclude": [],
+    "settings": {
+      "UItest": {
+        "title": "My customized Process title",
+        "body": "A description for my process",
+        "startButtonTitles": {
+          "StartEvent_1": "Start my Process"
+        }
+      }
+    }
   },
   "startDialogs": {
     "ExampleStartDialog": {

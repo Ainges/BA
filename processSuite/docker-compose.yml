@@ -1,16 +1,18 @@
 version: "3.5"
 services:
-  # nginx:
-  #   image: nginx:bookworm
-  #   volumes:
-  #     - ../nginx/config:/etc/nginx/conf.d/default.conf
-  #   ports:
-  #     - 11560:11560 # Authority
-  #     - 8000:8000 # Engine
-  #     - 8082:8082 # Portal
-  #     - 5111:5111 # App
-  #     - 3000:3000 # Frontend
-  #     - 80:80
+  nginx:
+    image: nginx:bookworm
+    volumes:
+      - ../nginx/config:/etc/nginx/conf.d/default.conf
+
+    restart: always
+    ports:
+      # - 11560:11560 # Authority
+      - 8000:8000 # Engine
+      - 8082:8082 # Portal
+      - 5111:5111 # App
+      - 3000:3000 # Frontend
+      - 80:80
   authority:
     image: 5minds/processcube_authority:2024-1
     depends_on:
@@ -18,19 +20,19 @@ services:
     restart: always
     environment:
       ONFIG_PATH: /etc/authority/config/config.json
-      # UPE_SEED_PATH: /etc/authority/config/upeSeedingData.json
+      UPE_SEED_PATH: /etc/authority/config/upeSeedingData.json
       LOG_LEVEL: debug
     volumes:
       - ./.processcube/authority/config.json:/etc/authority/config/config.json
     # - ./.processcube/authority/options.json:/app/extensions/username_password/options.json
-    # - ./.processcube/authority/upeSeedingData.json:/etc/authority/config/upeSeedingData.json
+      - ./.processcube/authority/upeSeedingData.json:/etc/authority/config/upeSeedingData.json
     ports:
       - 11560:11560
 
   engine:
     image: 5minds/processcube_engine:2024-1
-    ports:
-      - 8000:8000
+    # ports:
+    #   - 8000:8000
     volumes:
       - ./.processcube/engine/config/config.json:/etc/engine/config/config.json:ro
       - ./.processcube/engine/db:/root/.config/AtlasEngineFullstackServer/databases:rw
@@ -47,8 +49,8 @@ services:
       - ./.processcube/portal/assets:/etc/portal/config/assets:ro
       - ./.processcube/portal/translation:/etc/portal/config/translation:ro
     command: "--config-path /etc/portal/config/config.json --theme /etc/portal/config/theme.css --assets /etc/portal/config/assets"
-    ports:
-      - 8082:8082
+    # ports:
+    #   - 8082:8082
 
   app:
     image: processsuite
@@ -62,8 +64,8 @@ services:
       - ./apps/processSuite/appsettings.Development.json:/apps/processSuite/appsettings.Development.json
       - ./apps/processSuite/Program.cs:/apps/processSuite/Program.cs
       - ./apps/processSuite/Worker/:/apps/processSuite/Worker/
-    ports:
-      - 5111:5111
+    # ports:
+    #   - 5111:5111
     working_dir: /apps/processSuite
     command: dotnet run
 
@@ -79,8 +81,8 @@ services:
       - ./apps/processSuite/frontend/tsconfig.json:/apps/processSuite/frontend/tsconfig.json
     working_dir: /apps/processSuite/frontend/
     command: npm start
-    ports:
-      - 3000:3000
+    # ports:
+    #   - 3000:3000
 
   artemis:
     image: apache/activemq-artemis

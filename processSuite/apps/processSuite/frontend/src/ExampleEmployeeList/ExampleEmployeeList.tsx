@@ -26,7 +26,7 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = (props) => {
   const { Header, Footer, Sider, Content } = Layout;
 
   const [tableData, setTableData] = useState<TableDataType[]>([]);
-  const [selectedRows, setSelectedRows] = useState<TableDataType[]>([]);
+  const [selectedRows, setSelectedRows] = useState<React.Key[]>([]);
 
   const camelHost = config.camel.host;
 
@@ -171,6 +171,7 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = (props) => {
   const rowSelection = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: TableDataType[]) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`);
+      setSelectedRows(selectedRowKeys);
     },
     getCheckboxProps: (record: TableDataType) => ({
       disabled: record.name === "Disabled User1", // Column configuration not to be checked
