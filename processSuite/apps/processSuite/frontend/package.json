@@ -6,6 +6,7 @@
     "node": "16.x"
   },
   "dependencies": {
+    "@ant-design/happy-work-theme": "github:ant-design/happy-work-theme",
     "@atlas-engine-contrib/atlas-ui_sdk": "^3.0.0",
     "@atlas-engine/atlas_engine_client": "^4.2.5",
     "@types/react-native": "^0.71.2",
@@ -13,6 +14,7 @@
     "axios": "^1.6.7",
     "bootstrap": "5.2.3",
     "http-proxy-middleware": "2.0.6",
+    "import": "^0.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^4.0.3",

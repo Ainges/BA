@@ -1,7 +1,7 @@
 {
   "useAuthority": false,
   "authorityConfiguration": {
-    "clientId": "atlasui",
+    "clientId": "portal",
     "scopes": "test_resource"
   },
   "applicationBaseUrl": "http://localhost:8082",
@@ -10,7 +10,17 @@
     "/.*/": "http://localhost:5111"
   },
   "processModels": {
-    "include": ["example"]
+    "include": ["example", "UItest"],
+    "exclude": [],
+    "settings": {
+      "UItest": {
+        "title": "My customized Process title",
+        "body": "A description for my process",
+        "startButtonTitles": {
+          "StartEvent_1": "Start my Process"
+        }
+      }
+    }
   },
   "startDialogs": {
     "ExampleStartDialog": {

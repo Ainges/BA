@@ -64,6 +64,7 @@ public class InitProfilePicturesProcessor implements Processor {
             ProfilepicturePath profilepicturePath = new ProfilepicturePath();
             profilepicturePath.setEmployee(employee);
             profilepicturePath.setPath(
+                    "/profilepictures/" +
                     employee.getFirst_name().toLowerCase() +
                     employee.getLast_name().toLowerCase() +
                     ".png");

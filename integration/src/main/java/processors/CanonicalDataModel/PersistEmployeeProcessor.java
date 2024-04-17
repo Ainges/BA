@@ -31,7 +31,7 @@ public class PersistEmployeeProcessor implements Processor {
 
         String body = exchange.getMessage().getBody(String.class);
 
-        // map to EmployeeDTO
+        // map to EmployeeAllAttributesDTO
         ObjectMapper mapper = new ObjectMapper();
         try {
             // print the body

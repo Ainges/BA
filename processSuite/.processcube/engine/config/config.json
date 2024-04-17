@@ -19,6 +19,7 @@
     "logging": false
   },
   "iam": {
+    
     "allowAnonymousRootAccess": true
   },
   "extraInfo": {

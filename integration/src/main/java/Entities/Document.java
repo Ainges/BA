@@ -13,7 +13,7 @@ import java.util.UUID;
 public class Document {
 
     @Id @GeneratedValue
-    private UUID id;
+    private long id;
 
     private String name;
     private String url;

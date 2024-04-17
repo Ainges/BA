@@ -1,9 +1,13 @@
-package DTO;
+package DTO.Employee;
 
 import java.util.Date;
 
-@Deprecated
-public class EmployeeDTO {
+
+/**
+ * Used for creating a new Employee in the Canonical Data Model
+ * Contains all possible fields for an Employee
+ * */
+public class EmployeeAllAttributesDTO {
 
     private String email;
     private String password;
@@ -16,11 +20,11 @@ public class EmployeeDTO {
     private String postal_address;
 
 
-    public EmployeeDTO() {
+    public EmployeeAllAttributesDTO() {
     }
 
 
-    public EmployeeDTO(String email, String password, String first_name, String last_name, String profile_picture_url, String position, String private_email, Date birth_date, String status, String postal_address) {
+    public EmployeeAllAttributesDTO(String email, String password, String first_name, String last_name, String profile_picture_url, String position, String private_email, Date birth_date, String status, String postal_address) {
         this.email = email;
         this.password = password;
         this.first_name = first_name;
@@ -31,6 +35,48 @@ public class EmployeeDTO {
         this.employment_status = status;
         this.postal_address = postal_address;
     }
+
+    /**
+     * Returns a JSON representation of the EmployeeAllAttributesDTO object
+     *
+     * */
+    @Override
+    public String toString() {
+        String result = "{";
+        if (email != null) {
+            result += "\"email\":\"" + email + "\",";
+        }
+        if (password != null) {
+            result += "\"password\":\"" + password + "\",";
+        }
+        if (first_name != null) {
+            result += "\"first_name\":\"" + first_name + "\",";
+        }
+        if (last_name != null) {
+            result += "\"last_name\":\"" + last_name + "\",";
+        }
+        if (position != null) {
+            result += "\"position\":\"" + position + "\",";
+        }
+        if (private_email != null) {
+            result += "\"private_email\":\"" + private_email + "\",";
+        }
+        if (birth_date != null) {
+            result += "\"birth_date\":\"" + birth_date + "\",";
+        }
+        if (employment_status != null) {
+            result += "\"employment_status\":\"" + employment_status + "\",";
+        }
+        if (postal_address != null) {
+            result += "\"postal_address\":\"" + postal_address + "\",";
+        }
+        if (result.length() > 1) {
+            result = result.substring(0, result.length() - 1);
+        }
+        result += "}";
+        return result;
+    }
+
 
     public String getEmail() {
         return email;
