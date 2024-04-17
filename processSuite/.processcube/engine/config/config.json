@@ -19,6 +19,10 @@
     "logging": false
   },
   "iam": {
+    "baseUrl": "http://authority:11560/",
+    "clientId": "atlas_engine",
+    "clientSecret": "atlas_engine",
+    "scope": "test_resource",
     "allowAnonymousRootAccess": true
   },
   "extraInfo": {

@@ -1,7 +1,7 @@
 {
     "processEngineConfig": {
       "processModelId": "example",
-      "uri": "http://localhost:8000"
+      "uri": "http://engine:8000"
     },
     "camel": {
       "host": "http://localhost:8080"

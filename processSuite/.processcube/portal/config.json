@@ -1,7 +1,7 @@
 {
-  "useAuthority": false,
+  "useAuthority": true,
   "authorityConfiguration": {
-    "clientId": "atlasui",
+    "clientId": "portal",
     "scopes": "test_resource"
   },
   "applicationBaseUrl": "http://localhost:8082",
