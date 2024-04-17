@@ -1,4 +1,4 @@
-package processors.SCIL_Preonboarding;
+package processors.PreOnboarding;
 
 import DTO.IsMovingRequestNecessaryDTO;
 import Entities.OneTimePasswordEntity;

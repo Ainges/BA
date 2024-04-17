@@ -1,4 +1,4 @@
-package routes;
+package routes.preonboarding;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -8,12 +8,12 @@ import org.apache.camel.builder.RouteBuilder;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import processors.SCIL_Preonboarding.IsMovingNecessaryRequestProcessor;
-import processors.SCIL_Preonboarding.OnTimePasswordGeneratorProcessor;
-import processors.SCIL_Preonboarding.ValidateOneTimePasswordProcessor;
+import processors.PreOnboarding.IsMovingNecessaryRequestProcessor;
+import processors.PreOnboarding.OnTimePasswordGeneratorProcessor;
+import processors.PreOnboarding.ValidateOneTimePasswordProcessor;
 
 @ApplicationScoped
-public class SCIL_Preonboarding extends RouteBuilder {
+public class PreOnboardingMovingRequestRoute extends RouteBuilder {
 
     @Inject
     IsMovingNecessaryRequestProcessor isMovingNecessaryRequestProcessor;
@@ -27,49 +27,10 @@ public class SCIL_Preonboarding extends RouteBuilder {
 
     String bearerToken = ConfigProvider.getConfig().getValue("engine.bearer", String.class);
 
-    Logger logger = LoggerFactory.getLogger(SCIL_Preonboarding.class);
+    Logger logger = LoggerFactory.getLogger(PreOnboardingMovingRequestRoute.class);
 
     @Override
     public void configure() throws Exception {
-
-
-        rest("/onboarding/preonboarding")
-                .post("/SendLastMessageToNewEmployeeBeforeFirstWorkingDay")
-                .consumes("application/json")
-                .to("direct:SendWelcomeMessageToNewEmployee")
-                .post("/MovingRequest")
-                .consumes("application/json")
-                .to("direct:MovingRequest")
-
-                .get("/MovingRequest/accept")
-                .produces("text/html")
-                .to("direct:MovingRequestAccept")
-                .get("/MovingRequest/decline")
-                .produces("text/html")
-                .to("direct:MovingRequestDecline");
-
-        // ############### Welcome Message ################
-
-        /*from("direct:SendWelcomeMessageToNewEmployee")
-                // Send to Artemis queue
-                .log("Sending Welcome Message to new employee")
-
-                //TODO: Necessary?
-                .process(exchange -> {
-                    String message = exchange.getMessage().getBody(String.class);
-                    exchange.getMessage().setBody(message);
-                })
-                .to(ExchangePattern.InOnly, "jms:queue:SendWelcomeMessageToNewEmployeeQueue");
-
-
-        from("jms:queue:SendWelcomeMessageToNewEmployeeQueue")
-                .id("send-welcome-message-to-new-employee-with-E-MAIL-route")
-                .log("Message received from Artemis: ${body}")
-                //.process(new SendWelcomeMessageToEmployeeProcessor())
-                // SMTP Host and Port are set in the application.properties file
-                // Note: It is not possible to use the @ConfigProperty annotation in the from() method -> will evaluate to null
-                .to("smtp://" + "{{smtp.host}}" + ":" + "{{smtp.port}}" + "?username=" + "{{smtp.username}}" + "&password=" + "{{smtp.password}}");
-*/
 
         // ############### Moving Request ################
 

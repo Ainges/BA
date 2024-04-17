@@ -58,7 +58,7 @@
           <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboardingSendLastMessageToNewEmployeeBeforeFirstWorkingDay&#34;, &#34;token.current\n&#34;]" />
           <camunda:property name="studio.paramBody" value="token.current&#10;" />
           <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboardingSendLastMessageToNewEmployeeBeforeFirstWorkingDay" />
-          <camunda:property name="studio.paramContentType" />
+          <camunda:property name="studio.paramAuthorization" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1gbvat2</bpmn:incoming>
@@ -66,7 +66,7 @@
     </bpmn:serviceTask>
     <bpmn:startEvent id="Event_0hn4od9" name="Erste Willkommensnachricht muss gesendet werden">
       <bpmn:outgoing>Flow_1c8w4hy</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0ge6zzt" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0ge6zzt" messageRef="Message_3afimU5z" />
     </bpmn:startEvent>
     <bpmn:startEvent id="Event_0dg8p66" name="Informationen zum ersten Arbeitstag müssen gesendet werden">
       <bpmn:outgoing>Flow_0z4te7y</bpmn:outgoing>
@@ -81,23 +81,23 @@
         <camunda:properties>
           <camunda:property name="module" value="HttpClient" />
           <camunda:property name="method" value="post" />
-          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/MovingRequest&#34;]" />
-          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/MovingRequest" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/FirstWelcomeMessage&#34;]" />
+          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/FirstWelcomeMessage" />
+          <camunda:property name="studio.paramBody" />
           <camunda:property name="studio.paramContentType" />
-          <camunda:property name="studio.paramAuthorization" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1c8w4hy</bpmn:incoming>
       <bpmn:outgoing>Flow_1p2h37l</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_1nhpztd" name="E-Mail mit Informationen zum ersten Arbeitstag van Mitarbeiter senden">
+    <bpmn:serviceTask id="Activity_1nhpztd" name="E-Mail mit Informationen zum ersten Arbeitstag an Mitarbeiter senden">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="module" value="HttpClient" />
           <camunda:property name="method" value="get" />
-          <camunda:property name="params" value="[&#34;&#34;]" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/InfoForFirstWorkingDay&#34;]" />
+          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/InfoForFirstWorkingDay" />
           <camunda:property name="studio.paramAuthorization" />
-          <camunda:property name="studio.paramContentType" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0z4te7y</bpmn:incoming>
@@ -119,6 +119,8 @@
   <bpmn:message id="Message_5LrM6H59" name="Message_ResponseForMove" />
   <bpmn:message id="Message_3vNBwu1u" name="Message_Send_InfoForFirstWorkingDay" />
   <bpmn:message id="Message_scqRgCad" name="Message_Send_WelcomeMessageToNewEmployee" />
+  <bpmn:message id="Message_Ooinq34t" name="Message_Send_FirstWelcomeMessage" />
+  <bpmn:message id="Message_3afimU5z" name="Message_Send_FirstWelcomeMessage" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1o8eewd">
       <bpmndi:BPMNShape id="Participant_0q78rhp_di" bpmnElement="Participant_1tetnf2" isHorizontal="true">
@@ -197,6 +199,7 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1902mwz_di" bpmnElement="Activity_1nhpztd">
         <dc:Bounds x="75" y="300" width="160" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1diyb40_di" bpmnElement="Flow_1diyb40">
         <di:waypoint x="3" y="70" />

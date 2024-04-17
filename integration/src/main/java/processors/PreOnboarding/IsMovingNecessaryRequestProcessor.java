@@ -1,7 +1,6 @@
-package processors.SCIL_Preonboarding;
+package processors.PreOnboarding;
 
 import DTO.IsMovingRequestNecessaryDTO;
-import Entities.OneTimePasswordEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.apache.camel.Exchange;

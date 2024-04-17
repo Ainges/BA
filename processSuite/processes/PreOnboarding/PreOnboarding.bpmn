@@ -53,7 +53,6 @@
         <bpmn:flowNodeRef>Gateway_0vy7lxq</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_18vvqsr</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0ve80u6</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_15omsxg</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0k0b8gx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1mnv47x</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1oyfpkb</bpmn:flowNodeRef>
@@ -65,6 +64,7 @@
         <bpmn:flowNodeRef>Event_1cannnv</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0bx4zme</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0mi7quq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_15omsxg</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_0cnjnkh" sourceRef="Gateway_0vfwlrv" targetRef="Activity_1eyq305" />
@@ -127,7 +127,7 @@
     <bpmn:sequenceFlow id="Flow_153xh25" sourceRef="Event_1t0wxn9" targetRef="Event_0scggi2" />
     <bpmn:sequenceFlow id="Flow_0qct0o4" sourceRef="Event_0scggi2" targetRef="Gateway_0vfwlrv" />
     <bpmn:sendTask id="Activity_1eyq305" name="Mitarbeiter fragen ob durch den Jobwechsel ein Umzug ansteht" messageRef="Message_Jkc2PIH2">
-      <bpmn:documentation />
+      <bpmn:documentation></bpmn:documentation>
       <bpmn:incoming>Flow_0cnjnkh</bpmn:incoming>
       <bpmn:outgoing>Flow_0hvkfna</bpmn:outgoing>
       <bpmn:property id="Property_0jahgm4" name="__targetRef_placeholder" />
@@ -240,6 +240,11 @@
       <bpmn:documentation>Sehr wichtig zur Mitarbeiterbindung um im Geächnis zu bleiben und einem nicht nicht erscheinen am Ersten Arbeitstag entgegen zu wirken.</bpmn:documentation>
       <bpmn:incoming>Flow_0hrxaxi</bpmn:incoming>
       <bpmn:outgoing>Flow_1wl4ctr</bpmn:outgoing>
+      <bpmn:property id="Property_1je67im" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_12q11cj">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1je67im</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:parallelGateway id="Gateway_0vy7lxq">
       <bpmn:incoming>Flow_1sxu1fe</bpmn:incoming>
@@ -276,10 +281,6 @@
       <bpmn:incoming>Flow_1aclm6n</bpmn:incoming>
       <bpmn:outgoing>Flow_10b9tgi</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sendTask id="Activity_15omsxg" name="Nachricht mit defininierten Eckpunkten an Mitarbeiter" messageRef="Message_XEDk6ELW">
-      <bpmn:incoming>Flow_10b9tgi</bpmn:incoming>
-      <bpmn:outgoing>Flow_02puo4e</bpmn:outgoing>
-    </bpmn:sendTask>
     <bpmn:scriptTask id="Activity_13opghe" name="Berechnen, ob Mitarbeiter noch vor erstem Arbeitstag Geburtstag hat">
       <bpmn:incoming>Flow_1apdyem</bpmn:incoming>
       <bpmn:outgoing>Flow_05x1nlq</bpmn:outgoing>
@@ -365,6 +366,15 @@
       <bpmn:outgoing>Flow_1pyszsg</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_12rblzb" />
     </bpmn:intermediateThrowEvent>
+    <bpmn:sendTask id="Activity_15omsxg" name="Nachricht mit defininierten Eckpunkten an Mitarbeiter" messageRef="Message_XEDk6ELW">
+      <bpmn:incoming>Flow_10b9tgi</bpmn:incoming>
+      <bpmn:outgoing>Flow_02puo4e</bpmn:outgoing>
+      <bpmn:property id="Property_1ck9jsl" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_02ky4ym">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1ck9jsl</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:sendTask>
     <bpmn:association id="Association_16n593h" sourceRef="Activity_1mnv47x" targetRef="TextAnnotation_1g7nhah" />
   </bpmn:process>
   <bpmn:escalation id="Escalation_crvS1NUq" name="test" escalationCode="test" />
@@ -486,10 +496,6 @@
       <bpmndi:BPMNShape id="Activity_0ab0bmi_di" bpmnElement="Activity_0ve80u6">
         <dc:Bounds x="750" y="970" width="160" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0wd7qwy_di" bpmnElement="Activity_15omsxg">
-        <dc:Bounds x="950" y="970" width="160" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1vdxjkn_di" bpmnElement="Activity_13opghe">
         <dc:Bounds x="624" y="1200" width="146" height="80" />
         <bpmndi:BPMNLabel />
@@ -544,6 +550,10 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1451" y="764" width="58" height="27" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0wd7qwy_di" bpmnElement="Activity_15omsxg">
+        <dc:Bounds x="970" y="970" width="160" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ofklws_di" bpmnElement="Activity_0bx4zme" isExpanded="true">
         <dc:Bounds x="1830" y="1840" width="360" height="130" />
@@ -653,10 +663,10 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10b9tgi_di" bpmnElement="Flow_10b9tgi">
         <di:waypoint x="910" y="1010" />
-        <di:waypoint x="950" y="1010" />
+        <di:waypoint x="970" y="1010" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_02puo4e_di" bpmnElement="Flow_02puo4e">
-        <di:waypoint x="1110" y="1010" />
+        <di:waypoint x="1130" y="1010" />
         <di:waypoint x="1320" y="1010" />
         <di:waypoint x="1320" y="1115" />
       </bpmndi:BPMNEdge>
@@ -857,8 +867,8 @@
         <di:waypoint x="830" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1jc8t6y_di" bpmnElement="Flow_1jc8t6y">
-        <di:waypoint x="1030" y="970" />
-        <di:waypoint x="1030" y="160" />
+        <di:waypoint x="1050" y="970" />
+        <di:waypoint x="1050" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0h9ibuk_di" bpmnElement="Flow_0h9ibuk">
         <di:waypoint x="1740" y="1100" />
@@ -867,6 +877,18 @@
       <bpmndi:BPMNEdge id="Flow_18w90p7_di" bpmnElement="Flow_18w90p7">
         <di:waypoint x="1320" y="1702" />
         <di:waypoint x="1320" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_12q11cj_di" bpmnElement="DataInputAssociation_12q11cj">
+        <di:waypoint x="540" y="725" />
+        <di:waypoint x="540" y="1070" />
+        <di:waypoint x="790" y="1070" />
+        <di:waypoint x="790" y="1100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_02ky4ym_di" bpmnElement="DataInputAssociation_02ky4ym">
+        <di:waypoint x="540" y="725" />
+        <di:waypoint x="540" y="940" />
+        <di:waypoint x="970" y="940" />
+        <di:waypoint x="979" y="970" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
