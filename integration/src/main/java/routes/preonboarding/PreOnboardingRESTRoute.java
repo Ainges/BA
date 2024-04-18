@@ -15,11 +15,6 @@ public class PreOnboardingRESTRoute extends RouteBuilder {
     public void configure() throws Exception {
         rest("/onboarding/preonboarding")
 
-                // ********** Send Welcome Message To New Employee **********
-                .post("/FirstWelcomeMessage")
-                .consumes("application/json")
-                .to("direct:FirstWelcomeMessageToBroker")
-
                 // ********** Moving Request **********
                 .post("/MovingRequest")
                 .consumes("application/json")
@@ -28,9 +23,27 @@ public class PreOnboardingRESTRoute extends RouteBuilder {
                 .get("/MovingRequest/accept")
                 .produces("text/html")
                 .to("direct:MovingRequestAccept")
+
                 .get("/MovingRequest/decline")
                 .produces("text/html")
-                .to("direct:MovingRequestDecline");
+                .to("direct:MovingRequestDecline")
+
+                // ********** Send Welcome Message To New Employee **********
+                .post("/FirstWelcomeMessage")
+                .consumes("application/json")
+                .to("direct:FirstWelcomeMessageToBroker")
+
+                // ********** Info For First Working Day **********
+                .post("InfoForFirstWorkingDay")
+                .consumes("application/json")
+                .to("direct:InfoForFirstWorkingDayToBroker")
+
+                // Friendly Reminder
+                .post("FriendlyReminder")
+                .consumes("application/json")
+                .to("direct:FriendlyReminderToBroker");
+
+
 
 
 

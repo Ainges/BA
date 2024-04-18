@@ -55,9 +55,9 @@
         <camunda:properties>
           <camunda:property name="module" value="HttpClient" />
           <camunda:property name="method" value="post" />
-          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboardingSendLastMessageToNewEmployeeBeforeFirstWorkingDay&#34;, &#34;token.current\n&#34;]" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/FriendyReminder&#34;, &#34;token.current\n&#34;]" />
           <camunda:property name="studio.paramBody" value="token.current&#10;" />
-          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboardingSendLastMessageToNewEmployeeBeforeFirstWorkingDay" />
+          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/FriendyReminder" />
           <camunda:property name="studio.paramAuthorization" />
         </camunda:properties>
       </bpmn:extensionElements>
@@ -74,7 +74,7 @@
     </bpmn:startEvent>
     <bpmn:startEvent id="Event_0n2t9hy" name="Letzte Willkommensnachricht vor dem ersten Arbeitstag muss gesendet werden">
       <bpmn:outgoing>Flow_1gbvat2</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_16zkewi" messageRef="Message_scqRgCad" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_16zkewi" messageRef="Message_e6JxyO1F" />
     </bpmn:startEvent>
     <bpmn:serviceTask id="Activity_0zdoeh4" name="E-Mail mit erster Willkommensnachricht an Mitarbeiter senden">
       <bpmn:extensionElements>
@@ -94,9 +94,10 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="module" value="HttpClient" />
-          <camunda:property name="method" value="get" />
-          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/InfoForFirstWorkingDay&#34;]" />
+          <camunda:property name="method" value="post" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/InfoForFirstWorkingDay&#34;, &#34;token.current&#34;]" />
           <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/InfoForFirstWorkingDay" />
+          <camunda:property name="studio.paramBody" value="token.current" />
           <camunda:property name="studio.paramAuthorization" />
         </camunda:properties>
       </bpmn:extensionElements>
@@ -121,6 +122,8 @@
   <bpmn:message id="Message_scqRgCad" name="Message_Send_WelcomeMessageToNewEmployee" />
   <bpmn:message id="Message_Ooinq34t" name="Message_Send_FirstWelcomeMessage" />
   <bpmn:message id="Message_3afimU5z" name="Message_Send_FirstWelcomeMessage" />
+  <bpmn:message id="Message_fuykRc4Q" />
+  <bpmn:message id="Message_e6JxyO1F" name="Message_Send_FrindlyReminder" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1o8eewd">
       <bpmndi:BPMNShape id="Participant_0q78rhp_di" bpmnElement="Participant_1tetnf2" isHorizontal="true">

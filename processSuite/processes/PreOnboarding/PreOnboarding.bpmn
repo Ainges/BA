@@ -127,7 +127,7 @@
     <bpmn:sequenceFlow id="Flow_153xh25" sourceRef="Event_1t0wxn9" targetRef="Event_0scggi2" />
     <bpmn:sequenceFlow id="Flow_0qct0o4" sourceRef="Event_0scggi2" targetRef="Gateway_0vfwlrv" />
     <bpmn:sendTask id="Activity_1eyq305" name="Mitarbeiter fragen ob durch den Jobwechsel ein Umzug ansteht" messageRef="Message_Jkc2PIH2">
-      <bpmn:documentation></bpmn:documentation>
+      <bpmn:documentation />
       <bpmn:incoming>Flow_0cnjnkh</bpmn:incoming>
       <bpmn:outgoing>Flow_0hvkfna</bpmn:outgoing>
       <bpmn:property id="Property_0jahgm4" name="__targetRef_placeholder" />
@@ -273,9 +273,9 @@
 - Benötigte Unterlagen?</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="contactPerson" label="Ansprechpartner" type="string" defaultValue="Dirk Müller" />
-          <camunda:formField id="beginOfFirstWorkingDay" label="Beginn des ersten Arbeitstages" type="string" defaultValue="08:00 Uhr" />
-          <camunda:formField id="documentsNeededForFirstWorkingDay" label="Folgende Dokumente werden für den erste Arbeitstag benötigt" type="string" defaultValue="Personalausweis" />
+          <camunda:formField id="contact_person" label="Ansprechpartner" type="string" defaultValue="Dirk Müller" />
+          <camunda:formField id="begin_of_first_working_day" label="Beginn des ersten Arbeitstages" type="string" defaultValue="08:00 Uhr" />
+          <camunda:formField id="documents_needed_for_first_working_day" label="Folgende Dokumente werden für den erste Arbeitstag benötigt" type="string" defaultValue="Personalausweis" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1aclm6n</bpmn:incoming>
@@ -367,6 +367,11 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_12rblzb" />
     </bpmn:intermediateThrowEvent>
     <bpmn:sendTask id="Activity_15omsxg" name="Nachricht mit defininierten Eckpunkten an Mitarbeiter" messageRef="Message_XEDk6ELW">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPreScript" value="{&#10;  ...token.current,&#10;  &#34;last_name&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.last_name&#10;}&#10;  &#10;" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_10b9tgi</bpmn:incoming>
       <bpmn:outgoing>Flow_02puo4e</bpmn:outgoing>
       <bpmn:property id="Property_1ck9jsl" name="__targetRef_placeholder" />
@@ -386,7 +391,7 @@
   <bpmn:message id="Message_cj32XDOu" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_eBIO3DQK" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_2Sz5EKXp" name="Message_Send_MoveNecessary" />
-  <bpmn:message id="Message_uZq3k32L" name="Message_Send_WelcomeMessageToNewEmployee" />
+  <bpmn:message id="Message_uZq3k32L" name="Message_Send_FrindlyReminder" />
   <bpmn:message id="Message_scqRgCad" name="Message_Send_WelcomeMessageToNewEmployee" />
   <bpmn:message id="Message_fqaaQpdU" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_oPx4KAVx" name="Message_Receive_IsMoveNecessary" />
@@ -551,10 +556,6 @@
           <dc:Bounds x="1451" y="764" width="58" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0wd7qwy_di" bpmnElement="Activity_15omsxg">
-        <dc:Bounds x="970" y="970" width="160" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ofklws_di" bpmnElement="Activity_0bx4zme" isExpanded="true">
         <dc:Bounds x="1830" y="1840" width="360" height="130" />
       </bpmndi:BPMNShape>
@@ -579,6 +580,10 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1286" y="1745" width="70" height="40" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0wd7qwy_di" bpmnElement="Activity_15omsxg">
+        <dc:Bounds x="970" y="970" width="160" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0cnjnkh_di" bpmnElement="Flow_0cnjnkh">
         <di:waypoint x="580" y="1115" />
@@ -826,6 +831,12 @@
         <di:waypoint x="907" y="1481" />
         <di:waypoint x="1872" y="1481" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_12q11cj_di" bpmnElement="DataInputAssociation_12q11cj">
+        <di:waypoint x="540" y="725" />
+        <di:waypoint x="540" y="1070" />
+        <di:waypoint x="790" y="1070" />
+        <di:waypoint x="790" y="1100" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1mfoxow_di" bpmnElement="DataInputAssociation_1mfoxow">
         <di:waypoint x="1908" y="1485" />
         <di:waypoint x="2050" y="1485" />
@@ -837,6 +848,12 @@
         <di:waypoint x="540" y="940" />
         <di:waypoint x="1673" y="940" />
         <di:waypoint x="1673" y="1100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_02ky4ym_di" bpmnElement="DataInputAssociation_02ky4ym">
+        <di:waypoint x="540" y="725" />
+        <di:waypoint x="540" y="940" />
+        <di:waypoint x="970" y="940" />
+        <di:waypoint x="979" y="970" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_0qiqspg_di" bpmnElement="Association_0qiqspg">
         <di:waypoint x="1130" y="1361" />
@@ -877,18 +894,6 @@
       <bpmndi:BPMNEdge id="Flow_18w90p7_di" bpmnElement="Flow_18w90p7">
         <di:waypoint x="1320" y="1702" />
         <di:waypoint x="1320" y="160" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_12q11cj_di" bpmnElement="DataInputAssociation_12q11cj">
-        <di:waypoint x="540" y="725" />
-        <di:waypoint x="540" y="1070" />
-        <di:waypoint x="790" y="1070" />
-        <di:waypoint x="790" y="1100" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_02ky4ym_di" bpmnElement="DataInputAssociation_02ky4ym">
-        <di:waypoint x="540" y="725" />
-        <di:waypoint x="540" y="940" />
-        <di:waypoint x="970" y="940" />
-        <di:waypoint x="979" y="970" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

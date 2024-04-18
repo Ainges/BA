@@ -71,7 +71,6 @@ public class PreOnboardingFirstWelcomeMessageRoute extends RouteBuilder {
                     logger.info("Headers extracted successfully!");
                 })
                 .process(firstWelcomeMessageProcessor)
-                .log("Body of Email: ${body}")
                 .to("smtp://" + smtpHost + ":" + smtpPort + "?username=" + smtpUsername + "&password=" + smtpPassword);
 
     }
