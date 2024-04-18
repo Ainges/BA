@@ -1,11 +1,18 @@
 package processors.PreOnboarding;
 
+import CDI.PlaceholderSubstitutor;
 import DTO.IsMovingRequestNecessaryDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +30,17 @@ import java.util.Map;
  * */
 @ApplicationScoped
 public class IsMovingNecessaryRequestProcessor implements Processor {
+
+    @ConfigProperty(name = "camel.host")
+    String camelHost;
+
+    @ConfigProperty(name = "camel.port")
+    String camelPort;
+
+    Logger logger = LoggerFactory.getLogger(IsMovingNecessaryRequestProcessor.class);
+
+    @Inject
+    PlaceholderSubstitutor placeholderSubstitutor;
 
     @Override
     public void process(Exchange exchange) throws Exception {
@@ -42,31 +60,21 @@ public class IsMovingNecessaryRequestProcessor implements Processor {
         headers.put("From", "onboarding@acme.de");
         headers.put("To", isMovingRequestNecessaryDTO.getEmail());
         headers.put("Subject", "Steht bei Ihnen ein Umzug an?");
-        // encoding is set to utf-8 and content type to html
         headers.put("Content-Type", "text/html; charset=utf-8");
-        String body = "<html><body><p>Hallo " + "Herr/Frau " + isMovingRequestNecessaryDTO.getLast_name() + ",</p>" +
-                      "<p>herzlichen Glückwunsch zu Ihrem neuen Arbeitsplatz!. Wir freuen uns, dass Sie sich für uns entschieden haben.</p>" +
-                      "<p>Steht bei Ihnen ein Umzug an? Falls ja, würden wir Ihnen gerne dabei behilflich sein. Bitte teilen Sie uns mit, ob Sie Unterstützung benötigen.</p>" +
-                      "<p>Wir freuen uns auf Ihre Rückmeldung.</p>" +
-                      // Add two links either to accept or decline the moving request
-                      "<p>Bitte klicken Sie auf einen der folgenden Links, um uns mitzuteilen, ob Sie Hilfe bei Ihrem Umzug benötigen:</p>" +
-                      "<p> Ihr einmaliges Passwort lautet: " + one_time_password + "</p>"+
-                      "<p>(Sie benötigen das Passwort nur, wenn die Links nicht funktionieren sollten)"+"</p>"+
-                      "<a href=\"http://localhost:8080/onboarding/preonboarding/MovingRequest/accept"+
-                      "?one_time_password="+one_time_password+"&"+
-                        "first_name="+first_name+"&"+
-                        "last_name="+last_name+
-                      "\">Hilfe bei Umzug gewünscht</a><br>" +
-                      "<a href=\"http://localhost:8080/onboarding/preonboarding/MovingRequest/decline"+
-                      "?one_time_password="+one_time_password+"&"+
-                        "first_name="+first_name+"&"+
-                        "last_name="+last_name+
-                      "\">Es steht kein Umzug an, Hilfe wird nicht gewünscht</a>" +
-                      "<br>" +
-                      "<p>Viele Grüße</p><p>Ihr Onboarding Team</p></body></html>";
+        String input = new String(Files.readAllBytes(Paths.get("src/main/resources/mailTemplates/MovingRequest.html")));
 
-                    exchange.getMessage().setHeaders(headers);
-                    exchange.getMessage().setBody(body);
+        HashMap<String, String> valuesMap = new HashMap<String, String>();
+        valuesMap.put("first_name", first_name);
+        valuesMap.put("last_name", last_name);
+        valuesMap.put("one_time_password", one_time_password);
+        valuesMap.put("camel_host", camelHost);
+        valuesMap.put("camel_port", camelPort);
+
+        String output = placeholderSubstitutor.substituteAll(input, valuesMap);
+
+        // Set the headers and the body of the exchange
+        exchange.getMessage().setHeaders(headers);
+        exchange.getMessage().setBody(output);
 
 
     }

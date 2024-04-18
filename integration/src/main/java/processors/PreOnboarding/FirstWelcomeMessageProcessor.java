@@ -1,5 +1,6 @@
 package processors.PreOnboarding;
 
+import CDI.PlaceholderSubstitutor;
 import jakarta.activation.FileDataSource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -26,7 +27,7 @@ public class FirstWelcomeMessageProcessor implements Processor {
      */
 
     @Inject
-    FirstWelcomeMessageProcessor firstWelcomeMessageProcessor;
+    PlaceholderSubstitutor placeholderSubstitutor;
 
     @ConfigProperty(name = "data.company.name")
     String companyName;
@@ -42,25 +43,11 @@ public class FirstWelcomeMessageProcessor implements Processor {
 
         // ***** suggested by ChatGPT *****
         // Erstellen Sie eine Map mit den Platzhaltern und ihren Werten
-        Map<String, String> valuesMap = new HashMap<>();
+        HashMap<String, String> valuesMap = new HashMap<>();
         valuesMap.put("companyName", companyName);
         valuesMap.put("employeeName", employeeName);
 
-        // Erstellen Sie einen StringSubstitutor mit den Platzhaltern und ihren Werten
-        StringSubstitutor substitutor = new StringSubstitutor(valuesMap);
-
-        // Ersetzen Sie die Platzhalter im Eingabe-String
-        String output = substitutor.replace(input);
-
-        //check with regex if all placeholders are replaced
-        // regex from CoPilot
-        if(output.contains("${")){
-            logger.error("Value of output: {}", output);
-            throw new Exception("Not all placeholders are replaced");
-        }
-
-        // ********************************
-
+        String output = placeholderSubstitutor.substituteAll(input, valuesMap);
 
         Map<String, Object> headers = new HashMap<String, Object>();
         headers.put("From", "onboarding@acme.de");
