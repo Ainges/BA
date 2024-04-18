@@ -81,10 +81,10 @@
         <camunda:properties>
           <camunda:property name="module" value="HttpClient" />
           <camunda:property name="method" value="post" />
-          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/FirstWelcomeMessage&#34;]" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/FirstWelcomeMessage&#34;, &#34;return {\n\&#34;email\&#34;: token.current.OnboardingData.private_email,\n\&#34;first_name\&#34;: token.current.OnboardingData.first_name,\n\&#34;last_name\&#34;: token.current.OnboardingData.last_name\n}&#34;]" />
           <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/FirstWelcomeMessage" />
-          <camunda:property name="studio.paramBody" />
-          <camunda:property name="studio.paramContentType" />
+          <camunda:property name="studio.paramBody" value="return {&#10;&#34;email&#34;: token.current.OnboardingData.private_email,&#10;&#34;first_name&#34;: token.current.OnboardingData.first_name,&#10;&#34;last_name&#34;: token.current.OnboardingData.last_name&#10;}" />
+          <camunda:property name="studio.paramAuthorization" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1c8w4hy</bpmn:incoming>
