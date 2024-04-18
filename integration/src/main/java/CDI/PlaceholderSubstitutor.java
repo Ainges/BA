@@ -31,8 +31,7 @@ public class PlaceholderSubstitutor {
         StringSubstitutor substitutor = new StringSubstitutor(valuesMap);
         String output = substitutor.replace(input);
         if(output.contains("${")){
-            logger.error("Value of output: {}", output);
-            throw new Exception("Not all placeholders are replaced!");
+            throw new Exception("Not all placeholders are replaced!\n \"Value of output: " + output);
         }
         return output;
     }

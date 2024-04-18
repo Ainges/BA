@@ -276,6 +276,7 @@
           <camunda:formField id="contact_person" label="Ansprechpartner" type="string" defaultValue="Dirk Müller" />
           <camunda:formField id="begin_of_first_working_day" label="Beginn des ersten Arbeitstages" type="string" defaultValue="08:00 Uhr" />
           <camunda:formField id="documents_needed_for_first_working_day" label="Folgende Dokumente werden für den erste Arbeitstag benötigt" type="string" defaultValue="Personalausweis" />
+          <camunda:formField id="contact_person_mail" label="E-Mail der Kontaktperson" type="string" defaultValue="dirkmueller@dundermifflin.com" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1aclm6n</bpmn:incoming>
@@ -369,7 +370,7 @@
     <bpmn:sendTask id="Activity_15omsxg" name="Nachricht mit defininierten Eckpunkten an Mitarbeiter" messageRef="Message_XEDk6ELW">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="engine.runPreScript" value="{&#10;  ...token.current,&#10;  &#34;last_name&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.last_name&#10;}&#10;  &#10;" />
+          <camunda:property name="engine.runPreScript" value="{&#10;  ...token.current,&#10;  &#34;last_name&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.last_name,&#10;  &#34;private_email&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.private_email,&#10;  &#34;first_working_day&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.first_working_day&#10;}&#10;  &#10;" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_10b9tgi</bpmn:incoming>

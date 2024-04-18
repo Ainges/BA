@@ -35,8 +35,8 @@
         <div class="content">
             <h2>Willkommen bei ${company_name}!</h2>
             <p>Hallo Herr/Frau ${last_name},</p>
-            <p>Wir freuen uns, Sie am ${begin_of_first_working_day} bei ${company_name} begrüßen zu dürfen! Ihr erster Arbeitstag wird am ${first_working_day} sein.</p>
-            <p>Ihre Kontaktperson ist ${contact_person} und steht Ihnen bei Fragen immer </p>
+            <p>Ihr erster Arbeitstag wird am ${first_working_day} sein. Wir freuen uns, Sie am ${begin_of_first_working_day} bei ${company_name} begrüßen zu dürfen! </p>
+            <p>Ihre Kontaktperson ${contact_person} (${contact_person_mail}) kennen Sie ja schon, melden Sie sich gerne bei Fragen!</p>
             <p>Bitte bringen Sie die folgenden Dokumente am ersten Arbeitstag mit:</p>
             <ul>
                 <!-- Replacement String needs to have <li> tags! -->
@@ -44,10 +44,10 @@
                 <!-- Example: Personalausweis, Krankenversicherungsnachweis -->
             </ul>
             <p>Unser Büro befindet sich unter folgender Adresse:</p>
-            <p>{company_name}<br>
-            {company_address}</p>
+            <p>${company_name}<br>
+            ${company_address}</p>
             <p>Bitte melden Sie sich bei Ihrer Ankunft am Empfang.</p>
-            <p>Wir freuen uns darauf, Sie kennenzulernen und wünschen Ihnen einen großartigen Start bei {company_name}!</p>
+            <p>Wir freuen uns darauf, Sie kennenzulernen und wünschen Ihnen einen großartigen Start bei ${company_name}!</p>
             <p>Mit freundlichen Grüßen,<br>
             Ihr Onboarding Team</p>
         </div>
