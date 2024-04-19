@@ -6,6 +6,7 @@ import { CustomFormService, FormState } from '@atlas-engine-contrib/atlas-ui_sdk
 import { Config } from '../config';
 import { ExampleCustomForm } from '../ExampleCustomForm';
 import ExampleEmployeeList from '../ExampleEmployeeList/ExampleEmployeeList';
+import SelectBuddy from '../PreOnboarding_SelectBuddy/SelectBuddy';
 
 
 export type CustomFormProps = {
@@ -43,6 +44,7 @@ export class CustomFormsRenderer extends React.Component<CustomFormRendererProps
   private components: CustomFormsComponentDict = {
     ExampleCustomForm: ExampleCustomForm,
     ExampleEmployeeList: ExampleEmployeeList,
+    SelectBuddy: SelectBuddy,
   };
 
   private customFormService: CustomFormService | null = null;
