@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Generated with ChatGPT -->
+    <title>Willkommen bei XYZ Corporation!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .content {
+            margin-bottom: 20px;
+        }
+        .footer {
+            font-size: 0.8em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h2>Willkommen bei ${company_name}!</h2>
+            <p>Hallo Herr/Frau ${last_name},</p>
+            <p>Ihr erster Arbeitstag wird am ${first_working_day} sein. Wir freuen uns, Sie am ${begin_of_first_working_day} bei ${company_name} begrüßen zu dürfen! </p>
+            <p>Ihre Kontaktperson ${contact_person} (${contact_person_mail}) kennen Sie ja schon, melden Sie sich gerne bei Fragen!</p>
+            <p>Bitte bringen Sie die folgenden Dokumente am ersten Arbeitstag mit:</p>
+            <ul>
+                <!-- Replacement String needs to have <li> tags! -->
+                ${documents_needed_for_first_working_day}
+                <!-- Example: Personalausweis, Krankenversicherungsnachweis -->
+            </ul>
+            <p>Unser Büro befindet sich unter folgender Adresse:</p>
+            <p>${company_name}<br>
+            ${company_address}</p>
+            <p>Bitte melden Sie sich bei Ihrer Ankunft am Empfang.</p>
+            <p>Wir freuen uns darauf, Sie kennenzulernen und wünschen Ihnen einen großartigen Start bei ${company_name}!</p>
+            <p>Mit freundlichen Grüßen,<br>
+            Ihr Onboarding Team</p>
+        </div>
+        <div class="footer">
+            <p>Diese E-Mail wurde automatisch generiert. Bitte antworten Sie nicht auf diese Nachricht.</p>
+        </div>
+    </div>
+</body>
+</html>

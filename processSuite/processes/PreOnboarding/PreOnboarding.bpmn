@@ -9,9 +9,9 @@
     <bpmn:messageFlow id="Flow_0ma1iz7" sourceRef="Event_1d8bbu9" targetRef="Participant_1ejbgs2" />
     <bpmn:messageFlow id="Flow_1v87tzq" sourceRef="Event_1t0wxn9" targetRef="Participant_14tp0lv" />
     <bpmn:messageFlow id="Flow_0yqj6x5" sourceRef="Event_0scggi2" targetRef="Participant_16ahzet" />
-    <bpmn:messageFlow id="Flow_11o7jkt" sourceRef="Activity_05jr9ed" targetRef="Participant_1jytwop" />
+    <bpmn:messageFlow id="Flow_11o7jkt" sourceRef="FirstWelcomeMessage_Send" targetRef="Participant_1jytwop" />
     <bpmn:messageFlow id="Flow_0k5spiq" sourceRef="Activity_1eyq305" targetRef="Participant_1jytwop" />
-    <bpmn:messageFlow id="Flow_1jc8t6y" sourceRef="Activity_15omsxg" targetRef="Participant_1jytwop" />
+    <bpmn:messageFlow id="Flow_1jc8t6y" sourceRef="InfoForFirstWorkingDay_send" targetRef="Participant_1jytwop" />
     <bpmn:messageFlow id="Flow_0h9ibuk" sourceRef="Activity_1l0s39s" targetRef="Participant_1jytwop" />
     <bpmn:messageFlow id="Flow_18w90p7" sourceRef="Event_0mi7quq" targetRef="Participant_1jytwop" />
     <bpmn:textAnnotation id="TextAnnotation_1g7nhah">
@@ -23,7 +23,7 @@
       <bpmn:text>Hier wird die Andresse des neuen Miarbeiters gebraucht
 </bpmn:text>
     </bpmn:textAnnotation>
-    <bpmn:association id="Association_0qiqspg" associationDirection="None" sourceRef="Activity_1oyfpkb" targetRef="TextAnnotation_1udw2qo" />
+    <bpmn:association id="Association_0qiqspg" associationDirection="None" sourceRef="SmallAttentionOrganisation" targetRef="TextAnnotation_1udw2qo" />
     <bpmn:textAnnotation id="TextAnnotation_1786vqb">
       <bpmn:text>Liste, welche dem Mitarbeiter in der Anwendung zur Abarbeitung gezeigt wird</bpmn:text>
     </bpmn:textAnnotation>
@@ -49,14 +49,13 @@
         <bpmn:flowNodeRef>Gateway_1v90pt7</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0vfwlrv</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1inu1sx</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_05jr9ed</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>FirstWelcomeMessage_Send</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0vy7lxq</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_18vvqsr</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0ve80u6</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_15omsxg</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0k0b8gx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1mnv47x</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1oyfpkb</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>SmallAttentionOrganisation</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1l0s39s</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0scggi2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1t0wxn9</bpmn:flowNodeRef>
@@ -65,6 +64,7 @@
         <bpmn:flowNodeRef>Event_1cannnv</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0bx4zme</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0mi7quq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>InfoForFirstWorkingDay_send</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_0cnjnkh" sourceRef="Gateway_0vfwlrv" targetRef="Activity_1eyq305" />
@@ -92,8 +92,8 @@
     <bpmn:sequenceFlow id="Flow_0579xkg" sourceRef="Gateway_0vfwlrv" targetRef="Event_1inu1sx" />
     <bpmn:sequenceFlow id="Flow_1apdyem" sourceRef="Gateway_0vfwlrv" targetRef="Activity_13opghe" />
     <bpmn:sequenceFlow id="Flow_1aclm6n" sourceRef="Gateway_0vfwlrv" targetRef="Activity_0ve80u6" />
-    <bpmn:sequenceFlow id="Flow_10b9tgi" sourceRef="Activity_0ve80u6" targetRef="Activity_15omsxg" />
-    <bpmn:sequenceFlow id="Flow_02puo4e" sourceRef="Activity_15omsxg" targetRef="Gateway_0k0b8gx" />
+    <bpmn:sequenceFlow id="Flow_10b9tgi" sourceRef="Activity_0ve80u6" targetRef="InfoForFirstWorkingDay_send" />
+    <bpmn:sequenceFlow id="Flow_02puo4e" sourceRef="InfoForFirstWorkingDay_send" targetRef="Gateway_0k0b8gx" />
     <bpmn:sequenceFlow id="Flow_0x25abl" sourceRef="Gateway_1pwvone" targetRef="Activity_11h7fua" />
     <bpmn:sequenceFlow id="Flow_1hbs1ar" sourceRef="Gateway_1pwvone" targetRef="Activity_1mnv47x" />
     <bpmn:sequenceFlow id="Flow_1e1gsww" sourceRef="Gateway_1pwvone" targetRef="Activity_0gbv2hg" />
@@ -107,22 +107,22 @@
     <bpmn:sequenceFlow id="Flow_1j6gdlh" sourceRef="Event_1cannnv" targetRef="Gateway_1n7xkno" />
     <bpmn:sequenceFlow id="Flow_0b711zh" sourceRef="Gateway_0e9psvj" targetRef="Event_1cannnv" />
     <bpmn:sequenceFlow id="Flow_0l95km6" sourceRef="Event_0iqejj2" targetRef="Activity_1l0s39s" />
-    <bpmn:sequenceFlow id="Flow_0hrxaxi" sourceRef="Event_1inu1sx" targetRef="Activity_05jr9ed" />
+    <bpmn:sequenceFlow id="Flow_0hrxaxi" sourceRef="Event_1inu1sx" targetRef="FirstWelcomeMessage_Send" />
     <bpmn:sequenceFlow id="Flow_05x1nlq" sourceRef="Activity_13opghe" targetRef="Gateway_141wu49" />
     <bpmn:sequenceFlow id="Flow_1hnmuf0" name="Nein" sourceRef="Gateway_141wu49" targetRef="Gateway_1v90pt7">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.birthdayBeforeIsPresent === false</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_14f8hc7" name="ja" sourceRef="Gateway_141wu49" targetRef="Activity_1oyfpkb">
+    <bpmn:sequenceFlow id="Flow_14f8hc7" name="ja" sourceRef="Gateway_141wu49" targetRef="SmallAttentionOrganisation">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.birthdayBeforeIsPresent === true</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_19f4yhv" sourceRef="Activity_1oyfpkb" targetRef="Gateway_1v90pt7" />
+    <bpmn:sequenceFlow id="Flow_19f4yhv" sourceRef="SmallAttentionOrganisation" targetRef="Gateway_1v90pt7" />
     <bpmn:startEvent id="StartEvent_OnboardingPhase1" name="Onboarding von Mitarbeiter steht an">
       <bpmn:outgoing>Flow_0alw6fb</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1ndumyw">
         <bpmn:targetRef>DataObjectReference_newEmployeeData</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_1wl4ctr" sourceRef="Activity_05jr9ed" targetRef="Gateway_0k0b8gx" />
+    <bpmn:sequenceFlow id="Flow_1wl4ctr" sourceRef="FirstWelcomeMessage_Send" targetRef="Gateway_0k0b8gx" />
     <bpmn:sequenceFlow id="Flow_0gpynrx" sourceRef="Gateway_0k0b8gx" targetRef="Event_0iqejj2" />
     <bpmn:sequenceFlow id="Flow_153xh25" sourceRef="Event_1t0wxn9" targetRef="Event_0scggi2" />
     <bpmn:sequenceFlow id="Flow_0qct0o4" sourceRef="Event_0scggi2" targetRef="Gateway_0vfwlrv" />
@@ -236,10 +236,20 @@
         <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
-    <bpmn:sendTask id="Activity_05jr9ed" name="Willkommensnachricht an Mitarbeiter senden" messageRef="Message_LKtkj70V">
+    <bpmn:sendTask id="FirstWelcomeMessage_Send" name="Willkommensnachricht an Mitarbeiter senden" messageRef="Message_LKtkj70V">
       <bpmn:documentation>Sehr wichtig zur Mitarbeiterbindung um im Geächnis zu bleiben und einem nicht nicht erscheinen am Ersten Arbeitstag entgegen zu wirken.</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPostScript" value="{&#10;    token&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0hrxaxi</bpmn:incoming>
       <bpmn:outgoing>Flow_1wl4ctr</bpmn:outgoing>
+      <bpmn:property id="Property_1je67im" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_12q11cj">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1je67im</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:parallelGateway id="Gateway_0vy7lxq">
       <bpmn:incoming>Flow_1sxu1fe</bpmn:incoming>
@@ -268,18 +278,15 @@
 - Benötigte Unterlagen?</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="contactPerson" label="Ansprechpartner" type="string" defaultValue="Dirk Müller" />
-          <camunda:formField id="beginOfFirstWorkingDay" label="Beginn des ersten Arbeitstages" type="string" defaultValue="08:00 Uhr" />
-          <camunda:formField id="documentsNeededForFirstWorkingDay" label="Folgende Dokumente werden für den erste Arbeitstag benötigt" type="string" defaultValue="Personalausweis" />
+          <camunda:formField id="contact_person" label="Ansprechpartner" type="string" defaultValue="Dirk Müller" />
+          <camunda:formField id="begin_of_first_working_day" label="Beginn des ersten Arbeitstages" type="string" defaultValue="08:00 Uhr" />
+          <camunda:formField id="documents_needed_for_first_working_day" label="Folgende Dokumente werden für den erste Arbeitstag benötigt" type="string" defaultValue="Personalausweis" />
+          <camunda:formField id="contact_person_mail" label="E-Mail der Kontaktperson" type="string" defaultValue="dirkmueller@dundermifflin.com" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1aclm6n</bpmn:incoming>
       <bpmn:outgoing>Flow_10b9tgi</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sendTask id="Activity_15omsxg" name="Nachricht mit defininierten Eckpunkten an Mitarbeiter" messageRef="Message_XEDk6ELW">
-      <bpmn:incoming>Flow_10b9tgi</bpmn:incoming>
-      <bpmn:outgoing>Flow_02puo4e</bpmn:outgoing>
-    </bpmn:sendTask>
     <bpmn:scriptTask id="Activity_13opghe" name="Berechnen, ob Mitarbeiter noch vor erstem Arbeitstag Geburtstag hat">
       <bpmn:incoming>Flow_1apdyem</bpmn:incoming>
       <bpmn:outgoing>Flow_05x1nlq</bpmn:outgoing>
@@ -301,7 +308,7 @@
       <bpmn:incoming>Flow_1hbs1ar</bpmn:incoming>
       <bpmn:outgoing>Flow_0ti0n89</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:manualTask id="Activity_1oyfpkb" name="Aufmerksamkeit Organisieren und zukommen lassen">
+    <bpmn:manualTask id="SmallAttentionOrganisation" name="Aufmerksamkeit Organisieren und zukommen lassen">
       <bpmn:incoming>Flow_14f8hc7</bpmn:incoming>
       <bpmn:outgoing>Flow_19f4yhv</bpmn:outgoing>
     </bpmn:manualTask>
@@ -309,7 +316,7 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="payload" value="token.current" />
-          <camunda:property name="engine.runPreScript" value="return {&#10;  ...token.current,&#10;  &#34;newEmployeeData&#34;:dataObjects.DataObjectReference_newEmployeeData&#10;};" />
+          <camunda:property name="engine.runPreScript" value="return {&#10;  &#34;newEmployeeData&#34;:dataObjects.DataObjectReference_newEmployeeData,&#10;  &#34;InfoForFirstWorkingDay_send&#34;: token.current.InfoForFirstWorkingDay_send&#10;};" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0l95km6</bpmn:incoming>
@@ -332,7 +339,7 @@
       <bpmn:outgoing>Flow_153xh25</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0lcbj4o" messageRef="Message_krwd76t6" />
     </bpmn:intermediateThrowEvent>
-    <bpmn:intermediateCatchEvent id="Event_0iqejj2" name="14 Tage vor Eintritt">
+    <bpmn:intermediateCatchEvent id="Event_0iqejj2" name="3 Tage vor Eintritt">
       <bpmn:incoming>Flow_0gpynrx</bpmn:incoming>
       <bpmn:outgoing>Flow_0l95km6</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_14oefnv">
@@ -365,6 +372,20 @@
       <bpmn:outgoing>Flow_1pyszsg</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_12rblzb" />
     </bpmn:intermediateThrowEvent>
+    <bpmn:sendTask id="InfoForFirstWorkingDay_send" name="Nachricht mit defininierten Eckpunkten an Mitarbeiter" messageRef="Message_XEDk6ELW">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPreScript" value="{&#10;  ...token.current,&#10;  &#34;last_name&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.last_name,&#10;  &#34;private_email&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.private_email,&#10;  &#34;first_working_day&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.first_working_day&#10;}&#10;  &#10;" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_10b9tgi</bpmn:incoming>
+      <bpmn:outgoing>Flow_02puo4e</bpmn:outgoing>
+      <bpmn:property id="Property_1ck9jsl" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_02ky4ym">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1ck9jsl</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:sendTask>
     <bpmn:association id="Association_16n593h" sourceRef="Activity_1mnv47x" targetRef="TextAnnotation_1g7nhah" />
   </bpmn:process>
   <bpmn:escalation id="Escalation_crvS1NUq" name="test" escalationCode="test" />
@@ -376,7 +397,7 @@
   <bpmn:message id="Message_cj32XDOu" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_eBIO3DQK" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_2Sz5EKXp" name="Message_Send_MoveNecessary" />
-  <bpmn:message id="Message_uZq3k32L" name="Message_Send_WelcomeMessageToNewEmployee" />
+  <bpmn:message id="Message_uZq3k32L" name="Message_Send_FrindlyReminder" />
   <bpmn:message id="Message_scqRgCad" name="Message_Send_WelcomeMessageToNewEmployee" />
   <bpmn:message id="Message_fqaaQpdU" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_oPx4KAVx" name="Message_Receive_IsMoveNecessary" />
@@ -470,7 +491,7 @@
           <dc:Bounds x="664" y="1165" width="33" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0ub674b_di" bpmnElement="Activity_05jr9ed">
+      <bpmndi:BPMNShape id="Activity_0ub674b_di" bpmnElement="FirstWelcomeMessage_Send">
         <dc:Bounds x="750" y="1100" width="160" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
@@ -485,10 +506,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ab0bmi_di" bpmnElement="Activity_0ve80u6">
         <dc:Bounds x="750" y="970" width="160" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0wd7qwy_di" bpmnElement="Activity_15omsxg">
-        <dc:Bounds x="950" y="970" width="160" height="80" />
-        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1vdxjkn_di" bpmnElement="Activity_13opghe">
         <dc:Bounds x="624" y="1200" width="146" height="80" />
@@ -507,7 +524,7 @@
         <dc:Bounds x="749" y="1570" width="165" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0yxqjxz_di" bpmnElement="Activity_1oyfpkb">
+      <bpmndi:BPMNShape id="Activity_0yxqjxz_di" bpmnElement="SmallAttentionOrganisation">
         <dc:Bounds x="970" y="1310" width="160" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
@@ -536,7 +553,7 @@
       <bpmndi:BPMNShape id="BPMNShape_0jz4lzi" bpmnElement="Event_0iqejj2">
         <dc:Bounds x="1462" y="1122" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1451" y="1084" width="58" height="27" />
+          <dc:Bounds x="1437" y="1084" width="86" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1ei46km" bpmnElement="Event_1cannnv">
@@ -569,6 +586,10 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1286" y="1745" width="70" height="40" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0wd7qwy_di" bpmnElement="InfoForFirstWorkingDay_send">
+        <dc:Bounds x="970" y="970" width="160" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0cnjnkh_di" bpmnElement="Flow_0cnjnkh">
         <di:waypoint x="580" y="1115" />
@@ -653,10 +674,10 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10b9tgi_di" bpmnElement="Flow_10b9tgi">
         <di:waypoint x="910" y="1010" />
-        <di:waypoint x="950" y="1010" />
+        <di:waypoint x="970" y="1010" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_02puo4e_di" bpmnElement="Flow_02puo4e">
-        <di:waypoint x="1110" y="1010" />
+        <di:waypoint x="1130" y="1010" />
         <di:waypoint x="1320" y="1010" />
         <di:waypoint x="1320" y="1115" />
       </bpmndi:BPMNEdge>
@@ -816,6 +837,12 @@
         <di:waypoint x="907" y="1481" />
         <di:waypoint x="1872" y="1481" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_12q11cj_di" bpmnElement="DataInputAssociation_12q11cj">
+        <di:waypoint x="540" y="725" />
+        <di:waypoint x="540" y="1070" />
+        <di:waypoint x="790" y="1070" />
+        <di:waypoint x="790" y="1100" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1mfoxow_di" bpmnElement="DataInputAssociation_1mfoxow">
         <di:waypoint x="1908" y="1485" />
         <di:waypoint x="2050" y="1485" />
@@ -827,6 +854,12 @@
         <di:waypoint x="540" y="940" />
         <di:waypoint x="1673" y="940" />
         <di:waypoint x="1673" y="1100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_02ky4ym_di" bpmnElement="DataInputAssociation_02ky4ym">
+        <di:waypoint x="540" y="725" />
+        <di:waypoint x="540" y="940" />
+        <di:waypoint x="970" y="940" />
+        <di:waypoint x="979" y="970" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_0qiqspg_di" bpmnElement="Association_0qiqspg">
         <di:waypoint x="1130" y="1361" />
@@ -857,8 +890,8 @@
         <di:waypoint x="830" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1jc8t6y_di" bpmnElement="Flow_1jc8t6y">
-        <di:waypoint x="1030" y="970" />
-        <di:waypoint x="1030" y="160" />
+        <di:waypoint x="1050" y="970" />
+        <di:waypoint x="1050" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0h9ibuk_di" bpmnElement="Flow_0h9ibuk">
         <di:waypoint x="1740" y="1100" />

@@ -158,6 +158,15 @@
             <artifactId>okio</artifactId>
             <version>3.8.0</version>
         </dependency>
+
+        <!--String Replacement in Emails-->
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.10.0</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

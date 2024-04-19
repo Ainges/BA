@@ -1,18 +1,14 @@
-package processors.SCIL_Preonboarding;
+package processors.PreOnboarding;
 
 import Entities.OneTimePasswordEntity;
-import io.quarkus.narayana.jta.QuarkusTransaction;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.eclipse.microprofile.config.ConfigProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import repositories.OneTimePasswordEntityRepository;
-
-import java.sql.*;
 
 import static org.apache.camel.language.constant.ConstantLanguage.constant;
 

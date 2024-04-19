@@ -9,6 +9,7 @@
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1nnf4wc</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_00hypto</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_19n2prc</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1" name="Start">
@@ -17,17 +18,28 @@
     <bpmn:sequenceFlow id="Flow_0cq73j0" sourceRef="StartEvent_1" targetRef="Activity_1nnf4wc" />
     <bpmn:userTask id="Activity_1nnf4wc" name="test">
       <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="engine.assignUserIds" value="[&#39;UserIdA&#39;, &#39;admin@processcube.example&#39;, &#39;Admin&#39;];" />
-        </camunda:properties>
+        <camunda:formData>
+          <camunda:formField id="test1" type="string" />
+          <camunda:formField id="test2" type="string" />
+        </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0cq73j0</bpmn:incoming>
       <bpmn:outgoing>Flow_0pg6q32</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0pg6q32" sourceRef="Activity_1nnf4wc" targetRef="Activity_19n2prc" />
     <bpmn:endEvent id="Event_00hypto">
-      <bpmn:incoming>Flow_0pg6q32</bpmn:incoming>
+      <bpmn:incoming>Flow_19i08ri</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0pg6q32" sourceRef="Activity_1nnf4wc" targetRef="Event_00hypto" />
+    <bpmn:sequenceFlow id="Flow_19i08ri" sourceRef="Activity_19n2prc" targetRef="Event_00hypto" />
+    <bpmn:userTask id="Activity_19n2prc">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPreScript" value="{&#10;    ...token.current,&#10;    &#34;test3&#34;: &#34;test3&#34;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0pg6q32</bpmn:incoming>
+      <bpmn:outgoing>Flow_19i08ri</bpmn:outgoing>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
@@ -48,7 +60,10 @@
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_00hypto_di" bpmnElement="Event_00hypto">
-        <dc:Bounds x="332" y="152" width="36" height="36" />
+        <dc:Bounds x="542" y="152" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16lopeg_di" bpmnElement="Activity_19n2prc">
+        <dc:Bounds x="330" y="130" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0cq73j0_di" bpmnElement="Flow_0cq73j0">
         <di:waypoint x="128" y="170" />
@@ -56,7 +71,11 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0pg6q32_di" bpmnElement="Flow_0pg6q32">
         <di:waypoint x="280" y="170" />
-        <di:waypoint x="332" y="170" />
+        <di:waypoint x="330" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19i08ri_di" bpmnElement="Flow_19i08ri">
+        <di:waypoint x="430" y="170" />
+        <di:waypoint x="542" y="170" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

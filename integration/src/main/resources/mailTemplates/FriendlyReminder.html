@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Generated with ChatGPT -->
+    <title>Willkommen bei XYZ Corporation!</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .logo {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .content {
+        margin-bottom: 20px;
+      }
+      .footer {
+        font-size: 0.8em;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <h2>Nur noch 3 Tage Herr/Frau ${last_name}!</h2>
+
+        <p>Hallo Herr/Frau ${last_name},</p>
+        <p>
+          Ein kleiner Reminder von uns: Am ${first_working_day} ist es endlich
+          soweit, Ihr erster Tag bei uns!
+        </p>
+        <p>Wir freuen uns nach wie vor sehr auf die kommende Zusammenarbeit!</p>
+        <p>
+          Wir hatten Ihnen vor einiger Zeit schon mal eine E-Mail mit den
+          Eckpunkten zu Ihrem ersten Arbeitstag gesendet. Sie finden diese auf
+          die schnelle gerade nicht mehr?
+        </p>
+        <p>
+          Kein Problem! Wir haben Ihnen hier nochmal kompakt alle wichtigen
+          Punkte aufgelistet
+        </p>
+        <p>Beginn:</p>
+        <ul>
+            <li>${first_working_day}</li>
+            <li>${begin_of_first_working_day}</li>
+        </ul>
+
+        <p>
+          Folgende Dokumente benötigen Sie am ersten Arbeitstag:
+        </p>
+        <ul>
+          <!-- Replacement String needs to have <li> tags! -->
+          ${documents_needed_for_first_working_day}
+
+          <li>Ihr Gute-Laune-Zertifikat 😉</li>
+          <!-- Example: Personalausweis, Krankenversicherungsnachweis -->
+        </ul>
+        <p>Unsere Adresse:</p>
+        <ul>
+          <li>
+            ${company_name}<br />
+            ${company_address}
+          </li>
+        </ul>
+        <p>Sind in der Zwischenzweit noch Fragen aufgekommen? -> Gerne an Ihre Kontaktperson ${contact_person}(${contact_person_mail})  </p>
+        <p>Bitte melden Sie sich bei Ihrer Ankunft am Empfang.</p>
+        <p>
+          Wir freuen uns darauf, Sie kennenzulernen und wünschen Ihnen einen
+          großartigen Start bei ${company_name}!
+        </p>
+        <p>
+          Mit freundlichen Grüßen,<br />
+          Ihr Onboarding Team
+        </p>
+      </div>
+      <div class="footer">
+        <p>
+          Diese E-Mail wurde automatisch generiert. Bitte antworten Sie nicht
+          auf diese Nachricht.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
