@@ -58,6 +58,8 @@ public class PreOnboardingFirstWelcomeMessageRoute extends RouteBuilder {
                 .id("send-welcome-message-to-new-employee-with-E-MAIL-route")
                 .log("Message received from Artemis: ${body}")
                 .process(exchange -> {
+
+                    // TODO: use Body instead of Headers
                     String message = exchange.getMessage().getBody(String.class);
                     // get the first name and last name and email from the message
                     String firstName = Json.createReader(new StringReader(message)).readObject().getString("first_name");

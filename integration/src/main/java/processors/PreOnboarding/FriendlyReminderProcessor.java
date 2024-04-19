@@ -28,8 +28,9 @@ import java.util.Map;
  * Body: email
  * Header: From, To, Subject, Content-Type
  */
+
 @ApplicationScoped
-public class InfoForFirstWorkingDayProcessor implements Processor {
+public class FriendlyReminderProcessor implements Processor {
     /**
      * Processes the message exchange
      *
@@ -37,7 +38,7 @@ public class InfoForFirstWorkingDayProcessor implements Processor {
      * @throws Exception if an internal processing error has occurred.
      */
 
-    Logger logger = LoggerFactory.getLogger(InfoForFirstWorkingDayProcessor.class);
+    Logger logger = LoggerFactory.getLogger(FriendlyReminderProcessor.class);
 
     @ConfigProperty(name = "data.company.name")
     String company_name;
@@ -53,20 +54,9 @@ public class InfoForFirstWorkingDayProcessor implements Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
-        // TODO implement the processing logic here
 
-        // Replacement needed:
-        // ${company_name}
-        // ${last_name} -> message
-        // ${begin_of_first_working_day} -> message
-        // ${contact_person} -> message
-        // ${documents_needed_for_first_working_day} -> message
-        // ${company_address}
-        // ${first_working_day} -> message
-
-        // Get the message body
         String message = exchange.getMessage().getBody(String.class);
-        logger.info("Got in InfoForFirstWorkingDayProcessor: " + message);
+        logger.info("Got in FriendlyReminderProcessor: " + message);
 
         // Parse the message as json
         JsonReader jsonReader = Json.createReader(new StringReader(message));
@@ -89,31 +79,26 @@ public class InfoForFirstWorkingDayProcessor implements Processor {
         // final date String
         String first_working_day = first_working_day_asDate.format(outputFormatter);
 
+        HashMap<String, String> ValueMap = new HashMap<>();
 
-        String input = new String(Files.readAllBytes(Paths.get("src/main/resources/mailTemplates/InfoForFirstWorkingDay.html")));
-        HashMap<String, String> valueMap = new HashMap<String, String>();
+        ValueMap.put("last_name", last_name);
+        ValueMap.put("begin_of_first_working_day", begin_of_first_working_day);
+        ValueMap.put("contact_person", contact_person);
+        ValueMap.put("documents_needed_for_first_working_day", "<li>"+documents_needed_for_first_working_day+"</li>");
+        ValueMap.put("private_email", private_email);
+        ValueMap.put("first_working_day", first_working_day);
+        ValueMap.put("contact_person_mail", contact_person_mail);
+        ValueMap.put("company_name", company_name);
+        ValueMap.put("company_address", company_address);
 
-        // Data from application.properties
-        valueMap.put("company_name", company_name);
-        valueMap.put("company_address", company_address);
+        String input = new String(Files.readAllBytes(Paths.get("src/main/resources/mailTemplates/FriendlyReminder.html")));
 
-        // Data from message
-        valueMap.put("last_name", last_name);
-        valueMap.put("begin_of_first_working_day", begin_of_first_working_day);
-        valueMap.put("contact_person", contact_person);
-        // TODO: Allow multiple documents
-        valueMap.put("documents_needed_for_first_working_day", "<li>" + documents_needed_for_first_working_day + "</li>");
-        valueMap.put("first_working_day", first_working_day);
-        valueMap.put("contact_person_mail", contact_person_mail);
-
-
-        String output = placeholderSubstitutor.substituteAll(input, valueMap);
-
+        String output = placeholderSubstitutor.substituteAll(input, ValueMap);
 
         Map<String, Object> headers = new HashMap<String, Object>();
         headers.put("From", company_onboarding_email);
         headers.put("To", private_email);
-        headers.put("Subject", "Informationen für Ihren ersten Arbeitstag |" + company_name);
+        headers.put("Subject", "Bald geht es los! |" + company_name);
         headers.put("Content-Type", "text/html; charset=utf-8");
 
         exchange.getMessage().setHeaders(headers);

@@ -35,6 +35,7 @@ public class InitUsersRoute extends RouteBuilder {
                 ;
 
         from("direct:init_profile_pictures")
+                .id("init-profile-pictures-route")
                 .process(initProfilePicturesProcessor)
                 .log("Profile pictures initialized");
 

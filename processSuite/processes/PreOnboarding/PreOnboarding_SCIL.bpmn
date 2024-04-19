@@ -51,13 +51,21 @@
       <bpmn:incoming>Flow_01gmqey</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:serviceTask id="Activity_SendWelcomeMessageToNewEmployee" name="Reminder an anstehende ersten Arbeitstag senden">
+      <bpmn:documentation>Übergeben wird:
+
+- Nachname
+- Datum des ersten Arbeitstages
+- Benötigte Dokumente für den ersten Arbeitstag
+- E-Mail des neuen Mitarbeiters
+- Kontaktperson
+- Mail der Kontaktperson</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="module" value="HttpClient" />
           <camunda:property name="method" value="post" />
-          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/FriendyReminder&#34;, &#34;token.current\n&#34;]" />
-          <camunda:property name="studio.paramBody" value="token.current&#10;" />
-          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/FriendyReminder" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/FriendlyReminder&#34;, {&#10;    &#34;last_name&#34;:token.current.newEmployeeData.OnboardingData.last_name,&#10;    &#34;first_working_day&#34;:token.current.newEmployeeData.OnboardingData.first_working_day,&#10;    &#34;documents_needed_for_first_working_day&#34;:token.current.InfoForFirstWorkingDay_send.documents_needed_for_first_working_day,&#10;    &#34;begin_of_first_working_day&#34;: token.current.InfoForFirstWorkingDay_send.begin_of_first_working_day,&#10;    &#34;private_email&#34;:token.current.InfoForFirstWorkingDay_send.private_email,&#10;    &#34;contact_person&#34;:token.current.InfoForFirstWorkingDay_send.contact_person,&#10;    &#34;contact_person_mail&#34;:token.current.InfoForFirstWorkingDay_send.contact_person_mail&#10;}]" />
+          <camunda:property name="studio.paramBody" value="{&#10;    &#34;last_name&#34;:token.current.newEmployeeData.OnboardingData.last_name,&#10;    &#34;first_working_day&#34;:token.current.newEmployeeData.OnboardingData.first_working_day,&#10;    &#34;documents_needed_for_first_working_day&#34;:token.current.InfoForFirstWorkingDay_send.documents_needed_for_first_working_day,&#10;    &#34;begin_of_first_working_day&#34;: token.current.InfoForFirstWorkingDay_send.begin_of_first_working_day,&#10;    &#34;private_email&#34;:token.current.InfoForFirstWorkingDay_send.private_email,&#10;    &#34;contact_person&#34;:token.current.InfoForFirstWorkingDay_send.contact_person,&#10;    &#34;contact_person_mail&#34;:token.current.InfoForFirstWorkingDay_send.contact_person_mail&#10;}" />
+          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/FriendlyReminder" />
           <camunda:property name="studio.paramAuthorization" />
         </camunda:properties>
       </bpmn:extensionElements>

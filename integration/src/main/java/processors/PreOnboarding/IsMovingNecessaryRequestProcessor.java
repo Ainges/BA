@@ -37,6 +37,12 @@ public class IsMovingNecessaryRequestProcessor implements Processor {
     @ConfigProperty(name = "camel.port")
     String camelPort;
 
+    @ConfigProperty(name = "data.company.onboarding.email")
+    String company_onboarding_email;
+
+    @ConfigProperty(name = "data.company.name")
+    String company_name;
+
     Logger logger = LoggerFactory.getLogger(IsMovingNecessaryRequestProcessor.class);
 
     @Inject
@@ -57,9 +63,9 @@ public class IsMovingNecessaryRequestProcessor implements Processor {
 
 
         Map<String, Object> headers = new HashMap<String, Object>();
-        headers.put("From", "onboarding@acme.de");
+        headers.put("From", company_onboarding_email);
         headers.put("To", isMovingRequestNecessaryDTO.getEmail());
-        headers.put("Subject", "Steht bei Ihnen ein Umzug an?");
+        headers.put("Subject", "Steht bei Ihnen ein Umzug an? |" + company_name);
         headers.put("Content-Type", "text/html; charset=utf-8");
         String input = new String(Files.readAllBytes(Paths.get("src/main/resources/mailTemplates/MovingRequest.html")));
 
