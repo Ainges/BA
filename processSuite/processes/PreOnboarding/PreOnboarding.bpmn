@@ -54,7 +54,6 @@
         <bpmn:flowNodeRef>Event_18vvqsr</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0ve80u6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0k0b8gx</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1mnv47x</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>SmallAttentionOrganisation</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1l0s39s</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0scggi2</bpmn:flowNodeRef>
@@ -65,6 +64,7 @@
         <bpmn:flowNodeRef>Activity_0bx4zme</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0mi7quq</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>InfoForFirstWorkingDay_send</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1mnv47x</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_0cnjnkh" sourceRef="Gateway_0vfwlrv" targetRef="Activity_1eyq305" />
@@ -160,6 +160,11 @@
       <bpmn:outgoing>Flow_1ca1wyr</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:userTask id="Activity_0gbv2hg" name="Mentor / Buddy auswählen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="customForm" value="SelectBuddy" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1e1gsww</bpmn:incoming>
       <bpmn:outgoing>Flow_0y1muji</bpmn:outgoing>
     </bpmn:userTask>
@@ -302,12 +307,6 @@
     </bpmn:parallelGateway>
     <bpmn:dataObjectReference id="DataObjectReference_necessary_training" name="Notwendige&#10;(Compliance) Schulungen" dataObjectRef="DataObject_04vns1l" />
     <bpmn:dataObject id="DataObject_04vns1l" />
-    <bpmn:callActivity id="Activity_1mnv47x" name="Arbeitsplatz / Equipment vorbereiten" calledElement="PrepareWorkingPlaceAndEquipmen_Process">
-      <bpmn:documentation>Generiert ua. Firmenmail
-</bpmn:documentation>
-      <bpmn:incoming>Flow_1hbs1ar</bpmn:incoming>
-      <bpmn:outgoing>Flow_0ti0n89</bpmn:outgoing>
-    </bpmn:callActivity>
     <bpmn:manualTask id="SmallAttentionOrganisation" name="Aufmerksamkeit Organisieren und zukommen lassen">
       <bpmn:incoming>Flow_14f8hc7</bpmn:incoming>
       <bpmn:outgoing>Flow_19f4yhv</bpmn:outgoing>
@@ -386,6 +385,12 @@
         <bpmn:targetRef>Property_1ck9jsl</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:sendTask>
+    <bpmn:callActivity id="Activity_1mnv47x" name="Arbeitsplatz / Equipment vorbereiten" calledElement="PrepareWorkingPlaceAndEquipmen_Process">
+      <bpmn:documentation>Generiert ua. Firmenmail
+</bpmn:documentation>
+      <bpmn:incoming>Flow_1hbs1ar</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ti0n89</bpmn:outgoing>
+    </bpmn:callActivity>
     <bpmn:association id="Association_16n593h" sourceRef="Activity_1mnv47x" targetRef="TextAnnotation_1g7nhah" />
   </bpmn:process>
   <bpmn:escalation id="Escalation_crvS1NUq" name="test" escalationCode="test" />
@@ -520,10 +525,6 @@
           <dc:Bounds x="1858" y="1517" width="66" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0whuenp_di" bpmnElement="Activity_1mnv47x">
-        <dc:Bounds x="749" y="1570" width="165" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0yxqjxz_di" bpmnElement="SmallAttentionOrganisation">
         <dc:Bounds x="970" y="1310" width="160" height="80" />
         <bpmndi:BPMNLabel />
@@ -562,6 +563,10 @@
           <dc:Bounds x="1451" y="764" width="58" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0whuenp_di" bpmnElement="Activity_1mnv47x">
+        <dc:Bounds x="747" y="1570" width="165" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ofklws_di" bpmnElement="Activity_0bx4zme" isExpanded="true">
         <dc:Bounds x="1830" y="1840" width="360" height="130" />
       </bpmndi:BPMNShape>
@@ -591,6 +596,10 @@
         <dc:Bounds x="970" y="970" width="160" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_16n593h_di" bpmnElement="Association_16n593h">
+        <di:waypoint x="912" y="1601" />
+        <di:waypoint x="920" y="1599" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0cnjnkh_di" bpmnElement="Flow_0cnjnkh">
         <di:waypoint x="580" y="1115" />
         <di:waypoint x="580" y="720" />
@@ -688,7 +697,7 @@
       <bpmndi:BPMNEdge id="Flow_1hbs1ar_di" bpmnElement="Flow_1hbs1ar">
         <di:waypoint x="652" y="1705" />
         <di:waypoint x="652" y="1610" />
-        <di:waypoint x="749" y="1610" />
+        <di:waypoint x="747" y="1610" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1e1gsww_di" bpmnElement="Flow_1e1gsww">
         <di:waypoint x="652" y="1735" />
@@ -711,7 +720,7 @@
         <di:waypoint x="1012" y="1745" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ti0n89_di" bpmnElement="Flow_0ti0n89">
-        <di:waypoint x="914" y="1610" />
+        <di:waypoint x="912" y="1610" />
         <di:waypoint x="1012" y="1610" />
         <di:waypoint x="1012" y="1695" />
       </bpmndi:BPMNEdge>
@@ -791,10 +800,6 @@
         <di:waypoint x="1338" y="1720" />
         <di:waypoint x="1980" y="1720" />
         <di:waypoint x="1980" y="1165" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_16n593h_di" bpmnElement="Association_16n593h">
-        <di:waypoint x="914" y="1600" />
-        <di:waypoint x="920" y="1599" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_1bljbac_di" bpmnElement="Participant_1ejbgs2" isHorizontal="true">
         <dc:Bounds x="1210" y="2040" width="300" height="60" />
