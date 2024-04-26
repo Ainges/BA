@@ -214,7 +214,6 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = (props) => {
                   loading={tableData.length === 0}
                   columns={columns}
                   dataSource={tableData}
-
                 />
               </Card>
             </div>

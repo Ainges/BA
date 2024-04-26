@@ -41,8 +41,13 @@ public class PreOnboardingRESTRoute extends RouteBuilder {
                 // Friendly Reminder
                 .post("FriendlyReminder")
                 .consumes("application/json")
-                .to("direct:FriendlyReminderToBroker");
+                .to("direct:FriendlyReminderToBroker")
 
+
+                // Birthday Calculation
+                .post("BirthdayCalculation")
+                .consumes("application/json")
+                .to("direct:BirthdayCalculationToBroker");
 
 
 
