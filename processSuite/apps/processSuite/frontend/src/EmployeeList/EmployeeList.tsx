@@ -10,11 +10,13 @@ import { RowSelectionType } from "antd/es/table/interface";
 interface EmployeeSelection {
   selectedEmployees: React.Key[];
   setSelectedEmployees: React.Dispatch<React.SetStateAction<React.Key[]>>;
+  selectedBuddy: React.Key[];
 }
 
 const EmployeeList: React.FC<EmployeeSelection> = ({
   selectedEmployees,
   setSelectedEmployees,
+  selectedBuddy,
 }) => {
   const [tableData, setTableData] = useState<TableDataType[]>([]);
 
@@ -158,11 +160,18 @@ const EmployeeList: React.FC<EmployeeSelection> = ({
     },
   ];
 
-  // rowSelection object indicates the need for row selection
+
+
   const rowSelection = {
     type: "checkbox" as RowSelectionType,
     selectedRowKeys: selectedEmployees,
 
+    // To disable selection of the buddy
+    getCheckboxProps: (record: TableDataType) => ({
+      disabled: record.email === selectedBuddy.at(0)?.toString(), // Column configuration not to be checked
+      name: record.name,
+    }),
+  
     onChange: (selectedRowKeys: React.Key[], selectedRows: TableDataType[]) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`);
       setSelectedEmployees(selectedRowKeys);
