@@ -181,7 +181,7 @@ const SelectBuddy: React.FC<CustomFormProps> = (props) => {
 
   const sendSelectedEmployees = () => {
     console.log("Selected employees:", selectedRows);
-    props.finishUserTask({ selectedEmployees: selectedRows });
+    props.finishUserTask({ selectedBuddy: selectedRows });
   };
 
   return (

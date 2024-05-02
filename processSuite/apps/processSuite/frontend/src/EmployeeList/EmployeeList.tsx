@@ -15,7 +15,7 @@ import {
   Typography,
 } from "antd";
 import axios from "axios";
-import styles from "./ExampleEmployeeList.module.css";
+import styles from "./EmployeeList.module.css";
 import Meta from "antd/es/card/Meta";
 import { SendOutlined, PlusOutlined } from "@ant-design/icons";
 import Paragraph from "antd/es/typography/Paragraph";

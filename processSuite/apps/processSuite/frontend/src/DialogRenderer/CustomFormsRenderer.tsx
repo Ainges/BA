@@ -1,13 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import { DataModels, Identity } from '@atlas-engine/atlas_engine_client';
-import { CustomFormService, FormState } from '@atlas-engine-contrib/atlas-ui_sdk';
+import { DataModels, Identity } from "@atlas-engine/atlas_engine_client";
+import {
+  CustomFormService,
+  FormState,
+} from "@atlas-engine-contrib/atlas-ui_sdk";
 
-import { Config } from '../config';
-import { ExampleCustomForm } from '../ExampleCustomForm';
-import ExampleEmployeeList from '../ExampleEmployeeList/ExampleEmployeeList';
-import SelectBuddy from '../PreOnboarding_SelectBuddy/SelectBuddy';
-
+import { Config } from "../config";
+import { ExampleCustomForm } from "../ExampleCustomForm";
+import EmployeeList from "../EmployeeList/EmployeeList";
+import SelectBuddy from "../PreOnboarding_SelectBuddy/SelectBuddy";
+import BuddyAndEmployeeSelection from "../BuddyAndEmployeeSelection/BuddyAndEmployeeSelection";
 
 export type CustomFormProps = {
   userTask: DataModels.FlowNodeInstances.UserTaskInstance;
@@ -15,26 +18,33 @@ export type CustomFormProps = {
   abortUserTask: () => void;
   finishUserTask: (result: DataModels.FlowNodeInstances.UserTaskResult) => void;
   suspendUserTask: (state: FormState) => void;
-  config: Config,
-}
+  config: Config;
+};
 
 export type CustomFormRendererProps = {
   components?: CustomFormsComponentDict;
   config?: Config;
-}
+};
 
 export type CustomFormsServiceState = {
-  targetComponent: React.ComponentClass<CustomFormProps> | React.FunctionComponent<CustomFormProps> | null;
+  targetComponent:
+    | React.ComponentClass<CustomFormProps>
+    | React.FunctionComponent<CustomFormProps>
+    | null;
   userTask: DataModels.FlowNodeInstances.UserTaskInstance | null;
   suspendState: FormState | null;
-}
+};
 
 export type CustomFormsComponentDict = {
-  [preferredControl: string]: React.ComponentClass<CustomFormProps> | React.FunctionComponent<CustomFormProps>;
-}
+  [preferredControl: string]:
+    | React.ComponentClass<CustomFormProps>
+    | React.FunctionComponent<CustomFormProps>;
+};
 
-export class CustomFormsRenderer extends React.Component<CustomFormRendererProps, CustomFormsServiceState> {
-
+export class CustomFormsRenderer extends React.Component<
+  CustomFormRendererProps,
+  CustomFormsServiceState
+> {
   public state: CustomFormsServiceState = {
     targetComponent: null,
     userTask: null,
@@ -43,8 +53,9 @@ export class CustomFormsRenderer extends React.Component<CustomFormRendererProps
 
   private components: CustomFormsComponentDict = {
     ExampleCustomForm: ExampleCustomForm,
-    ExampleEmployeeList: ExampleEmployeeList,
+    EmployeeList: EmployeeList,
     SelectBuddy: SelectBuddy,
+    BuddyAndEmployeeSelection: BuddyAndEmployeeSelection,
   };
 
   private customFormService: CustomFormService | null = null;
@@ -62,17 +73,20 @@ export class CustomFormsRenderer extends React.Component<CustomFormRendererProps
   public updateComponent = (
     userTask: DataModels.FlowNodeInstances.UserTaskInstance,
     _identity: Identity,
-    suspendState: FormState | null,
+    suspendState: FormState | null
   ): void => {
-
     const preferredControl = userTask.userTaskConfig.customForm;
     if (!preferredControl) {
-      throw new Error(`No preferredControl set in usertask: ${JSON.stringify(userTask)}`);
+      throw new Error(
+        `No preferredControl set in usertask: ${JSON.stringify(userTask)}`
+      );
     }
 
     const component = this.components[preferredControl];
     if (!component) {
-      throw new Error(`No component found for usertask ${JSON.stringify(userTask)}`);
+      throw new Error(
+        `No component found for usertask ${JSON.stringify(userTask)}`
+      );
     }
 
     this.setState({
@@ -97,7 +111,9 @@ export class CustomFormsRenderer extends React.Component<CustomFormRendererProps
     this.customFormService?.terminateProcessInstance();
   };
 
-  public finishUserTask = (result: DataModels.FlowNodeInstances.UserTaskResult): void => {
+  public finishUserTask = (
+    result: DataModels.FlowNodeInstances.UserTaskResult
+  ): void => {
     this.customFormService?.finishUserTask(result);
   };
 
@@ -116,5 +132,4 @@ export class CustomFormsRenderer extends React.Component<CustomFormRendererProps
 
     return componentInstance;
   }
-
 }
