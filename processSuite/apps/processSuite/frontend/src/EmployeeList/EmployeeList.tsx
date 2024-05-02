@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CustomFormProps } from "../DialogRenderer";
-import { Card, Col, Divider, Row, Table, TableColumnsType } from "antd";
+import { Alert, Card, Col, Divider, Row, Table, TableColumnsType } from "antd";
 import axios from "axios";
 import styles from "./EmployeeList.module.css";
 import Paragraph from "antd/es/typography/Paragraph";
@@ -8,10 +8,9 @@ import config from "../config/config.json";
 import { RowSelectionType } from "antd/es/table/interface";
 
 interface EmployeeSelection {
-  selectedEmployees: React.Key[]; 
-  setSelectedEmployees: React.Dispatch<React.SetStateAction<React.Key[]>>; 
+  selectedEmployees: React.Key[];
+  setSelectedEmployees: React.Dispatch<React.SetStateAction<React.Key[]>>;
 }
-
 
 const EmployeeList: React.FC<EmployeeSelection> = ({
   selectedEmployees,
@@ -181,6 +180,13 @@ const EmployeeList: React.FC<EmployeeSelection> = ({
               Bitte wählen Sie alle Mitarbeiter aus, für die ein Kennenlertermin
               mit dem neuen Mitarbeiter geplant werden soll
             </Paragraph>
+          </Col>
+          <Col span={2}></Col>
+        </Row>
+        <Row>
+          <Col span={2}></Col>
+          <Col span={20}>
+            <Alert message="Der Buddy muss hier NICHT nochmal ausgewählt werden!" type="info" showIcon />
           </Col>
           <Col span={2}></Col>
         </Row>

@@ -1,7 +1,7 @@
-import { Button, Divider, Flex, Pagination, Space } from "antd";
+import { Button, Divider, Flex, Modal, Pagination, Space, Tooltip } from "antd";
 import { CustomFormProps } from "../DialogRenderer";
 import type { PaginationProps } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectBuddy from "../PreOnboarding_SelectBuddy/SelectBuddy";
 import EmployeeList from "../EmployeeList/EmployeeList";
 import { SendOutlined, PlusOutlined } from "@ant-design/icons";
@@ -17,13 +17,38 @@ const BuddyAndEmployeeSelection: React.FC<CustomFormProps> = (props) => {
   const [selectedBuddy, setSelectedBuddy] = useState<React.Key[]>([]);
   const [selectedEmployees, setSelectedEmployees] = useState<React.Key[]>([]);
 
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (selectedBuddy.length === 0 || SelectBuddy === undefined) {
+      console.log("Please select a buddy and at least one employee.");
+      setIsButtonDisabled(true);
+    } else {
+      console.log("Buddy and employee selected.");
+      setIsButtonDisabled(false);
+    }
+  }, [selectedBuddy, selectedEmployees]);
+
   function sendSelectionToProcess() {
     const result = {
       selectedBuddy: selectedBuddy.at(0),
       selectedEmployees: selectedEmployees,
     };
-
-    props.finishUserTask(result);
+    if (selectedEmployees.length === 0) {
+      Modal.confirm({
+        title: "Kein Mitarbeiter ausgewählt!",
+        content:
+          "Sind Sie sich sicher, dass Sie sonst für keinen Mitarbeiter ein Kennenlerngespräch ausmachen wollen?",
+        onOk() {
+          props.finishUserTask(result);
+        },
+        onCancel() {
+          return;
+        },
+      });
+    } else {
+      props.finishUserTask(result);
+    }
   }
 
   return (
@@ -40,32 +65,53 @@ const BuddyAndEmployeeSelection: React.FC<CustomFormProps> = (props) => {
         ></EmployeeList>
       )}
       <Flex justify="space-evenly" align="center">
-        <Pagination
-          defaultCurrent={10}
-          current={selectedPage}
-          onChange={onPaginationChange}
-          total={20}
-        />
-
         <Button
-          type="primary"
-          icon={<SendOutlined />}
-          size="large"
-          onClick={() => {
-            sendSelectionToProcess();
-          }}
           className={styles.button}
+          onClick={() => {
+            setSelectedPage(2);
+          }}
+          hidden={selectedPage === 2}
         >
-          Senden
+          Weiter
         </Button>
         <Button
+          className={styles.button}
+          onClick={() => {
+            setSelectedPage(1);
+          }}
+          hidden={selectedPage === 1}
+        >
+          zurück
+        </Button>
+
+        {selectedPage === 2 ? (
+          <Tooltip title="Bitte wählen Sie zumindest einen Buddy aus.">
+            <Button
+              type="primary"
+              icon={<SendOutlined />}
+              size="large"
+              onClick={() => {
+                sendSelectionToProcess();
+              }}
+              className={styles.button}
+              disabled={isButtonDisabled}
+            >
+              Senden
+            </Button>
+          </Tooltip>
+        ) : (
+          <></>
+        )}
+
+        {/* <Button
           onClick={() => {
             console.log("SelectedBuddy is:" + selectedBuddy);
             console.log("SelectedEmployees is:" + selectedEmployees);
+            console.log("Button is disabled:" + isButtonDisabled);
           }}
         >
           Check
-        </Button>
+        </Button> */}
       </Flex>
     </>
   );
