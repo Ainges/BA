@@ -8,7 +8,7 @@ import config from "../config/config.json";
 import { RowSelectionType } from "antd/es/table/interface";
 
 const EmployeeList: React.FC<any> = ({
-  selecetedEmployees,
+  selectedEmployees,
   setSelectedEmployees,
 }) => {
   const [tableData, setTableData] = useState<TableDataType[]>([]);
@@ -20,6 +20,7 @@ const EmployeeList: React.FC<any> = ({
     const fetchEmployees = async () => {
       try {
         // Wait to simulate loading
+        //TODO: Remove for production
         await new Promise((resolve) => setTimeout(resolve, 300));
 
         const response = await axios.get(camelHost + "/api/canonical/user/");
@@ -155,7 +156,7 @@ const EmployeeList: React.FC<any> = ({
   // rowSelection object indicates the need for row selection
   const rowSelection = {
     type: "checkbox" as RowSelectionType,
-    selectedRowKeys: selecetedEmployees,
+    selectedRowKeys: selectedEmployees,
 
     onChange: (selectedRowKeys: React.Key[], selectedRows: TableDataType[]) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`);

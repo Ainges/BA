@@ -22,6 +22,12 @@ import Paragraph from "antd/es/typography/Paragraph";
 import config from "../config/config.json";
 import { RowSelectionType } from "antd/es/table/interface";
 
+interface BuddySelection {
+  selectedBuddy: React.Key[]; // Annahme: BuddyType ist der Typ von selectedBuddy
+  setSelectedBuddy: React.Key[]; // Annahme: BuddyType ist der Typ von selectedBuddy
+}
+
+
 const SelectBuddy: React.FC<any> = ({selectedBuddy, setSelectedBuddy}) => {
   const [tableData, setTableData] = useState<TableDataType[]>([]);
 
