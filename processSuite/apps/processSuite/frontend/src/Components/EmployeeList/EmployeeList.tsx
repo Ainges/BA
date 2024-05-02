@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { CustomFormProps } from "../DialogRenderer";
+import { CustomFormProps } from "../../DialogRenderer";
 import { Alert, Card, Col, Divider, Row, Table, TableColumnsType } from "antd";
 import axios from "axios";
 import styles from "./EmployeeList.module.css";
 import Paragraph from "antd/es/typography/Paragraph";
-import config from "../config/config.json";
+import config from "../../config/config.json";
 import { RowSelectionType } from "antd/es/table/interface";
 
 interface EmployeeSelection {
@@ -160,8 +160,6 @@ const EmployeeList: React.FC<EmployeeSelection> = ({
     },
   ];
 
-
-
   const rowSelection = {
     type: "checkbox" as RowSelectionType,
     selectedRowKeys: selectedEmployees,
@@ -171,7 +169,7 @@ const EmployeeList: React.FC<EmployeeSelection> = ({
       disabled: record.email === selectedBuddy.at(0)?.toString(), // Column configuration not to be checked
       name: record.name,
     }),
-  
+
     onChange: (selectedRowKeys: React.Key[], selectedRows: TableDataType[]) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`);
       setSelectedEmployees(selectedRowKeys);
@@ -195,7 +193,11 @@ const EmployeeList: React.FC<EmployeeSelection> = ({
         <Row>
           <Col span={2}></Col>
           <Col span={20}>
-            <Alert message="Der Buddy muss hier NICHT nochmal ausgewählt werden!" type="info" showIcon />
+            <Alert
+              message="Der Buddy muss hier NICHT nochmal ausgewählt werden!"
+              type="info"
+              showIcon
+            />
           </Col>
           <Col span={2}></Col>
         </Row>

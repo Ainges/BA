@@ -1,9 +1,9 @@
 import { Button, Divider, Flex, Modal, Pagination, Space, Tooltip } from "antd";
-import { CustomFormProps } from "../DialogRenderer";
+import { CustomFormProps } from "../../DialogRenderer";
 import type { PaginationProps } from "antd";
 import { useEffect, useState } from "react";
-import SelectBuddy from "../PreOnboarding_SelectBuddy/SelectBuddy";
-import EmployeeList from "../EmployeeList/EmployeeList";
+import SelectBuddy from "../../Components/PreOnboarding_SelectBuddy/SelectBuddy";
+import EmployeeList from "../../Components/EmployeeList/EmployeeList";
 import { SendOutlined, PlusOutlined } from "@ant-design/icons";
 import styles from "./BuddyAndEmployeeSelection.module.css";
 
@@ -53,7 +53,6 @@ const BuddyAndEmployeeSelection: React.FC<CustomFormProps> = (props) => {
         <SelectBuddy
           selectedBuddy={selectedBuddy}
           setSelectedBuddy={setSelectedBuddy}
-          
         ></SelectBuddy>
       ) : (
         <EmployeeList

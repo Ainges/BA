@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CustomFormProps } from "../DialogRenderer";
+import { CustomFormProps } from "../../DialogRenderer";
 import {
   Avatar,
   Button,
@@ -19,19 +19,19 @@ import styles from "./SelectBuddy.module.css";
 import Meta from "antd/es/card/Meta";
 import { SendOutlined, PlusOutlined } from "@ant-design/icons";
 import Paragraph from "antd/es/typography/Paragraph";
-import config from "../config/config.json";
+import config from "../../config/config.json";
 import { RowSelectionType } from "antd/es/table/interface";
 
 interface BuddySelection {
-  selectedBuddy: React.Key[]; 
-  setSelectedBuddy: React.Dispatch<React.SetStateAction<React.Key[]>>; 
+  selectedBuddy: React.Key[];
+  setSelectedBuddy: React.Dispatch<React.SetStateAction<React.Key[]>>;
 }
 
-
-
-const SelectBuddy: React.FC<BuddySelection> = ({selectedBuddy, setSelectedBuddy}) => {
+const SelectBuddy: React.FC<BuddySelection> = ({
+  selectedBuddy,
+  setSelectedBuddy,
+}) => {
   const [tableData, setTableData] = useState<TableDataType[]>([]);
-
 
   const camelHost = config.camel.host;
 
@@ -175,7 +175,7 @@ const SelectBuddy: React.FC<BuddySelection> = ({selectedBuddy, setSelectedBuddy}
   // rowSelection object indicates the need for row selection
   const rowSelection = {
     // To allow only one Selection - cast is needed for TypeScript
-    type: 'radio' as RowSelectionType,
+    type: "radio" as RowSelectionType,
     // To LOAD the selected Buddy from State
     selectedRowKeys: selectedBuddy,
     // To SAVE the selected Buddy in State
@@ -216,7 +216,6 @@ const SelectBuddy: React.FC<BuddySelection> = ({selectedBuddy, setSelectedBuddy}
                   loading={tableData.length === 0}
                   columns={columns}
                   dataSource={tableData}
-                  
                 />
               </Card>
             </div>

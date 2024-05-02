@@ -8,9 +8,7 @@ import {
 
 import { Config } from "../config";
 import { ExampleCustomForm } from "../ExampleCustomForm";
-import EmployeeList from "../EmployeeList/EmployeeList";
-import SelectBuddy from "../PreOnboarding_SelectBuddy/SelectBuddy";
-import BuddyAndEmployeeSelection from "../BuddyAndEmployeeSelection/BuddyAndEmployeeSelection";
+import BuddyAndEmployeeSelection from "../Pages/BuddyAndEmployeeSelection/BuddyAndEmployeeSelection";
 
 export type CustomFormProps = {
   userTask: DataModels.FlowNodeInstances.UserTaskInstance;
