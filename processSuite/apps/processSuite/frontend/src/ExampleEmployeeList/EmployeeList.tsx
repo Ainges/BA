@@ -22,7 +22,7 @@ import Paragraph from "antd/es/typography/Paragraph";
 import test from "node:test";
 import config from "../config/config.json";
 
-const ExampleEmployeeList: React.FC<CustomFormProps> = (props) => {
+const EmployeeList: React.FC<CustomFormProps> = (props) => {
   const { Header, Footer, Sider, Content } = Layout;
 
   const [tableData, setTableData] = useState<TableDataType[]>([]);
@@ -236,4 +236,4 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = (props) => {
   );
 };
 
-export default ExampleEmployeeList;
+export default EmployeeList;

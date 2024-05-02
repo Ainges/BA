@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="DateTest_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
+  <bpmn:collaboration id="Collaboration_1cidyxu" name="">
+    <bpmn:participant id="Participant_0px403d" name="DateTest" processRef="DateTest_Process" />
+    <bpmn:textAnnotation id="TextAnnotation_1h6500j">
+      <bpmn:text>{
+    "entryDate": "27-03-2025",
+    "birthday": "24-12-2000"
+}</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0i8tquu">
+      <bpmn:text>nein
+</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0w8lvw2">
+      <bpmn:text>{
+    "entryDate": "24-12-2000",
+    "birthday": "27-03-2025"
+}</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0w0pl9c">
+      <bpmn:text>ja</bpmn:text>
+    </bpmn:textAnnotation>
+  </bpmn:collaboration>
+  <bpmn:process id="DateTest_Process" name="DateTest" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_1xzf0d3" name="Lane">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1psl2v8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_063hl2w</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0npt367</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1vrkxce</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_08amij3</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1" name="Start">
+      <bpmn:outgoing>Flow_1lyzvap</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_1psl2v8" name="Geburtstag vor Eintritt?">
+      <bpmn:incoming>Flow_1lyzvap</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rdzq3e</bpmn:outgoing>
+      <bpmn:outgoing>Flow_026hhnj</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1lyzvap" sourceRef="StartEvent_1" targetRef="Gateway_1psl2v8" />
+    <bpmn:sequenceFlow id="Flow_0rdzq3e" name="ja" sourceRef="Gateway_1psl2v8" targetRef="Activity_063hl2w">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">// Assuming the employee's birthdate and hire date are in string format
+var birthDateString = token.current.birthday; // Employee's birthdate
+var entryDateString = token.current.entryDate;   // Employee's hire date
+
+// Convert strings to Date objects
+var birthDate = new Date(birthDateString);
+var entryDate = new Date(entryDateString);
+
+// Get the birthdate for the current year
+var birthDateThisYear = new Date(entryDate.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+
+// Check if the birthdate for the current year is before the hire date
+if (birthDateThisYear &lt; entryDate) {
+    return true;
+} else {
+    return false;
+}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:task id="Activity_063hl2w" name="Mitarbeiter hat Geburtstag vor Eintritt!">
+      <bpmn:incoming>Flow_0rdzq3e</bpmn:incoming>
+      <bpmn:outgoing>Flow_049i2pj</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_026hhnj" name="nein" sourceRef="Gateway_1psl2v8" targetRef="Activity_0npt367">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">// Assuming the employee's birthdate and hire date are in string format
+var birthDateString = token.current.birthday; // Employee's birthdate
+var entryDateString = token.current.entryDate;   // Employee's hire date
+
+// Convert strings to Date objects
+var birthDate = new Date(birthDateString);
+var entryDate = new Date(entryDateString);
+
+// Get the birthdate for the current year
+var birthDateThisYear = new Date(entryDate.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+
+// Check if the birthdate for the current year is before the hire date
+if (birthDateThisYear &gt;= entryDate) {
+    return true;
+} else {
+    return false;
+}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:task id="Activity_0npt367" name="Mitarbeiter hat KEINEN Geburtstag vor EIntritt">
+      <bpmn:incoming>Flow_026hhnj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jppmrv</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0jppmrv" sourceRef="Activity_0npt367" targetRef="Gateway_1vrkxce" />
+    <bpmn:exclusiveGateway id="Gateway_1vrkxce">
+      <bpmn:incoming>Flow_0jppmrv</bpmn:incoming>
+      <bpmn:incoming>Flow_049i2pj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0c07pq9</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_08amij3" name="Ende">
+      <bpmn:incoming>Flow_0c07pq9</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0c07pq9" sourceRef="Gateway_1vrkxce" targetRef="Event_08amij3" />
+    <bpmn:sequenceFlow id="Flow_049i2pj" sourceRef="Activity_063hl2w" targetRef="Gateway_1vrkxce" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
+      <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
+        <dc:Bounds x="5" y="4" width="885" height="346" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
+        <dc:Bounds x="35" y="4" width="855" height="346" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="92" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="98" y="195" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1psl2v8_di" bpmnElement="Gateway_1psl2v8" isMarkerVisible="true">
+        <dc:Bounds x="185" y="145" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="254" y="160" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_063hl2w_di" bpmnElement="Activity_063hl2w">
+        <dc:Bounds x="300" y="50" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0npt367_di" bpmnElement="Activity_0npt367">
+        <dc:Bounds x="300" y="210" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1vrkxce_di" bpmnElement="Gateway_1vrkxce" isMarkerVisible="true">
+        <dc:Bounds x="465" y="145" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08amij3_di" bpmnElement="Event_08amij3">
+        <dc:Bounds x="582" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="587" y="195" width="26" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1lyzvap_di" bpmnElement="Flow_1lyzvap">
+        <di:waypoint x="128" y="170" />
+        <di:waypoint x="185" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rdzq3e_di" bpmnElement="Flow_0rdzq3e">
+        <di:waypoint x="210" y="145" />
+        <di:waypoint x="210" y="90" />
+        <di:waypoint x="300" y="90" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="221" y="115" width="9" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_026hhnj_di" bpmnElement="Flow_026hhnj">
+        <di:waypoint x="210" y="195" />
+        <di:waypoint x="210" y="250" />
+        <di:waypoint x="300" y="250" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="215" y="220" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jppmrv_di" bpmnElement="Flow_0jppmrv">
+        <di:waypoint x="400" y="250" />
+        <di:waypoint x="490" y="250" />
+        <di:waypoint x="490" y="195" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0c07pq9_di" bpmnElement="Flow_0c07pq9">
+        <di:waypoint x="515" y="170" />
+        <di:waypoint x="582" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_049i2pj_di" bpmnElement="Flow_049i2pj">
+        <di:waypoint x="400" y="90" />
+        <di:waypoint x="490" y="90" />
+        <di:waypoint x="490" y="145" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1h6500j_di" bpmnElement="TextAnnotation_1h6500j">
+        <dc:Bounds x="5" y="420" width="239.98205741626793" height="98.98325358851675" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0i8tquu_di" bpmnElement="TextAnnotation_0i8tquu">
+        <dc:Bounds x="5" y="380" width="100" height="39" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1fgxutg" bpmnElement="TextAnnotation_0w8lvw2">
+        <dc:Bounds x="5" y="630" width="239.98205741626793" height="68" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1xc6l0e" bpmnElement="TextAnnotation_0w0pl9c">
+        <dc:Bounds x="5" y="590" width="99.98006379585327" height="38.97527910685805" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

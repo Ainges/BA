@@ -28,14 +28,6 @@
       <bpmn:outgoing>Flow_1diyb40</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0o1c6j8" messageRef="Message_fqaaQpdU" />
     </bpmn:startEvent>
-    <bpmn:endEvent id="Event_0v73clf" name="Umzugsfrage geklärt">
-      <bpmn:incoming>Flow_0hpgl2e</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:intermediateThrowEvent id="Event_0u1z24k" name="Antwort zu Umzugsfrage mitteilen">
-      <bpmn:incoming>Flow_0yjwaop</bpmn:incoming>
-      <bpmn:outgoing>Flow_0hpgl2e</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1w68v6z" messageRef="Message_oPx4KAVx" />
-    </bpmn:intermediateThrowEvent>
     <bpmn:intermediateCatchEvent id="Event_1g2yil3" name="Antwort auf Umzugsfrage erhalten">
       <bpmn:incoming>Flow_18o35lk</bpmn:incoming>
       <bpmn:outgoing>Flow_0yjwaop</bpmn:outgoing>
@@ -114,7 +106,6 @@
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_1diyb40" sourceRef="Event_1uese52" targetRef="Activity_0xyob35" />
     <bpmn:sequenceFlow id="Flow_18o35lk" sourceRef="Activity_0xyob35" targetRef="Event_1g2yil3" />
-    <bpmn:sequenceFlow id="Flow_0hpgl2e" sourceRef="Event_0u1z24k" targetRef="Event_0v73clf" />
     <bpmn:sequenceFlow id="Flow_0yjwaop" sourceRef="Event_1g2yil3" targetRef="Event_0u1z24k" />
     <bpmn:sequenceFlow id="Flow_1p2h37l" sourceRef="Activity_0zdoeh4" targetRef="Event_174jzct" />
     <bpmn:sequenceFlow id="Flow_19ff64w" sourceRef="Activity_1nhpztd" targetRef="Event_12i4ylt" />
@@ -122,6 +113,40 @@
     <bpmn:sequenceFlow id="Flow_1gbvat2" sourceRef="Event_0n2t9hy" targetRef="Activity_SendWelcomeMessageToNewEmployee" />
     <bpmn:sequenceFlow id="Flow_1c8w4hy" sourceRef="Event_0hn4od9" targetRef="Activity_0zdoeh4" />
     <bpmn:sequenceFlow id="Flow_0z4te7y" sourceRef="Event_0dg8p66" targetRef="Activity_1nhpztd" />
+    <bpmn:startEvent id="Event_13cgy9b" name="Es muss berechnet werden, ob der Mitarbeiter noch vor dem ersten Arbeitstag Geburtstag hat.">
+      <bpmn:outgoing>Flow_1yp6geo</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1dpj5cd" messageRef="Message_h7qVjdLD" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1yp6geo" sourceRef="Event_13cgy9b" targetRef="Activity_0qvird3" />
+    <bpmn:serviceTask id="Activity_0qvird3" name="Geburtstagaktion berechnen">
+      <bpmn:documentation>Es wird berechnet, ob der Mitarbeiter noch vor dem ersten Arbeitstag Geburtstag hat. </bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="module" value="HttpClient" />
+          <camunda:property name="method" value="post" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/BirthdayCalculation&#34;, &#34;token.current&#34;]" />
+          <camunda:property name="studio.paramBody" value="token.current" />
+          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/BirthdayCalculation" />
+          <camunda:property name="studio.paramAuthorization" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1yp6geo</bpmn:incoming>
+      <bpmn:outgoing>Flow_1wuupoe</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1wuupoe" sourceRef="Activity_0qvird3" targetRef="Event_1pqxdzy" />
+    <bpmn:endEvent id="Event_0u1z24k" name="Antwort zu Umzugsfrage mitteilen">
+      <bpmn:incoming>Flow_0yjwaop</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1xnl8b5" messageRef="Message_xd1rilT2" />
+    </bpmn:endEvent>
+    <bpmn:intermediateThrowEvent id="Event_1pqxdzy" name="Ergebnis erfolgreich an Prozess zurückgemeldet">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="inputValues" value="token.current" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1wuupoe</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0xu7b28" messageRef="Message_enwXihYL" />
+    </bpmn:intermediateThrowEvent>
   </bpmn:process>
   <bpmn:message id="Message_fqaaQpdU" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_oPx4KAVx" name="Message_Receive_IsMoveNecessary" />
@@ -132,10 +157,14 @@
   <bpmn:message id="Message_3afimU5z" name="Message_Send_FirstWelcomeMessage" />
   <bpmn:message id="Message_fuykRc4Q" />
   <bpmn:message id="Message_e6JxyO1F" name="Message_Send_FrindlyReminder" />
+  <bpmn:message id="Message_h7qVjdLD" name="Message_Send_BirthdayCalculation" />
+  <bpmn:message id="Message_yGAjYTL8" name="Message_Response_BirthdayCalculation" />
+  <bpmn:message id="Message_xd1rilT2" name="Message_Receive_IsMoveNecessary" />
+  <bpmn:message id="Message_enwXihYL" name="Message_Receive_BirthdayCalculation" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1o8eewd">
       <bpmndi:BPMNShape id="Participant_0q78rhp_di" bpmnElement="Participant_1tetnf2" isHorizontal="true">
-        <dc:Bounds x="-350" y="-180" width="2075" height="860" />
+        <dc:Bounds x="-350" y="-180" width="2075" height="1480" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0tqk6p4_di" bpmnElement="Activity_0xyob35">
         <dc:Bounds x="75" y="30" width="160" height="80" />
@@ -145,18 +174,6 @@
         <dc:Bounds x="-33" y="52" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="-53" y="100" width="85" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0v73clf_di" bpmnElement="Event_0v73clf">
-        <dc:Bounds x="687" y="52" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="672" y="95" width="66" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0z03bff_di" bpmnElement="Event_0u1z24k">
-        <dc:Bounds x="577" y="52" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="562" y="2" width="66" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0pmoold_di" bpmnElement="Event_1g2yil3">
@@ -212,6 +229,28 @@
         <dc:Bounds x="75" y="300" width="160" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0zwcxlj_di" bpmnElement="Event_13cgy9b">
+        <dc:Bounds x="-33" y="692" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-54" y="735" width="79" height="93" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0929w0k_di" bpmnElement="Activity_0qvird3">
+        <dc:Bounds x="75" y="670" width="160" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ha6e0a_di" bpmnElement="Event_0u1z24k">
+        <dc:Bounds x="682" y="52" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="667" y="100" width="66" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1o6ugoh_di" bpmnElement="Event_1pqxdzy">
+        <dc:Bounds x="687" y="692" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="666" y="735" width="78" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1diyb40_di" bpmnElement="Flow_1diyb40">
         <di:waypoint x="3" y="70" />
         <di:waypoint x="75" y="70" />
@@ -220,13 +259,9 @@
         <di:waypoint x="235" y="70" />
         <di:waypoint x="387" y="70" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0hpgl2e_di" bpmnElement="Flow_0hpgl2e">
-        <di:waypoint x="613" y="70" />
-        <di:waypoint x="687" y="70" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0yjwaop_di" bpmnElement="Flow_0yjwaop">
         <di:waypoint x="423" y="70" />
-        <di:waypoint x="577" y="70" />
+        <di:waypoint x="682" y="70" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1p2h37l_di" bpmnElement="Flow_1p2h37l">
         <di:waypoint x="235" y="210" />
@@ -251,6 +286,14 @@
       <bpmndi:BPMNEdge id="Flow_0z4te7y_di" bpmnElement="Flow_0z4te7y">
         <di:waypoint x="3" y="340" />
         <di:waypoint x="75" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yp6geo_di" bpmnElement="Flow_1yp6geo">
+        <di:waypoint x="3" y="710" />
+        <di:waypoint x="75" y="710" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wuupoe_di" bpmnElement="Flow_1wuupoe">
+        <di:waypoint x="235" y="710" />
+        <di:waypoint x="687" y="710" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

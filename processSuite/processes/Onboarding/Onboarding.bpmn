@@ -15,10 +15,10 @@
   <bpmn:process id="Onboarding_Process" name="Onboarding_Phase2" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_09nnrvj" name="Neuer Mitarbeiter">
-        <bpmn:flowNodeRef>Activity_1i8na2m</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_13zzz5k</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0arwjm6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1djptx9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1i8na2m</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_106yasa" name="Buddy">
         <bpmn:flowNodeRef>Activity_04blbi8</bpmn:flowNodeRef>
@@ -28,14 +28,13 @@
         <bpmn:flowNodeRef>Gateway_0d5ba9j</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0bcy5bx</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1ynic0k</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0394a4i</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1ynic0k</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_06igcg2" name="Vorgesetzter">
         <bpmn:flowNodeRef>Activity_01</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_02</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_04</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_05</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0hrx094</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1scy8v4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_03</bpmn:flowNodeRef>
@@ -55,11 +54,9 @@
     <bpmn:sequenceFlow id="Flow_1o37sqf" sourceRef="Gateway_1scy8v4" targetRef="Activity_02" />
     <bpmn:sequenceFlow id="Flow_0akd16e" sourceRef="Gateway_1scy8v4" targetRef="Activity_03" />
     <bpmn:sequenceFlow id="Flow_0wni2gw" sourceRef="Gateway_1scy8v4" targetRef="Activity_04" />
-    <bpmn:sequenceFlow id="Flow_0q5ufz5" sourceRef="Gateway_1scy8v4" targetRef="Activity_05" />
     <bpmn:sequenceFlow id="Flow_0uf25ad" sourceRef="Activity_02" targetRef="Gateway_0hrx094" />
     <bpmn:sequenceFlow id="Flow_0hfykf0" sourceRef="Activity_03" targetRef="Gateway_0hrx094" />
     <bpmn:sequenceFlow id="Flow_17mmzoh" sourceRef="Activity_04" targetRef="Gateway_0hrx094" />
-    <bpmn:sequenceFlow id="Flow_0e2lruu" sourceRef="Activity_05" targetRef="Gateway_0hrx094" />
     <bpmn:sequenceFlow id="Flow_0a30yua" sourceRef="Gateway_0hrx094" targetRef="Gateway_13zzz5k" />
     <bpmn:sequenceFlow id="Flow_1we06r7" sourceRef="Gateway_0d5ba9j" targetRef="Activity_04blbi8" />
     <bpmn:sequenceFlow id="Flow_0sv5ese" sourceRef="Activity_04blbi8" targetRef="Event_0vbpj97" />
@@ -87,14 +84,10 @@
     </bpmn:sendTask>
     <bpmn:dataObjectReference id="DataObjectReference_1mj15lw" name="Auswahl an Kollegen" dataObjectRef="DataObject_0jf4m6y" />
     <bpmn:dataObject id="DataObject_0jf4m6y" />
-    <bpmn:userTask id="Activity_04blbi8" name="Kennenlertermin mit neuem Mitarbeiter ausmachen">
+    <bpmn:userTask id="Activity_04blbi8" name="Kennenlertermin mit neuem Mitarbeiter durchführen">
       <bpmn:incoming>Flow_1we06r7</bpmn:incoming>
       <bpmn:outgoing>Flow_0sv5ese</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:task id="Activity_1ynic0k" name="Weitere Unterlagen wie z.B noch ausstehender Urlaub, Mitarbeiterausweis anfordern / übergeben">
-      <bpmn:incoming>Flow_02u3yzo</bpmn:incoming>
-      <bpmn:outgoing>Flow_1axd8lf</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:endEvent id="Event_0394a4i" name="Willkommensnachricht an Mitarbeiter gesendet">
       <bpmn:incoming>Flow_1axd8lf</bpmn:incoming>
     </bpmn:endEvent>
@@ -113,18 +106,10 @@
       <bpmn:incoming>Flow_0wni2gw</bpmn:incoming>
       <bpmn:outgoing>Flow_17mmzoh</bpmn:outgoing>
     </bpmn:manualTask>
-    <bpmn:userTask id="Activity_05" name="Kollegen für Kennenlerntermin auswählen">
-      <bpmn:incoming>Flow_0q5ufz5</bpmn:incoming>
-      <bpmn:outgoing>Flow_0e2lruu</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0fmshdy">
-        <bpmn:targetRef>DataObjectReference_1mj15lw</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:userTask>
     <bpmn:parallelGateway id="Gateway_0hrx094">
       <bpmn:incoming>Flow_0uf25ad</bpmn:incoming>
       <bpmn:incoming>Flow_0hfykf0</bpmn:incoming>
       <bpmn:incoming>Flow_17mmzoh</bpmn:incoming>
-      <bpmn:incoming>Flow_0e2lruu</bpmn:incoming>
       <bpmn:incoming>Flow_13mp125</bpmn:incoming>
       <bpmn:incoming>Flow_0s9xent</bpmn:incoming>
       <bpmn:outgoing>Flow_0a30yua</bpmn:outgoing>
@@ -134,23 +119,12 @@
       <bpmn:outgoing>Flow_1o37sqf</bpmn:outgoing>
       <bpmn:outgoing>Flow_0akd16e</bpmn:outgoing>
       <bpmn:outgoing>Flow_0wni2gw</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0q5ufz5</bpmn:outgoing>
       <bpmn:outgoing>Flow_17xqkm6</bpmn:outgoing>
       <bpmn:outgoing>Flow_03py6kc</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:userTask id="Activity_03" name="Teambuilding-Maßnahmen organisieren">
       <bpmn:incoming>Flow_0akd16e</bpmn:incoming>
       <bpmn:outgoing>Flow_0hfykf0</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="Activity_1i8na2m" name="Kollegen zu einem Kennenlerntermin einladen">
-      <bpmn:incoming>Flow_0ty3c1e</bpmn:incoming>
-      <bpmn:outgoing>Flow_038q9ad</bpmn:outgoing>
-      <bpmn:property id="Property_0d0rtnb" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_1tv1s9v">
-        <bpmn:sourceRef>DataObjectReference_1mj15lw</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0d0rtnb</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:multiInstanceLoopCharacteristics />
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_0ty3c1e" sourceRef="Gateway_13zzz5k" targetRef="Activity_1i8na2m" />
     <bpmn:parallelGateway id="Gateway_13zzz5k">
@@ -210,9 +184,24 @@
       <bpmn:incoming>Flow_0awje8x</bpmn:incoming>
       <bpmn:outgoing>Flow_188upwf</bpmn:outgoing>
     </bpmn:manualTask>
+    <bpmn:callActivity id="Activity_1i8na2m" name="Kennenlertermine mit neuen Kollegen durchführen">
+      <bpmn:incoming>Flow_0ty3c1e</bpmn:incoming>
+      <bpmn:outgoing>Flow_038q9ad</bpmn:outgoing>
+      <bpmn:property id="Property_19i28xn" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1tv1s9v">
+        <bpmn:sourceRef>DataObjectReference_1mj15lw</bpmn:sourceRef>
+        <bpmn:targetRef>Property_19i28xn</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:multiInstanceLoopCharacteristics />
+    </bpmn:callActivity>
+    <bpmn:sendTask id="Activity_1ynic0k" name="Weitere Unterlagen wie z.B noch ausstehender Urlaub, Mitarbeiterausweis anfordern / übergeben" messageRef="Message_NpE2fUSO">
+      <bpmn:incoming>Flow_02u3yzo</bpmn:incoming>
+      <bpmn:outgoing>Flow_1axd8lf</bpmn:outgoing>
+    </bpmn:sendTask>
     <bpmn:association id="Association_1wmrxz9" sourceRef="Activity_1i8na2m" targetRef="TextAnnotation_025i2hi" />
   </bpmn:process>
   <bpmn:message id="Message_fXdIt8oL" name="Message_WelcomeFormHR" />
+  <bpmn:message id="Message_NpE2fUSO" name="Message_MoreDocuments" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
@@ -254,9 +243,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_11n1j4w_di" bpmnElement="Activity_04blbi8">
         <dc:Bounds x="300" y="980" width="190" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1ynic0k_di" bpmnElement="Activity_1ynic0k">
-        <dc:Bounds x="570" y="810" width="325" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0394a4i_di" bpmnElement="Event_0394a4i">
@@ -280,10 +266,6 @@
       <bpmndi:BPMNShape id="Activity_1xr7771_di" bpmnElement="Activity_04">
         <dc:Bounds x="635" y="480" width="160" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1qy21kr_di" bpmnElement="Activity_05">
-        <dc:Bounds x="635" y="580" width="160" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_162mkow_di" bpmnElement="Gateway_0hrx094">
         <dc:Bounds x="845" y="395" width="50" height="50" />
       </bpmndi:BPMNShape>
@@ -292,9 +274,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1lrz49v_di" bpmnElement="Activity_03">
         <dc:Bounds x="635" y="380" width="160" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_14y4nem_di" bpmnElement="Activity_1i8na2m">
-        <dc:Bounds x="1020" y="-240" width="160" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0kujwnt_di" bpmnElement="Gateway_13zzz5k">
         <dc:Bounds x="935" y="-95" width="50" height="50" />
@@ -339,6 +318,12 @@
       <bpmndi:BPMNShape id="Activity_0nkwx80_di" bpmnElement="Activity_1fhcx11">
         <dc:Bounds x="80" y="380" width="120" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0k9m58e_di" bpmnElement="Activity_1i8na2m">
+        <dc:Bounds x="1020" y="-240" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0x93clk_di" bpmnElement="Activity_1ynic0k">
+        <dc:Bounds x="570" y="810" width="300" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1gb9nec_di" bpmnElement="Flow_1gb9nec">
         <di:waypoint x="-62" y="850" />
         <di:waypoint x="15" y="850" />
@@ -370,11 +355,6 @@
         <di:waypoint x="580" y="520" />
         <di:waypoint x="635" y="520" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0q5ufz5_di" bpmnElement="Flow_0q5ufz5">
-        <di:waypoint x="570" y="435" />
-        <di:waypoint x="570" y="630" />
-        <di:waypoint x="635" y="630" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0uf25ad_di" bpmnElement="Flow_0uf25ad">
         <di:waypoint x="795" y="320" />
         <di:waypoint x="870" y="320" />
@@ -388,11 +368,6 @@
         <di:waypoint x="795" y="520" />
         <di:waypoint x="870" y="520" />
         <di:waypoint x="870" y="445" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0e2lruu_di" bpmnElement="Flow_0e2lruu">
-        <di:waypoint x="795" y="630" />
-        <di:waypoint x="880" y="630" />
-        <di:waypoint x="880" y="435" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0a30yua_di" bpmnElement="Flow_0a30yua">
         <di:waypoint x="895" y="420" />
@@ -418,7 +393,7 @@
         <di:waypoint x="570" y="850" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1axd8lf_di" bpmnElement="Flow_1axd8lf">
-        <di:waypoint x="895" y="850" />
+        <di:waypoint x="870" y="850" />
         <di:waypoint x="1642" y="850" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_18fje4i_di" bpmnElement="Flow_18fje4i">
@@ -495,20 +470,16 @@
         <di:waypoint x="-80" y="832" />
         <di:waypoint x="-82" y="-105" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_0fmshdy_di" bpmnElement="DataOutputAssociation_0fmshdy">
-        <di:waypoint x="795" y="640" />
-        <di:waypoint x="1082" y="640" />
+      <bpmndi:BPMNEdge id="DataInputAssociation_0xqdrfs_di" bpmnElement="DataInputAssociation_0xqdrfs">
+        <di:waypoint x="-62" y="-130" />
+        <di:waypoint x="990" y="-130" />
+        <di:waypoint x="1028" y="-109" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1tv1s9v_di" bpmnElement="DataInputAssociation_1tv1s9v">
         <di:waypoint x="1118" y="640" />
         <di:waypoint x="1200" y="640" />
         <di:waypoint x="1200" y="-200" />
         <di:waypoint x="1180" y="-200" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_0xqdrfs_di" bpmnElement="DataInputAssociation_0xqdrfs">
-        <di:waypoint x="-62" y="-130" />
-        <di:waypoint x="990" y="-130" />
-        <di:waypoint x="1028" y="-109" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_043gqzy_di" bpmnElement="Association_043gqzy">
         <di:waypoint x="400" y="810" />
