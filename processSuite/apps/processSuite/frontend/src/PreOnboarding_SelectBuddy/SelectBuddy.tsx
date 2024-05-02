@@ -19,14 +19,12 @@ import styles from "./SelectBuddy.module.css";
 import Meta from "antd/es/card/Meta";
 import { SendOutlined, PlusOutlined } from "@ant-design/icons";
 import Paragraph from "antd/es/typography/Paragraph";
-import test from "node:test";
 import config from "../config/config.json";
+import { RowSelectionType } from "antd/es/table/interface";
 
-const SelectBuddy: React.FC<CustomFormProps> = (props) => {
-  const { Header, Footer, Sider, Content } = Layout;
-
+const SelectBuddy: React.FC<any> = ({selectedBuddy, setSelectedBuddy}) => {
   const [tableData, setTableData] = useState<TableDataType[]>([]);
-  const [selectedRows, setSelectedRows] = useState<React.Key[]>([]);
+
 
   const camelHost = config.camel.host;
 
@@ -169,20 +167,21 @@ const SelectBuddy: React.FC<CustomFormProps> = (props) => {
 
   // rowSelection object indicates the need for row selection
   const rowSelection = {
+    // To allow only one Selection - cast is needed for TypeScript
+    type: 'radio' as RowSelectionType,
+    // To LOAD the selected Buddy from State
+    selectedRowKeys: selectedBuddy,
+    // To SAVE the selected Buddy in State
     onChange: (selectedRowKeys: React.Key[], selectedRows: TableDataType[]) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`);
-      setSelectedRows(selectedRowKeys.slice(-1));
+      setSelectedBuddy(selectedRowKeys.slice(-1));
     },
-    getCheckboxProps: (record: TableDataType) => ({
-      disabled: record.name === "Disabled User1", // Column configuration not to be checked
-      name: record.name,
-    }),
   };
 
-  const sendSelectedEmployees = () => {
-    console.log("Selected employees:", selectedRows);
-    props.finishUserTask({ selectedBuddy: selectedRows });
-  };
+  // const sendSelectedEmployees = () => {
+  //   console.log("Selected employees:", selectedRows);
+  //   props.finishUserTask({ selectedBuddy: selectedRows });
+  // };
 
   return (
     <>
@@ -206,30 +205,17 @@ const SelectBuddy: React.FC<CustomFormProps> = (props) => {
                 <Table
                   pagination={{ position: [] }}
                   scroll={{ y: 400 }}
-                  rowSelection={{
-                    type: "radio",
-                    ...rowSelection,
-                  }}
+                  rowSelection={rowSelection}
                   loading={tableData.length === 0}
                   columns={columns}
                   dataSource={tableData}
+                  
                 />
               </Card>
             </div>
           </Col>
           <Col span={2}></Col>
         </Row>
-        <Button
-          type="primary"
-          icon={<SendOutlined />}
-          size="large"
-          onClick={() => {
-            sendSelectedEmployees();
-          }}
-          className={styles.button}
-        >
-          Senden
-        </Button>
       </div>
     </>
   );

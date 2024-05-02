@@ -53,8 +53,6 @@ export class CustomFormsRenderer extends React.Component<
 
   private components: CustomFormsComponentDict = {
     ExampleCustomForm: ExampleCustomForm,
-    EmployeeList: EmployeeList,
-    SelectBuddy: SelectBuddy,
     BuddyAndEmployeeSelection: BuddyAndEmployeeSelection,
   };
 
