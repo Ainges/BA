@@ -6,7 +6,7 @@ import org.apache.camel.builder.RouteBuilder;
 import processors.PreOnboarding.CalculateBrithdayProcessor;
 
 @ApplicationScoped
-public class PreOnboardingBrithdayCalculation extends RouteBuilder {
+public class PreOnboardingBrithdayCalculationRoute extends RouteBuilder {
 
 
     /**
@@ -32,7 +32,8 @@ public class PreOnboardingBrithdayCalculation extends RouteBuilder {
         from("jms:BirthdayCalculation")
                 .id("BirthdayCalculationFromBroker-Route")
                 .process(calculateBrithdayProcessor)
-                .to("log: TEST!");
+                .log("Calculation of Birthday result: ${body}")
+                .end();
 
 
     }

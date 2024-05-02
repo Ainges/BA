@@ -124,28 +124,27 @@
         <camunda:properties>
           <camunda:property name="module" value="HttpClient" />
           <camunda:property name="method" value="post" />
-          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onbording/preonboarding/BirthdayCalculation&#34;, &#34;token.current&#34;]" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/BirthdayCalculation&#34;, &#34;token.current&#34;]" />
           <camunda:property name="studio.paramBody" value="token.current" />
-          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onbording/preonboarding/BirthdayCalculation" />
+          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/BirthdayCalculation" />
           <camunda:property name="studio.paramAuthorization" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1yp6geo</bpmn:incoming>
       <bpmn:outgoing>Flow_1wuupoe</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_1wuupoe" sourceRef="Activity_0qvird3" targetRef="Event_05fw1s1" />
-    <bpmn:sequenceFlow id="Flow_1g921xe" sourceRef="Event_05fw1s1" targetRef="Event_1pqxdzy" />
-    <bpmn:intermediateCatchEvent id="Event_05fw1s1" name="Ergebnis erhalten">
-      <bpmn:incoming>Flow_1wuupoe</bpmn:incoming>
-      <bpmn:outgoing>Flow_1g921xe</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_05f88q1" messageRef="Message_yGAjYTL8" />
-    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_1wuupoe" sourceRef="Activity_0qvird3" targetRef="Event_1pqxdzy" />
     <bpmn:endEvent id="Event_0u1z24k" name="Antwort zu Umzugsfrage mitteilen">
       <bpmn:incoming>Flow_0yjwaop</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1xnl8b5" messageRef="Message_xd1rilT2" />
     </bpmn:endEvent>
     <bpmn:intermediateThrowEvent id="Event_1pqxdzy" name="Ergebnis erfolgreich an Prozess zurückgemeldet">
-      <bpmn:incoming>Flow_1g921xe</bpmn:incoming>
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="inputValues" value="token.current" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1wuupoe</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0xu7b28" messageRef="Message_enwXihYL" />
     </bpmn:intermediateThrowEvent>
   </bpmn:process>
@@ -240,12 +239,6 @@
         <dc:Bounds x="75" y="670" width="160" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1cv6007_di" bpmnElement="Event_05fw1s1">
-        <dc:Bounds x="387" y="692" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="362" y="735" width="87" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0ha6e0a_di" bpmnElement="Event_0u1z24k">
         <dc:Bounds x="682" y="52" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -300,10 +293,6 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1wuupoe_di" bpmnElement="Flow_1wuupoe">
         <di:waypoint x="235" y="710" />
-        <di:waypoint x="387" y="710" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1g921xe_di" bpmnElement="Flow_1g921xe">
-        <di:waypoint x="423" y="710" />
         <di:waypoint x="687" y="710" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

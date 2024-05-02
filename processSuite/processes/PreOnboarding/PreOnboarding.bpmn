@@ -28,8 +28,8 @@
     <bpmn:textAnnotation id="TextAnnotation_1786vqb">
       <bpmn:text>Liste, welche dem Mitarbeiter in der Anwendung zur Abarbeitung gezeigt wird</bpmn:text>
     </bpmn:textAnnotation>
-    <bpmn:association id="Association_16n593h" sourceRef="Activity_1mnv47x" targetRef="TextAnnotation_1g7nhah" />
     <bpmn:association id="Association_1i23230" associationDirection="None" sourceRef="Activity_1u0fik6" targetRef="TextAnnotation_1786vqb" />
+    <bpmn:association id="Association_16n593h" sourceRef="Activity_1mnv47x" targetRef="TextAnnotation_1g7nhah" />
   </bpmn:collaboration>
   <bpmn:process id="Preonboarding_Process" name="Onboarding_Phase1" isExecutable="true" camunda:versionTag="0.1">
     <bpmn:laneSet>
@@ -42,32 +42,34 @@
         <bpmn:flowNodeRef>Event_17whont</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_15ozkw0</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1d8bbu9</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0gbv2hg</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1u0fik6</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_08gq0uy</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_11h7fua</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1n7xkno</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0vwo47g</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_1v90pt7</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0ve80u6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1cannnv</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0mi7quq</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1mnv47x</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1r751sf</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0bx4zme</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0k0b8gx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1inu1sx</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0auig7p</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0e9psvj</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_141wu49</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_1pwvone</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1l0s39s</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0iqejj2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0vy7lxq</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_18vvqsr</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>SmallAttentionOrganisation</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>FirstWelcomeMessage_Send</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>InfoForFirstWorkingDay_send</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_141wu49</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1v90pt7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_08gq0uy</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_11h7fua</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0vwo47g</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1mnv47x</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1pwvone</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0mi7quq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>SmallAttentionOrganisation</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1r751sf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0gbv2hg</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0ettg97</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1u0fik6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0bx4zme</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1fgzbmu</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0auig7p</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_0cnjnkh" sourceRef="Gateway_0vfwlrv" targetRef="Activity_1eyq305" />
@@ -135,62 +137,11 @@
       <bpmn:outgoing>Flow_0cxmjjd</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0n355id" messageRef="Message_2Sz5EKXp" />
     </bpmn:intermediateThrowEvent>
-    <bpmn:userTask id="Activity_0gbv2hg" name="Mentor / Buddy auswählen">
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="customForm" value="SelectBuddy" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1e1gsww</bpmn:incoming>
-      <bpmn:outgoing>Flow_0y1muji</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="Activity_1u0fik6" name="Individuellen Einarbeitunsplan erstellen">
-      <bpmn:incoming>Flow_0l23t6d</bpmn:incoming>
-      <bpmn:outgoing>Flow_0u5kq4g</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:parallelGateway id="Gateway_08gq0uy">
-      <bpmn:incoming>Flow_0ti0n89</bpmn:incoming>
-      <bpmn:incoming>Flow_1o4hqnp</bpmn:incoming>
-      <bpmn:incoming>Flow_0y1muji</bpmn:incoming>
-      <bpmn:incoming>Flow_0u5kq4g</bpmn:incoming>
-      <bpmn:incoming>Flow_0nz2hn4</bpmn:incoming>
-      <bpmn:outgoing>Flow_020fp2m</bpmn:outgoing>
-    </bpmn:parallelGateway>
-    <bpmn:manualTask id="Activity_11h7fua" name="Wilkommensgeschenk vorbereiten">
-      <bpmn:incoming>Flow_0x25abl</bpmn:incoming>
-      <bpmn:outgoing>Flow_1o4hqnp</bpmn:outgoing>
-    </bpmn:manualTask>
     <bpmn:exclusiveGateway id="Gateway_1n7xkno">
       <bpmn:incoming>Flow_0pkp1ay</bpmn:incoming>
       <bpmn:incoming>Flow_0cxmjjd</bpmn:incoming>
       <bpmn:incoming>Flow_1j6gdlh</bpmn:incoming>
       <bpmn:outgoing>Flow_1yza01d</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_0vwo47g" name="Notwendige (compliance) Schulungen organisieren">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="data-privacy-and-protection" label="Datenschutz" type="boolean" defaultValue="true" customForm="{&#34;confirmButtonText&#34;:&#34;Ja&#34;,&#34;declineButtonText&#34;:&#34;Nein&#34;}" />
-          <camunda:formField id="anti-Corruption" label="Anti Korruption" type="boolean" defaultValue="true" />
-          <camunda:formField id="codeofConduct" label="Code of Conduct" type="boolean" defaultValue="true" />
-          <camunda:formField id="health-and-Safety" label="Arbeitssicherheit und Gesundheitsschutz" type="boolean" defaultValue="true" />
-          <camunda:formField id="anti-Discrimination" label="Anti-Diskriminierung" type="boolean" defaultValue="true" />
-          <camunda:formField id="financial-and-Accounting-Ethics" label="Finanz- und Buchhaltungsethik" type="boolean" />
-          <camunda:formField id="industry-Standards-and-Regulations" label="Compliance mit Branchenstandards und -regulierungen" type="boolean" />
-          <camunda:formField id="it-Security-and-Data-Privacy" label="IT-Sicherheit und Datenschutz im digitalen Raum" type="boolean" />
-          <camunda:formField id="environmental-Protection-Policies" label="Umweltschutzrichtlinien" type="boolean" defaultValue="true" />
-          <camunda:formField id="whistleblower-Guidelines" label="Whistleblower-Richtlinien" type="boolean" defaultValue="true" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1ca1wyr</bpmn:incoming>
-      <bpmn:outgoing>Flow_0nz2hn4</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1n0yww0">
-        <bpmn:targetRef>DataObjectReference_necessary_training</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:userTask>
-    <bpmn:exclusiveGateway id="Gateway_1v90pt7">
-      <bpmn:incoming>Flow_1hnmuf0</bpmn:incoming>
-      <bpmn:incoming>Flow_19f4yhv</bpmn:incoming>
-      <bpmn:outgoing>Flow_1xwqfij</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:userTask id="Activity_0ve80u6" name="Eckpunkte für ersten Arbeitstag definieren">
       <bpmn:documentation>Inhalt: 
@@ -209,43 +160,12 @@
       <bpmn:incoming>Flow_1aclm6n</bpmn:incoming>
       <bpmn:outgoing>Flow_10b9tgi</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:dataObjectReference id="DataObjectReference_necessary_training" name="Notwendige&#10;(Compliance) Schulungen" dataObjectRef="DataObject_04vns1l" />
-    <bpmn:dataObject id="DataObject_04vns1l" />
     <bpmn:intermediateCatchEvent id="Event_1cannnv" name="14 Tage vor Eintritt">
       <bpmn:incoming>Flow_0b711zh</bpmn:incoming>
       <bpmn:outgoing>Flow_1j6gdlh</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_1ir7347">
         <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P1D</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
-    </bpmn:intermediateCatchEvent>
-    <bpmn:subProcess id="Activity_0bx4zme" triggeredByEvent="true">
-      <bpmn:endEvent id="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay" name="Vorbereitung nicht vollständig abgeschlossen">
-        <bpmn:incoming>Flow_0e6pm09</bpmn:incoming>
-        <bpmn:errorEventDefinition id="ErrorEventDefinition_11fepio" errorRef="Error_E8RuFXba" />
-      </bpmn:endEvent>
-      <bpmn:sequenceFlow id="Flow_0e6pm09" sourceRef="Event_0k4kdml" targetRef="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay" />
-      <bpmn:startEvent id="Event_0k4kdml" name="Erster Arbeitstag erreicht">
-        <bpmn:outgoing>Flow_0e6pm09</bpmn:outgoing>
-        <bpmn:timerEventDefinition id="TimerEventDefinition_0ymcygb">
-          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5S</bpmn:timeDuration>
-        </bpmn:timerEventDefinition>
-      </bpmn:startEvent>
-    </bpmn:subProcess>
-    <bpmn:intermediateThrowEvent id="Event_0mi7quq" name="Mitarbeitern in Systemen anlegen">
-      <bpmn:incoming>Flow_020fp2m</bpmn:incoming>
-      <bpmn:outgoing>Flow_1pyszsg</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_12rblzb" />
-    </bpmn:intermediateThrowEvent>
-    <bpmn:callActivity id="Activity_1mnv47x" name="Arbeitsplatz / Equipment vorbereiten" calledElement="PrepareWorkingPlaceAndEquipmen_Process">
-      <bpmn:documentation>Generiert ua. Firmenmail
-</bpmn:documentation>
-      <bpmn:incoming>Flow_1hbs1ar</bpmn:incoming>
-      <bpmn:outgoing>Flow_0ti0n89</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:intermediateCatchEvent id="Event_1r751sf" name="Berechnung erhalten">
-      <bpmn:incoming>Flow_110ti7k</bpmn:incoming>
-      <bpmn:outgoing>Flow_0zgdox5</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1e32199" messageRef="Message_YMfNr6OO" />
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="Flow_0hvkfna" sourceRef="Activity_1eyq305" targetRef="Gateway_0e9psvj" />
     <bpmn:sequenceFlow id="Flow_02pc3pw" sourceRef="Gateway_0e9psvj" targetRef="Event_17whont" />
@@ -269,7 +189,7 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0b711zh" sourceRef="Gateway_0e9psvj" targetRef="Event_1cannnv" />
     <bpmn:sequenceFlow id="Flow_1hnmuf0" name="Nein" sourceRef="Gateway_141wu49" targetRef="Gateway_1v90pt7">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">false</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.birthday === "after"</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_19f4yhv" sourceRef="SmallAttentionOrganisation" targetRef="Gateway_1v90pt7" />
     <bpmn:sequenceFlow id="Flow_1xwqfij" sourceRef="Gateway_1v90pt7" targetRef="Gateway_0k0b8gx">
@@ -286,7 +206,7 @@
     <bpmn:sequenceFlow id="Flow_0l95km6" sourceRef="Event_0iqejj2" targetRef="Activity_1l0s39s" />
     <bpmn:sequenceFlow id="Flow_0zgdox5" sourceRef="Event_1r751sf" targetRef="Gateway_141wu49" />
     <bpmn:sequenceFlow id="Flow_14f8hc7" name="ja" sourceRef="Gateway_141wu49" targetRef="SmallAttentionOrganisation">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">true</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.result.birthday === "before" || "on"</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:parallelGateway id="Gateway_0k0b8gx">
       <bpmn:incoming>Flow_1wl4ctr</bpmn:incoming>
@@ -318,19 +238,6 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmn:outgoing>Flow_02pc3pw</bpmn:outgoing>
       <bpmn:outgoing>Flow_0b711zh</bpmn:outgoing>
     </bpmn:eventBasedGateway>
-    <bpmn:exclusiveGateway id="Gateway_141wu49" name="Hat neuer Mitarbeiter noch vor dem ersten Arbeitstag Geburtstag?">
-      <bpmn:incoming>Flow_0zgdox5</bpmn:incoming>
-      <bpmn:outgoing>Flow_1hnmuf0</bpmn:outgoing>
-      <bpmn:outgoing>Flow_14f8hc7</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:parallelGateway id="Gateway_1pwvone">
-      <bpmn:incoming>Flow_0tbqr8l</bpmn:incoming>
-      <bpmn:outgoing>Flow_0x25abl</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1hbs1ar</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1e1gsww</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0l23t6d</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1ca1wyr</bpmn:outgoing>
-    </bpmn:parallelGateway>
     <bpmn:sendTask id="Activity_1l0s39s" name="Wilkommensnachricht / Reminder für anstehenden ersten Arbeitstag" messageRef="Message_uZq3k32L">
       <bpmn:extensionElements>
         <camunda:properties>
@@ -372,10 +279,6 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <bpmn:targetRef>Property_0v4am1s</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:endEvent>
-    <bpmn:manualTask id="SmallAttentionOrganisation" name="Aufmerksamkeit Organisieren und zukommen lassen">
-      <bpmn:incoming>Flow_14f8hc7</bpmn:incoming>
-      <bpmn:outgoing>Flow_19f4yhv</bpmn:outgoing>
-    </bpmn:manualTask>
     <bpmn:sendTask id="FirstWelcomeMessage_Send" name="Willkommensnachricht an Mitarbeiter senden" messageRef="Message_LKtkj70V">
       <bpmn:documentation>Sehr wichtig zur Mitarbeiterbindung um im Geächnis zu bleiben und einem nicht nicht erscheinen am Ersten Arbeitstag entgegen zu wirken.</bpmn:documentation>
       <bpmn:extensionElements>
@@ -405,6 +308,131 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <bpmn:targetRef>Property_1ck9jsl</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_0cnaxv6" sourceRef="Activity_0ettg97" targetRef="Gateway_08gq0uy" />
+    <bpmn:sequenceFlow id="Flow_13etpzl" sourceRef="Gateway_1pwvone" targetRef="Activity_0ettg97" />
+    <bpmn:sequenceFlow id="Flow_13falf8" sourceRef="Gateway_141wu49" targetRef="Gateway_1v90pt7" />
+    <bpmn:intermediateCatchEvent id="Event_1r751sf" name="Berechnung erhalten">
+      <bpmn:incoming>Flow_110ti7k</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zgdox5</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1e32199" messageRef="Message_YMfNr6OO" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:inclusiveGateway id="Gateway_141wu49" name="Hat neuer Mitarbeiter noch vor dem ersten Arbeitstag Geburtstag?" default="Flow_13falf8">
+      <bpmn:incoming>Flow_0zgdox5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1hnmuf0</bpmn:outgoing>
+      <bpmn:outgoing>Flow_14f8hc7</bpmn:outgoing>
+      <bpmn:outgoing>Flow_13falf8</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0thhn1p</bpmn:outgoing>
+    </bpmn:inclusiveGateway>
+    <bpmn:inclusiveGateway id="Gateway_1v90pt7">
+      <bpmn:incoming>Flow_1hnmuf0</bpmn:incoming>
+      <bpmn:incoming>Flow_19f4yhv</bpmn:incoming>
+      <bpmn:incoming>Flow_13falf8</bpmn:incoming>
+      <bpmn:incoming>Flow_00p1fzd</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xwqfij</bpmn:outgoing>
+    </bpmn:inclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_00p1fzd" sourceRef="Activity_1fgzbmu" targetRef="Gateway_1v90pt7" />
+    <bpmn:sequenceFlow id="Flow_0thhn1p" name="ja genau am ersten Arbeitstag" sourceRef="Gateway_141wu49" targetRef="Activity_1fgzbmu">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.result.birthday === "on"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:parallelGateway id="Gateway_08gq0uy">
+      <bpmn:incoming>Flow_0ti0n89</bpmn:incoming>
+      <bpmn:incoming>Flow_1o4hqnp</bpmn:incoming>
+      <bpmn:incoming>Flow_0u5kq4g</bpmn:incoming>
+      <bpmn:incoming>Flow_0nz2hn4</bpmn:incoming>
+      <bpmn:incoming>Flow_0cnaxv6</bpmn:incoming>
+      <bpmn:incoming>Flow_0y1muji</bpmn:incoming>
+      <bpmn:outgoing>Flow_020fp2m</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:manualTask id="Activity_11h7fua" name="Wilkommensgeschenk vorbereiten">
+      <bpmn:incoming>Flow_0x25abl</bpmn:incoming>
+      <bpmn:outgoing>Flow_1o4hqnp</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:userTask id="Activity_0vwo47g" name="Notwendige (compliance) Schulungen organisieren">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="data-privacy-and-protection" label="Datenschutz" type="boolean" defaultValue="true" customForm="{&#34;confirmButtonText&#34;:&#34;Ja&#34;,&#34;declineButtonText&#34;:&#34;Nein&#34;}" />
+          <camunda:formField id="anti-Corruption" label="Anti Korruption" type="boolean" defaultValue="true" />
+          <camunda:formField id="codeofConduct" label="Code of Conduct" type="boolean" defaultValue="true" />
+          <camunda:formField id="health-and-Safety" label="Arbeitssicherheit und Gesundheitsschutz" type="boolean" defaultValue="true" />
+          <camunda:formField id="anti-Discrimination" label="Anti-Diskriminierung" type="boolean" defaultValue="true" />
+          <camunda:formField id="financial-and-Accounting-Ethics" label="Finanz- und Buchhaltungsethik" type="boolean" />
+          <camunda:formField id="industry-Standards-and-Regulations" label="Compliance mit Branchenstandards und -regulierungen" type="boolean" />
+          <camunda:formField id="it-Security-and-Data-Privacy" label="IT-Sicherheit und Datenschutz im digitalen Raum" type="boolean" />
+          <camunda:formField id="environmental-Protection-Policies" label="Umweltschutzrichtlinien" type="boolean" defaultValue="true" />
+          <camunda:formField id="whistleblower-Guidelines" label="Whistleblower-Richtlinien" type="boolean" defaultValue="true" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ca1wyr</bpmn:incoming>
+      <bpmn:outgoing>Flow_0nz2hn4</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1n0yww0">
+        <bpmn:targetRef>DataObjectReference_necessary_training</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:userTask>
+    <bpmn:dataObjectReference id="DataObjectReference_necessary_training" name="Notwendige&#10;(Compliance) Schulungen" dataObjectRef="DataObject_04vns1l" />
+    <bpmn:dataObject id="DataObject_04vns1l" />
+    <bpmn:callActivity id="Activity_1mnv47x" name="Arbeitsplatz / Equipment vorbereiten" calledElement="PrepareWorkingPlaceAndEquipmen_Process">
+      <bpmn:documentation>Generiert ua. Firmenmail
+</bpmn:documentation>
+      <bpmn:incoming>Flow_1hbs1ar</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ti0n89</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:parallelGateway id="Gateway_1pwvone">
+      <bpmn:incoming>Flow_0tbqr8l</bpmn:incoming>
+      <bpmn:outgoing>Flow_0x25abl</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1hbs1ar</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1e1gsww</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0l23t6d</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1ca1wyr</bpmn:outgoing>
+      <bpmn:outgoing>Flow_13etpzl</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:intermediateThrowEvent id="Event_0mi7quq" name="Mitarbeitern in Systemen anlegen">
+      <bpmn:incoming>Flow_020fp2m</bpmn:incoming>
+      <bpmn:outgoing>Flow_1pyszsg</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_12rblzb" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:manualTask id="SmallAttentionOrganisation" name="Aufmerksamkeit Organisieren und zukommen lassen">
+      <bpmn:incoming>Flow_14f8hc7</bpmn:incoming>
+      <bpmn:outgoing>Flow_19f4yhv</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:subProcess id="Activity_0bx4zme" triggeredByEvent="true">
+      <bpmn:endEvent id="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay" name="Vorbereitung nicht vollständig abgeschlossen">
+        <bpmn:incoming>Flow_0e6pm09</bpmn:incoming>
+        <bpmn:errorEventDefinition id="ErrorEventDefinition_11fepio" errorRef="Error_E8RuFXba" />
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_0e6pm09" sourceRef="Event_0k4kdml" targetRef="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay" />
+      <bpmn:startEvent id="Event_0k4kdml" name="Erster Arbeitstag erreicht">
+        <bpmn:outgoing>Flow_0e6pm09</bpmn:outgoing>
+        <bpmn:timerEventDefinition id="TimerEventDefinition_0ymcygb">
+          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5S</bpmn:timeDuration>
+        </bpmn:timerEventDefinition>
+      </bpmn:startEvent>
+    </bpmn:subProcess>
+    <bpmn:userTask id="Activity_0gbv2hg" name="Mentor / Buddy auswählen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="customForm" value="SelectBuddy" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1e1gsww</bpmn:incoming>
+      <bpmn:outgoing>Flow_0y1muji</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_0ettg97" name="Weitere Mitarbeiter für die ein Kennenlerntermin ausgemacht werden soll, auswählen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="customForm" value="EmployeeList" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_13etpzl</bpmn:incoming>
+      <bpmn:outgoing>Flow_0cnaxv6</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_1u0fik6" name="Individuellen Einarbeitunsplan erstellen">
+      <bpmn:incoming>Flow_0l23t6d</bpmn:incoming>
+      <bpmn:outgoing>Flow_0u5kq4g</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:task id="Activity_1fgzbmu" name="Kuchen organisieren">
+      <bpmn:incoming>Flow_0thhn1p</bpmn:incoming>
+      <bpmn:outgoing>Flow_00p1fzd</bpmn:outgoing>
+    </bpmn:task>
     <bpmn:association id="Association_0qiqspg" associationDirection="None" sourceRef="SmallAttentionOrganisation" targetRef="TextAnnotation_1udw2qo" />
   </bpmn:process>
   <bpmn:escalation id="Escalation_crvS1NUq" name="test" escalationCode="test" />
@@ -434,11 +462,11 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
-        <dc:Bounds x="5" y="520" width="2475" height="1490" />
+        <dc:Bounds x="5" y="520" width="2475" height="1770" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1pyr36n_di" bpmnElement="Lane_1pyr36n" isHorizontal="true">
-        <dc:Bounds x="35" y="520" width="2445" height="1490" />
+        <dc:Bounds x="35" y="520" width="2445" height="1770" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataObjectReference_0oullfp_di" bpmnElement="DataObjectReference_newEmployeeData">
@@ -489,77 +517,16 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
           <dc:Bounds x="1559" y="662" width="82" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_01fv8t0" bpmnElement="Activity_0gbv2hg">
-        <dc:Bounds x="940" y="1800" width="163" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_1h01tdo" bpmnElement="Activity_1u0fik6">
-        <dc:Bounds x="940" y="1910" width="165" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_07c5v3g_di" bpmnElement="Gateway_08gq0uy">
-        <dc:Bounds x="1177" y="1705" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0z725at_di" bpmnElement="Activity_11h7fua">
-        <dc:Bounds x="940" y="1690" width="163" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1n7xkno_di" bpmnElement="Gateway_1n7xkno" isMarkerVisible="true">
         <dc:Bounds x="1755" y="705" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0oabp93_di" bpmnElement="Activity_0vwo47g">
-        <dc:Bounds x="942" y="1480" width="155" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1v90pt7_di" bpmnElement="Gateway_1v90pt7" isMarkerVisible="true">
-        <dc:Bounds x="1485" y="1225" width="50" height="50" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ab0bmi_di" bpmnElement="Activity_0ve80u6">
         <dc:Bounds x="940" y="980" width="160" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_08undc3_di" bpmnElement="DataObjectReference_necessary_training">
-        <dc:Bounds x="2062" y="1470" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2048" y="1527" width="66" height="40" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1ei46km" bpmnElement="Event_1cannnv">
         <dc:Bounds x="1652" y="812" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1641" y="774" width="58" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0ofklws_di" bpmnElement="Activity_0bx4zme" isExpanded="true">
-        <dc:Bounds x="2020" y="1850" width="360" height="130" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0v3vrie_di" bpmnElement="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay">
-        <dc:Bounds x="2282" y="1892" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2261" y="1935" width="79" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0nk2upq_di" bpmnElement="Event_0k4kdml">
-        <dc:Bounds x="2062" y="1892" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2039" y="1935" width="82" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_0e6pm09_di" bpmnElement="Flow_0e6pm09">
-        <di:waypoint x="2098" y="1910" />
-        <di:waypoint x="2282" y="1910" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_1rfz31h_di" bpmnElement="Event_0mi7quq">
-        <dc:Bounds x="1492" y="1712" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1476" y="1755" width="70" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0whuenp_di" bpmnElement="Activity_1mnv47x">
-        <dc:Bounds x="937" y="1580" width="165" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0egzgp9_di" bpmnElement="Event_1r751sf">
-        <dc:Bounds x="1002" y="1232" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="990" y="1275" width="60" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0ws6h5b_di" bpmnElement="Gateway_0k0b8gx">
@@ -577,15 +544,6 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_01qbgte_di" bpmnElement="Gateway_0e9psvj">
         <dc:Bounds x="1155" y="705" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_141wu49_di" bpmnElement="Gateway_141wu49" isMarkerVisible="true">
-        <dc:Bounds x="1155" y="1225" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1220" y="1257" width="79" height="66" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0lxvugj_di" bpmnElement="Gateway_1pwvone">
-        <dc:Bounds x="617" y="1705" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1jk89as_di" bpmnElement="Activity_1l0s39s">
         <dc:Bounds x="1825" y="1100" width="210" height="80" />
@@ -606,16 +564,93 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
           <dc:Bounds x="2290" y="1176" width="79" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0yxqjxz_di" bpmnElement="SmallAttentionOrganisation">
-        <dc:Bounds x="1280" y="1345" width="160" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ub674b_di" bpmnElement="FirstWelcomeMessage_Send">
         <dc:Bounds x="1280" y="1100" width="160" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0wd7qwy_di" bpmnElement="InfoForFirstWorkingDay_send">
         <dc:Bounds x="1280" y="980" width="160" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0egzgp9_di" bpmnElement="Event_1r751sf">
+        <dc:Bounds x="932" y="1232" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="920" y="1275" width="60" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1mgpmjr_di" bpmnElement="Gateway_141wu49">
+        <dc:Bounds x="1035" y="1225" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1050" y="1157" width="79" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0d8t8rx_di" bpmnElement="Gateway_1v90pt7">
+        <dc:Bounds x="1485" y="1225" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_07c5v3g_di" bpmnElement="Gateway_08gq0uy">
+        <dc:Bounds x="1177" y="1805" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0z725at_di" bpmnElement="Activity_11h7fua">
+        <dc:Bounds x="940" y="1790" width="163" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0oabp93_di" bpmnElement="Activity_0vwo47g">
+        <dc:Bounds x="942" y="1580" width="155" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_08undc3_di" bpmnElement="DataObjectReference_necessary_training">
+        <dc:Bounds x="2062" y="1570" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2048" y="1627" width="66" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0whuenp_di" bpmnElement="Activity_1mnv47x">
+        <dc:Bounds x="937" y="1680" width="165" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0lxvugj_di" bpmnElement="Gateway_1pwvone">
+        <dc:Bounds x="617" y="1805" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1rfz31h_di" bpmnElement="Event_0mi7quq">
+        <dc:Bounds x="2020" y="1812" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2004" y="1855" width="70" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0yxqjxz_di" bpmnElement="SmallAttentionOrganisation">
+        <dc:Bounds x="1180" y="1480" width="160" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ofklws_di" bpmnElement="Activity_0bx4zme" isExpanded="true">
+        <dc:Bounds x="2020" y="2130" width="360" height="130" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0v3vrie_di" bpmnElement="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay">
+        <dc:Bounds x="2282" y="2172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2261" y="2215" width="79" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0nk2upq_di" bpmnElement="Event_0k4kdml">
+        <dc:Bounds x="2062" y="2172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2039" y="2215" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0e6pm09_di" bpmnElement="Flow_0e6pm09">
+        <di:waypoint x="2098" y="2190" />
+        <di:waypoint x="2282" y="2190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_01fv8t0" bpmnElement="Activity_0gbv2hg">
+        <dc:Bounds x="938" y="1880" width="163" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0h0sxg9_di" bpmnElement="Activity_0ettg97">
+        <dc:Bounds x="940" y="1970" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1h01tdo" bpmnElement="Activity_1u0fik6">
+        <dc:Bounds x="937" y="2060" width="165" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1fgzbmu_di" bpmnElement="Activity_1fgzbmu">
+        <dc:Bounds x="1180" y="1320" width="160" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0cnjnkh_di" bpmnElement="Flow_0cnjnkh">
@@ -629,8 +664,8 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0tbqr8l_di" bpmnElement="Flow_0tbqr8l">
         <di:waypoint x="580" y="1165" />
-        <di:waypoint x="580" y="1730" />
-        <di:waypoint x="617" y="1730" />
+        <di:waypoint x="580" y="1830" />
+        <di:waypoint x="617" y="1830" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0579xkg_di" bpmnElement="Flow_0579xkg">
         <di:waypoint x="605" y="1140" />
@@ -647,28 +682,28 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="940" y="1020" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0x25abl_di" bpmnElement="Flow_0x25abl">
-        <di:waypoint x="667" y="1730" />
-        <di:waypoint x="940" y="1730" />
+        <di:waypoint x="667" y="1830" />
+        <di:waypoint x="940" y="1830" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1hbs1ar_di" bpmnElement="Flow_1hbs1ar">
-        <di:waypoint x="652" y="1715" />
-        <di:waypoint x="652" y="1620" />
-        <di:waypoint x="937" y="1620" />
+        <di:waypoint x="642" y="1805" />
+        <di:waypoint x="642" y="1720" />
+        <di:waypoint x="937" y="1720" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1e1gsww_di" bpmnElement="Flow_1e1gsww">
-        <di:waypoint x="652" y="1745" />
-        <di:waypoint x="652" y="1840" />
-        <di:waypoint x="940" y="1840" />
+        <di:waypoint x="642" y="1855" />
+        <di:waypoint x="642" y="1920" />
+        <di:waypoint x="938" y="1920" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0l23t6d_di" bpmnElement="Flow_0l23t6d">
-        <di:waypoint x="642" y="1755" />
-        <di:waypoint x="642" y="1950" />
-        <di:waypoint x="940" y="1950" />
+        <di:waypoint x="642" y="1855" />
+        <di:waypoint x="642" y="2100" />
+        <di:waypoint x="937" y="2100" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1ca1wyr_di" bpmnElement="Flow_1ca1wyr">
-        <di:waypoint x="642" y="1705" />
-        <di:waypoint x="642" y="1520" />
-        <di:waypoint x="942" y="1520" />
+        <di:waypoint x="642" y="1805" />
+        <di:waypoint x="642" y="1620" />
+        <di:waypoint x="942" y="1620" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_153xh25_di" bpmnElement="Flow_153xh25">
         <di:waypoint x="238" y="1140" />
@@ -680,7 +715,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_110ti7k_di" bpmnElement="Flow_110ti7k">
         <di:waypoint x="840" y="1250" />
-        <di:waypoint x="1002" y="1250" />
+        <di:waypoint x="932" y="1250" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0hvkfna_di" bpmnElement="Flow_0hvkfna">
         <di:waypoint x="1100" y="730" />
@@ -715,32 +750,32 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="1755" y="730" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0y1muji_di" bpmnElement="Flow_0y1muji">
-        <di:waypoint x="1103" y="1840" />
-        <di:waypoint x="1202" y="1840" />
-        <di:waypoint x="1202" y="1755" />
+        <di:waypoint x="1101" y="1920" />
+        <di:waypoint x="1202" y="1920" />
+        <di:waypoint x="1202" y="1855" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0u5kq4g_di" bpmnElement="Flow_0u5kq4g">
-        <di:waypoint x="1105" y="1950" />
-        <di:waypoint x="1212" y="1950" />
-        <di:waypoint x="1212" y="1745" />
+        <di:waypoint x="1102" y="2100" />
+        <di:waypoint x="1202" y="2100" />
+        <di:waypoint x="1202" y="1855" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ti0n89_di" bpmnElement="Flow_0ti0n89">
-        <di:waypoint x="1102" y="1620" />
-        <di:waypoint x="1202" y="1620" />
-        <di:waypoint x="1202" y="1705" />
+        <di:waypoint x="1102" y="1720" />
+        <di:waypoint x="1202" y="1720" />
+        <di:waypoint x="1202" y="1805" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1o4hqnp_di" bpmnElement="Flow_1o4hqnp">
-        <di:waypoint x="1103" y="1730" />
-        <di:waypoint x="1177" y="1730" />
+        <di:waypoint x="1103" y="1830" />
+        <di:waypoint x="1177" y="1830" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0nz2hn4_di" bpmnElement="Flow_0nz2hn4">
-        <di:waypoint x="1097" y="1520" />
-        <di:waypoint x="1212" y="1520" />
-        <di:waypoint x="1212" y="1715" />
+        <di:waypoint x="1097" y="1620" />
+        <di:waypoint x="1202" y="1620" />
+        <di:waypoint x="1202" y="1805" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_020fp2m_di" bpmnElement="Flow_020fp2m">
-        <di:waypoint x="1227" y="1730" />
-        <di:waypoint x="1492" y="1730" />
+        <di:waypoint x="1227" y="1830" />
+        <di:waypoint x="2020" y="1830" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1j6gdlh_di" bpmnElement="Flow_1j6gdlh">
         <di:waypoint x="1688" y="830" />
@@ -758,15 +793,15 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="1652" y="830" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1hnmuf0_di" bpmnElement="Flow_1hnmuf0">
-        <di:waypoint x="1205" y="1250" />
+        <di:waypoint x="1085" y="1250" />
         <di:waypoint x="1485" y="1250" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1320" y="1223" width="23" height="14" />
+          <dc:Bounds x="1254" y="1223" width="23" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_19f4yhv_di" bpmnElement="Flow_19f4yhv">
-        <di:waypoint x="1440" y="1385" />
-        <di:waypoint x="1510" y="1385" />
+        <di:waypoint x="1340" y="1520" />
+        <di:waypoint x="1510" y="1520" />
         <di:waypoint x="1510" y="1275" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1xwqfij_di" bpmnElement="Flow_1xwqfij">
@@ -786,8 +821,8 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="2145" y="1140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1pyszsg_di" bpmnElement="Flow_1pyszsg">
-        <di:waypoint x="1528" y="1730" />
-        <di:waypoint x="2170" y="1730" />
+        <di:waypoint x="2056" y="1830" />
+        <di:waypoint x="2170" y="1830" />
         <di:waypoint x="2170" y="1165" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1fso8h9_di" bpmnElement="Flow_1fso8h9">
@@ -812,30 +847,60 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="1825" y="1140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0zgdox5_di" bpmnElement="Flow_0zgdox5">
-        <di:waypoint x="1038" y="1250" />
-        <di:waypoint x="1155" y="1250" />
+        <di:waypoint x="968" y="1250" />
+        <di:waypoint x="1035" y="1250" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_14f8hc7_di" bpmnElement="Flow_14f8hc7">
-        <di:waypoint x="1180" y="1275" />
-        <di:waypoint x="1180" y="1385" />
-        <di:waypoint x="1280" y="1385" />
+        <di:waypoint x="1060" y="1275" />
+        <di:waypoint x="1060" y="1520" />
+        <di:waypoint x="1180" y="1520" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1191" y="1313" width="9" height="14" />
+          <dc:Bounds x="1085" y="1488" width="9" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cnaxv6_di" bpmnElement="Flow_0cnaxv6">
+        <di:waypoint x="1100" y="2010" />
+        <di:waypoint x="1202" y="2010" />
+        <di:waypoint x="1202" y="1855" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13etpzl_di" bpmnElement="Flow_13etpzl">
+        <di:waypoint x="642" y="1855" />
+        <di:waypoint x="642" y="2010" />
+        <di:waypoint x="940" y="2010" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13falf8_di" bpmnElement="Flow_13falf8">
+        <di:waypoint x="1085" y="1250" />
+        <di:waypoint x="1485" y="1250" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1211" y="1276" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00p1fzd_di" bpmnElement="Flow_00p1fzd">
+        <di:waypoint x="1340" y="1360" />
+        <di:waypoint x="1500" y="1360" />
+        <di:waypoint x="1500" y="1265" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0thhn1p_di" bpmnElement="Flow_0thhn1p">
+        <di:waypoint x="1070" y="1265" />
+        <di:waypoint x="1070" y="1360" />
+        <di:waypoint x="1180" y="1360" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1086" y="1315" width="83" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_0qiqspg_di" bpmnElement="Association_0qiqspg">
-        <di:waypoint x="1440" y="1386" />
-        <di:waypoint x="1600" y="1386" />
+        <di:waypoint x="1340" y="1493" />
+        <di:waypoint x="1600" y="1403" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_1bljbac_di" bpmnElement="Participant_1ejbgs2" isHorizontal="true">
-        <dc:Bounds x="1210" y="2040" width="300" height="60" />
+        <dc:Bounds x="1260" y="2400" width="300" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_0u0utfi_di" bpmnElement="Participant_14tp0lv" isHorizontal="true">
-        <dc:Bounds x="5" y="2040" width="305" height="60" />
+        <dc:Bounds x="5" y="2370" width="305" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0z0q3jc" bpmnElement="Participant_16ahzet" isHorizontal="true">
-        <dc:Bounds x="340" y="2040" width="300" height="60" />
+        <dc:Bounds x="370" y="2370" width="300" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_014lva1_di" bpmnElement="Participant_1jytwop" isHorizontal="true">
@@ -843,7 +908,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1g7nhah_di" bpmnElement="TextAnnotation_1g7nhah">
-        <dc:Bounds x="1110" y="1560" width="270" height="55" />
+        <dc:Bounds x="1250" y="1620" width="270" height="55" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1udw2qo_di" bpmnElement="TextAnnotation_1udw2qo">
@@ -851,7 +916,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1786vqb_di" bpmnElement="TextAnnotation_1786vqb">
-        <dc:Bounds x="1320" y="1890" width="100" height="99" />
+        <dc:Bounds x="930" y="2370" width="100" height="99" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1ndumyw_di" bpmnElement="DataOutputAssociation_1ndumyw">
@@ -864,10 +929,6 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="730" y="700" />
         <di:waypoint x="940" y="707" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_1n0yww0_di" bpmnElement="DataOutputAssociation_1n0yww0">
-        <di:waypoint x="1097" y="1491" />
-        <di:waypoint x="2062" y="1491" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_080jnhl_di" bpmnElement="DataInputAssociation_080jnhl">
         <di:waypoint x="540" y="725" />
         <di:waypoint x="540" y="940" />
@@ -875,7 +936,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="1828" y="1103" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1mfoxow_di" bpmnElement="DataInputAssociation_1mfoxow">
-        <di:waypoint x="2098" y="1495" />
+        <di:waypoint x="2098" y="1584" />
         <di:waypoint x="2240" y="1495" />
         <di:waypoint x="2240" y="1170" />
         <di:waypoint x="2313" y="1146" />
@@ -892,28 +953,29 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="970" y="940" />
         <di:waypoint x="1280" y="1015" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_16n593h_di" bpmnElement="Association_16n593h">
-        <di:waypoint x="1102" y="1611" />
-        <di:waypoint x="1110" y="1609" />
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1n0yww0_di" bpmnElement="DataOutputAssociation_1n0yww0">
+        <di:waypoint x="1097" y="1591" />
+        <di:waypoint x="2062" y="1591" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_1i23230_di" bpmnElement="Association_1i23230">
-        <di:waypoint x="1105" y="1939" />
-        <di:waypoint x="1320" y="1911" />
+        <di:waypoint x="1014" y="2140" />
+        <di:waypoint x="982" y="2370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_16n593h_di" bpmnElement="Association_16n593h">
+        <di:waypoint x="1102" y="1710" />
+        <di:waypoint x="1250" y="1671" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ma1iz7_di" bpmnElement="Flow_0ma1iz7">
         <di:waypoint x="1550" y="748" />
-        <di:waypoint x="1550" y="1394" />
-        <di:waypoint x="1530" y="1394" />
-        <di:waypoint x="1530" y="2070" />
-        <di:waypoint x="1510" y="2070" />
+        <di:waypoint x="1550" y="2400" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1v87tzq_di" bpmnElement="Flow_1v87tzq">
         <di:waypoint x="220" y="1158" />
-        <di:waypoint x="220" y="2040" />
+        <di:waypoint x="220" y="2370" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0yqj6x5_di" bpmnElement="Flow_0yqj6x5">
         <di:waypoint x="450" y="1158" />
-        <di:waypoint x="450" y="2040" />
+        <di:waypoint x="450" y="2370" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_11o7jkt_di" bpmnElement="Flow_11o7jkt">
         <di:waypoint x="1360" y="1100" />
@@ -932,19 +994,16 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="1930" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_18w90p7_di" bpmnElement="Flow_18w90p7">
-        <di:waypoint x="1528" y="1730" />
-        <di:waypoint x="1580" y="1730" />
-        <di:waypoint x="1580" y="160" />
+        <di:waypoint x="2038" y="1812" />
+        <di:waypoint x="2038" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10pnagw_di" bpmnElement="Flow_10pnagw">
         <di:waypoint x="765" y="1210" />
         <di:waypoint x="765" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0qooxkk_di" bpmnElement="Flow_0qooxkk">
-        <di:waypoint x="910" y="160" />
-        <di:waypoint x="910" y="1210" />
-        <di:waypoint x="1020" y="1210" />
-        <di:waypoint x="1020" y="1232" />
+        <di:waypoint x="950" y="160" />
+        <di:waypoint x="950" y="1232" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
