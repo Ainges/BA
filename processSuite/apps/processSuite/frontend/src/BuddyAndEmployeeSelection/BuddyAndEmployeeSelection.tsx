@@ -9,10 +9,6 @@ import styles from "./BuddyAndEmployeeSelection.module.css";
 
 const BuddyAndEmployeeSelection: React.FC<CustomFormProps> = (props) => {
   const [selectedPage, setSelectedPage] = useState<number>(1);
-  const onPaginationChange: PaginationProps["onChange"] = (page) => {
-    console.log(page);
-    setSelectedPage(page);
-  };
 
   const [selectedBuddy, setSelectedBuddy] = useState<React.Key[]>([]);
   const [selectedEmployees, setSelectedEmployees] = useState<React.Key[]>([]);
@@ -57,11 +53,13 @@ const BuddyAndEmployeeSelection: React.FC<CustomFormProps> = (props) => {
         <SelectBuddy
           selectedBuddy={selectedBuddy}
           setSelectedBuddy={setSelectedBuddy}
+          
         ></SelectBuddy>
       ) : (
         <EmployeeList
           selectedEmployees={selectedEmployees}
           setSelectedEmployees={setSelectedEmployees}
+          selectedBuddy={selectedBuddy}
         ></EmployeeList>
       )}
       <Flex justify="space-evenly" align="center">
