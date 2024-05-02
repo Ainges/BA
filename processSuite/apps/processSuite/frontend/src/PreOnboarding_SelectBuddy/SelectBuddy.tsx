@@ -23,12 +23,13 @@ import config from "../config/config.json";
 import { RowSelectionType } from "antd/es/table/interface";
 
 interface BuddySelection {
-  selectedBuddy: React.Key[]; // Annahme: BuddyType ist der Typ von selectedBuddy
-  setSelectedBuddy: React.Key[]; // Annahme: BuddyType ist der Typ von selectedBuddy
+  selectedBuddy: React.Key[]; 
+  setSelectedBuddy: React.Dispatch<React.SetStateAction<React.Key[]>>; 
 }
 
 
-const SelectBuddy: React.FC<any> = ({selectedBuddy, setSelectedBuddy}) => {
+
+const SelectBuddy: React.FC<BuddySelection> = ({selectedBuddy, setSelectedBuddy}) => {
   const [tableData, setTableData] = useState<TableDataType[]>([]);
 
 

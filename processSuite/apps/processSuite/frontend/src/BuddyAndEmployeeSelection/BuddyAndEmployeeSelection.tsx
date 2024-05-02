@@ -17,6 +17,15 @@ const BuddyAndEmployeeSelection: React.FC<CustomFormProps> = (props) => {
   const [selectedBuddy, setSelectedBuddy] = useState<React.Key[]>([]);
   const [selectedEmployees, setSelectedEmployees] = useState<React.Key[]>([]);
 
+  function sendSelectionToProcess() {
+    const result = {
+      selectedBuddy: selectedBuddy.at(0),
+      selectedEmployees: selectedEmployees,
+    };
+
+    props.finishUserTask(result);
+  }
+
   return (
     <>
       {selectedPage === 1 ? (
@@ -42,9 +51,9 @@ const BuddyAndEmployeeSelection: React.FC<CustomFormProps> = (props) => {
           type="primary"
           icon={<SendOutlined />}
           size="large"
-          // onClick={() => {
-          //   sendSelectedEmployees();
-          // }}
+          onClick={() => {
+            sendSelectionToProcess();
+          }}
           className={styles.button}
         >
           Senden

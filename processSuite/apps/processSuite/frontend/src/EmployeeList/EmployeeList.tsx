@@ -7,7 +7,13 @@ import Paragraph from "antd/es/typography/Paragraph";
 import config from "../config/config.json";
 import { RowSelectionType } from "antd/es/table/interface";
 
-const EmployeeList: React.FC<any> = ({
+interface EmployeeSelection {
+  selectedEmployees: React.Key[]; 
+  setSelectedEmployees: React.Dispatch<React.SetStateAction<React.Key[]>>; 
+}
+
+
+const EmployeeList: React.FC<EmployeeSelection> = ({
   selectedEmployees,
   setSelectedEmployees,
 }) => {
