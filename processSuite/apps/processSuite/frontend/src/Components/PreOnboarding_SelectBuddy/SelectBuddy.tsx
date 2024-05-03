@@ -1,78 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { CustomFormProps } from "../DialogRenderer";
-import {
-  Avatar,
-  Button,
-  Card,
-  Checkbox,
-  Col,
-  DatePicker,
-  Divider,
-  Layout,
-  Row,
-  Table,
-  TableColumnsType,
-  Typography,
-} from "antd";
-import axios from "axios";
-import styles from "./ExampleEmployeeList.module.css";
-import Meta from "antd/es/card/Meta";
-import { SendOutlined, PlusOutlined } from "@ant-design/icons";
+import React, { useContext } from "react";
+import { Button, Card, Col, Divider, Row, Table, TableColumnsType } from "antd";
+import styles from "./SelectBuddy.module.css";
 import Paragraph from "antd/es/typography/Paragraph";
-import test from "node:test";
-import config from "../config/config.json";
+import { RowSelectionType } from "antd/es/table/interface";
+import {
+  BuddyAndEmployeeSelectionContext,
+  TableDataType,
+} from "../../Pages/BuddyAndEmployeeSelection/BuddyAndEmployeeSelectionProvider";
 
-const ExampleEmployeeList: React.FC<CustomFormProps> = (props) => {
-  const { Header, Footer, Sider, Content } = Layout;
+interface BuddySelection {
+  selectedBuddy: React.Key[];
+  setSelectedBuddy: React.Dispatch<React.SetStateAction<React.Key[]>>;
+}
 
-  const [tableData, setTableData] = useState<TableDataType[]>([]);
-  const [selectedRows, setSelectedRows] = useState<React.Key[]>([]);
+const SelectBuddy: React.FC<BuddySelection> = ({}) => {
+  // context initialization
+  const context = useContext(BuddyAndEmployeeSelectionContext);
 
-  const camelHost = config.camel.host;
-
-  useEffect(() => {
-    // Fetch employee data from API
-    const fetchEmployees = async () => {
-      try {
-        // Wait to simulate loading
-        await new Promise((resolve) => setTimeout(resolve, 300));
-
-        const response = await axios.get(camelHost + "/api/canonical/user/");
-        const employees = response.data;
-        // Transform employee data to TableDataType
-        const tableData = employees.map((employee: EmployeeDTO) => ({
-          key: employee.email,
-          name: `${employee.first_name} ${employee.last_name}`,
-          position: employee.position,
-          email: employee.email,
-          profilePictureURI: employee.profile_picture_url,
-        }));
-
-        setTableData(tableData);
-        console.log("Fetched employees:", tableData);
-      } catch (error) {
-        console.error("Error fetching employees:", error);
-      }
-    };
-
-    fetchEmployees();
-  }, []);
-
-  interface EmployeeDTO {
-    email: string;
-    first_name: string;
-    last_name: string;
-    position: string;
-    profile_picture_url: string;
-  }
-
-  interface TableDataType {
-    key: React.Key;
-    name: string;
-    position: string;
-    email: string;
-    profilePictureURI: string;
-  }
+  // context State
+  const { selectedBuddy, setSelectedBuddy } = context;
+  const { selectedEmployees, setSelectedEmployees } = context;
+  const { employeeData, setEmployeeData } = context;
+  const { employeeDataWithoutBuddy, setEmployeeDataWithoutBuddy } = context;
 
   const columns: TableColumnsType<TableDataType> = [
     {
@@ -169,31 +118,31 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = (props) => {
 
   // rowSelection object indicates the need for row selection
   const rowSelection = {
+    // To allow only one Selection - cast is needed for TypeScript
+    type: "radio" as RowSelectionType,
+    // To LOAD the selected Buddy from State
+    selectedRowKeys: selectedBuddy,
+    // To SAVE the selected Buddy in State
     onChange: (selectedRowKeys: React.Key[], selectedRows: TableDataType[]) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`);
-      setSelectedRows(selectedRowKeys);
+      console.log(`SelectedBuddy: ${selectedRowKeys}`);
+      setSelectedBuddy(selectedRowKeys.slice(-1));
     },
-    getCheckboxProps: (record: TableDataType) => ({
-      disabled: record.name === "Disabled User1", // Column configuration not to be checked
-      name: record.name,
-    }),
   };
 
-  const sendSelectedEmployees = () => {
-    console.log("Selected employees:", selectedRows);
-    props.finishUserTask({ selectedEmployees: selectedRows });
-  };
+  // const sendSelectedEmployees = () => {
+  //   console.log("Selected employees:", selectedRows);
+  //   props.finishUserTask({ selectedBuddy: selectedRows });
+  // };
 
   return (
     <>
       <div className={styles.outer}>
-        <Divider orientation="left">Mitarbeiter Auswahl</Divider>
+        <Divider orientation="left">Buddy Auswahl</Divider>
         <Row>
           <Col span={2}></Col>
           <Col span={20}>
             <Paragraph>
-              Bitte wählen Sie alle Mitarbeiter aus, für die ein Kennenlertermin
-              mit dem neuen Mitarbeiter geplant werden soll
+              Bitte wählen Sie einen "Buddy" für den neuen Mitarbeiter aus!
             </Paragraph>
           </Col>
           <Col span={2}></Col>
@@ -207,33 +156,30 @@ const ExampleEmployeeList: React.FC<CustomFormProps> = (props) => {
                 <Table
                   pagination={{ position: [] }}
                   scroll={{ y: 400 }}
-                  rowSelection={{
-                    type: "checkbox",
-                    ...rowSelection,
-                  }}
-                  loading={tableData.length === 0}
+                  rowSelection={rowSelection}
+                  loading={employeeData.length === 0}
                   columns={columns}
-                  dataSource={tableData}
+                  dataSource={employeeData}
                 />
               </Card>
             </div>
           </Col>
           <Col span={2}></Col>
         </Row>
-        <Button
-          type="primary"
-          icon={<SendOutlined />}
-          size="large"
+        {/* <Button
           onClick={() => {
-            sendSelectedEmployees();
+            //print all state variables
+            console.log("selectedBuddy: ", selectedBuddy);
+            console.log("selectedEmployees: ", selectedEmployees);
+            console.log("employeeData: ", employeeData);
+            console.log("employeeDataWithoutBuddy: ", employeeDataWithoutBuddy);
           }}
-          className={styles.button}
         >
-          Senden
-        </Button>
+          PRINT STATE
+        </Button> */}
       </div>
     </>
   );
 };
 
-export default ExampleEmployeeList;
+export default SelectBuddy;
