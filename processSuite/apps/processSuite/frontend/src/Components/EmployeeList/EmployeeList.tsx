@@ -169,11 +169,12 @@ const EmployeeList: React.FC<EmployeeSelection> = ({}) => {
               <Card>
                 <Table
                   pagination={{ position: [] }}
-                  scroll={{ y: 400 }}
+                  scroll={{ y: 300 }}
                   rowSelection={rowSelection}
                   loading={employeeDataWithoutBuddy.length === 0}
                   columns={columns}
                   dataSource={employeeDataWithoutBuddy}
+                  size="small"
                 />
               </Card>
             </div>
