@@ -155,11 +155,12 @@ const SelectBuddy: React.FC<BuddySelection> = ({}) => {
               <Card>
                 <Table
                   pagination={{ position: [] }}
-                  scroll={{ y: 400 }}
+                  scroll={{ y: 300 }}
                   rowSelection={rowSelection}
                   loading={employeeData.length === 0}
                   columns={columns}
                   dataSource={employeeData}
+                  size="small"
                 />
               </Card>
             </div>

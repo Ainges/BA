@@ -64,6 +64,10 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
       }
     };
     fetchEmployees();
+
+    console.log("viewport height: ", window.innerHeight);
+    console.log("viewport width: ", window.innerWidth);
+
   }, []);
 
   useEffect(() => {
@@ -117,63 +121,65 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
 
   return (
     <>
-      {selectedPage === 1 ? (
-        <SelectBuddy
-          selectedBuddy={selectedBuddy}
-          setSelectedBuddy={setSelectedBuddy}
-        ></SelectBuddy>
-      ) : (
-        <EmployeeList
-          selectedEmployees={selectedEmployees}
-          setSelectedEmployees={setSelectedEmployees}
-          selectedBuddy={selectedBuddy}
-        ></EmployeeList>
-      )}
-      <Flex justify="space-evenly" align="center">
-        <Button
-          className={styles.button}
-          onClick={() => {
-            setSelectedPage(2);
-          }}
-          hidden={selectedPage === 2}
-        >
-          Weiter
-        </Button>
-        <Button
-          className={styles.button}
-          onClick={() => {
-            setSelectedPage(1);
-          }}
-          hidden={selectedPage === 1}
-        >
-          zurück
-        </Button>
-
-        {selectedPage === 2 ? (
-          <Tooltip
-            title={
-              selectedBuddy.length === 0
-                ? "Bitte wählen Sie zumindest einen Buddy aus."
-                : ""
-            }
-          >
-            <Button
-              type="primary"
-              icon={<SendOutlined />}
-              size="large"
-              onClick={() => {
-                sendSelectionToProcess();
-              }}
-              className={styles.button}
-              disabled={isButtonDisabled}
-            >
-              Senden
-            </Button>
-          </Tooltip>
+      <div id="mycontainer" className={styles.container}>
+        {selectedPage === 1 ? (
+          <SelectBuddy
+            selectedBuddy={selectedBuddy}
+            setSelectedBuddy={setSelectedBuddy}
+          ></SelectBuddy>
         ) : (
-          <></>
+          <EmployeeList
+            selectedEmployees={selectedEmployees}
+            setSelectedEmployees={setSelectedEmployees}
+            selectedBuddy={selectedBuddy}
+          ></EmployeeList>
         )}
-      </Flex>
+        <Flex justify="space-evenly" align="center">
+          <Button
+            className={styles.button}
+            onClick={() => {
+              setSelectedPage(2);
+            }}
+            hidden={selectedPage === 2}
+          >
+            Weiter
+          </Button>
+          <Button
+            className={styles.button}
+            onClick={() => {
+              setSelectedPage(1);
+            }}
+            hidden={selectedPage === 1}
+          >
+            zurück
+          </Button>
+
+          {selectedPage === 2 ? (
+            <Tooltip
+              title={
+                selectedBuddy.length === 0
+                  ? "Bitte wählen Sie zumindest einen Buddy aus."
+                  : ""
+              }
+            >
+              <Button
+                type="primary"
+                icon={<SendOutlined />}
+                size="large"
+                onClick={() => {
+                  sendSelectionToProcess();
+                }}
+                className={styles.button}
+                disabled={isButtonDisabled}
+              >
+                Senden
+              </Button>
+            </Tooltip>
+          ) : (
+            <></>
+          )}
+        </Flex>
+      </div>
     </>
   );
 };

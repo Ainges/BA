@@ -24,7 +24,7 @@ services:
       LOG_LEVEL: debug
     volumes:
       - ./.processcube/authority/config.json:/etc/authority/config/config.json
-    # - ./.processcube/authority/options.json:/app/extensions/username_password/options.json
+      # - ./.processcube/authority/options.json:/app/extensions/username_password/options.json
       - ./.processcube/authority/upeSeedingData.json:/etc/authority/config/upeSeedingData.json
     ports:
       - 11560:11560
