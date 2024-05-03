@@ -1,12 +1,5 @@
 import React, { useContext } from "react";
-import {
-  Alert, Card,
-  Col,
-  Divider,
-  Row,
-  Table,
-  TableColumnsType
-} from "antd";
+import { Alert, Card, Col, Divider, Row, Table, TableColumnsType } from "antd";
 import styles from "./EmployeeList.module.css";
 import Paragraph from "antd/es/typography/Paragraph";
 import { RowSelectionType } from "antd/es/table/interface";
@@ -151,7 +144,8 @@ const EmployeeList: React.FC<EmployeeSelection> = ({}) => {
           <Col span={2}></Col>
           <Col span={20}>
             <Paragraph>
-              Bitte beachten Sie, dass der "Buddy" hier nicht nochmal ausgewählt werden kann, und aus diesem Grund auch nicht in der Liste erscheint.
+              Bitte wählen Sie alle Mitarbeiter aus, für die ein Kennenlertermin
+              mit dem neuen Mitarbeiter geplant werden soll
             </Paragraph>
           </Col>
           <Col span={2}></Col>
@@ -160,7 +154,7 @@ const EmployeeList: React.FC<EmployeeSelection> = ({}) => {
           <Col span={2}></Col>
           <Col span={20}>
             <Alert
-              message="Der Buddy muss hier NICHT nochmal ausgewählt werden!"
+              message="Bitte beachten Sie, dass der 'Buddy' hier nicht nochmal ausgewählt werden kann, und aus diesem Grund auch nicht in der Liste erscheint!"
               type="info"
               showIcon
             />
