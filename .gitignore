@@ -372,3 +372,4 @@ test-env
 
 integration/target
 integration/dev
+integration/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
