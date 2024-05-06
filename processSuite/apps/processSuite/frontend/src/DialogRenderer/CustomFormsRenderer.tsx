@@ -9,7 +9,6 @@ import {
 import { Config } from "../config";
 import { ExampleCustomForm } from "../ExampleCustomForm";
 import BuddyAndEmployeeSelection from "../Pages/BuddyAndEmployeeSelection/BuddyAndEmployeeSelection";
-import test from "../Pages/test/test";
 import CustomizedInductionPlan from "../Pages/CustomizedInductionPlan/CustomizedInductionPlan";
 
 export type CustomFormProps = {
@@ -54,7 +53,6 @@ export class CustomFormsRenderer extends React.Component<
   private components: CustomFormsComponentDict = {
     ExampleCustomForm: ExampleCustomForm,
     BuddyAndEmployeeSelection: BuddyAndEmployeeSelection,
-    test: test,
     CustomizedInductionPlan: CustomizedInductionPlan,
   };
 
