@@ -20,6 +20,7 @@ import TextArea from "antd/es/input/TextArea";
 import { useEffect, useState } from "react";
 
 import { SendOutlined } from "@ant-design/icons";
+import { formatDate } from "../../functions/formatDate";
 
 interface IinductionPlanElement {
   title: string;
@@ -75,19 +76,8 @@ const CustomizedInductionPlan: React.FC<CustomFormProps> = (props) => {
       },
       {
         title: "Erster Arbeitstag",
-        // 5head ChatGPT expression to convert date format
-        data: new Date(
-          `${currentToken.OnboardingData.first_working_day
-            .split("-")
-            .reverse()
-            .join("-")}T00:00:00`
-        )
-          .toLocaleDateString("de-DE", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-          })
-          .toString(),
+     
+        data: formatDate(currentToken.OnboardingData.first_working_day),
       },
       {
         title: "Anstellungsart",
