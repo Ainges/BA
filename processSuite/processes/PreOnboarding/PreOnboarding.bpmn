@@ -401,6 +401,11 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmn:startEvent>
     </bpmn:subProcess>
     <bpmn:userTask id="Activity_1fgzbmu" name="Kuchen organisieren">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0thhn1p</bpmn:incoming>
       <bpmn:outgoing>Flow_00p1fzd</bpmn:outgoing>
     </bpmn:userTask>
