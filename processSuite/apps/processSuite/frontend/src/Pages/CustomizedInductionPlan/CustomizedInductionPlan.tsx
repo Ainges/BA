@@ -2,8 +2,10 @@ import {
   Button,
   Card,
   Col,
+  Descriptions,
   Divider,
   Form,
+  FormProps,
   Input,
   List,
   Row,
@@ -14,14 +16,21 @@ import styles from "./CustomizedInductionPlan.module.css";
 import { EmployeeData } from "../../Components/EmployeeData/EmployeeData";
 import { describe } from "node:test";
 import TextArea from "antd/es/input/TextArea";
+import { useState } from "react";
+
+import { SendOutlined } from "@ant-design/icons";
 
 interface inductionPlanElement {
   title: string;
-  description: string;
+  description: string | undefined;
 }
 
 const CustomizedInductionPlan: React.FC<CustomFormProps> = (props) => {
   const currentToken = props.userTask.startToken;
+
+  const [inductionPlan, setInductionPlan] = useState<inductionPlanElement[]>(
+    []
+  );
 
   const NewEmployeedata: EmployeeData[] = [
     {
@@ -57,24 +66,38 @@ const CustomizedInductionPlan: React.FC<CustomFormProps> = (props) => {
     },
   ];
 
-  const inductionPlan: inductionPlanElement[] = [
-    { title: "test", description: "test" },
-  ];
-
   type FieldType = {
     title: string;
     description?: string;
+  };
+
+  const addBulletPoint: FormProps<FieldType>["onFinish"] = (values) => {
+    console.log(values);
+    setInductionPlan([
+      ...inductionPlan,
+      {
+        title: values.title,
+        description: values.description,
+      },
+    ]);
+  };
+
+  const deleteBulletPoint = (indexToDelete: number) => {
+    const updatedPlan = [...inductionPlan];
+    updatedPlan.splice(indexToDelete, 1);
+    setInductionPlan(updatedPlan);
   };
 
   return (
     <>
       <Row>
         <Divider orientation="center">Einarbeitungsplan Erstellung</Divider>
+
         <Col span={18} className={styles.column}>
           <div className={styles.test}>
             <Card title="Einarbeitungsplan">
               {/* Add Points: */}
-              <Form name="basic">
+              <Form name="addBulletPoints" onFinish={addBulletPoint}>
                 <Form.Item<FieldType>
                   name="title"
                   rules={[
@@ -93,15 +116,18 @@ const CustomizedInductionPlan: React.FC<CustomFormProps> = (props) => {
                   >
                     <Input />
 
-                    <Button type="primary">Add Point</Button>
+                    <Button type="primary" htmlType="submit">
+                      Hinzufügen
+                    </Button>
                   </Space.Compact>
                 </Form.Item>
-                <Form.Item<FieldType>>
+                <Form.Item<FieldType> name="description">
                   <Space.Compact style={{ width: "100%", marginBottom: "5px" }}>
                     <TextArea
                       rows={2}
                       placeholder="Beschreibung des Punktes... max 200 Zeichen"
                       maxLength={200}
+                      style={{ resize: "none" }}
                     />
                   </Space.Compact>
                 </Form.Item>
@@ -110,8 +136,18 @@ const CustomizedInductionPlan: React.FC<CustomFormProps> = (props) => {
               <List
                 bordered
                 dataSource={inductionPlan}
+                style={{ overflow: "auto", height: "300px" }}
                 renderItem={(item: inductionPlanElement, index: number) => (
-                  <List.Item>
+                  <List.Item
+                    extra={
+                      <Button
+                        size="small"
+                        onClick={() => deleteBulletPoint(index)}
+                      >
+                        Delete
+                      </Button>
+                    }
+                  >
                     <List.Item.Meta
                       title={item.title}
                       description={item.description}
@@ -126,6 +162,21 @@ const CustomizedInductionPlan: React.FC<CustomFormProps> = (props) => {
           <div id="EmployeeData" className={styles.employeeData}>
             <EmployeeData employeeData={NewEmployeedata}></EmployeeData>
           </div>
+        </Col>
+        <Col span={20}></Col>
+
+        <Col span={4}>
+          <br />
+          <br />
+          <Button
+            type="primary"
+            onClick={() => {
+              console.log(inductionPlan);
+            }}
+            icon={<SendOutlined />}
+          >
+            Senden
+          </Button>
         </Col>
       </Row>
     </>
