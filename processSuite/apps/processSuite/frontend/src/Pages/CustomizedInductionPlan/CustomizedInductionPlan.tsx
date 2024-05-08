@@ -172,6 +172,7 @@ const CustomizedInductionPlan: React.FC<CustomFormProps> = (props) => {
             type="primary"
             onClick={() => {
               console.log(inductionPlan);
+              props.finishUserTask({ inductionPlan: inductionPlan });
             }}
             icon={<SendOutlined />}
           >
