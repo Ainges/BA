@@ -11,6 +11,7 @@ import { ExampleCustomForm } from "../ExampleCustomForm";
 import BuddyAndEmployeeSelection from "../Pages/BuddyAndEmployeeSelection/BuddyAndEmployeeSelection";
 import CustomizedInductionPlan from "../Pages/CustomizedInductionPlan/CustomizedInductionPlan";
 import OrganizeCake from "../Pages/OrganizeCake/OrganizeCake"; // Import the OrganizeCake component
+import OrganizeSmallPresent from "../Pages/OrganizeSmallPresent/OrganizeSmallPresent";
 
 export type CustomFormProps = {
   userTask: DataModels.FlowNodeInstances.UserTaskInstance;
@@ -56,6 +57,7 @@ export class CustomFormsRenderer extends React.Component<
     BuddyAndEmployeeSelection: BuddyAndEmployeeSelection,
     CustomizedInductionPlan: CustomizedInductionPlan,
     OrganizeCake: OrganizeCake,
+    OrganizeSmallPresent: OrganizeSmallPresent,
   };
 
   private customFormService: CustomFormService | null = null;
