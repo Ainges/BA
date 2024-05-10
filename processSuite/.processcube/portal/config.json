@@ -10,7 +10,7 @@
     "/.*/": "http://localhost:5111"
   },
   "processModels": {
-    "include": ["example", "UItest"],
+    "include": [],
     "exclude": [],
     "settings": {
       "UItest": {

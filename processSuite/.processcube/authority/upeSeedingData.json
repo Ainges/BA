@@ -11,7 +11,7 @@
         "engine_write",
         "upe_admin"
       ],
-      "claims": { "name": "Admin", "email": "admin@processcube.example" }
+      "claims": { "email": "admin@processcube.example" }
     }
   ]
 }
