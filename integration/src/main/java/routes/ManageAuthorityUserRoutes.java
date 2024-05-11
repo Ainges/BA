@@ -49,8 +49,6 @@ public class ManageAuthorityUserRoutes extends RouteBuilder {
                         return;
                     }
 
-
-
                     exchange.getMessage().setHeader("email", email);
                     exchange.getMessage().setHeader("password", password);
 

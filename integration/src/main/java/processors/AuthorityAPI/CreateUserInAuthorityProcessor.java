@@ -24,8 +24,6 @@ public class CreateUserInAuthorityProcessor implements Processor {
 
         // extract email and password from Message body
 
-
-
         RequestBody requestBody = new FormBody.Builder()
             .add("email", exchange.getMessage().getHeader("email", String.class))
             .add("password", exchange.getMessage().getHeader("password", String.class))
