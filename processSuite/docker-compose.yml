@@ -20,7 +20,7 @@ services:
     restart: always
     environment:
       ONFIG_PATH: /etc/authority/config/config.json
-      UPE_SEED_PATH: /etc/authority/config/upeSeedingData.json
+      # UPE_SEED_PATH: /etc/authority/config/upeSeedingData.json
       LOG_LEVEL: debug
     volumes:
       - ./.processcube/authority/config.json:/etc/authority/config/config.json
@@ -85,13 +85,13 @@ services:
     #   - 3000:3000
 
   artemis:
-    image: apache/activemq-artemis:2.33.0
+    image: apache/activemq-artemis:latest
     ports:
       - "8161:8161" # Web Console
       - "61616:61616" # AMQP
       - "5672:5672" # MQTT
-    volumes:
-      - "../artemis/broker.xml:/var/lib/artemis-instance/etc/broker.xml"
+    # volumes:
+    #   - "../artemis/broker.xml:/var/lib/artemis-instance/etc/broker.xml"
 
   smtp4dev:
     image: rnwood/smtp4dev
