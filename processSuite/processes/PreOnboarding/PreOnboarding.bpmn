@@ -34,6 +34,10 @@
       <bpmn:text></bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_01oufa3" associationDirection="None" sourceRef="Activity_1fgzbmu" targetRef="TextAnnotation_19zshoz" />
+    <bpmn:textAnnotation id="TextAnnotation_02e1mpa">
+      <bpmn:text>Hier sollte vermutlich auch gleich noch ein Termin für das Gespräch definiert werden</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1m3ntcv" associationDirection="None" sourceRef="Activity_0ettg97" targetRef="TextAnnotation_02e1mpa" />
   </bpmn:collaboration>
   <bpmn:process id="Preonboarding_Process" name="Onboarding_Phase1" isExecutable="true" camunda:versionTag="0.1">
     <bpmn:laneSet>
@@ -920,13 +924,9 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <dc:Bounds x="5" y="100" width="2235" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Association_0qiqspg_di" bpmnElement="Association_0qiqspg">
-        <di:waypoint x="1340" y="1465" />
-        <di:waypoint x="1690" y="1440" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_01oufa3_di" bpmnElement="Association_01oufa3">
-        <di:waypoint x="1340" y="1349" />
-        <di:waypoint x="1690" y="1302" />
+      <bpmndi:BPMNEdge id="Association_1m3ntcv_di" bpmnElement="Association_1m3ntcv">
+        <di:waypoint x="1100" y="1940" />
+        <di:waypoint x="1290" y="1940" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="TextAnnotation_1g7nhah_di" bpmnElement="TextAnnotation_1g7nhah">
         <dc:Bounds x="1250" y="1620" width="270" height="55" />
@@ -1022,16 +1022,9 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="950" y="160" />
         <di:waypoint x="950" y="1232" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_134uak6_di" bpmnElement="DataOutputAssociation_134uak6">
-        <di:waypoint x="1102" y="2041" />
-        <di:waypoint x="2362" y="2055" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="TextAnnotation_1udw2qo_di" bpmnElement="TextAnnotation_1udw2qo">
-        <dc:Bounds x="1690" y="1422" width="100" height="96" />
+      <bpmndi:BPMNShape id="TextAnnotation_02e1mpa_di" bpmnElement="TextAnnotation_02e1mpa">
+        <dc:Bounds x="1290" y="1925" width="99.99305040770942" height="98.59154929577466" />
         <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_19zshoz_di" bpmnElement="TextAnnotation_19zshoz">
-        <dc:Bounds x="1690" y="1280" width="100" height="30" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
