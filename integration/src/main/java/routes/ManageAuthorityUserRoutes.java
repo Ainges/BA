@@ -26,11 +26,26 @@ public class ManageAuthorityUserRoutes extends RouteBuilder {
     @Override
     public void configure() throws Exception  {
 
-        rest("/api/authority/user/")
-                .post("/create/")
+        rest("/api/authority/")
+
+                .post("/claim/create/")
+                .to("direct:createAuthorityClaim")
+
+                .post("/user/create/")
                 .to("direct:createAuthorityUser");
 
+        /*
+         * Get Token from Authority
+         * */
+        from ("direct:getToken")
+                .id("get-Token-of-Authority-Route")
+                .process(exchange -> {
+                    exchange.getMessage().setHeader("Authorization", "Bearer " + tokenManagerAuthority.getToken());
+                });
 
+        /*
+         * Create User in Authority
+         * */
         from("direct:createAuthorityUser")
                 .id("create-Authority-User-Route")
                 .to("direct:getToken")
@@ -55,14 +70,19 @@ public class ManageAuthorityUserRoutes extends RouteBuilder {
                 })
                 .process(createUserInAuthorityProcessor);
 
-
-
-        // Get token from authority Route
-        from ("direct:getToken")
-                .id("get-Token-of-Authority-Route")
+        /*
+         * Create Claim in Authority
+         * */
+        from("direct: createAuthorityClaim")
+                .id("create-Authority-Claim-Route")
+                .to("direct:getToken")
                 .process(exchange -> {
-                    exchange.getMessage().setHeader("Authorization", "Bearer " + tokenManagerAuthority.getToken());
-                });
+                    logger.info("TODO: Implement creating claim in authority...");
+
+
+
+                })
+                .end();
 
 
     }
