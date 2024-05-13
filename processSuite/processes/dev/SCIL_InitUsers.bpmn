@@ -114,6 +114,17 @@
         <bpmn:multiInstanceLoopCharacteristics />
       </bpmn:serviceTask>
       <bpmn:serviceTask id="Activity_0xn3n8k" name="Add Scope &#34;engine_read&#34; to Users">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="module" value="HttpClient" />
+            <camunda:property name="method" value="post" />
+            <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/api/authority/user/add/scope&#34;, &#34;token.current&#34;]" />
+            <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/api/authority/user/add/scope" />
+            <camunda:property name="studio.paramBody" value="token.current" />
+            <camunda:property name="engine.runPreScript" value="dataObjects.DataObject_ReceivedData.Users" />
+            <camunda:property name="studio.paramAuthorization" />
+          </camunda:properties>
+        </bpmn:extensionElements>
         <bpmn:incoming>Flow_1k66vua</bpmn:incoming>
         <bpmn:outgoing>Flow_0df2cj1</bpmn:outgoing>
         <bpmn:multiInstanceLoopCharacteristics />
