@@ -9,6 +9,9 @@ import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import processors.AuthorityAPI.AddClaimToScopeInAuthorityProcessor;
+import processors.AuthorityAPI.AddScopeToUserInAuthorityProcessor;
+import processors.AuthorityAPI.CreateClaimInAuthorityProcessor;
 import processors.AuthorityAPI.CreateUserInAuthorityProcessor;
 
 
@@ -23,14 +26,44 @@ public class ManageAuthorityUserRoutes extends RouteBuilder {
     @Inject
     CreateUserInAuthorityProcessor createUserInAuthorityProcessor;
 
+    @Inject
+    CreateClaimInAuthorityProcessor createClaimInAuthorityProcessor;
+
+    @Inject
+    AddClaimToScopeInAuthorityProcessor addClaimToScopeInAuthorityProcessor;
+
+    @Inject
+    AddScopeToUserInAuthorityProcessor addScopeToUserInAuthorityProcessor;
+
     @Override
     public void configure() throws Exception  {
 
-        rest("/api/authority/user/")
-                .post("/create/")
-                .to("direct:createAuthorityUser");
+        rest("/api/authority/")
 
+                .post("/claim/create/")
+                .to("direct:createAuthorityClaim")
 
+                .post("/user/create/")
+                .to("direct:createAuthorityUser")
+
+                .post("/scope/add/claim")
+                .to("direct:addClaimToScope")
+
+                .post("/user/add/scope")
+                .to("direct:addScopeToUser");
+
+        /*
+         * Get Token from Authority
+         * */
+        from ("direct:getToken")
+                .id("get-Token-of-Authority-Route")
+                .process(exchange -> {
+                    exchange.getMessage().setHeader("Authorization", "Bearer " + tokenManagerAuthority.getToken());
+                });
+
+        /*
+         * Create User in Authority
+         * */
         from("direct:createAuthorityUser")
                 .id("create-Authority-User-Route")
                 .to("direct:getToken")
@@ -49,22 +82,39 @@ public class ManageAuthorityUserRoutes extends RouteBuilder {
                         return;
                     }
 
-
-
                     exchange.getMessage().setHeader("email", email);
                     exchange.getMessage().setHeader("password", password);
 
                 })
-                .process(createUserInAuthorityProcessor);
+                .process(createUserInAuthorityProcessor)
+                .end();
+
+        /*
+         * Create Claim in Authority
+         * */
+        from("direct:createAuthorityClaim")
+                .id("create-Authority-Claim-Route")
+                .to("direct:getToken")
+                .process(createClaimInAuthorityProcessor)
+                .end();
 
 
+        /*
+        * Add Claim to Scope
+        * */
+        from("direct:addClaimToScope")
+                .id("add-Claim-to-Scope-Route")
+                .to("direct:getToken")
+                .process(addClaimToScopeInAuthorityProcessor);
 
-        // Get token from authority Route
-        from ("direct:getToken")
-                .id("get-Token-of-Authority-Route")
-                .process(exchange -> {
-                    exchange.getMessage().setHeader("Authorization", "Bearer " + tokenManagerAuthority.getToken());
-                });
+        /*
+        * Add Scope to User
+        * */
+
+        from("direct:addScopeToUser")
+                .id("add-Scope-to-User-Route")
+                .to("direct:getToken")
+                .process(addScopeToUserInAuthorityProcessor);
 
 
     }

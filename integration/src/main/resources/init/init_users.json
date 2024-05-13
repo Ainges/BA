@@ -1,79 +1,94 @@
-[
+{
+  "Users": [
     {
-        "email": "michael.scott@dundermifflin.com",
-        "password": "test",
-        "first_name": "Michael",
-        "last_name": "Scott",
-        "position": "Regionalleiter",
-        "private_email": "michael.scott@private.com",
-        "birth_date": "1967-03-15",
-        "employment_status": "Vollzeit",
-        "postal_address": "123 Dunder Mifflin St, Scranton, PA 18501"
+      "email": "michael.scott@dundermifflin.com",
+      "password": "test",
+      "first_name": "Michael",
+      "last_name": "Scott",
+      "position": "Regionalleiter",
+      "private_email": "michael.scott@private.com",
+      "birth_date": "1967-03-15",
+      "employment_status": "Vollzeit",
+      "postal_address": "123 Dunder Mifflin St, Scranton, PA 18501"
     },
     {
-        "email": "jim.halpert@dundermifflin.com",
-        "password": "test",
-        "first_name": "Jim",
-        "last_name": "Halpert",
-        "position": "Vertriebsmitarbeiter",
-        "private_email": "jim.halpert@private.com",
-        "birth_date": "1978-10-01",
-        "employment_status": "Vollzeit",
-        "postal_address": "84 Market St, Scranton, PA 18508"
+      "email": "jim.halpert@dundermifflin.com",
+      "password": "test",
+      "first_name": "Jim",
+      "last_name": "Halpert",
+      "position": "Vertriebsmitarbeiter",
+      "private_email": "jim.halpert@private.com",
+      "birth_date": "1978-10-01",
+      "employment_status": "Vollzeit",
+      "postal_address": "84 Market St, Scranton, PA 18508"
     },
     {
-        "email": "pam.beesly@dundermifflin.com",
-        "password": "test",
-        "first_name": "Pam",
-        "last_name": "Beesly",
-        "position": "Empfangsmitarbeiterin",
-        "private_email": "pam.beesly@private.com",
-        "birth_date": "1981-11-24",
-        "employment_status": "Vollzeit",
-        "postal_address": "15 Park Ave, Scranton, PA 18509"
+      "email": "pam.beesly@dundermifflin.com",
+      "password": "test",
+      "first_name": "Pam",
+      "last_name": "Beesly",
+      "position": "Empfangsmitarbeiterin",
+      "private_email": "pam.beesly@private.com",
+      "birth_date": "1981-11-24",
+      "employment_status": "Vollzeit",
+      "postal_address": "15 Park Ave, Scranton, PA 18509"
     },
     {
-        "email": "dwight.schrute@dundermifflin.com",
-        "password": "test",
-        "first_name": "Dwight",
-        "last_name": "Schrute",
-        "position": "Assistent des Regionalleiters",
-        "private_email": "dwight.schrute@private.com",
-        "birth_date": "1976-02-25",
-        "employment_status": "Vollzeit",
-        "postal_address": "57 Paper St, Scranton, PA 18510"
+      "email": "dwight.schrute@dundermifflin.com",
+      "password": "test",
+      "first_name": "Dwight",
+      "last_name": "Schrute",
+      "position": "Assistent des Regionalleiters",
+      "private_email": "dwight.schrute@private.com",
+      "birth_date": "1976-02-25",
+      "employment_status": "Vollzeit",
+      "postal_address": "57 Paper St, Scranton, PA 18510"
     },
     {
-        "email": "angela.martin@dundermifflin.com",
-        "password": "test",
-        "first_name": "Angela",
-        "last_name": "Martin",
-        "position": "Leiterin des Partyplanungsausschusses",
-        "private_email": "angela.martin@private.com",
-        "birth_date": "1979-09-07",
-        "employment_status": "Vollzeit",
-        "postal_address": "39 Cherry Ln, Scranton, PA 18512"
+      "email": "angela.martin@dundermifflin.com",
+      "password": "test",
+      "first_name": "Angela",
+      "last_name": "Martin",
+      "position": "Leiterin des Partyplanungsausschusses",
+      "private_email": "angela.martin@private.com",
+      "birth_date": "1979-09-07",
+      "employment_status": "Vollzeit",
+      "postal_address": "39 Cherry Ln, Scranton, PA 18512"
     },
     {
-        "email": "stanley.hudson@dundermifflin.com",
-        "password": "test",
-        "first_name": "Stanley",
-        "last_name": "Hudson",
-        "position": "Vertriebsmitarbeiter",
-        "private_email": "stanley.hudson@private.com",
-        "birth_date": "1958-02-19",
-        "employment_status": "Vollzeit",
-        "postal_address": "22 Franklin St, Scranton, PA 18514"
+      "email": "stanley.hudson@dundermifflin.com",
+      "password": "test",
+      "first_name": "Stanley",
+      "last_name": "Hudson",
+      "position": "Vertriebsmitarbeiter",
+      "private_email": "stanley.hudson@private.com",
+      "birth_date": "1958-02-19",
+      "employment_status": "Vollzeit",
+      "postal_address": "22 Franklin St, Scranton, PA 18514"
     },
     {
-        "email": "phyllis.vance@dundermifflin.com",
-        "password": "test",
-        "first_name": "Phyllis",
-        "last_name": "Vance",
-        "position": "Vertriebsmitarbeiterin",
-        "private_email": "phyllis.vance@private.com",
-        "birth_date": "1964-07-31",
-        "employment_status": "Vollzeit",
-        "postal_address": "66 Oak St, Scranton, PA 18516"
+      "email": "phyllis.vance@dundermifflin.com",
+      "password": "test",
+      "first_name": "Phyllis",
+      "last_name": "Vance",
+      "position": "Vertriebsmitarbeiterin",
+      "private_email": "phyllis.vance@private.com",
+      "birth_date": "1964-07-31",
+      "employment_status": "Vollzeit",
+      "postal_address": "66 Oak St, Scranton, PA 18516"
     }
-]
+  ],
+
+  "Claims": [
+    {
+      "name": "Vorgesetzter",
+      "type": "String",
+      "description": "Der Innhaber dieser Rolle ist ein Vorgesetzter."
+    },
+    {
+      "name": "NeuerMitarbeiter",
+      "type": "String",
+      "description": "Der Innhaber dieser Rolle ist der neue Mitarbeiter."
+    }
+  ]
+}
