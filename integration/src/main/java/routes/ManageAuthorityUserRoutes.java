@@ -9,6 +9,9 @@ import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import processors.AuthorityAPI.AddClaimToScopeInAuthorityProcessor;
+import processors.AuthorityAPI.AddScopeToUserInAuthorityProcessor;
+import processors.AuthorityAPI.CreateClaimInAuthorityProcessor;
 import processors.AuthorityAPI.CreateUserInAuthorityProcessor;
 
 
@@ -23,6 +26,15 @@ public class ManageAuthorityUserRoutes extends RouteBuilder {
     @Inject
     CreateUserInAuthorityProcessor createUserInAuthorityProcessor;
 
+    @Inject
+    CreateClaimInAuthorityProcessor createClaimInAuthorityProcessor;
+
+    @Inject
+    AddClaimToScopeInAuthorityProcessor addClaimToScopeInAuthorityProcessor;
+
+    @Inject
+    AddScopeToUserInAuthorityProcessor addScopeToUserInAuthorityProcessor;
+
     @Override
     public void configure() throws Exception  {
 
@@ -32,7 +44,13 @@ public class ManageAuthorityUserRoutes extends RouteBuilder {
                 .to("direct:createAuthorityClaim")
 
                 .post("/user/create/")
-                .to("direct:createAuthorityUser");
+                .to("direct:createAuthorityUser")
+
+                .post("/scope/add/claim")
+                .to("direct:addClaimToScope")
+
+                .post("/user/add/scope")
+                .to("direct:addScopeToUser");
 
         /*
          * Get Token from Authority
@@ -68,21 +86,35 @@ public class ManageAuthorityUserRoutes extends RouteBuilder {
                     exchange.getMessage().setHeader("password", password);
 
                 })
-                .process(createUserInAuthorityProcessor);
+                .process(createUserInAuthorityProcessor)
+                .end();
 
         /*
          * Create Claim in Authority
          * */
-        from("direct: createAuthorityClaim")
+        from("direct:createAuthorityClaim")
                 .id("create-Authority-Claim-Route")
                 .to("direct:getToken")
-                .process(exchange -> {
-                    logger.info("TODO: Implement creating claim in authority...");
-
-
-
-                })
+                .process(createClaimInAuthorityProcessor)
                 .end();
+
+
+        /*
+        * Add Claim to Scope
+        * */
+        from("direct:addClaimToScope")
+                .id("add-Claim-to-Scope-Route")
+                .to("direct:getToken")
+                .process(addClaimToScopeInAuthorityProcessor);
+
+        /*
+        * Add Scope to User
+        * */
+
+        from("direct:addScopeToUser")
+                .id("add-Scope-to-User-Route")
+                .to("direct:getToken")
+                .process(addScopeToUserInAuthorityProcessor);
 
 
     }
