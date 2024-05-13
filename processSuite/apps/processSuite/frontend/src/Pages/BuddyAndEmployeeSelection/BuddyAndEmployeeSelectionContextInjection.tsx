@@ -5,11 +5,10 @@ import SelectBuddy from "../../Components/PreOnboarding_SelectBuddy/SelectBuddy"
 import EmployeeList from "../../Components/EmployeeList/EmployeeList";
 import { SendOutlined } from "@ant-design/icons";
 import styles from "./BuddyAndEmployeeSelection.module.css";
-import BuddyAndEmployeeSelectionProvider, {
-  BuddyAndEmployeeSelectionContext,
-} from "./BuddyAndEmployeeSelectionProvider";
+
 import axios from "axios";
 import config from "../../config/config.json";
+import { BuddyAndEmployeeSelectionContext } from "./BuddyandEmployeeSelectionProvider";
 
 interface EmployeeDTO {
   email: string;

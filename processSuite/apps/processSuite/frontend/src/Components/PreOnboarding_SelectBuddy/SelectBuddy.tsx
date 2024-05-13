@@ -6,7 +6,7 @@ import { RowSelectionType } from "antd/es/table/interface";
 import {
   BuddyAndEmployeeSelectionContext,
   TableDataType,
-} from "../../Pages/BuddyAndEmployeeSelection/BuddyAndEmployeeSelectionProvider";
+} from "../../Pages/BuddyAndEmployeeSelection/BuddyandEmployeeSelectionProvider";
 
 interface BuddySelection {
   selectedBuddy: React.Key[];

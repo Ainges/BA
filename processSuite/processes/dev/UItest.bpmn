@@ -22,8 +22,7 @@
     <bpmn:userTask id="Activity_0xxfted" name="UI">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="OrganizeCake" />
-          <camunda:property name="engine.assignUserIds" value="&#39;admin&#39;;" />
+          <camunda:property name="customForm" value="OrganizeSmallPresent" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0jnhrlt</bpmn:incoming>
