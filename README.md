@@ -6,7 +6,7 @@
 </a>
 
 
-This is an example Application for a PDA compliant applikation implemented with the following technologies
+This is an example Application for a PDA compliant application implemented with the following technologies
 ### Process Engine
 - 5minds processcube
 ### Frontend
@@ -21,5 +21,4 @@ The Services are containerised with Docker
 
 # Getting Started
 
-**You have to disable CORS in your Browser to run this application locally, otherwise the FE will not function probably**
 
