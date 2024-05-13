@@ -287,6 +287,7 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
+          <camunda:property name="customForm" value="OrganizeSmallPresent" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_14f8hc7</bpmn:incoming>

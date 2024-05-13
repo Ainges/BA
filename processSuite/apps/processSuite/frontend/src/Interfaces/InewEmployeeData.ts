@@ -5,5 +5,6 @@ export interface InewEmployeeDataType {
     first_working_day: string;
     birth_date: string;
     position: string;
+    postal_address: string;
   };
 }

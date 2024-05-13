@@ -30,6 +30,7 @@ const OrganizeCake: React.FC<CustomFormProps> = (props) => {
           currentToken.OnboardingData.first_working_day
         )} bestellt!`}
         resultString={"Cake organized!"}
+        additionalData={[]}
       ></OrganizeTask>
     </>
   );

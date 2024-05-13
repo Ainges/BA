@@ -20,12 +20,18 @@ function isNewEmployeeData(obj: any): obj is InewEmployeeDataType {
   );
 }
 
+interface additionalData {
+  title: string;
+  data: string;
+}
+
 interface IcomponentProps {
   processData: CustomFormProps;
   title: string;
   task: JSX.Element;
   checkboxText: string;
   resultString: string;
+  additionalData: additionalData[];
 }
 
 const OrganizeTask: React.FC<IcomponentProps> = (props) => {
@@ -46,7 +52,7 @@ const OrganizeTask: React.FC<IcomponentProps> = (props) => {
         {
           title: "Name",
           data:
-            currentToken.OnboardingData.first_name +
+            currentToken.OnboardingData.first_name + " " +
             currentToken.OnboardingData.last_name,
         },
         {
@@ -62,6 +68,13 @@ const OrganizeTask: React.FC<IcomponentProps> = (props) => {
           data: currentToken.OnboardingData.position,
         },
       ];
+
+      props.additionalData.forEach((data) => {
+        extractedData.push({
+          title: data.title,
+          data: data.data,
+        });
+      });
 
       setNewEmployeeData(extractedData);
     } catch (error) {

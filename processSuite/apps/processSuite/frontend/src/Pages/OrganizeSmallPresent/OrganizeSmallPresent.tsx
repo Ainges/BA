@@ -9,6 +9,10 @@ import { formatDate } from "../../functions/formatDate";
 
 const OrganizeSmallPresent: React.FC<CustomFormProps> = (props) => {
   const currentToken = props.userTask.startToken;
+
+  const additionalData = [
+    { title: "Adresse", data: currentToken.OnboardingData.postal_address },
+  ];
   return (
     <>
       <OrganizeTask
@@ -42,6 +46,7 @@ const OrganizeSmallPresent: React.FC<CustomFormProps> = (props) => {
         }
         checkboxText={`Es wurde eine kleine Aufmerksamkeit and den neuen Mitarbeiter geschickt!`}
         resultString={"Present send!"}
+        additionalData={additionalData}
       ></OrganizeTask>
     </>
   );
