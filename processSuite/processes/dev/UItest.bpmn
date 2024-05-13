@@ -22,8 +22,7 @@
     <bpmn:userTask id="Activity_0xxfted" name="UI">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="OrganizeCake" />
-          <camunda:property name="engine.assignUserIds" value="&#39;admin&#39;;" />
+          <camunda:property name="customForm" value="OrganizeSmallPresent" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0jnhrlt</bpmn:incoming>
@@ -33,10 +32,10 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
-        <dc:Bounds x="5" y="4" width="885" height="346" />
+        <dc:Bounds x="5" y="4" width="475" height="316" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
-        <dc:Bounds x="35" y="4" width="855" height="346" />
+        <dc:Bounds x="35" y="4" width="445" height="316" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="92" y="152" width="36" height="36" />

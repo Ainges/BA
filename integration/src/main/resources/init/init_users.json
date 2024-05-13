@@ -89,6 +89,11 @@
       "name": "NeuerMitarbeiter",
       "type": "String",
       "description": "Der Innhaber dieser Rolle ist der neue Mitarbeiter."
+    },
+    {
+      "name": "Lane",
+      "type": "String",
+      "description": "Für den UI Test Prozess (dev only)."
     }
   ]
 }
