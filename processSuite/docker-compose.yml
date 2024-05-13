@@ -14,7 +14,7 @@ services:
       - 3000:3000 # Frontend
       - 80:80
   authority:
-    image: 5minds/processcube_authority:2024-1
+    image: ghcr.io/ainges/processcube_authority:2024-1
     depends_on:
       - db_authority
     restart: always
@@ -30,7 +30,7 @@ services:
       - 11560:11560
 
   engine:
-    image: 5minds/processcube_engine:2024-1
+    image: ghcr.io/ainges/processcube_engine:2024-1
     # ports:
     #   - 8000:8000
     volumes:
@@ -42,7 +42,7 @@ services:
       CONFIG_PATH: /etc/engine/config/config.json
 
   portal:
-    image: 5minds/portal:4
+    image: ghcr.io/ainges/portal:4
     volumes:
       - ./.processcube/portal/theme.css:/etc/portal/config/theme.css:ro
       - ./.processcube/portal/config.json:/etc/portal/config/config.json:ro
