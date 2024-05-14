@@ -1,4 +1,4 @@
-import { Card, Col, Divider, Form, Input, Row } from "antd";
+import { Button, Card, Col, Divider, Form, Input, Row, Space } from "antd";
 import { CustomFormProps } from "../../DialogRenderer";
 import { EmployeeData } from "../../Components/EmployeeData/EmployeeData";
 import { title } from "process";
@@ -77,6 +77,14 @@ const CreateEmployeeAccount: React.FC<CustomFormProps> = (props) => {
     }
   };
 
+  const submit = (values: any) => {
+    console.log("Values: " + values.email + " " + values.password);
+    props.finishUserTask({
+      email: values.email + "@" + config.domainOfCompany,
+      password: values.password,
+    });
+  };
+
   return (
     <>
       <Divider orientation="center">
@@ -91,10 +99,13 @@ const CreateEmployeeAccount: React.FC<CustomFormProps> = (props) => {
               labelCol={{ span: 5 }}
               wrapperCol={{ span: 24 }}
               style={{ maxWidth: 600 }}
+              onFinish={submit}
             >
               <Form.Item
                 label="Email"
                 name="email"
+                hasFeedback
+                validateDebounce={300}
                 initialValue={
                   first_name.toLowerCase() + "." + last_name.toLowerCase()
                 }
@@ -111,16 +122,28 @@ const CreateEmployeeAccount: React.FC<CustomFormProps> = (props) => {
               <Form.Item
                 label="Passwort"
                 name="password"
+                hasFeedback
+                validateDebounce={500}
                 rules={[
                   {
                     required: true,
                     message:
                       "Bitte vergeben Sie ein vorläufiges Passwort für den Mitarbeiter!",
                   },
+                  {
+                    min: 8,
+                    message:
+                      "Das Passwort muss mindestens 8 Zeichen lang sein.",
+                  },
                 ]}
               >
                 <Input.Password />
               </Form.Item>
+              <Space direction="horizontal">
+                <Button type="primary" htmlType="submit">
+                  Senden
+                </Button>
+              </Space>
             </Form>
           </Card>
         </Col>
