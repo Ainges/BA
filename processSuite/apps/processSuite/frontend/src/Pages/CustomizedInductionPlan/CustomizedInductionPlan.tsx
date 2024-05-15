@@ -63,6 +63,7 @@ const CustomizedInductionPlan: React.FC<CustomFormProps> = (props) => {
     if (!isNewEmployeeData(currentToken)) {
       setIsPropsValid(false);
       setIsSendButtonDisabled(true);
+      console.error("Invalid Token Data");
       return;
     }
 

@@ -41,8 +41,8 @@ public class CalculateBrithdayProcessor implements Processor {
         String first_working_day = jsonObject.getString("first_working_day");
         String birth_date = jsonObject.getString("birth_date");
 
-        LocalDate first_working_day_date = LocalDate.parse(first_working_day, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        LocalDate birth_date_date = LocalDate.parse(birth_date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        LocalDate first_working_day_date = LocalDate.parse(first_working_day, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate birth_date_date = LocalDate.parse(birth_date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         // The Reason for the minusDays(5) is explained in the process.
         LocalDate today_with_buffer = LocalDate.now().minusDays(5);

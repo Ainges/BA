@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="SCIL_CreateUser_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
+  <bpmn:collaboration id="Collaboration_1cidyxu" name="">
+    <bpmn:participant id="Participant_0px403d" name="SCIL_CreateUser" processRef="SCIL_CreateUser_Process" />
+  </bpmn:collaboration>
+  <bpmn:process id="SCIL_CreateUser_Process" name="SCIL_CreateUser" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_1xzf0d3" name="Lane">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_075a7rt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1owbgy0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1rx1tvx</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0lq9o41</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0b1oyat</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1" name="Neuer User muss angelegt werden">
+      <bpmn:outgoing>Flow_1b2t8rd</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_145czwq">
+        <bpmn:targetRef>DataObject_ReceivedData</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:startEvent>
+    <bpmn:parallelGateway id="Gateway_075a7rt">
+      <bpmn:incoming>Flow_1b2t8rd</bpmn:incoming>
+      <bpmn:outgoing>Flow_067xvkx</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1fe8mjo</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_1b2t8rd" sourceRef="StartEvent_1" targetRef="Gateway_075a7rt" />
+    <bpmn:sequenceFlow id="Flow_067xvkx" sourceRef="Gateway_075a7rt" targetRef="Activity_1owbgy0" />
+    <bpmn:sequenceFlow id="Flow_1fe8mjo" sourceRef="Gateway_075a7rt" targetRef="Activity_1rx1tvx" />
+    <bpmn:subProcess id="Activity_1rx1tvx" name="Canonical Data Modell">
+      <bpmn:incoming>Flow_1fe8mjo</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xzxdu4</bpmn:outgoing>
+      <bpmn:property id="Property_096l1dx" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1ge53jg">
+        <bpmn:sourceRef>DataObject_ReceivedData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_096l1dx</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:startEvent id="Event_1m7w60u" name="Neuer Nutzer muss in kanonischem Datenmodell angelegt werden">
+        <bpmn:outgoing>Flow_0liykqq</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:serviceTask id="Activity_1gfi4qb" name="Create Users in SCIL DB">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="module" value="HttpClient" />
+            <camunda:property name="method" value="post" />
+            <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/api/canonical/user/create&#34;, &#34;token.current&#34;]" />
+            <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/api/canonical/user/create" />
+            <camunda:property name="studio.paramBody" value="token.current" />
+            <camunda:property name="engine.runPreScript" value="dataObjects.DataObject_ReceivedData" />
+            <camunda:property name="studio.paramAuthorization" />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0liykqq</bpmn:incoming>
+        <bpmn:outgoing>Flow_19roff1</bpmn:outgoing>
+      </bpmn:serviceTask>
+      <bpmn:sequenceFlow id="Flow_0liykqq" sourceRef="Event_1m7w60u" targetRef="Activity_1gfi4qb" />
+      <bpmn:endEvent id="Event_1cm61x2" name="Nutzer erfolgreich in kanonischem Datenmodell angelegt">
+        <bpmn:incoming>Flow_19roff1</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_19roff1" sourceRef="Activity_1gfi4qb" targetRef="Event_1cm61x2" />
+    </bpmn:subProcess>
+    <bpmn:subProcess id="Activity_1owbgy0" name="Authority">
+      <bpmn:incoming>Flow_067xvkx</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lrsoon</bpmn:outgoing>
+      <bpmn:property id="Property_0i8iwsr" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_01s3r1a">
+        <bpmn:sourceRef>DataObject_ReceivedData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0i8iwsr</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:startEvent id="Event_0tvtnz8" name="Neuer Nutzer muss in Authority angelegt werden">
+        <bpmn:outgoing>Flow_1khar5f</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:serviceTask id="Activity_0kik1w1" name="Create User in Authority">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="module" value="HttpClient" />
+            <camunda:property name="method" value="post" />
+            <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/api/authority/user/create&#34;, &#34;token.current&#34;]" />
+            <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/api/authority/user/create" />
+            <camunda:property name="studio.paramBody" value="token.current" />
+            <camunda:property name="engine.runPreScript" value="dataObjects.DataObject_ReceivedData" />
+            <camunda:property name="studio.paramAuthorization" />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1khar5f</bpmn:incoming>
+        <bpmn:outgoing>Flow_0g8rsaf</bpmn:outgoing>
+      </bpmn:serviceTask>
+      <bpmn:sequenceFlow id="Flow_1khar5f" sourceRef="Event_0tvtnz8" targetRef="Activity_0kik1w1" />
+      <bpmn:serviceTask id="Activity_0xn3n8k" name="Add Scope &#34;engine_read&#34; to User">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="module" value="HttpClient" />
+            <camunda:property name="method" value="post" />
+            <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/api/authority/user/add/scope&#34;, &#34;token.current&#34;]" />
+            <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/api/authority/user/add/scope" />
+            <camunda:property name="studio.paramBody" value="token.current" />
+            <camunda:property name="engine.runPreScript" value="dataObjects.DataObject_ReceivedData" />
+            <camunda:property name="studio.paramAuthorization" />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0g8rsaf</bpmn:incoming>
+        <bpmn:outgoing>Flow_1r08n0l</bpmn:outgoing>
+      </bpmn:serviceTask>
+      <bpmn:sequenceFlow id="Flow_0g8rsaf" sourceRef="Activity_0kik1w1" targetRef="Activity_0xn3n8k" />
+      <bpmn:endEvent id="Event_1qhrr1p" name="Nutzer erfolgreich in Authority angelegt">
+        <bpmn:incoming>Flow_1r08n0l</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_1r08n0l" sourceRef="Activity_0xn3n8k" targetRef="Event_1qhrr1p" />
+    </bpmn:subProcess>
+    <bpmn:dataObjectReference id="DataObject_ReceivedData" name="Empfangene Daten" dataObjectRef="DataObject_1iyq1te" />
+    <bpmn:dataObject id="DataObject_1iyq1te" />
+    <bpmn:sequenceFlow id="Flow_1xzxdu4" sourceRef="Activity_1rx1tvx" targetRef="Gateway_0b1oyat" />
+    <bpmn:endEvent id="Event_0lq9o41" name="Nutzer erfolgreich angelegt">
+      <bpmn:incoming>Flow_0kxtgnk</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0kxtgnk" sourceRef="Gateway_0b1oyat" targetRef="Event_0lq9o41" />
+    <bpmn:sequenceFlow id="Flow_1lrsoon" sourceRef="Activity_1owbgy0" targetRef="Gateway_0b1oyat" />
+    <bpmn:parallelGateway id="Gateway_0b1oyat">
+      <bpmn:incoming>Flow_1xzxdu4</bpmn:incoming>
+      <bpmn:incoming>Flow_1lrsoon</bpmn:incoming>
+      <bpmn:outgoing>Flow_0kxtgnk</bpmn:outgoing>
+    </bpmn:parallelGateway>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
+      <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
+        <dc:Bounds x="-230" y="-210" width="1095" height="640" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
+        <dc:Bounds x="-200" y="-210" width="1065" height="640" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="-143" y="98" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-168" y="141" width="86" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0wyqoh5_di" bpmnElement="Gateway_075a7rt">
+        <dc:Bounds x="-50" y="91" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0rkhgvb" bpmnElement="Activity_1rx1tvx" isExpanded="true">
+        <dc:Bounds x="65" y="170" width="525" height="200" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1nodpel" bpmnElement="Event_1m7w60u">
+        <dc:Bounds x="105" y="252" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="82" y="295" width="82" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kdsehw_di" bpmnElement="Activity_1gfi4qb">
+        <dc:Bounds x="190" y="230" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1cm61x2_di" bpmnElement="Event_1cm61x2">
+        <dc:Bounds x="522" y="252" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="508" y="295" width="65" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0liykqq_di" bpmnElement="Flow_0liykqq">
+        <di:waypoint x="141" y="270" />
+        <di:waypoint x="190" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19roff1_di" bpmnElement="Flow_19roff1">
+        <di:waypoint x="290" y="270" />
+        <di:waypoint x="522" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_1owbgy0_di" bpmnElement="Activity_1owbgy0" isExpanded="true">
+        <dc:Bounds x="65" y="-150" width="525" height="200" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0tvtnz8_di" bpmnElement="Event_0tvtnz8">
+        <dc:Bounds x="105" y="-68" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="81" y="-25" width="84" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0j26ph2_di" bpmnElement="Activity_0kik1w1">
+        <dc:Bounds x="200" y="-90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1k6iagc_di" bpmnElement="Activity_0xn3n8k">
+        <dc:Bounds x="390" y="-90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1qhrr1p_di" bpmnElement="Event_1qhrr1p">
+        <dc:Bounds x="522" y="-68" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="497" y="-25" width="87" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1khar5f_di" bpmnElement="Flow_1khar5f">
+        <di:waypoint x="141" y="-50" />
+        <di:waypoint x="200" y="-50" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0g8rsaf_di" bpmnElement="Flow_0g8rsaf">
+        <di:waypoint x="300" y="-50" />
+        <di:waypoint x="390" y="-50" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1r08n0l_di" bpmnElement="Flow_1r08n0l">
+        <di:waypoint x="490" y="-50" />
+        <di:waypoint x="522" y="-50" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="DataObjectReference_0awq9xc_di" bpmnElement="DataObject_ReceivedData">
+        <dc:Bounds x="82" y="75" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="69" y="132" width="63" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0lq9o41_di" bpmnElement="Event_0lq9o41">
+        <dc:Bounds x="782" y="98" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="757" y="141" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_19k78k6_di" bpmnElement="Gateway_0b1oyat">
+        <dc:Bounds x="661" y="91" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1b2t8rd_di" bpmnElement="Flow_1b2t8rd">
+        <di:waypoint x="-107" y="116" />
+        <di:waypoint x="-50" y="116" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_067xvkx_di" bpmnElement="Flow_067xvkx">
+        <di:waypoint x="-25" y="91" />
+        <di:waypoint x="-25" y="-50" />
+        <di:waypoint x="65" y="-50" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fe8mjo_di" bpmnElement="Flow_1fe8mjo">
+        <di:waypoint x="-25" y="141" />
+        <di:waypoint x="-25" y="270" />
+        <di:waypoint x="65" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xzxdu4_di" bpmnElement="Flow_1xzxdu4">
+        <di:waypoint x="590" y="270" />
+        <di:waypoint x="686" y="270" />
+        <di:waypoint x="686" y="141" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kxtgnk_di" bpmnElement="Flow_0kxtgnk">
+        <di:waypoint x="711" y="116" />
+        <di:waypoint x="782" y="116" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lrsoon_di" bpmnElement="Flow_1lrsoon">
+        <di:waypoint x="590" y="-50" />
+        <di:waypoint x="686" y="-50" />
+        <di:waypoint x="686" y="91" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_145czwq_di" bpmnElement="DataOutputAssociation_145czwq">
+        <di:waypoint x="-125" y="98" />
+        <di:waypoint x="-125" y="40" />
+        <di:waypoint x="30" y="40" />
+        <di:waypoint x="30" y="105" />
+        <di:waypoint x="82" y="105" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1ge53jg_di" bpmnElement="DataInputAssociation_1ge53jg">
+        <di:waypoint x="118" y="122" />
+        <di:waypoint x="158" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_01s3r1a_di" bpmnElement="DataInputAssociation_01s3r1a">
+        <di:waypoint x="118" y="91" />
+        <di:waypoint x="200" y="50" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -12,6 +12,7 @@ import BuddyAndEmployeeSelection from "../Pages/BuddyAndEmployeeSelection/BuddyA
 import CustomizedInductionPlan from "../Pages/CustomizedInductionPlan/CustomizedInductionPlan";
 import OrganizeCake from "../Pages/OrganizeCake/OrganizeCake";
 import OrganizeSmallPresent from "../Pages/OrganizeSmallPresent/OrganizeSmallPresent";
+import CreateEmployeeAccount from "../Pages/CreateEmployeeAccount/CreateEmployeeAccount";
 
 export type CustomFormProps = {
   userTask: DataModels.FlowNodeInstances.UserTaskInstance;
@@ -60,6 +61,7 @@ export class CustomFormsRenderer extends React.Component<
     CustomizedInductionPlan: CustomizedInductionPlan,
     OrganizeCake: OrganizeCake,
     OrganizeSmallPresent: OrganizeSmallPresent,
+    CreateEmployeeAccount: CreateEmployeeAccount,
   };
 
   private customFormService: CustomFormService | null = null;

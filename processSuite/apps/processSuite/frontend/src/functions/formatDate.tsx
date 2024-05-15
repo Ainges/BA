@@ -1,13 +1,17 @@
+// 5head chatGPT function
 export const formatDate = (date: string) => {
-  // 5head ChatGPT expression to convert date format
-  const reversedDate = date.split("-").reverse().join("-");
-  const dateTimeString = `${reversedDate}T00:00:00`;
-  const dateObject = new Date(dateTimeString);
+  const regex = /^\d{4}-\d{2}-\d{2}$/; // Regular expression for the format yyyy-mm-dd
+  if (!regex.test(date)) {
+    throw new Error(
+      "Invalid date format. Please use the format yyyy-mm-dd."
+    );
+  }
+
+  const dateObject = new Date(date);
   const localizedDateString = dateObject.toLocaleDateString("de-DE", {
-    day: "2-digit",
-    month: "2-digit",
     year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
   });
-  const finalString = localizedDateString.toString();
-  return finalString;
+  return localizedDateString;
 };
