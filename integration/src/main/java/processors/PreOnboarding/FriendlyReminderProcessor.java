@@ -72,9 +72,9 @@ public class FriendlyReminderProcessor implements Processor {
         String contact_person_mail = jsonObject.getString("contact_person_mail");
 
         // Format the date
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate first_working_day_asDate = LocalDate.parse(raw_first_working_day, inputFormatter);
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
         // final date String
         String first_working_day = first_working_day_asDate.format(outputFormatter);

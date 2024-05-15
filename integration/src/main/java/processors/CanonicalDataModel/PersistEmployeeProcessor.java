@@ -71,6 +71,7 @@ public class PersistEmployeeProcessor implements Processor {
         } catch (Exception e) {
 
             logger.error("Error while persisting employee");
+            logger.error(e.getMessage());
             exchange.getMessage().setBody("Employee not persisted, error while persisting employee");
             exchange.getMessage().setHeader(Exchange.HTTP_RESPONSE_CODE, 500);
         }

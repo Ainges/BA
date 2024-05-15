@@ -179,7 +179,7 @@
     <bpmn:sequenceFlow id="Flow_0l95km6" sourceRef="Event_0iqejj2" targetRef="Activity_1l0s39s" />
     <bpmn:sequenceFlow id="Flow_0zgdox5" sourceRef="Event_1r751sf" targetRef="Gateway_141wu49" />
     <bpmn:sequenceFlow id="Flow_14f8hc7" name="ja" sourceRef="Gateway_141wu49" targetRef="SmallAttentionOrganisation">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.result.birthday === "before" || "on"</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.result.birthday === "before" || token.current.result.birthday === "on"</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:parallelGateway id="Gateway_0k0b8gx">
       <bpmn:incoming>Flow_1wl4ctr</bpmn:incoming>
@@ -372,7 +372,8 @@
     <bpmn:userTask id="Activity_0ettg97" name="Buddy auswählen / Weitere Mitarbeiter für Kennenlertermin auswählen">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="EmployeeList" />
+          <camunda:property name="customForm" value="BuddyAndEmployeeSelection" />
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_13etpzl</bpmn:incoming>
@@ -385,6 +386,7 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="customForm" value="CustomizedInductionPlan" />
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0l23t6d</bpmn:incoming>
@@ -412,11 +414,28 @@
     <bpmn:sequenceFlow id="Flow_020fp2m" sourceRef="Gateway_08gq0uy" targetRef="Gateway_0vy7lxq" />
     <bpmn:sequenceFlow id="Flow_1ywhfxq" sourceRef="Event_0mi7quq" targetRef="Gateway_1pwvone" />
     <bpmn:intermediateThrowEvent id="Event_0mi7quq" name="Mitarbeitern in Systemen anlegen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="inputValues" value="token.current" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0uoyrij</bpmn:incoming>
       <bpmn:outgoing>Flow_1ywhfxq</bpmn:outgoing>
+      <bpmn:property id="Property_0wuw11h" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0c5ghsq">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0wuw11h</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
       <bpmn:messageEventDefinition id="MessageEventDefinition_12rblzb" messageRef="Message_dQSiwAG5" />
     </bpmn:intermediateThrowEvent>
-    <bpmn:userTask id="Activity_0n8dh6h" name="Daten für Unternehmenskonto anlegen">
+    <bpmn:userTask id="Activity_0n8dh6h" name="Benutzerkonto für neuen Mitarbeiter anlegen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="customForm" value="CreateEmployeeAccount" />
+          <camunda:property name="engine.runPostScript" value="return {&#10;    ...token.current,&#10;    &#34;initialData&#34;: dataObjects.DataObjectReference_newEmployeeData&#10;}" />
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0tbqr8l</bpmn:incoming>
       <bpmn:outgoing>Flow_0uoyrij</bpmn:outgoing>
     </bpmn:userTask>
@@ -995,6 +1014,11 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmndi:BPMNEdge id="DataOutputAssociation_0flxfol_di" bpmnElement="DataOutputAssociation_0flxfol">
         <di:waypoint x="1610" y="2040" />
         <di:waypoint x="2292" y="2040" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0c5ghsq_di" bpmnElement="DataInputAssociation_0c5ghsq">
+        <di:waypoint x="540" y="725" />
+        <di:waypoint x="540" y="1680" />
+        <di:waypoint x="953" y="1824" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_0sohxcq_di" bpmnElement="DataInputAssociation_0sohxcq">
         <di:waypoint x="558" y="700" />

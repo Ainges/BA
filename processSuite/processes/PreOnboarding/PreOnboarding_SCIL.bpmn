@@ -147,6 +147,25 @@
       <bpmn:incoming>Flow_1wuupoe</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0xu7b28" messageRef="Message_enwXihYL" />
     </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="Flow_0e0irpe" sourceRef="Event_1trn6ek" targetRef="Activity_1npxvqx" />
+    <bpmn:sequenceFlow id="Flow_1mrgeg9" sourceRef="Activity_1npxvqx" targetRef="Event_12hli62" />
+    <bpmn:endEvent id="Event_12hli62">
+      <bpmn:incoming>Flow_1mrgeg9</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:callActivity id="Activity_1npxvqx" name="Nutzer anlegen" calledElement="SCIL_CreateUser_Process">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="startEventId" value="StartEvent_1" />
+          <camunda:property name="payload" value="{&#10;    &#34;email&#34;: token.current.email,&#10;    &#34;password&#34;: token.current.password,&#10;    &#34;first_name&#34;: token.current.initialData.OnboardingData.first_name,&#10;    &#34;last_name&#34;: token.current.initialData.OnboardingData.last_name,&#10;    &#34;position&#34;: token.current.initialData.OnboardingData.position,&#10;    &#34;private_email&#34;: token.current.initialData.OnboardingData.private_email,&#10;    &#34;birth_date&#34;: token.current.initialData.OnboardingData.birth_date,&#10;    &#34;employment_status&#34;: token.current.initialData.OnboardingData.employment_status,&#10;    &#34;postal_address&#34;: token.current.initialData.OnboardingData.postal_address,&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0e0irpe</bpmn:incoming>
+      <bpmn:outgoing>Flow_1mrgeg9</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:startEvent id="Event_1trn6ek">
+      <bpmn:outgoing>Flow_0e0irpe</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_17mxcd5" messageRef="Message_gAuZhg6K" />
+    </bpmn:startEvent>
   </bpmn:process>
   <bpmn:message id="Message_fqaaQpdU" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_oPx4KAVx" name="Message_Receive_IsMoveNecessary" />
@@ -161,6 +180,7 @@
   <bpmn:message id="Message_yGAjYTL8" name="Message_Response_BirthdayCalculation" />
   <bpmn:message id="Message_xd1rilT2" name="Message_Receive_IsMoveNecessary" />
   <bpmn:message id="Message_enwXihYL" name="Message_Receive_BirthdayCalculation" />
+  <bpmn:message id="Message_gAuZhg6K" name="Message_CreateEmployee" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1o8eewd">
       <bpmndi:BPMNShape id="Participant_0q78rhp_di" bpmnElement="Participant_1tetnf2" isHorizontal="true">
@@ -251,6 +271,15 @@
           <dc:Bounds x="666" y="735" width="78" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_12hli62_di" bpmnElement="Event_12hli62">
+        <dc:Bounds x="687" y="912" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1y2m5fm_di" bpmnElement="Activity_1npxvqx">
+        <dc:Bounds x="75" y="890" width="155" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_07s88es_di" bpmnElement="Event_1trn6ek">
+        <dc:Bounds x="-33" y="912" width="36" height="36" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1diyb40_di" bpmnElement="Flow_1diyb40">
         <di:waypoint x="3" y="70" />
         <di:waypoint x="75" y="70" />
@@ -294,6 +323,14 @@
       <bpmndi:BPMNEdge id="Flow_1wuupoe_di" bpmnElement="Flow_1wuupoe">
         <di:waypoint x="235" y="710" />
         <di:waypoint x="687" y="710" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0e0irpe_di" bpmnElement="Flow_0e0irpe">
+        <di:waypoint x="3" y="930" />
+        <di:waypoint x="75" y="930" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mrgeg9_di" bpmnElement="Flow_1mrgeg9">
+        <di:waypoint x="230" y="930" />
+        <di:waypoint x="687" y="930" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

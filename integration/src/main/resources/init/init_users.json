@@ -78,17 +78,16 @@
       "postal_address": "66 Oak St, Scranton, PA 18516"
     }
   ],
-
   "Claims": [
     {
       "name": "Vorgesetzter",
       "type": "String",
-      "description": "Der Innhaber dieser Rolle ist ein Vorgesetzter."
+      "description": "Der Inhaber dieser Rolle ist ein Vorgesetzter."
     },
     {
       "name": "NeuerMitarbeiter",
       "type": "String",
-      "description": "Der Innhaber dieser Rolle ist der neue Mitarbeiter."
+      "description": "Der Inhaber dieser Rolle ist der neue Mitarbeiter."
     },
     {
       "name": "Lane",
