@@ -26,7 +26,7 @@ public class InitUsersRoute extends RouteBuilder {
         from("timer://runOnce?repeatCount=1&delay=2000")
                 .id("init-users-route")
                 .log("Initializing users...")
-                .pollEnrich("file:src/main/resources/init/?fileName=init_users.json&noop=true")
+                .pollEnrich("file:src/main/resources/init/?fileName=init_users.json&noop=true&idempotent=false")
                 .setHeader("Content-Type", constant("application/json"))
                 .setHeader("CamelHttpMethod", constant("POST"))
                 .setHeader("Authorization", constant("Bearer " + bearerToken))

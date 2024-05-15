@@ -1,6 +1,8 @@
 package routes.preonboarding;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PreOnboardingAvailableEquipment extends RouteBuilder {
     /**
@@ -11,12 +13,19 @@ public class PreOnboardingAvailableEquipment extends RouteBuilder {
      *
      * @throws Exception can be thrown during configuration
      */
+
+    Logger logger = LoggerFactory.getLogger(PreOnboardingAvailableEquipment.class);
+
+
     @Override
     public void configure() throws Exception {
 
         from("direct:AvailableEquipment")
                 .id("Available-Equipment-Route")
-                .pollEnrich("file:src/main/resources/availableEquipment/?fileName=availableEquipment.json&noop=true")
+                // idempotent=false is set because the file is not updated and the same file is read every time
+                .pollEnrich("file:src/main/resources/availableEquipment/?fileName=availableEquipment.json&noop=true&idempotent=false", 100)
+
+                .log("Responding to the request with available equipment... ${body}")
                 .setHeader("Content-Type", constant("application/json"))
                 .end();
 
