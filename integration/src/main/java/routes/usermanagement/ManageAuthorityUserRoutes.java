@@ -1,4 +1,4 @@
-package routes;
+package routes.usermanagement;
 
 import CDI.TokenManagerAuthority;
 import com.fasterxml.jackson.databind.JsonNode;

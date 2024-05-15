@@ -1,4 +1,4 @@
-package routes;
+package routes.usermanagement;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
