@@ -30,6 +30,7 @@ const SelectEquipment: React.FC<CustomFormProps> = (props) => {
   const [laptopForm] = Form.useForm();
   const [smartphoneForm] = Form.useForm();
   const [apiData, setApiData] = React.useState<ApiData | null>(null);
+  const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(true);
 
   const [selectedLaptop, setSelectedLaptop] = React.useState<string | null>(
     null
@@ -55,6 +56,14 @@ const SelectEquipment: React.FC<CustomFormProps> = (props) => {
   useEffect(() => {
     getApiData();
   }, []);
+
+  useEffect(() => {
+    if (selectedLaptop && selectedSmartphone) {
+      setIsSubmitDisabled(false);
+    } else {
+      setIsSubmitDisabled(true);
+    }
+  }, [selectedLaptop, selectedSmartphone]);
 
   const handleSubmit = () => {
     console.log("Selected Laptop: ", selectedLaptop);
@@ -138,7 +147,11 @@ const SelectEquipment: React.FC<CustomFormProps> = (props) => {
         <Col span={22}>
           <Card>
             <Space style={{ width: 100 }}>
-              <Button type="primary" onClick={handleSubmit}>
+              <Button
+                type="primary"
+                onClick={handleSubmit}
+                disabled={isSubmitDisabled}
+              >
                 Senden
               </Button>
             </Space>
