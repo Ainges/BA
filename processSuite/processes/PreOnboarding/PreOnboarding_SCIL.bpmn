@@ -173,9 +173,19 @@
     </bpmn:endEvent>
     <bpmn:startEvent id="Event_1qdfs09" name="Neuer Mitarbeiter muss über die Möglichkeit der Equipmentauswahl benachrichtigt werden">
       <bpmn:outgoing>Flow_0kc8hp1</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1632yka" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1632yka" messageRef="Message_5E4M6g1A" />
     </bpmn:startEvent>
     <bpmn:serviceTask id="Activity_0jwzcfm" name="Neuen Mitarbeiter über E-Mail informieren">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="module" value="HttpClient" />
+          <camunda:property name="method" value="post" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/InformNewUserAboutAccount&#34;, &#34;token.current&#34;]" />
+          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/InformNewUserAboutAccount" />
+          <camunda:property name="studio.paramBody" value="token.current" />
+          <camunda:property name="studio.paramContentType" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0kc8hp1</bpmn:incoming>
       <bpmn:outgoing>Flow_0wd672s</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -194,6 +204,7 @@
   <bpmn:message id="Message_xd1rilT2" name="Message_Receive_IsMoveNecessary" />
   <bpmn:message id="Message_enwXihYL" name="Message_Receive_BirthdayCalculation" />
   <bpmn:message id="Message_gAuZhg6K" name="Message_CreateEmployee" />
+  <bpmn:message id="Message_5E4M6g1A" name="Message_InformNewUserAboutAccount" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1o8eewd">
       <bpmndi:BPMNShape id="Participant_0q78rhp_di" bpmnElement="Participant_1tetnf2" isHorizontal="true">

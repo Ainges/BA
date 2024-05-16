@@ -54,6 +54,11 @@ public class PreOnboardingRESTRoute extends RouteBuilder {
                 .produces("application/json")
                 .to("direct:AvailableEquipment")
 
+                // inform new user about Account
+
+                .post("InformNewUserAboutAccount")
+                .consumes("application/json")
+                .to("direct:InformNewUserAboutAccountToBroker")
         ;
 
 
