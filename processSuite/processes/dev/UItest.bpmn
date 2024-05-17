@@ -22,7 +22,7 @@
     <bpmn:userTask id="Activity_0xxfted" name="UI">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="PrepareEquipment" />
+          <camunda:property name="customForm" value="KeyPointsForFirstWorkingDay" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0jnhrlt</bpmn:incoming>

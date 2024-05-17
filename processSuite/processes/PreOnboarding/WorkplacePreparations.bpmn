@@ -39,6 +39,7 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="engine.runPreScript" value="{&#10;    ...token.current,&#10;    &#34;email&#34;: dataObjects.DataObjectReference_OnboardingData.email,&#10;    &#34;onboardingData&#34;: dataObjects.DataObjectReference_OnboardingData.OnboardingData&#10;}" />
+          <camunda:property name="customForm" value="PrepareEquipment" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1tbhpoa</bpmn:incoming>
@@ -140,21 +141,21 @@
         <dc:Bounds x="-200" y="630" width="600" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_0cku051_di" bpmnElement="Flow_0cku051">
-        <di:waypoint x="120" y="458" />
-        <di:waypoint x="120" y="630" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_00vc4i9_di" bpmnElement="DataOutputAssociation_00vc4i9">
         <di:waypoint x="-86" y="425" />
         <di:waypoint x="103" y="105" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1hpmd9o_di" bpmnElement="DataInputAssociation_1hpmd9o">
+        <di:waypoint x="138" y="80" />
+        <di:waypoint x="485" y="80" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1x4a083_di" bpmnElement="DataInputAssociation_1x4a083">
         <di:waypoint x="131" y="105" />
         <di:waypoint x="263" y="400" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_1hpmd9o_di" bpmnElement="DataInputAssociation_1hpmd9o">
-        <di:waypoint x="138" y="80" />
-        <di:waypoint x="485" y="80" />
+      <bpmndi:BPMNEdge id="Flow_0cku051_di" bpmnElement="Flow_0cku051">
+        <di:waypoint x="120" y="458" />
+        <di:waypoint x="120" y="630" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

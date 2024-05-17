@@ -91,16 +91,7 @@ const OrganizeTask: React.FC<IcomponentProps> = (props) => {
 
         <Col span={18} className={styles.column}>
           <Card title="Aufgabe">
-            {/* <Paragraph>
-              Der neue Mitarbeiter {currentToken.OnboardingData.first_name}{" "}
-              {currentToken.OnboardingData.last_name} hat am{" "}
-              {formatDate(currentToken.OnboardingData.first_working_day)} seinen
-              ersten Arbeitstag.
-            </Paragraph>
-            <Paragraph>
-              Gleichzeitig hat er am selben Tag Geburtstag. Bitte organisieren
-              Sie einen Kuchen für den neuen Mitarbeiter!
-            </Paragraph> */}
+
 
             {props.task}
             <Checkbox
@@ -109,9 +100,7 @@ const OrganizeTask: React.FC<IcomponentProps> = (props) => {
                 setCheckboxChecked(!checkboxChecked);
               }}
             >
-              {/* Kuchen ist auf den{" "}
-              {formatDate(currentToken.OnboardingData.first_working_day)}{" "}
-              bestellt! */}
+
               {props.checkboxText}
             </Checkbox>
           </Card>

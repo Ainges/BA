@@ -4,6 +4,7 @@ import CDI.PlaceholderSubstitutor;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.json.Json;
+import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import org.apache.camel.Exchange;
@@ -17,7 +18,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -66,59 +69,72 @@ public class InfoForFirstWorkingDayProcessor implements Processor {
 
         // Get the message body
         String message = exchange.getMessage().getBody(String.class);
-        logger.info("Got in InfoForFirstWorkingDayProcessor: " + message);
 
-        // Parse the message as json
-        JsonReader jsonReader = Json.createReader(new StringReader(message));
-        JsonObject jsonObject = jsonReader.readObject();
+        try {
+            // Parse the message as json
+            JsonReader jsonReader = Json.createReader(new StringReader(message));
+            JsonObject jsonObject = jsonReader.readObject();
 
-        // Extract Data form Message
-        String last_name = jsonObject.getString("last_name");
-        String begin_of_first_working_day = jsonObject.getString("begin_of_first_working_day");
-        String contact_person = jsonObject.getString("contact_person");
-        String documents_needed_for_first_working_day = jsonObject.getString("documents_needed_for_first_working_day");
-        String private_email = jsonObject.getString("private_email");
-        String raw_first_working_day = jsonObject.getString("first_working_day");
-        String contact_person_mail = jsonObject.getString("contact_person_mail");
+            // Extract Data form Message
+            String last_name = jsonObject.getString("last_name");
+            String begin_of_first_working_day = jsonObject.getString("begin_of_first_working_day");
+            String contact_person = jsonObject.getString("contact_person");
 
-        // Format the date
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate first_working_day_asDate = LocalDate.parse(raw_first_working_day, inputFormatter);
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
-        // final date String
-        String first_working_day = first_working_day_asDate.format(outputFormatter);
+            // Build the list of documents
+            JsonArray documents_needed_for_first_working_dayJSONArray = jsonObject.getJsonArray("documents_needed_for_first_working_day");
+            StringBuilder documents_needed_for_first_working_dayBuilder = new StringBuilder();
+            for (int i = 0; i < documents_needed_for_first_working_dayJSONArray.size(); i++) {
+                documents_needed_for_first_working_dayBuilder.append("<li>").append(documents_needed_for_first_working_dayJSONArray.getString(i)).append("</li>");
+            }
+            String documents_needed_for_first_working_day = documents_needed_for_first_working_dayBuilder.toString();
 
 
-        String input = new String(Files.readAllBytes(Paths.get("src/main/resources/mailTemplates/InfoForFirstWorkingDay.html")));
-        HashMap<String, String> valueMap = new HashMap<String, String>();
 
-        // Data from application.properties
-        valueMap.put("company_name", company_name);
-        valueMap.put("company_address", company_address);
+            String private_email = jsonObject.getString("private_email");
+            String raw_first_working_day = jsonObject.getString("first_working_day");
+            String contact_person_mail = jsonObject.getString("contact_person_mail");
 
-        // Data from message
-        valueMap.put("last_name", last_name);
-        valueMap.put("begin_of_first_working_day", begin_of_first_working_day);
-        valueMap.put("contact_person", contact_person);
-        // TODO: Allow multiple documents
-        valueMap.put("documents_needed_for_first_working_day", "<li>" + documents_needed_for_first_working_day + "</li>");
-        valueMap.put("first_working_day", first_working_day);
-        valueMap.put("contact_person_mail", contact_person_mail);
+            // Format the date
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate first_working_day_asDate = LocalDate.parse(raw_first_working_day, inputFormatter);
+            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+            // final date String
+            String first_working_day = first_working_day_asDate.format(outputFormatter);
 
 
-        String output = placeholderSubstitutor.substituteAll(input, valueMap);
+            String input = new String(Files.readAllBytes(Paths.get("src/main/resources/mailTemplates/InfoForFirstWorkingDay.html")));
+            HashMap<String, String> valueMap = new HashMap<String, String>();
+
+            // Data from application.properties
+            valueMap.put("company_name", company_name);
+            valueMap.put("company_address", company_address);
+
+            // Data from message
+            valueMap.put("last_name", last_name);
+            valueMap.put("begin_of_first_working_day", begin_of_first_working_day);
+            valueMap.put("contact_person", contact_person);
+            // TODO: Allow multiple documents
+            valueMap.put("documents_needed_for_first_working_day", documents_needed_for_first_working_day);
+            valueMap.put("first_working_day", first_working_day);
+            valueMap.put("contact_person_mail", contact_person_mail);
 
 
-        Map<String, Object> headers = new HashMap<String, Object>();
-        headers.put("From", company_onboarding_email);
-        headers.put("To", private_email);
-        headers.put("Subject", "Informationen für Ihren ersten Arbeitstag |" + company_name);
-        headers.put("Content-Type", "text/html; charset=utf-8");
-
-        exchange.getMessage().setHeaders(headers);
-        exchange.getMessage().setBody(output);
+            String output = placeholderSubstitutor.substituteAll(input, valueMap);
 
 
+            Map<String, Object> headers = new HashMap<String, Object>();
+            headers.put("From", company_onboarding_email);
+            headers.put("To", private_email);
+            headers.put("Subject", "Informationen für Ihren ersten Arbeitstag |" + company_name);
+            headers.put("Content-Type", "text/html; charset=utf-8");
+
+            exchange.getMessage().setHeaders(headers);
+            exchange.getMessage().setBody(output);
+
+        }
+        catch (Exception e) {
+            logger.error("Error in InfoForFirstWorkingDayProcessor: " + e.getMessage());
+        }
     }
 }
