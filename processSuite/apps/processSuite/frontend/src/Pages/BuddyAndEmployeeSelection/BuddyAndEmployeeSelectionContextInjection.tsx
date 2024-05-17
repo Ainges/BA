@@ -28,10 +28,7 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
   const { selectedBuddy, setSelectedBuddy } = context;
   const { selectedEmployees, setSelectedEmployees } = context;
   const { employeeData, setEmployeeData } = context;
-  const {
-    employeeDataFiltered: employeeDataWithoutBuddy,
-    setEmployeeDataFiltered: setEmployeeDataWithoutBuddy,
-  } = context;
+  const { employeeDataFiltered, setEmployeeDataFiltered } = context;
 
   // local state
   const [selectedPage, setSelectedPage] = useState<number>(1);
@@ -39,6 +36,8 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
 
   // get URL of API
   const camelHost = config.camel.host;
+
+  const token = props.userTask.startToken;
 
   useEffect(() => {
     // Fetch employee data from API
@@ -59,16 +58,19 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
           profilePictureURI: employee.profile_picture_url,
         }));
 
-        setEmployeeData(tableData);
+        // filter out the new employee from the employee data
+        const employeeDataWithoutNewEmployee = tableData.filter(
+          (employee: { key: any }) => employee.key !== token.email
+        );
+        console.log("Removed employee:", token.email);
+
+        setEmployeeData(employeeDataWithoutNewEmployee);
         console.log("Fetched employees:", tableData);
       } catch (error) {
         console.error("Error fetching employees:", error);
       }
     };
     fetchEmployees();
-
-    console.log("viewport height: ", window.innerHeight);
-    console.log("viewport width: ", window.innerWidth);
   }, []);
 
   useEffect(() => {
@@ -93,9 +95,7 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
         selectedEmployees.filter((employee) => employee !== selectedBuddy[0])
       );
     }
-
-    console.log("Employee data without buddy:", employeeDataWithoutBuddy);
-    setEmployeeDataWithoutBuddy(employeeDataWithoutBuddy);
+    setEmployeeDataFiltered(employeeDataWithoutBuddy);
   }, [selectedBuddy, employeeData]);
 
   function sendSelectionToProcess() {
