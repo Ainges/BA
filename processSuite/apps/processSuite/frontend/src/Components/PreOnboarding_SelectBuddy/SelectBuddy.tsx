@@ -8,12 +8,7 @@ import {
   TableDataType,
 } from "../../Pages/BuddyAndEmployeeSelection/BuddyandEmployeeSelectionProvider";
 
-interface BuddySelection {
-  selectedBuddy: React.Key[];
-  setSelectedBuddy: React.Dispatch<React.SetStateAction<React.Key[]>>;
-}
-
-const SelectBuddy: React.FC<BuddySelection> = ({}) => {
+const SelectBuddy: React.FC = ({}) => {
   // context initialization
   const context = useContext(BuddyAndEmployeeSelectionContext);
 
@@ -21,7 +16,10 @@ const SelectBuddy: React.FC<BuddySelection> = ({}) => {
   const { selectedBuddy, setSelectedBuddy } = context;
   const { selectedEmployees, setSelectedEmployees } = context;
   const { employeeData, setEmployeeData } = context;
-  const { employeeDataWithoutBuddy, setEmployeeDataWithoutBuddy } = context;
+  const {
+    employeeDataFiltered: employeeDataWithoutBuddy,
+    setEmployeeDataFiltered: setEmployeeDataWithoutBuddy,
+  } = context;
 
   const columns: TableColumnsType<TableDataType> = [
     {

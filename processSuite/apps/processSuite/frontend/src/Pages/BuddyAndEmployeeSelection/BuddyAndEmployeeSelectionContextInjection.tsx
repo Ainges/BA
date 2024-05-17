@@ -28,7 +28,10 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
   const { selectedBuddy, setSelectedBuddy } = context;
   const { selectedEmployees, setSelectedEmployees } = context;
   const { employeeData, setEmployeeData } = context;
-  const { employeeDataWithoutBuddy, setEmployeeDataWithoutBuddy } = context;
+  const {
+    employeeDataFiltered: employeeDataWithoutBuddy,
+    setEmployeeDataFiltered: setEmployeeDataWithoutBuddy,
+  } = context;
 
   // local state
   const [selectedPage, setSelectedPage] = useState<number>(1);
@@ -66,7 +69,6 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
 
     console.log("viewport height: ", window.innerHeight);
     console.log("viewport width: ", window.innerWidth);
-
   }, []);
 
   useEffect(() => {
@@ -121,18 +123,19 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
   return (
     <>
       <div id="mycontainer" className={styles.container}>
+        {/* Page 1 */}
+
         {selectedPage === 1 ? (
-          <SelectBuddy
-            selectedBuddy={selectedBuddy}
-            setSelectedBuddy={setSelectedBuddy}
-          ></SelectBuddy>
+          // "props" passed through Context
+          <SelectBuddy></SelectBuddy>
         ) : (
-          <EmployeeList
-            selectedEmployees={selectedEmployees}
-            setSelectedEmployees={setSelectedEmployees}
-            selectedBuddy={selectedBuddy}
-          ></EmployeeList>
+          // Page 2
+          // "props" passed through Context
+          <EmployeeList></EmployeeList>
         )}
+
+        {/* Page 1 */}
+
         <Flex justify="space-evenly" align="center">
           <Button
             className={styles.button}
@@ -143,6 +146,8 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
           >
             Weiter
           </Button>
+
+          {/* Page 2 */}
           <Button
             className={styles.button}
             onClick={() => {
@@ -152,7 +157,6 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
           >
             zurück
           </Button>
-
           {selectedPage === 2 ? (
             <Tooltip
               title={

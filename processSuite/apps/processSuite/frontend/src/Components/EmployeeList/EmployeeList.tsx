@@ -8,20 +8,23 @@ import {
   TableDataType,
 } from "../../Pages/BuddyAndEmployeeSelection/BuddyandEmployeeSelectionProvider";
 
-interface EmployeeSelection {
-  selectedEmployees: React.Key[];
-  setSelectedEmployees: React.Dispatch<React.SetStateAction<React.Key[]>>;
-  selectedBuddy: React.Key[];
-}
+// interface EmployeeSelection {
+//   selectedEmployees: React.Key[];
+//   setSelectedEmployees: React.Dispatch<React.SetStateAction<React.Key[]>>;
+//   selectedBuddy: React.Key[];
+// }
 
-const EmployeeList: React.FC<EmployeeSelection> = ({}) => {
+const EmployeeList: React.FC = (props) => {
   // ### Context initialization
   const context = useContext(BuddyAndEmployeeSelectionContext);
   // context State
   const { selectedBuddy, setSelectedBuddy } = context;
   const { selectedEmployees, setSelectedEmployees } = context;
   const { employeeData, setEmployeeData } = context;
-  const { employeeDataWithoutBuddy, setEmployeeDataWithoutBuddy } = context;
+  const {
+    employeeDataFiltered: employeeDataWithoutBuddy,
+    setEmployeeDataFiltered: setEmployeeDataWithoutBuddy,
+  } = context;
 
   const columns: TableColumnsType<TableDataType> = [
     {
