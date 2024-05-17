@@ -22,8 +22,8 @@ interface BuddyAndEmployeeSelectionContextProps {
   employeeData: TableDataType[];
   setEmployeeData: React.Dispatch<React.SetStateAction<TableDataType[]>>;
 
-  employeeDataWithoutBuddy: TableDataType[];
-  setEmployeeDataWithoutBuddy: React.Dispatch<
+  employeeDataFiltered: TableDataType[];
+  setEmployeeDataFiltered: React.Dispatch<
     React.SetStateAction<TableDataType[]>
   >;
 }
@@ -39,8 +39,8 @@ export const BuddyAndEmployeeSelectionContext =
     employeeData: [],
     setEmployeeData: () => {},
 
-    employeeDataWithoutBuddy: [],
-    setEmployeeDataWithoutBuddy: () => {},
+    employeeDataFiltered: [],
+    setEmployeeDataFiltered: () => {},
   });
 
 interface BuddyAndEmployeeSelectionProviderProps {
@@ -54,7 +54,7 @@ const BuddyAndEmployeeSelectionProvider: React.FC<
   const [selectedBuddy, setSelectedBuddy] = useState<React.Key[]>([]);
   const [selectedEmployees, setSelectedEmployees] = useState<React.Key[]>([]);
   const [employeeData, setEmployeeData] = useState<TableDataType[]>([]);
-  const [employeeDataWithoutBuddy, setEmployeeDataWithoutBuddy] = useState<
+  const [employeeDataFiltered, setEmployeeDataFiltered] = useState<
     TableDataType[]
   >([]);
 
@@ -70,8 +70,8 @@ const BuddyAndEmployeeSelectionProvider: React.FC<
         employeeData,
         setEmployeeData,
 
-        employeeDataWithoutBuddy,
-        setEmployeeDataWithoutBuddy,
+        employeeDataFiltered,
+        setEmployeeDataFiltered,
       }}
     >
       {children}
