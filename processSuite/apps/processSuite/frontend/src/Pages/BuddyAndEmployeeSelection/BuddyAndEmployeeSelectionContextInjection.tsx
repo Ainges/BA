@@ -120,44 +120,72 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
     }
   }
 
-  return (
-    <>
-      <div id="mycontainer" className={styles.container}>
-        {/* Page 1 */}
-
-        {selectedPage === 1 ? (
-          // "props" passed through Context
+  if (selectedPage === 1) {
+    return (
+      <>
+        <div id="mycontainer" className={styles.container}>
           <SelectBuddy></SelectBuddy>
-        ) : (
-          // Page 2
-          // "props" passed through Context
+          <Flex justify="space-evenly" align="center">
+            <Tooltip
+              title={
+                selectedBuddy.length === 0
+                  ? "Bitte wählen Sie zumindest einen Buddy aus."
+                  : ""
+              }
+            >
+              <Button
+                className={styles.button}
+                onClick={() => {
+                  setSelectedPage(2);
+                }}
+              >
+                Weiter
+              </Button>
+            </Tooltip>
+          </Flex>
+        </div>
+      </>
+    );
+  } else if (selectedPage === 2) {
+    return (
+      <>
+        <div id="mycontainer" className={styles.container}>
           <EmployeeList></EmployeeList>
-        )}
+          <Flex justify="space-evenly" align="center">
+            <Button
+              className={styles.button}
+              onClick={() => {
+                setSelectedPage(1);
+              }}
+            >
+              zurück
+            </Button>
 
-        {/* Page 1 */}
-
-        <Flex justify="space-evenly" align="center">
-          <Button
-            className={styles.button}
-            onClick={() => {
-              setSelectedPage(2);
-            }}
-            hidden={selectedPage === 2}
-          >
-            Weiter
-          </Button>
-
-          {/* Page 2 */}
-          <Button
-            className={styles.button}
-            onClick={() => {
-              setSelectedPage(1);
-            }}
-            hidden={selectedPage === 1}
-          >
-            zurück
-          </Button>
-          {selectedPage === 2 ? (
+            <Button
+              className={styles.button}
+              onClick={() => {
+                setSelectedPage(3);
+              }}
+            >
+              Weiter
+            </Button>
+          </Flex>
+        </div>
+      </>
+    );
+  } else if (selectedPage === 3) {
+    return (
+      <>
+        <div id="mycontainer" className={styles.container}>
+          <Flex justify="space-evenly" align="center">
+            <Button
+              className={styles.button}
+              onClick={() => {
+                setSelectedPage(2);
+              }}
+            >
+              Zurück
+            </Button>
             <Tooltip
               title={
                 selectedBuddy.length === 0
@@ -178,12 +206,12 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
                 Senden
               </Button>
             </Tooltip>
-          ) : (
-            <></>
-          )}
-        </Flex>
-      </div>
-    </>
-  );
+          </Flex>
+        </div>
+      </>
+    );
+  }
+
+  return <></>;
 };
 export default BuddyAndEmployeeSelectionContextInjection;
