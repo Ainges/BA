@@ -115,7 +115,7 @@ const PrepareEquipment: React.FC<CustomFormProps> = (props) => {
               });
             }}
           >
-            Status speichern
+            Status speichern (🚧 Work in Progress)
           </Button>
         </Col>
         <Col span={8}>
