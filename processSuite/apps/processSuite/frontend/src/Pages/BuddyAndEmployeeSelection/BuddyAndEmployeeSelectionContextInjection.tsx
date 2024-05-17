@@ -177,6 +177,17 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
     return (
       <>
         <div id="mycontainer" className={styles.container}>
+          <div>
+            <h2>Selected Employees:</h2>
+            <ul>
+              {selectedEmployees.map((employee) => (
+                <li key={employee}>
+                  {employeeData.find((data) => data.key === employee)?.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <Flex justify="space-evenly" align="center">
             <Button
               className={styles.button}
