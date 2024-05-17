@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="PrepareWorkingPlaceAndEquipment_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
+  <bpmn:collaboration id="Collaboration_1cidyxu" name="">
+    <bpmn:participant id="Participant_0px403d" name="ArbeitsplatzVorbereiten" processRef="PrepareWorkingPlaceAndEquipmen_Process" />
+    <bpmn:participant id="Participant_1yu60n1" name="PreOnboarding_SCIL" />
+    <bpmn:messageFlow id="Flow_0cku051" sourceRef="Event_05mqagl" targetRef="Participant_1yu60n1" />
+  </bpmn:collaboration>
+  <bpmn:process id="PrepareWorkingPlaceAndEquipmen_Process" name="ArbeitsplatzVorbereiten" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_1ozb0ns" name="NeuerMitarbeiter">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_14ecqiu</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_05mqagl</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1xzf0d3" name="IT-Administrator">
+        <bpmn:flowNodeRef>Event_1457of7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0a0isqc</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1" name="Eqiupment muss besorgt werden">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPostScript" value="{&#10;    &#34;email&#34;: token.current.email,&#10;    &#34;password&#34;: token.current.password,&#10;    &#34;OnboardingData&#34;: token.current.initialData.OnboardingData&#10;    &#10;&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_050ujuf</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_00vc4i9">
+        <bpmn:targetRef>DataObjectReference_OnboardingData</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_050ujuf" sourceRef="StartEvent_1" targetRef="Event_05mqagl" />
+    <bpmn:sequenceFlow id="Flow_10czmop" sourceRef="Activity_0a0isqc" targetRef="Event_1457of7" />
+    <bpmn:sequenceFlow id="Flow_1tbhpoa" sourceRef="Activity_14ecqiu" targetRef="Activity_0a0isqc" />
+    <bpmn:sequenceFlow id="Flow_07tkk26" sourceRef="Event_05mqagl" targetRef="Activity_14ecqiu" />
+    <bpmn:endEvent id="Event_1457of7" name="Equipment erfolgreich bereitgestellt">
+      <bpmn:incoming>Flow_10czmop</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="Activity_0a0isqc" name="Equipment besorgen &#38; einrichten">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPreScript" value="{&#10;    ...token.current,&#10;    &#34;email&#34;: dataObjects.DataObjectReference_OnboardingData.email,&#10;    &#34;onboardingData&#34;: dataObjects.DataObjectReference_OnboardingData.OnboardingData&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1tbhpoa</bpmn:incoming>
+      <bpmn:outgoing>Flow_10czmop</bpmn:outgoing>
+      <bpmn:property id="Property_004ow47" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1hpmd9o">
+        <bpmn:sourceRef>DataObjectReference_OnboardingData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_004ow47</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_14ecqiu" name="Bevorzugtes Equipment auswählen lassen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="customForm" value="SelectEquipment" />
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_OnboardingData" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_07tkk26</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tbhpoa</bpmn:outgoing>
+      <bpmn:property id="Property_1x83tca" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1x4a083">
+        <bpmn:sourceRef>DataObjectReference_OnboardingData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1x83tca</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:userTask>
+    <bpmn:intermediateThrowEvent id="Event_05mqagl" name="Mitarbeiter über Equipmentauswahl informieren">
+      <bpmn:incoming>Flow_050ujuf</bpmn:incoming>
+      <bpmn:outgoing>Flow_07tkk26</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_03yqpxa" messageRef="Message_v8DsKNXo" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:dataObjectReference id="DataObjectReference_OnboardingData" name="Onboarding Daten" dataObjectRef="DataObject_0rngeia" />
+    <bpmn:dataObject id="DataObject_0rngeia" />
+  </bpmn:process>
+  <bpmn:message id="Message_MtXNi04i" name="Message_Send_LetEmployeeChoose" />
+  <bpmn:message id="Message_v8DsKNXo" name="Message_InformNewUserAboutAccount" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
+      <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
+        <dc:Bounds x="-200" y="4" width="1040" height="576" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
+        <dc:Bounds x="-170" y="4" width="1010" height="296" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1ozb0ns_di" bpmnElement="Lane_1ozb0ns" isHorizontal="true">
+        <dc:Bounds x="-170" y="300" width="1010" height="280" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="-113" y="422" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-136" y="465" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1457of7_di" bpmnElement="Event_1457of7">
+        <dc:Bounds x="732" y="92" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="719" y="135" width="63" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0i56adb_di" bpmnElement="Activity_0a0isqc">
+        <dc:Bounds x="485" y="70" width="150" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13glhc9_di" bpmnElement="Activity_14ecqiu">
+        <dc:Bounds x="215" y="400" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0tk9e5x_di" bpmnElement="Event_05mqagl">
+        <dc:Bounds x="102" y="422" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="77" y="372" width="85" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_18j7tau_di" bpmnElement="DataObjectReference_OnboardingData">
+        <dc:Bounds x="102" y="55" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="75" y="25" width="90" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_050ujuf_di" bpmnElement="Flow_050ujuf">
+        <di:waypoint x="-77" y="440" />
+        <di:waypoint x="102" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10czmop_di" bpmnElement="Flow_10czmop">
+        <di:waypoint x="635" y="110" />
+        <di:waypoint x="732" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tbhpoa_di" bpmnElement="Flow_1tbhpoa">
+        <di:waypoint x="365" y="440" />
+        <di:waypoint x="450" y="440" />
+        <di:waypoint x="450" y="110" />
+        <di:waypoint x="485" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07tkk26_di" bpmnElement="Flow_07tkk26">
+        <di:waypoint x="138" y="440" />
+        <di:waypoint x="215" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_1wqzlwz_di" bpmnElement="Participant_1yu60n1" isHorizontal="true">
+        <dc:Bounds x="-200" y="630" width="600" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0cku051_di" bpmnElement="Flow_0cku051">
+        <di:waypoint x="120" y="458" />
+        <di:waypoint x="120" y="630" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_00vc4i9_di" bpmnElement="DataOutputAssociation_00vc4i9">
+        <di:waypoint x="-86" y="425" />
+        <di:waypoint x="103" y="105" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1x4a083_di" bpmnElement="DataInputAssociation_1x4a083">
+        <di:waypoint x="131" y="105" />
+        <di:waypoint x="263" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1hpmd9o_di" bpmnElement="DataInputAssociation_1hpmd9o">
+        <di:waypoint x="138" y="80" />
+        <di:waypoint x="485" y="80" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

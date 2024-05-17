@@ -1,0 +1,38 @@
+{
+  "Laptops": [
+    {
+      "name": "Dell XPS 15",
+      "description": "15,6-Zoll-Laptop mit Intel Core i9 Prozessor, 32 GB RAM und 1 TB SSD."
+    },
+    {
+      "name": "Microsoft Surface Laptop 4",
+      "description": "13,5-Zoll-Laptop mit AMD Ryzen 7 Prozessor, 16 GB RAM und 512 GB SSD."
+    },
+    {
+      "name": "Apple MacBook Pro 14",
+      "description": "14-Zoll-Laptop mit Apple M1 Pro Chip, 16 GB RAM und 512 GB SSD."
+    },
+    {
+      "name": "Apple MacBook Air",
+      "description": "13,3-Zoll-Laptop mit Apple M1 Chip, 8 GB RAM und 256 GB SSD."
+    }
+  ],
+  "Smartphones": [
+    {
+      "name": "Samsung Galaxy Z Fold 3",
+      "description": "7,6-Zoll-Falt-Smartphone mit 256 GB Speicher, 12 GB RAM und Triple-Kamera-System."
+    },
+    {
+      "name": "iPhone 13 Pro Max",
+      "description": "6,7-Zoll-Smartphone mit 512 GB Speicher, 6 GB RAM und Triple-Kamera-System."
+    },
+    {
+      "name": "OnePlus 10",
+      "description": "6,7-Zoll-Smartphone mit 128 GB Speicher, 8 GB RAM und Hasselblad-Quad-Kamera."
+    },
+    {
+      "name": "Xiaomi Mi 11 Ultra",
+      "description": "6,81-Zoll-Smartphone mit 512 GB Speicher, 12 GB RAM und Triple-Kamera-Setup."
+    }
+  ]
+}

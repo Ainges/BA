@@ -366,6 +366,11 @@
     <bpmn:callActivity id="Activity_1mnv47x" name="Arbeitsplatz / Equipment vorbereiten" calledElement="PrepareWorkingPlaceAndEquipmen_Process">
       <bpmn:documentation>Generiert ua. Firmenmail
 </bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="startEventId" value="StartEvent_1" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1hbs1ar</bpmn:incoming>
       <bpmn:outgoing>Flow_0ti0n89</bpmn:outgoing>
     </bpmn:callActivity>

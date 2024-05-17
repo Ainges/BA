@@ -47,7 +47,19 @@ public class PreOnboardingRESTRoute extends RouteBuilder {
                 // Birthday Calculation
                 .post("BirthdayCalculation")
                 .consumes("application/json")
-                .to("direct:BirthdayCalculationToBroker");
+                .to("direct:BirthdayCalculationToBroker")
+
+                // Available Equipment
+                .get("AvailableEquipment")
+                .produces("application/json")
+                .to("direct:AvailableEquipment")
+
+                // inform new user about Account
+
+                .post("InformNewUserAboutAccount")
+                .consumes("application/json")
+                .to("direct:InformNewUserAboutAccountToBroker")
+        ;
 
 
 

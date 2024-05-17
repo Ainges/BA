@@ -162,10 +162,33 @@
       <bpmn:incoming>Flow_0e0irpe</bpmn:incoming>
       <bpmn:outgoing>Flow_1mrgeg9</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:startEvent id="Event_1trn6ek">
+    <bpmn:startEvent id="Event_1trn6ek" name="Nutzer muss angelegt werden">
       <bpmn:outgoing>Flow_0e0irpe</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_17mxcd5" messageRef="Message_gAuZhg6K" />
     </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0kc8hp1" sourceRef="Event_1qdfs09" targetRef="Activity_0jwzcfm" />
+    <bpmn:sequenceFlow id="Flow_0wd672s" sourceRef="Activity_0jwzcfm" targetRef="Event_1sj9qdt" />
+    <bpmn:endEvent id="Event_1sj9qdt">
+      <bpmn:incoming>Flow_0wd672s</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="Event_1qdfs09" name="Neuer Mitarbeiter muss über die Möglichkeit der Equipmentauswahl benachrichtigt werden">
+      <bpmn:outgoing>Flow_0kc8hp1</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1632yka" messageRef="Message_5E4M6g1A" />
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Activity_0jwzcfm" name="Neuen Mitarbeiter über E-Mail informieren">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="module" value="HttpClient" />
+          <camunda:property name="method" value="post" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/InformNewUserAboutAccount&#34;, &#34;token.current&#34;]" />
+          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/InformNewUserAboutAccount" />
+          <camunda:property name="studio.paramBody" value="token.current" />
+          <camunda:property name="studio.paramContentType" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0kc8hp1</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wd672s</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:message id="Message_fqaaQpdU" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_oPx4KAVx" name="Message_Receive_IsMoveNecessary" />
@@ -181,6 +204,7 @@
   <bpmn:message id="Message_xd1rilT2" name="Message_Receive_IsMoveNecessary" />
   <bpmn:message id="Message_enwXihYL" name="Message_Receive_BirthdayCalculation" />
   <bpmn:message id="Message_gAuZhg6K" name="Message_CreateEmployee" />
+  <bpmn:message id="Message_5E4M6g1A" name="Message_InformNewUserAboutAccount" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1o8eewd">
       <bpmndi:BPMNShape id="Participant_0q78rhp_di" bpmnElement="Participant_1tetnf2" isHorizontal="true">
@@ -279,6 +303,21 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_07s88es_di" bpmnElement="Event_1trn6ek">
         <dc:Bounds x="-33" y="912" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-56" y="955" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1sj9qdt_di" bpmnElement="Event_1sj9qdt">
+        <dc:Bounds x="687" y="1082" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08s772o_di" bpmnElement="Event_1qdfs09">
+        <dc:Bounds x="-33" y="1082" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-58" y="1125" width="86" height="80" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ni18m5_di" bpmnElement="Activity_0jwzcfm">
+        <dc:Bounds x="80" y="1060" width="150" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1diyb40_di" bpmnElement="Flow_1diyb40">
         <di:waypoint x="3" y="70" />
@@ -331,6 +370,14 @@
       <bpmndi:BPMNEdge id="Flow_1mrgeg9_di" bpmnElement="Flow_1mrgeg9">
         <di:waypoint x="230" y="930" />
         <di:waypoint x="687" y="930" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kc8hp1_di" bpmnElement="Flow_0kc8hp1">
+        <di:waypoint x="3" y="1100" />
+        <di:waypoint x="80" y="1100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wd672s_di" bpmnElement="Flow_0wd672s">
+        <di:waypoint x="230" y="1100" />
+        <di:waypoint x="687" y="1100" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
