@@ -2,7 +2,7 @@
   "useAuthority": true,
   "authorityConfiguration": {
     "clientId": "portal",
-    "scope": "openid profile email engine_read engine_write"
+    "scope": "openid profile email engine_read engine_write scope_vorgesetzter scope_mitarbeiter scope_admin"
   },
   "applicationBaseUrl": "http://localhost:8082",
   "engineUrl": "http://localhost:8000",

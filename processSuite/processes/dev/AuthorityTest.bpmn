@@ -5,12 +5,12 @@
   </bpmn:collaboration>
   <bpmn:process id="AuthorityTest_Process" name="AuthorityTest" isExecutable="true">
     <bpmn:laneSet>
-      <bpmn:lane id="Lane_1xzf0d3" name="Vorgesetzter">
+      <bpmn:lane id="Vorgesetzter" name="Vorgesetzter">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0d5viie</bpmn:flowNodeRef>
         <bpmn:childLaneSet id="LaneSet_1kznh6p" />
       </bpmn:lane>
-      <bpmn:lane id="Lane_14w7yd2" name="Mitarbeiter">
+      <bpmn:lane id="Mitarbeiter" name="Mitarbeiter">
         <bpmn:flowNodeRef>Activity_07a9rsq</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1jz9cpm" name="Admin">
@@ -57,16 +57,16 @@
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
         <dc:Bounds x="5" y="4" width="885" height="586" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
-        <dc:Bounds x="35" y="4" width="855" height="256" />
+      <bpmndi:BPMNShape id="Lane_1jz9cpm_di" bpmnElement="Lane_1jz9cpm" isHorizontal="true">
+        <dc:Bounds x="35" y="470" width="855" height="120" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_14w7yd2_di" bpmnElement="Lane_14w7yd2" isHorizontal="true">
+      <bpmndi:BPMNShape id="Lane_14w7yd2_di" bpmnElement="Mitarbeiter" isHorizontal="true">
         <dc:Bounds x="35" y="260" width="855" height="210" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_1jz9cpm_di" bpmnElement="Lane_1jz9cpm" isHorizontal="true">
-        <dc:Bounds x="35" y="470" width="855" height="120" />
+      <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Vorgesetzter" isHorizontal="true">
+        <dc:Bounds x="35" y="4" width="855" height="256" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">

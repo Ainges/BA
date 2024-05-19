@@ -5,7 +5,8 @@
   "portals": [
     {
       "clientId": "portal",
-      "rootUrl": "http://localhost:8082"
+      "rootUrl": "http://localhost:8082",
+      "scope": "openid profile email engine_read engine_write scope_vorgesetzter scope_mitarbeiter scope_admin"
     }
   ],
   "Studio": true,
