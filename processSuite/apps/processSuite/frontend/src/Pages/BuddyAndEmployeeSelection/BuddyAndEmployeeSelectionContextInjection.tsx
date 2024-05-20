@@ -41,8 +41,6 @@ interface TableDataSelectTime {
   time: Date | null;
 }
 
-
-
 const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
   props
 ) => {
@@ -58,9 +56,6 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
   // local state
   const [selectedPage, setSelectedPage] = useState<number>(1);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
-  const [selectedDateTime, setSelectedDateTime] = useState<{
-    [key: string]: Date | null;
-  }>({});
 
   const [selectedEmployeesWithDateTime, setSelectedEmployeesWithDateTime] =
     useState<TableDataSelectTime[]>([]);
@@ -129,7 +124,6 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
     setEmployeeDataFiltered(employeeDataWithoutBuddy);
   }, [selectedBuddy, employeeData]);
 
-
   // populate the selectedEmployeesWithDateTime state
   useEffect(() => {
     const selectedEmployeesWithDateTime = selectedEmployees.map((employee) => ({
@@ -147,12 +141,10 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
     setSelectedEmployeesWithDateTime(selectedEmployeesWithDateTime);
   }, [selectedEmployees]);
 
-
   function sendSelectionToProcess() {
     const result = {
       selectedBuddy: selectedBuddy.at(0),
       selectedEmployees: selectedEmployees,
-      selectedDateTime: selectedDateTime,
     };
     if (selectedEmployees.length === 0) {
       Modal.confirm({
@@ -164,6 +156,11 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
         },
         onCancel() {
           return;
+        },
+        cancelText: "Zurück",
+        okText: "Ja, ich bin sicher!",
+        okButtonProps: {
+          danger: true,
         },
       });
     } else {
@@ -213,17 +210,21 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
             </Button>
 
             <Button
-              className={styles.button}
+              type="primary"
+              icon={<SendOutlined />}
+              size="large"
               onClick={() => {
-                setSelectedPage(3);
+                sendSelectionToProcess();
               }}
+              className={styles.button}
+              disabled={isButtonDisabled}
             >
-              Weiter
+              Senden
             </Button>
           </Flex>
         </div>
       </>
     );
-  } 
   }
+};
 export default BuddyAndEmployeeSelectionContextInjection;

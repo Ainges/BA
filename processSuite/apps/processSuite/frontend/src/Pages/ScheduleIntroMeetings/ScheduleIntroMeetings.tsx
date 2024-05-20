@@ -8,8 +8,14 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [selectedEmployeesWithDateTime, setSelectedEmployeesWithDateTime] =
     useState([]);
+    const [selectedDateTime, setSelectedDateTime] = useState<{
+        [key: string]: Date | null;
+      }>({});
 
   const sendSelectionToProcess = () => {};
+
+
+  
   return (
     <>
       <div id="mycontainer" className={styles.container}>
