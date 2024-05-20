@@ -11,7 +11,7 @@ import {
   TimePicker,
 } from "antd";
 import { CustomFormProps } from "../../DialogRenderer";
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import styles from "./ScheduleIntroMeetings.module.css";
 import { SendOutlined } from "@ant-design/icons";
 import axios from "axios";
@@ -21,8 +21,8 @@ import { render } from "react-dom";
 interface Employee {
   name: string;
   email: string;
-  date: Date | null;
-  time: Date | null;
+  date: string | null;
+  time: string | null;
 }
 interface EmployeeDataApi {
   email: string;
@@ -115,6 +115,44 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
 
   const sendSelectionToProcess = () => {};
 
+
+  // #### handle Date Change ####
+  const handleDateChange = (
+    date: Date | null,
+    dateString: string,
+    key: Key
+  ) => {
+    console.log(
+      "Date formated to ISO String:",
+      date?.toISOString().split("T")[0]
+    );
+    console.log("DateString:", dateString);
+    console.log("Key:", key);
+
+    if (date === null) {
+      console.error("Date is null in handleDateChange!");
+      return;
+    }
+
+    setSelectedEmployeesWithDateTime(() => {
+      return selectedEmployeesWithDateTime?.map((employee) => {
+        if (employee.email === key) {
+          return {
+            ...employee,
+            date: date?.toISOString().split("T")[0],
+          };
+        } else {
+          return employee;
+        }
+      });
+    });
+  };
+
+  // #### handle Time Change ####
+  const handleTimeChange = (time: Date | null, timeString: string) => {
+    console.log(time, timeString);
+  };
+
   const columns = [
     {
       title: "Name",
@@ -124,15 +162,26 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
     {
       title: "Datum",
       dataIndex: "date",
-      key: "email",
-      render: () => {
-        return <DatePicker format="DD.MM.YYYY"></DatePicker>;
+      key: "date",
+      render: (text: Date, record: any) => {
+        return (
+          <DatePicker
+            format="DD.MM.YYYY"
+            onChange={(date, dateString) => {
+              handleDateChange(
+                date.toDate(),
+                dateString.toString(),
+                record.key
+              );
+            }}
+          ></DatePicker>
+        );
       },
     },
     {
       title: "Uhrzeit",
       dataIndex: "time",
-      key: "email",
+      key: "time",
       render: () => {
         return <TimePicker format="HH:mm"></TimePicker>;
       },
@@ -187,9 +236,20 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
           >
             Senden
           </Button>
+          <Button
+            onClick={() => {
+              console.log(
+                "Selected employees with date and time:",
+                selectedEmployeesWithDateTime
+              );
+            }}
+          >
+            Check state
+          </Button>
         </Flex>
       </div>
     </>
   );
 };
+
 export default ScheduleIntroMeetings;
