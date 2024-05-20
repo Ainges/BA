@@ -5,7 +5,7 @@ import { EmployeeData } from "../EmployeeData/EmployeeData";
 import { useEffect, useState } from "react";
 import { title } from "process";
 import { format } from "path";
-import { formatDate } from "../../functions/formatDate";
+import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
 import Paragraph from "antd/es/typography/Paragraph";
 import { InewEmployeeDataType } from "../../Interfaces/InewEmployeeData";
 
@@ -52,16 +52,19 @@ const OrganizeTask: React.FC<IcomponentProps> = (props) => {
         {
           title: "Name",
           data:
-            currentToken.OnboardingData.first_name + " " +
+            currentToken.OnboardingData.first_name +
+            " " +
             currentToken.OnboardingData.last_name,
         },
         {
           title: "Geburtstag",
-          data: formatDate(currentToken.OnboardingData.birth_date),
+          data: formatDateToDEformat(currentToken.OnboardingData.birth_date),
         },
         {
           title: "Erster Arbeitstag",
-          data: formatDate(currentToken.OnboardingData.first_working_day),
+          data: formatDateToDEformat(
+            currentToken.OnboardingData.first_working_day
+          ),
         },
         {
           title: "Position",
@@ -91,8 +94,6 @@ const OrganizeTask: React.FC<IcomponentProps> = (props) => {
 
         <Col span={18} className={styles.column}>
           <Card title="Aufgabe">
-
-
             {props.task}
             <Checkbox
               checked={checkboxChecked}
@@ -100,7 +101,6 @@ const OrganizeTask: React.FC<IcomponentProps> = (props) => {
                 setCheckboxChecked(!checkboxChecked);
               }}
             >
-
               {props.checkboxText}
             </Checkbox>
           </Card>

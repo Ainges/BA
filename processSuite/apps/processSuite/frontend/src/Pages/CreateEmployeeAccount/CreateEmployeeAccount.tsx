@@ -4,7 +4,7 @@ import { EmployeeData } from "../../Components/EmployeeData/EmployeeData";
 import { title } from "process";
 import { useEffect, useState } from "react";
 import { InewEmployeeDataType } from "../../Interfaces/InewEmployeeData";
-import { formatDate } from "../../functions/formatDate";
+import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
 import config from "../../config/config.json";
 import axios from "axios";
 
@@ -31,7 +31,9 @@ const CreateEmployeeAccount: React.FC<CustomFormProps> = (props) => {
       {
         title: "Erster Arbeitstag",
 
-        data: formatDate(currentToken.OnboardingData.first_working_day),
+        data: formatDateToDEformat(
+          currentToken.OnboardingData.first_working_day
+        ),
       },
       {
         title: "Anstellungsart",
@@ -47,7 +49,7 @@ const CreateEmployeeAccount: React.FC<CustomFormProps> = (props) => {
       },
       {
         title: "Geburtsdatum",
-        data: formatDate(currentToken.OnboardingData.birth_date),
+        data: formatDateToDEformat(currentToken.OnboardingData.birth_date),
       },
     ];
 
