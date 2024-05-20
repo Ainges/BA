@@ -1,4 +1,17 @@
-import { Button, Flex, Modal, Tooltip } from "antd";
+import {
+  Button,
+  Flex,
+  Modal,
+  Tooltip,
+  DatePicker,
+  TimePicker,
+  Divider,
+  Card,
+  Table,
+  TableColumnsType,
+  Row,
+  Col,
+} from "antd";
 import { CustomFormProps } from "../../DialogRenderer";
 import { useContext, useEffect, useState } from "react";
 import SelectBuddy from "../../Components/PreOnboarding_SelectBuddy/SelectBuddy";
@@ -8,7 +21,10 @@ import styles from "./BuddyAndEmployeeSelection.module.css";
 
 import axios from "axios";
 import config from "../../config/config.json";
-import { BuddyAndEmployeeSelectionContext } from "./BuddyandEmployeeSelectionProvider";
+import {
+  BuddyAndEmployeeSelectionContext,
+  TableDataEmployee,
+} from "./BuddyandEmployeeSelectionProvider";
 
 interface EmployeeDTO {
   email: string;
@@ -17,6 +33,15 @@ interface EmployeeDTO {
   position: string;
   profile_picture_url: string;
 }
+
+interface TableDataSelectTime {
+  key: string;
+  name: string;
+  date: Date | null;
+  time: Date | null;
+}
+
+
 
 const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
   props
@@ -33,6 +58,12 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
   // local state
   const [selectedPage, setSelectedPage] = useState<number>(1);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
+  const [selectedDateTime, setSelectedDateTime] = useState<{
+    [key: string]: Date | null;
+  }>({});
+
+  const [selectedEmployeesWithDateTime, setSelectedEmployeesWithDateTime] =
+    useState<TableDataSelectTime[]>([]);
 
   // get URL of API
   const camelHost = config.camel.host;
@@ -98,10 +129,30 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
     setEmployeeDataFiltered(employeeDataWithoutBuddy);
   }, [selectedBuddy, employeeData]);
 
+
+  // populate the selectedEmployeesWithDateTime state
+  useEffect(() => {
+    const selectedEmployeesWithDateTime = selectedEmployees.map((employee) => ({
+      // Cheap way to convert the key to a string
+      // TODO: Find better way
+      key: employee.toString() || "", // Convert the key value to a string
+      name: employeeData.find((data) => data.key === employee)?.name || "",
+      date: null,
+      time: null,
+    }));
+    console.log(
+      "Selected employees with date and time:",
+      selectedEmployeesWithDateTime
+    );
+    setSelectedEmployeesWithDateTime(selectedEmployeesWithDateTime);
+  }, [selectedEmployees]);
+
+
   function sendSelectionToProcess() {
     const result = {
       selectedBuddy: selectedBuddy.at(0),
       selectedEmployees: selectedEmployees,
+      selectedDateTime: selectedDateTime,
     };
     if (selectedEmployees.length === 0) {
       Modal.confirm({
@@ -173,56 +224,6 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
         </div>
       </>
     );
-  } else if (selectedPage === 3) {
-    return (
-      <>
-        <div id="mycontainer" className={styles.container}>
-          <div>
-            <h2>Selected Employees:</h2>
-            <ul>
-              {selectedEmployees.map((employee) => (
-                <li key={employee}>
-                  {employeeData.find((data) => data.key === employee)?.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <Flex justify="space-evenly" align="center">
-            <Button
-              className={styles.button}
-              onClick={() => {
-                setSelectedPage(2);
-              }}
-            >
-              Zurück
-            </Button>
-            <Tooltip
-              title={
-                selectedBuddy.length === 0
-                  ? "Bitte wählen Sie zumindest einen Buddy aus."
-                  : ""
-              }
-            >
-              <Button
-                type="primary"
-                icon={<SendOutlined />}
-                size="large"
-                onClick={() => {
-                  sendSelectionToProcess();
-                }}
-                className={styles.button}
-                disabled={isButtonDisabled}
-              >
-                Senden
-              </Button>
-            </Tooltip>
-          </Flex>
-        </div>
-      </>
-    );
+  } 
   }
-
-  return <></>;
-};
 export default BuddyAndEmployeeSelectionContextInjection;

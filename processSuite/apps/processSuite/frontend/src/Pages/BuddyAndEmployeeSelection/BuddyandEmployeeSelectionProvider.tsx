@@ -1,6 +1,6 @@
 import React, { ReactNode, createContext, useState } from "react";
 
-export interface TableDataType {
+export interface TableDataEmployee {
   key: React.Key;
   name: string;
   position: string;
@@ -19,12 +19,12 @@ interface BuddyAndEmployeeSelectionContextProps {
   setSelectedEmployees: React.Dispatch<React.SetStateAction<React.Key[]>>;
 
   // Fetched Data from API stored in State
-  employeeData: TableDataType[];
-  setEmployeeData: React.Dispatch<React.SetStateAction<TableDataType[]>>;
+  employeeData: TableDataEmployee[];
+  setEmployeeData: React.Dispatch<React.SetStateAction<TableDataEmployee[]>>;
 
-  employeeDataFiltered: TableDataType[];
+  employeeDataFiltered: TableDataEmployee[];
   setEmployeeDataFiltered: React.Dispatch<
-    React.SetStateAction<TableDataType[]>
+    React.SetStateAction<TableDataEmployee[]>
   >;
 }
 
@@ -53,9 +53,9 @@ const BuddyAndEmployeeSelectionProvider: React.FC<
 > = ({ children }) => {
   const [selectedBuddy, setSelectedBuddy] = useState<React.Key[]>([]);
   const [selectedEmployees, setSelectedEmployees] = useState<React.Key[]>([]);
-  const [employeeData, setEmployeeData] = useState<TableDataType[]>([]);
+  const [employeeData, setEmployeeData] = useState<TableDataEmployee[]>([]);
   const [employeeDataFiltered, setEmployeeDataFiltered] = useState<
-    TableDataType[]
+    TableDataEmployee[]
   >([]);
 
   return (

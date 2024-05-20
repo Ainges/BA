@@ -5,7 +5,7 @@ import Paragraph from "antd/es/typography/Paragraph";
 import { RowSelectionType } from "antd/es/table/interface";
 import {
   BuddyAndEmployeeSelectionContext,
-  TableDataType,
+  TableDataEmployee,
 } from "../../Pages/BuddyAndEmployeeSelection/BuddyandEmployeeSelectionProvider";
 
 // interface EmployeeSelection {
@@ -26,7 +26,7 @@ const EmployeeList: React.FC = (props) => {
     setEmployeeDataFiltered: setEmployeeDataWithoutBuddy,
   } = context;
 
-  const columns: TableColumnsType<TableDataType> = [
+  const columns: TableColumnsType<TableDataEmployee> = [
     {
       title: "Name",
       dataIndex: "name",
@@ -53,7 +53,7 @@ const EmployeeList: React.FC = (props) => {
   ];
 
   // Only Sample Data
-  const employeeArray: TableDataType[] = [
+  const employeeArray: TableDataEmployee[] = [
     {
       key: "1",
       name: "John Brown",
@@ -124,12 +124,15 @@ const EmployeeList: React.FC = (props) => {
     selectedRowKeys: selectedEmployees,
 
     // To disable selection of the buddy
-    getCheckboxProps: (record: TableDataType) => ({
+    getCheckboxProps: (record: TableDataEmployee) => ({
       disabled: record.email === selectedBuddy.at(0)?.toString(), // Column configuration not to be checked
       name: record.name,
     }),
 
-    onChange: (selectedRowKeys: React.Key[], selectedRows: TableDataType[]) => {
+    onChange: (
+      selectedRowKeys: React.Key[],
+      selectedRows: TableDataEmployee[]
+    ) => {
       console.log(
         `selectedRowKeys: ${selectedRowKeys}`,
         "In State:",

@@ -434,7 +434,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <bpmn:targetRef>DataObjectReference_1esaxlh</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_0ettg97" name="Buddy auswählen / Weitere Mitarbeiter für Kennenlertermin auswählen">
+    <bpmn:userTask id="Activity_0ettg97" name="Buddy auswählen / Weitere Mitarbeiter - Kennenlerntermin terminieren">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="customForm" value="BuddyAndEmployeeSelection" />

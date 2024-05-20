@@ -5,7 +5,7 @@ import Paragraph from "antd/es/typography/Paragraph";
 import { RowSelectionType } from "antd/es/table/interface";
 import {
   BuddyAndEmployeeSelectionContext,
-  TableDataType,
+  TableDataEmployee,
 } from "../../Pages/BuddyAndEmployeeSelection/BuddyandEmployeeSelectionProvider";
 
 const SelectBuddy: React.FC = ({}) => {
@@ -21,7 +21,7 @@ const SelectBuddy: React.FC = ({}) => {
     setEmployeeDataFiltered: setEmployeeDataWithoutBuddy,
   } = context;
 
-  const columns: TableColumnsType<TableDataType> = [
+  const columns: TableColumnsType<TableDataEmployee> = [
     {
       title: "Name",
       dataIndex: "name",
@@ -48,7 +48,7 @@ const SelectBuddy: React.FC = ({}) => {
   ];
 
   // Only Sample Data
-  const employeeArray: TableDataType[] = [
+  const employeeArray: TableDataEmployee[] = [
     {
       key: "1",
       name: "John Brown",
@@ -121,7 +121,10 @@ const SelectBuddy: React.FC = ({}) => {
     // To LOAD the selected Buddy from State
     selectedRowKeys: selectedBuddy,
     // To SAVE the selected Buddy in State
-    onChange: (selectedRowKeys: React.Key[], selectedRows: TableDataType[]) => {
+    onChange: (
+      selectedRowKeys: React.Key[],
+      selectedRows: TableDataEmployee[]
+    ) => {
       console.log(`SelectedBuddy: ${selectedRowKeys}`);
       setSelectedBuddy(selectedRowKeys.slice(-1));
     },
