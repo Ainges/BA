@@ -3,7 +3,8 @@
 }
 
 .container {
-    height: 500px !important;
-  }
+    height: 650px !important;
+    overflow-y: scroll;
+}
   
   
