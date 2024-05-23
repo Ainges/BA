@@ -141,7 +141,7 @@
     <bpmn:intermediateThrowEvent id="Event_1pqxdzy" name="Ergebnis erfolgreich an Prozess zurückgemeldet">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="inputValues" value="token.current" />
+          <camunda:property name="inputValues" value="{&#10;    &#34;birthday&#34;: token.current.result.birthday &#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1wuupoe</bpmn:incoming>

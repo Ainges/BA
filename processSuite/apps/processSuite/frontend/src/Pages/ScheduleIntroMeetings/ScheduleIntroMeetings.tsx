@@ -9,6 +9,7 @@ import {
   Tooltip,
   DatePicker,
   TimePicker,
+  Space,
 } from "antd";
 import { CustomFormProps } from "../../DialogRenderer";
 import { Key, useEffect, useState } from "react";
@@ -39,17 +40,35 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [selectedEmployeesWithDateTime, setSelectedEmployeesWithDateTime] =
     useState<Employee[]>();
-  const [selectedDateTime, setSelectedDateTime] = useState<{
-    [key: string]: Date | null;
-  }>({});
+
+  // const [selectedDateTime, setSelectedDateTime] = useState<{
+  //   [key: string]: Date | null;
+  // }>({});
 
   const [buddy, setBuddy] = useState<Employee>();
   const [buddyDataSource, setBuddyDataSource] = useState<Employee[]>([]);
 
-  const [selectedEmployees, setSelectedEmployees] = useState<Employee[]>(
-    token.selectedEmployees
-  );
+  const [selectedEmployeesEmail, setSelectedEmployeesEmail] = useState<
+    string[]
+  >(token.selectedEmployees);
+
   const [apiData, setApiData] = useState<EmployeeDataApi[]>([]);
+  const [selectedEmployees, setSelectedEmployees] = useState<EmployeeDataApi[]>(
+    []
+  );
+
+  // Filter sleected employees from API Data
+  useEffect(() => {
+    const selectedEmployeesLocal = apiData.filter((employee) =>
+      selectedEmployeesEmail.includes(employee.email)
+    );
+
+    console.log(
+      "Selected employees, enhanced with API Data:",
+      selectedEmployeesLocal
+    );
+    setSelectedEmployees(selectedEmployeesLocal);
+  }, [selectedEmployeesEmail, apiData]);
 
   // Query all employees
   useEffect(() => {
@@ -63,8 +82,8 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
         setApiData(response.data);
 
         console.log("Fetched employees:", response.data);
-        console.log("Buddy:", buddy);
-        console.log("Employees:", selectedEmployees);
+        console.log("selectedBuddy:", buddy);
+        console.log("selectedEmployeesEmail:", selectedEmployeesEmail);
       } catch (error) {
         console.error("Error fetching employees:", error);
       }
@@ -75,7 +94,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
   useEffect(() => {
     // TODO: Use Props Data instead of API Data
     // TODO: Enhance props Data with Api Data
-    const selectedEmployeesWithDateTime: Employee[] = apiData.map(
+    const selectedEmployeesWithDateTime: Employee[] = selectedEmployees.map(
       (employee) => {
         return {
           key: employee.email,
@@ -92,7 +111,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
       selectedEmployeesWithDateTime
     );
     setSelectedEmployeesWithDateTime(selectedEmployeesWithDateTime);
-  }, [apiData]);
+  }, [apiData, selectedEmployees]);
 
   // prepare buddy Object for table
   useEffect(() => {
@@ -144,12 +163,6 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
     dateString: string,
     key: Key
   ) => {
-
-
-    if (date === null) {
-      console.error("Date is null in handleDateChange of Employees!");
-      return;
-    }
     // The reasonf for using the formatDateToYYYYMMDD function is that the the toISOString function returns the date in UTC format
     // this lead to a wrong date in the process
     // for example: 2021-09-01T00:00:00.000Z -> 2021-08-31
@@ -158,7 +171,10 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
         if (employee.email === key) {
           return {
             ...employee,
-            date: formatDateToYYYYMMDD(date),
+            date:
+              date === null || date === undefined
+                ? null
+                : formatDateToYYYYMMDD(date),
           };
         } else {
           return employee;
@@ -173,20 +189,12 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
     timeString: string,
     key: Key
   ) => {
-    console.log("Time:", time);
-    console.log("TimeString:", timeString);
-
-    if (time === null) {
-      console.error("Time is null in handleTimeChange of Employees!");
-      return;
-    }
-
     setSelectedEmployeesWithDateTime(() => {
       return selectedEmployeesWithDateTime?.map((employee) => {
         if (employee.email === key) {
           return {
             ...employee,
-            time: timeString,
+            time: time === null || time === undefined ? null : timeString,
           };
         } else {
           return employee;
@@ -201,32 +209,22 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
     dateString: string,
     key: Key
   ) => {
-    if (date === null) {
-      console.error("Date is null in handleDateChange of Buddy!");
-      return;
-    }
-
     // The reasonf for using the formatDateToYYYYMMDD function is that the the toISOString function returns the date in UTC format
     // this lead to a wrong date in the process
     // for example: 2021-09-01T00:00:00.000Z -> 2021-08-31
-    console.log("Date formated to ISO-style String:", formatDateToYYYYMMDD(date));
-    console.log("DateString:", dateString);
-    console.log("Key:", key);
 
-    //TODO: Implement better error handling
-    if (date === null) {
-      console.error("Date is null in handleDateChange of Buddy!");
-      return;
-    }
     if (buddy === undefined) {
-      console.error("Buddy is undefined in handleDateChange of Buddy!");
+      console.info("Buddy is undefined in handleDateChange of Buddy!");
       return;
     }
 
     setBuddy(() => {
       return {
         ...buddy,
-        date: formatDateToYYYYMMDD(date),
+        date:
+          date === null || date === undefined
+            ? null
+            : formatDateToYYYYMMDD(date),
       };
     });
   };
@@ -241,19 +239,16 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
     console.log("TimeString:", timeString);
 
     //TODO: Implement better error handling
-    if (time === null) {
-      console.error("Time is null in handleTimeChange of Buddy!");
-      return;
-    }
+
     if (buddy === undefined) {
-      console.error("Buddy is undefined in handleTimeChange of Buddy!");
+      console.info("Buddy is undefined in handleTimeChange of Buddy!");
       return;
     }
 
     setBuddy(() => {
       return {
         ...buddy,
-        time: timeString,
+        time: time === null || time === undefined ? null : timeString,
       };
     });
   };
@@ -265,15 +260,18 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
     );
 
     const isBuddyScheduled = buddy?.date !== null && buddy?.time !== null;
+    console.log("isEveryEmployeeScheduled:", isEveryEmployeeScheduled);
+    console.log("isBuddyScheduled:", isBuddyScheduled);
 
     if (isEveryEmployeeScheduled && isBuddyScheduled) {
       console.log("Every employee has time and date set");
+      console.log(() => {});
       setIsButtonDisabled(false);
     } else {
       console.log("Not every employee has time and date set yet");
       setIsButtonDisabled(true);
     }
-  }, [selectedEmployeesWithDateTime]);
+  }, [selectedEmployeesWithDateTime, buddy]);
 
   const columnsEmployees = [
     {
@@ -290,6 +288,10 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
           <DatePicker
             format="DD.MM.YYYY"
             onChange={(date, dateString) => {
+              if (date === null) {
+                handleDateChangeEmployees(null, "", record.key);
+                return;
+              }
               handleDateChangeEmployees(
                 date.toDate(),
                 dateString.toString(),
@@ -309,6 +311,10 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
           <TimePicker
             format="HH:mm"
             onChange={(time, timeString) => {
+              if (time === null) {
+                handleTimeChangeEmployees(null, "", record.key);
+                return;
+              }
               handleTimeChangeEmployees(
                 time.toDate(),
                 timeString.toString(),
@@ -335,6 +341,11 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
           <DatePicker
             format="DD.MM.YYYY"
             onChange={(date, dateString) => {
+              if (date === null) {
+                handleDateChangeBuddy(null, "", record.key);
+                return;
+              }
+
               handleDateChangeBuddy(
                 date.toDate(),
                 dateString.toString(),
@@ -354,6 +365,11 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
           <TimePicker
             format="HH:mm"
             onChange={(time, timeString) => {
+              if (time === null) {
+                handleTimeChangeBuddy(null, "", record.key);
+                return;
+              }
+
               handleTimeChangeBuddy(
                 time.toDate(),
                 timeString.toString(),
@@ -385,6 +401,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
             <Col span={1}></Col>
           </Col>
         </Row>
+        <br />
         <Row>
           <Col span={1}></Col>
           <Col span={22}>
@@ -401,6 +418,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
           </Col>
           <Col span={1}></Col>
         </Row>
+        <br />
         <Flex justify="space-evenly" align="center">
           <Button
             type="primary"
@@ -414,7 +432,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
           >
             Senden
           </Button>
-          <Button
+          {/* <Button
             onClick={() => {
               console.log(
                 "Selected employees with date and time:",
@@ -430,7 +448,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
             }}
           >
             Check state Buddy
-          </Button>
+          </Button> */}
         </Flex>
       </div>
     </>
