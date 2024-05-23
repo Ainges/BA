@@ -20,7 +20,7 @@ import TextArea from "antd/es/input/TextArea";
 import { useEffect, useState } from "react";
 
 import { SendOutlined } from "@ant-design/icons";
-import { formatDate } from "../../functions/formatDate";
+import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
 
 interface IinductionPlanElement {
   title: string;
@@ -77,8 +77,10 @@ const CustomizedInductionPlan: React.FC<CustomFormProps> = (props) => {
       },
       {
         title: "Erster Arbeitstag",
-     
-        data: formatDate(currentToken.OnboardingData.first_working_day),
+
+        data: formatDateToDEformat(
+          currentToken.OnboardingData.first_working_day
+        ),
       },
       {
         title: "Anstellungsart",

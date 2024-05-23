@@ -3,7 +3,7 @@ import { FormState } from "@atlas-engine-contrib/atlas-ui_sdk";
 import OrganizeTask from "../../Components/OrganizeTask/OrganizeTask";
 import { CustomFormProps } from "../../DialogRenderer";
 import Paragraph from "antd/es/typography/Paragraph";
-import { formatDate } from "../../functions/formatDate";
+import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
 
 const OrganizeCake: React.FC<CustomFormProps> = (props) => {
   const currentToken = props.userTask.startToken;
@@ -17,8 +17,10 @@ const OrganizeCake: React.FC<CustomFormProps> = (props) => {
             <Paragraph>
               Der neue Mitarbeiter {currentToken.OnboardingData.first_name}{" "}
               {currentToken.OnboardingData.last_name} hat am{" "}
-              {formatDate(currentToken.OnboardingData.first_working_day)} seinen
-              ersten Arbeitstag.
+              {formatDateToDEformat(
+                currentToken.OnboardingData.first_working_day
+              )}{" "}
+              seinen ersten Arbeitstag.
             </Paragraph>
             <Paragraph>
               Gleichzeitig hat er am selben Tag Geburtstag. Bitte organisieren
@@ -26,7 +28,7 @@ const OrganizeCake: React.FC<CustomFormProps> = (props) => {
             </Paragraph>
           </>
         }
-        checkboxText={`Kuchen ist auf den ${formatDate(
+        checkboxText={`Kuchen ist auf den ${formatDateToDEformat(
           currentToken.OnboardingData.first_working_day
         )} bestellt!`}
         resultString={"Cake organized!"}

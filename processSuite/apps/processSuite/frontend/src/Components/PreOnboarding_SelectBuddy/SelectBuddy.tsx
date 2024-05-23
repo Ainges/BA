@@ -5,15 +5,10 @@ import Paragraph from "antd/es/typography/Paragraph";
 import { RowSelectionType } from "antd/es/table/interface";
 import {
   BuddyAndEmployeeSelectionContext,
-  TableDataType,
+  TableDataEmployee,
 } from "../../Pages/BuddyAndEmployeeSelection/BuddyandEmployeeSelectionProvider";
 
-interface BuddySelection {
-  selectedBuddy: React.Key[];
-  setSelectedBuddy: React.Dispatch<React.SetStateAction<React.Key[]>>;
-}
-
-const SelectBuddy: React.FC<BuddySelection> = ({}) => {
+const SelectBuddy: React.FC = ({}) => {
   // context initialization
   const context = useContext(BuddyAndEmployeeSelectionContext);
 
@@ -21,9 +16,12 @@ const SelectBuddy: React.FC<BuddySelection> = ({}) => {
   const { selectedBuddy, setSelectedBuddy } = context;
   const { selectedEmployees, setSelectedEmployees } = context;
   const { employeeData, setEmployeeData } = context;
-  const { employeeDataWithoutBuddy, setEmployeeDataWithoutBuddy } = context;
+  const {
+    employeeDataFiltered: employeeDataWithoutBuddy,
+    setEmployeeDataFiltered: setEmployeeDataWithoutBuddy,
+  } = context;
 
-  const columns: TableColumnsType<TableDataType> = [
+  const columns: TableColumnsType<TableDataEmployee> = [
     {
       title: "Name",
       dataIndex: "name",
@@ -50,7 +48,7 @@ const SelectBuddy: React.FC<BuddySelection> = ({}) => {
   ];
 
   // Only Sample Data
-  const employeeArray: TableDataType[] = [
+  const employeeArray: TableDataEmployee[] = [
     {
       key: "1",
       name: "John Brown",
@@ -123,7 +121,10 @@ const SelectBuddy: React.FC<BuddySelection> = ({}) => {
     // To LOAD the selected Buddy from State
     selectedRowKeys: selectedBuddy,
     // To SAVE the selected Buddy in State
-    onChange: (selectedRowKeys: React.Key[], selectedRows: TableDataType[]) => {
+    onChange: (
+      selectedRowKeys: React.Key[],
+      selectedRows: TableDataEmployee[]
+    ) => {
       console.log(`SelectedBuddy: ${selectedRowKeys}`);
       setSelectedBuddy(selectedRowKeys.slice(-1));
     },

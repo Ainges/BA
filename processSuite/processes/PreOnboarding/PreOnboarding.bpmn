@@ -33,17 +33,13 @@
       <bpmn:text></bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_01oufa3" associationDirection="None" sourceRef="Activity_1fgzbmu" targetRef="TextAnnotation_19zshoz" />
-    <bpmn:textAnnotation id="TextAnnotation_02e1mpa">
-      <bpmn:text>Hier sollte vermutlich auch gleich noch ein Termin für das Gespräch definiert werden</bpmn:text>
-    </bpmn:textAnnotation>
-    <bpmn:association id="Association_1m3ntcv" associationDirection="None" sourceRef="Activity_0ettg97" targetRef="TextAnnotation_02e1mpa" />
-    <bpmn:association id="Association_16n593h" sourceRef="Activity_1mnv47x" targetRef="TextAnnotation_1g7nhah" />
+    <bpmn:group id="Group_070ya91" />
+    <bpmn:association id="Association_1i23230" associationDirection="None" sourceRef="Activity_1u0fik6" targetRef="TextAnnotation_1786vqb" />
   </bpmn:collaboration>
   <bpmn:process id="Preonboarding_Process" name="Onboarding_Phase1" isExecutable="true" camunda:versionTag="0.1">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1pyr36n" name="Vorgesetzter">
         <bpmn:flowNodeRef>StartEvent_OnboardingPhase1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_0vfwlrv</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0scggi2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1t0wxn9</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_17whont</bpmn:flowNodeRef>
@@ -51,33 +47,38 @@
         <bpmn:flowNodeRef>Event_1d8bbu9</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1n7xkno</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1cannnv</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_0k0b8gx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0e9psvj</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1l0s39s</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0iqejj2</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_0vy7lxq</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_18vvqsr</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_141wu49</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_1v90pt7</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1r751sf</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0bx4zme</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1fgzbmu</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>SmallAttentionOrganisation</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1inu1sx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>FirstWelcomeMessage_Send</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>InfoForFirstWorkingDay_send</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_08gq0uy</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_11h7fua</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0vwo47g</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1mnv47x</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0ettg97</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1u0fik6</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_1pwvone</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0mi7quq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0ve80u6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1l0s39s</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0iqejj2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1inu1sx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0n8dh6h</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1eyq305</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0vfwlrv</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1u0fik6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0ettg97</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_18vvqsr</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0vy7lxq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0k0b8gx</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1gp3pkd" name="Team Assistenz">
+        <bpmn:flowNodeRef>Event_1r751sf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_141wu49</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1v90pt7</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0auig7p</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0ve80u6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_11h7fua</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1ti0aen</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0wc0exu</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>SmallAttentionOrganisation</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1fgzbmu</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0mi7quq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1gk2vew</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1uyorme" name="IT-Admin">
+        <bpmn:flowNodeRef>Activity_1mnv47x</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0bx4zme</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_0cnjnkh" sourceRef="Gateway_0vfwlrv" targetRef="Activity_1eyq305" />
@@ -86,29 +87,14 @@
     <bpmn:sequenceFlow id="Flow_0579xkg" sourceRef="Gateway_0vfwlrv" targetRef="Event_1inu1sx" />
     <bpmn:sequenceFlow id="Flow_1apdyem" sourceRef="Gateway_0vfwlrv" targetRef="Activity_0auig7p" />
     <bpmn:sequenceFlow id="Flow_1aclm6n" sourceRef="Gateway_0vfwlrv" targetRef="Activity_0ve80u6" />
-    <bpmn:sequenceFlow id="Flow_0x25abl" sourceRef="Gateway_1pwvone" targetRef="Activity_11h7fua" />
-    <bpmn:sequenceFlow id="Flow_1hbs1ar" sourceRef="Gateway_1pwvone" targetRef="Activity_1mnv47x" />
-    <bpmn:sequenceFlow id="Flow_0l23t6d" sourceRef="Gateway_1pwvone" targetRef="Activity_1u0fik6" />
-    <bpmn:sequenceFlow id="Flow_1ca1wyr" sourceRef="Gateway_1pwvone" targetRef="Activity_0vwo47g" />
     <bpmn:sequenceFlow id="Flow_153xh25" sourceRef="Event_1t0wxn9" targetRef="Event_0scggi2" />
     <bpmn:sequenceFlow id="Flow_0qct0o4" sourceRef="Event_0scggi2" targetRef="Gateway_0vfwlrv" />
-    <bpmn:dataObjectReference id="DataObjectReference_newEmployeeData" name="Daten zu neuem Mitarbeiter" dataObjectRef="DataObject_1wriav3" />
-    <bpmn:dataObject id="DataObject_1wriav3" />
-    <bpmn:sequenceFlow id="Flow_110ti7k" sourceRef="Activity_0auig7p" targetRef="Event_1r751sf" />
     <bpmn:startEvent id="StartEvent_OnboardingPhase1" name="Onboarding von Mitarbeiter steht an">
       <bpmn:outgoing>Flow_0alw6fb</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1ndumyw">
         <bpmn:targetRef>DataObjectReference_newEmployeeData</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:startEvent>
-    <bpmn:parallelGateway id="Gateway_0vfwlrv">
-      <bpmn:incoming>Flow_0qct0o4</bpmn:incoming>
-      <bpmn:outgoing>Flow_0cnjnkh</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0tbqr8l</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0579xkg</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1apdyem</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1aclm6n</bpmn:outgoing>
-    </bpmn:parallelGateway>
     <bpmn:intermediateThrowEvent id="Event_0scggi2" name="Anlegen einer Personalakte anstoßen">
       <bpmn:incoming>Flow_153xh25</bpmn:incoming>
       <bpmn:outgoing>Flow_0qct0o4</bpmn:outgoing>
@@ -162,10 +148,6 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" />
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0b711zh" sourceRef="Gateway_0e9psvj" targetRef="Event_1cannnv" />
-    <bpmn:sequenceFlow id="Flow_1hnmuf0" name="Nein" sourceRef="Gateway_141wu49" targetRef="Gateway_1v90pt7">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.birthday === "after"</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_19f4yhv" sourceRef="SmallAttentionOrganisation" targetRef="Gateway_1v90pt7" />
     <bpmn:sequenceFlow id="Flow_1xwqfij" sourceRef="Gateway_1v90pt7" targetRef="Gateway_0k0b8gx">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" />
     </bpmn:sequenceFlow>
@@ -177,21 +159,113 @@
     <bpmn:sequenceFlow id="Flow_02puo4e" sourceRef="InfoForFirstWorkingDay_send" targetRef="Gateway_0k0b8gx" />
     <bpmn:sequenceFlow id="Flow_0gpynrx" sourceRef="Gateway_0k0b8gx" targetRef="Event_0iqejj2" />
     <bpmn:sequenceFlow id="Flow_0l95km6" sourceRef="Event_0iqejj2" targetRef="Activity_1l0s39s" />
-    <bpmn:sequenceFlow id="Flow_0zgdox5" sourceRef="Event_1r751sf" targetRef="Gateway_141wu49" />
-    <bpmn:sequenceFlow id="Flow_14f8hc7" name="ja" sourceRef="Gateway_141wu49" targetRef="SmallAttentionOrganisation">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.result.birthday === "before" || token.current.result.birthday === "on"</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:parallelGateway id="Gateway_0k0b8gx">
-      <bpmn:incoming>Flow_1wl4ctr</bpmn:incoming>
-      <bpmn:incoming>Flow_1xwqfij</bpmn:incoming>
-      <bpmn:incoming>Flow_02puo4e</bpmn:incoming>
-      <bpmn:outgoing>Flow_0gpynrx</bpmn:outgoing>
-    </bpmn:parallelGateway>
     <bpmn:eventBasedGateway id="Gateway_0e9psvj">
       <bpmn:incoming>Flow_0hvkfna</bpmn:incoming>
       <bpmn:outgoing>Flow_02pc3pw</bpmn:outgoing>
       <bpmn:outgoing>Flow_0b711zh</bpmn:outgoing>
     </bpmn:eventBasedGateway>
+    <bpmn:sendTask id="FirstWelcomeMessage_Send" name="Willkommensnachricht an Mitarbeiter senden" messageRef="Message_LKtkj70V">
+      <bpmn:documentation>Sehr wichtig zur Mitarbeiterbindung um im Geächnis zu bleiben und einem nicht nicht erscheinen am Ersten Arbeitstag entgegen zu wirken.</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPostScript" value="{&#10;    token&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0hrxaxi</bpmn:incoming>
+      <bpmn:outgoing>Flow_1wl4ctr</bpmn:outgoing>
+      <bpmn:property id="Property_1je67im" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_12q11cj">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1je67im</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:sendTask>
+    <bpmn:sendTask id="InfoForFirstWorkingDay_send" name="Nachricht mit defininierten Eckpunkten an Mitarbeiter senden" messageRef="Message_XEDk6ELW">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPreScript" value="{&#10;  ...token.current,&#10;  &#34;last_name&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.last_name,&#10;  &#34;private_email&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.private_email,&#10;  &#34;first_working_day&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.first_working_day&#10;}&#10;  &#10;" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_10b9tgi</bpmn:incoming>
+      <bpmn:outgoing>Flow_02puo4e</bpmn:outgoing>
+      <bpmn:property id="Property_1ck9jsl" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_02ky4ym">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1ck9jsl</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_0uoyrij" sourceRef="Activity_0n8dh6h" targetRef="Event_0mi7quq" />
+    <bpmn:userTask id="Activity_0ve80u6" name="Eckpunkte für ersten Arbeitstag definieren">
+      <bpmn:documentation>Inhalt: 
+- Wo melden am ersten Arbeitstag?
+- Wer ist Ansprechpartner?
+- Wann da sein?
+- Benötigte Unterlagen?</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="contact_person" label="Ansprechpartner" type="string" defaultValue="Dirk Müller" />
+          <camunda:formField id="begin_of_first_working_day" label="Beginn des ersten Arbeitstages" type="string" defaultValue="08:00 Uhr" />
+          <camunda:formField id="documents_needed_for_first_working_day" label="Folgende Dokumente werden für den erste Arbeitstag benötigt" type="string" defaultValue="Personalausweis" />
+          <camunda:formField id="contact_person_mail" label="E-Mail der Kontaktperson" type="string" defaultValue="dirkmueller@dundermifflin.com" />
+        </camunda:formData>
+        <camunda:properties>
+          <camunda:property name="customForm" value="KeyPointsForFirstWorkingDay" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1aclm6n</bpmn:incoming>
+      <bpmn:outgoing>Flow_10b9tgi</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:intermediateCatchEvent id="Event_1r751sf" name="Berechnung erhalten">
+      <bpmn:incoming>Flow_110ti7k</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zgdox5</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1e32199" messageRef="Message_YMfNr6OO" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:inclusiveGateway id="Gateway_141wu49" name="Hat neuer Mitarbeiter noch vor dem ersten Arbeitstag Geburtstag?">
+      <bpmn:incoming>Flow_0zgdox5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1hnmuf0</bpmn:outgoing>
+      <bpmn:outgoing>Flow_14f8hc7</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0thhn1p</bpmn:outgoing>
+    </bpmn:inclusiveGateway>
+    <bpmn:inclusiveGateway id="Gateway_1v90pt7">
+      <bpmn:incoming>Flow_1hnmuf0</bpmn:incoming>
+      <bpmn:incoming>Flow_19f4yhv</bpmn:incoming>
+      <bpmn:incoming>Flow_00p1fzd</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xwqfij</bpmn:outgoing>
+    </bpmn:inclusiveGateway>
+    <bpmn:userTask id="SmallAttentionOrganisation" name="Aufmerksamkeit Organisieren und zukommen lassen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
+          <camunda:property name="customForm" value="OrganizeSmallPresent" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_14f8hc7</bpmn:incoming>
+      <bpmn:outgoing>Flow_19f4yhv</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sendTask id="Activity_0auig7p" name="Berechnen, ob Mitarbeiter vor Eintritt Geburtstag hat." messageRef="Message_ugx0EenC">
+      <bpmn:documentation>Hier wird mit einem Puffer von 5 Tagen gerechnet. Wenn also der neue Mitarbeiter gestern Geburtstag hatte, wird die Aktion trozdem ausgelöst.
+
+Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unternommen</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="payload" value="{&#10;    &#34;first_working_day&#34;:token.current.OnboardingData.first_working_day,&#10;    &#34;birth_date&#34;: token.current.OnboardingData.birth_date&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1apdyem</bpmn:incoming>
+      <bpmn:outgoing>Flow_110ti7k</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_110ti7k" sourceRef="Activity_0auig7p" targetRef="Event_1r751sf" />
+    <bpmn:sequenceFlow id="Flow_0zgdox5" sourceRef="Event_1r751sf" targetRef="Gateway_141wu49" />
+    <bpmn:sequenceFlow id="Flow_1hnmuf0" name="Nein" sourceRef="Gateway_141wu49" targetRef="Gateway_1v90pt7">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.birthday === "after"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_14f8hc7" name="ja" sourceRef="Gateway_141wu49" targetRef="SmallAttentionOrganisation">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.result.birthday === "before" || token.current.result.birthday === "on"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0thhn1p" name="ja genau am ersten Arbeitstag" sourceRef="Gateway_141wu49" targetRef="Activity_1fgzbmu">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.result.birthday === "on"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_19f4yhv" sourceRef="SmallAttentionOrganisation" targetRef="Gateway_1v90pt7" />
+    <bpmn:sequenceFlow id="Flow_00p1fzd" sourceRef="Activity_1fgzbmu" targetRef="Gateway_1v90pt7" />
     <bpmn:sendTask id="Activity_1l0s39s" name="Wilkommensnachricht / Reminder für anstehenden ersten Arbeitstag" messageRef="Message_uZq3k32L">
       <bpmn:extensionElements>
         <camunda:properties>
@@ -214,12 +288,84 @@
         <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
-    <bpmn:parallelGateway id="Gateway_0vy7lxq">
-      <bpmn:incoming>Flow_1sxu1fe</bpmn:incoming>
-      <bpmn:incoming>Flow_1yza01d</bpmn:incoming>
-      <bpmn:incoming>Flow_020fp2m</bpmn:incoming>
-      <bpmn:outgoing>Flow_1fso8h9</bpmn:outgoing>
+    <bpmn:intermediateCatchEvent id="Event_1inu1sx" name="3 Tage">
+      <bpmn:incoming>Flow_0579xkg</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hrxaxi</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0rdkkhl">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:userTask id="Activity_0n8dh6h" name="Benutzerkonto für neuen Mitarbeiter anlegen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="customForm" value="CreateEmployeeAccount" />
+          <camunda:property name="engine.runPostScript" value="return {&#10;    ...token.current,&#10;    &#34;initialData&#34;: dataObjects.DataObjectReference_newEmployeeData&#10;}" />
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0tbqr8l</bpmn:incoming>
+      <bpmn:outgoing>Flow_0uoyrij</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:dataObjectReference id="DataObjectReference_newEmployeeData" name="Daten zu neuem Mitarbeiter" dataObjectRef="DataObject_1wriav3" />
+    <bpmn:dataObject id="DataObject_1wriav3" />
+    <bpmn:dataObjectReference id="DataObjectReference_1esaxlh" name="Einarbeitungsplan" dataObjectRef="DataObject_091tpqh" />
+    <bpmn:dataObject id="DataObject_091tpqh" />
+    <bpmn:sendTask id="Activity_1eyq305" name="Mitarbeiter fragen ob durch den Jobwechsel ein Umzug ansteht" messageRef="Message_Jkc2PIH2">
+      <bpmn:documentation />
+      <bpmn:incoming>Flow_0cnjnkh</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hvkfna</bpmn:outgoing>
+      <bpmn:property id="Property_0jahgm4" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0sohxcq">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0jahgm4</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:sendTask>
+    <bpmn:parallelGateway id="Gateway_0vfwlrv">
+      <bpmn:incoming>Flow_0qct0o4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0cnjnkh</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0tbqr8l</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0579xkg</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1apdyem</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1aclm6n</bpmn:outgoing>
     </bpmn:parallelGateway>
+    <bpmn:userTask id="Activity_1u0fik6" name="Individuellen Einarbeitunsplan erstellen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="customForm" value="CustomizedInductionPlan" />
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1uq4xji</bpmn:incoming>
+      <bpmn:outgoing>Flow_0opkukw</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_134uak6">
+        <bpmn:targetRef>DataObjectReference_1esaxlh</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0flxfol">
+        <bpmn:targetRef>DataObjectReference_1esaxlh</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_0ettg97" name="Buddy auswählen &#38; weitere Mitarbeiter für Kennenlerngespräch">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="customForm" value="BuddyAndEmployeeSelection" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_01bx8d7</bpmn:incoming>
+      <bpmn:outgoing>Flow_0nh1wp2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0nh1wp2" sourceRef="Activity_0ettg97" targetRef="Activity_1gk2vew" />
+    <bpmn:sequenceFlow id="Flow_1f6pves" sourceRef="Event_0mi7quq" targetRef="Gateway_1ti0aen" />
+    <bpmn:sequenceFlow id="Flow_10zrf0a" sourceRef="Gateway_1ti0aen" targetRef="Activity_1mnv47x" />
+    <bpmn:sequenceFlow id="Flow_0zehq1y" sourceRef="Gateway_1ti0aen" targetRef="Activity_11h7fua" />
+    <bpmn:sequenceFlow id="Flow_01bx8d7" sourceRef="Gateway_1ti0aen" targetRef="Activity_0ettg97" />
+    <bpmn:sequenceFlow id="Flow_1uq4xji" sourceRef="Gateway_1ti0aen" targetRef="Activity_1u0fik6" />
+    <bpmn:sequenceFlow id="Flow_1x760zj" sourceRef="Activity_1mnv47x" targetRef="Gateway_0wc0exu" />
+    <bpmn:sequenceFlow id="Flow_1istw1t" sourceRef="Activity_11h7fua" targetRef="Gateway_0wc0exu" />
+    <bpmn:sequenceFlow id="Flow_1qf5s0r" sourceRef="Activity_1gk2vew" targetRef="Gateway_0wc0exu" />
+    <bpmn:sequenceFlow id="Flow_0opkukw" sourceRef="Activity_1u0fik6" targetRef="Gateway_0wc0exu" />
+    <bpmn:sequenceFlow id="Flow_13uzojx" sourceRef="Gateway_0wc0exu" targetRef="Gateway_0vy7lxq">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" />
+    </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_18vvqsr" name="Tag des Eintritts erreicht">
       <bpmn:extensionElements>
         <camunda:properties>
@@ -227,39 +373,90 @@
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1fso8h9</bpmn:incoming>
-      <bpmn:property id="Property_0v4am1s" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_1mfoxow">
-        <bpmn:sourceRef>DataObjectReference_necessary_training</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0v4am1s</bpmn:targetRef>
+      <bpmn:property id="Property_1vbs5ai" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0wjjfe1">
+        <bpmn:sourceRef>DataObjectReference_1esaxlh</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1vbs5ai</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_1gjy8nn">
+        <bpmn:sourceRef>DataObjectReference_BuddyEmployeeSelection</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1vbs5ai</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_13etpzl" sourceRef="Gateway_1pwvone" targetRef="Activity_0ettg97" />
-    <bpmn:sequenceFlow id="Flow_13falf8" sourceRef="Gateway_141wu49" targetRef="Gateway_1v90pt7" />
-    <bpmn:intermediateCatchEvent id="Event_1r751sf" name="Berechnung erhalten">
-      <bpmn:incoming>Flow_110ti7k</bpmn:incoming>
-      <bpmn:outgoing>Flow_0zgdox5</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1e32199" messageRef="Message_YMfNr6OO" />
-    </bpmn:intermediateCatchEvent>
-    <bpmn:inclusiveGateway id="Gateway_141wu49" name="Hat neuer Mitarbeiter noch vor dem ersten Arbeitstag Geburtstag?" default="Flow_13falf8">
-      <bpmn:incoming>Flow_0zgdox5</bpmn:incoming>
-      <bpmn:outgoing>Flow_1hnmuf0</bpmn:outgoing>
-      <bpmn:outgoing>Flow_14f8hc7</bpmn:outgoing>
-      <bpmn:outgoing>Flow_13falf8</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0thhn1p</bpmn:outgoing>
-    </bpmn:inclusiveGateway>
-    <bpmn:inclusiveGateway id="Gateway_1v90pt7">
-      <bpmn:incoming>Flow_1hnmuf0</bpmn:incoming>
-      <bpmn:incoming>Flow_19f4yhv</bpmn:incoming>
-      <bpmn:incoming>Flow_13falf8</bpmn:incoming>
-      <bpmn:incoming>Flow_00p1fzd</bpmn:incoming>
-      <bpmn:outgoing>Flow_1xwqfij</bpmn:outgoing>
-    </bpmn:inclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_00p1fzd" sourceRef="Activity_1fgzbmu" targetRef="Gateway_1v90pt7" />
-    <bpmn:sequenceFlow id="Flow_0thhn1p" name="ja genau am ersten Arbeitstag" sourceRef="Gateway_141wu49" targetRef="Activity_1fgzbmu">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.result.birthday === "on"</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:dataObjectReference id="DataObjectReference_necessary_training" name="Notwendige&#10;(Compliance) Schulungen" dataObjectRef="DataObject_04vns1l" />
-    <bpmn:dataObject id="DataObject_04vns1l" />
+    <bpmn:parallelGateway id="Gateway_0vy7lxq">
+      <bpmn:incoming>Flow_1sxu1fe</bpmn:incoming>
+      <bpmn:incoming>Flow_1yza01d</bpmn:incoming>
+      <bpmn:incoming>Flow_13uzojx</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fso8h9</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:dataObjectReference id="DataObjectReference_BuddyEmployeeSelection" name="Buddy und ausgewählte weitere Mitarbeiter" dataObjectRef="DataObject_0fq51v3" />
+    <bpmn:dataObject id="DataObject_0fq51v3" />
+    <bpmn:callActivity id="Activity_1mnv47x" name="Arbeitsplatz / Equipment vorbereiten" calledElement="PrepareWorkingPlaceAndEquipmen_Process">
+      <bpmn:documentation>Generiert ua. Firmenmail
+</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="startEventId" value="StartEvent_1" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_10zrf0a</bpmn:incoming>
+      <bpmn:outgoing>Flow_1x760zj</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:manualTask id="Activity_11h7fua" name="Wilkommensgeschenk vorbereiten">
+      <bpmn:incoming>Flow_0zehq1y</bpmn:incoming>
+      <bpmn:outgoing>Flow_1istw1t</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:parallelGateway id="Gateway_1ti0aen">
+      <bpmn:incoming>Flow_1f6pves</bpmn:incoming>
+      <bpmn:outgoing>Flow_10zrf0a</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0zehq1y</bpmn:outgoing>
+      <bpmn:outgoing>Flow_01bx8d7</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1uq4xji</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:exclusiveGateway id="Gateway_0wc0exu">
+      <bpmn:incoming>Flow_1x760zj</bpmn:incoming>
+      <bpmn:incoming>Flow_1istw1t</bpmn:incoming>
+      <bpmn:incoming>Flow_1qf5s0r</bpmn:incoming>
+      <bpmn:incoming>Flow_0opkukw</bpmn:incoming>
+      <bpmn:outgoing>Flow_13uzojx</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Activity_1fgzbmu" name="Kuchen organisieren">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
+          <camunda:property name="customForm" value="OrganizeCake" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0thhn1p</bpmn:incoming>
+      <bpmn:outgoing>Flow_00p1fzd</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:intermediateThrowEvent id="Event_0mi7quq" name="Mitarbeitern in Systemen anlegen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="inputValues" value="token.current" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0uoyrij</bpmn:incoming>
+      <bpmn:outgoing>Flow_1f6pves</bpmn:outgoing>
+      <bpmn:property id="Property_0wuw11h" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0c5ghsq">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0wuw11h</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_12rblzb" messageRef="Message_dQSiwAG5" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:userTask id="Activity_1gk2vew" name="Kennenlerngespräche terminieren">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="customForm" value="ScheduleIntroMeetings" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0nh1wp2</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qf5s0r</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0a8wyuy">
+        <bpmn:targetRef>DataObjectReference_BuddyEmployeeSelection</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:userTask>
     <bpmn:subProcess id="Activity_0bx4zme" triggeredByEvent="true">
       <bpmn:endEvent id="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay" name="Vorbereitung nicht vollständig abgeschlossen">
         <bpmn:incoming>Flow_0e6pm09</bpmn:incoming>
@@ -273,224 +470,13 @@
         </bpmn:timerEventDefinition>
       </bpmn:startEvent>
     </bpmn:subProcess>
-    <bpmn:userTask id="Activity_1fgzbmu" name="Kuchen organisieren">
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
-          <camunda:property name="customForm" value="OrganizeCake" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0thhn1p</bpmn:incoming>
-      <bpmn:outgoing>Flow_00p1fzd</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="SmallAttentionOrganisation" name="Aufmerksamkeit Organisieren und zukommen lassen">
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
-          <camunda:property name="customForm" value="OrganizeSmallPresent" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_14f8hc7</bpmn:incoming>
-      <bpmn:outgoing>Flow_19f4yhv</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:intermediateCatchEvent id="Event_1inu1sx" name="3 Tage">
-      <bpmn:incoming>Flow_0579xkg</bpmn:incoming>
-      <bpmn:outgoing>Flow_0hrxaxi</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_0rdkkhl">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10S</bpmn:timeDuration>
-      </bpmn:timerEventDefinition>
-    </bpmn:intermediateCatchEvent>
-    <bpmn:sendTask id="FirstWelcomeMessage_Send" name="Willkommensnachricht an Mitarbeiter senden" messageRef="Message_LKtkj70V">
-      <bpmn:documentation>Sehr wichtig zur Mitarbeiterbindung um im Geächnis zu bleiben und einem nicht nicht erscheinen am Ersten Arbeitstag entgegen zu wirken.</bpmn:documentation>
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="engine.runPostScript" value="{&#10;    token&#10;}" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0hrxaxi</bpmn:incoming>
-      <bpmn:outgoing>Flow_1wl4ctr</bpmn:outgoing>
-      <bpmn:property id="Property_1je67im" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_12q11cj">
-        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
-        <bpmn:targetRef>Property_1je67im</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-    </bpmn:sendTask>
-    <bpmn:sendTask id="InfoForFirstWorkingDay_send" name="Nachricht mit defininierten Eckpunkten an Mitarbeiter" messageRef="Message_XEDk6ELW">
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="engine.runPreScript" value="{&#10;  ...token.current,&#10;  &#34;last_name&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.last_name,&#10;  &#34;private_email&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.private_email,&#10;  &#34;first_working_day&#34;: dataObjects.DataObjectReference_newEmployeeData.OnboardingData.first_working_day&#10;}&#10;  &#10;" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_10b9tgi</bpmn:incoming>
-      <bpmn:outgoing>Flow_02puo4e</bpmn:outgoing>
-      <bpmn:property id="Property_1ck9jsl" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_02ky4ym">
-        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
-        <bpmn:targetRef>Property_1ck9jsl</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-    </bpmn:sendTask>
-    <bpmn:sequenceFlow id="Flow_0uoyrij" sourceRef="Activity_0n8dh6h" targetRef="Event_0mi7quq" />
-    <bpmn:parallelGateway id="Gateway_08gq0uy">
-      <bpmn:incoming>Flow_0ti0n89</bpmn:incoming>
-      <bpmn:incoming>Flow_1o4hqnp</bpmn:incoming>
-      <bpmn:incoming>Flow_0u5kq4g</bpmn:incoming>
-      <bpmn:incoming>Flow_0nz2hn4</bpmn:incoming>
-      <bpmn:incoming>Flow_0cnaxv6</bpmn:incoming>
-      <bpmn:outgoing>Flow_020fp2m</bpmn:outgoing>
+    <bpmn:parallelGateway id="Gateway_0k0b8gx">
+      <bpmn:incoming>Flow_1xwqfij</bpmn:incoming>
+      <bpmn:incoming>Flow_1wl4ctr</bpmn:incoming>
+      <bpmn:incoming>Flow_02puo4e</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gpynrx</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:manualTask id="Activity_11h7fua" name="Wilkommensgeschenk vorbereiten">
-      <bpmn:incoming>Flow_0x25abl</bpmn:incoming>
-      <bpmn:outgoing>Flow_1o4hqnp</bpmn:outgoing>
-    </bpmn:manualTask>
-    <bpmn:userTask id="Activity_0vwo47g" name="Notwendige (compliance) Schulungen organisieren">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="data-privacy-and-protection" label="Datenschutz" type="boolean" defaultValue="true" customForm="{&#34;confirmButtonText&#34;:&#34;Ja&#34;,&#34;declineButtonText&#34;:&#34;Nein&#34;}" />
-          <camunda:formField id="anti-Corruption" label="Anti Korruption" type="boolean" defaultValue="true" />
-          <camunda:formField id="codeofConduct" label="Code of Conduct" type="boolean" defaultValue="true" />
-          <camunda:formField id="health-and-Safety" label="Arbeitssicherheit und Gesundheitsschutz" type="boolean" defaultValue="true" />
-          <camunda:formField id="anti-Discrimination" label="Anti-Diskriminierung" type="boolean" defaultValue="true" />
-          <camunda:formField id="financial-and-Accounting-Ethics" label="Finanz- und Buchhaltungsethik" type="boolean" />
-          <camunda:formField id="industry-Standards-and-Regulations" label="Compliance mit Branchenstandards und -regulierungen" type="boolean" />
-          <camunda:formField id="it-Security-and-Data-Privacy" label="IT-Sicherheit und Datenschutz im digitalen Raum" type="boolean" />
-          <camunda:formField id="environmental-Protection-Policies" label="Umweltschutzrichtlinien" type="boolean" defaultValue="true" />
-          <camunda:formField id="whistleblower-Guidelines" label="Whistleblower-Richtlinien" type="boolean" defaultValue="true" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1ca1wyr</bpmn:incoming>
-      <bpmn:outgoing>Flow_0nz2hn4</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1n0yww0">
-        <bpmn:targetRef>DataObjectReference_necessary_training</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:userTask>
-    <bpmn:callActivity id="Activity_1mnv47x" name="Arbeitsplatz / Equipment vorbereiten" calledElement="PrepareWorkingPlaceAndEquipmen_Process">
-      <bpmn:documentation>Generiert ua. Firmenmail
-</bpmn:documentation>
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="startEventId" value="StartEvent_1" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1hbs1ar</bpmn:incoming>
-      <bpmn:outgoing>Flow_0ti0n89</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:userTask id="Activity_0ettg97" name="Buddy auswählen / Weitere Mitarbeiter für Kennenlertermin auswählen">
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="customForm" value="BuddyAndEmployeeSelection" />
-          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_13etpzl</bpmn:incoming>
-      <bpmn:outgoing>Flow_0cnaxv6</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_10wpraz">
-        <bpmn:targetRef>DataObjectReference_BuddyEmployeeSelection</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:userTask>
-    <bpmn:userTask id="Activity_1u0fik6" name="Individuellen Einarbeitunsplan erstellen">
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="customForm" value="CustomizedInductionPlan" />
-          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0l23t6d</bpmn:incoming>
-      <bpmn:outgoing>Flow_0u5kq4g</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_134uak6">
-        <bpmn:targetRef>DataObjectReference_1esaxlh</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0flxfol">
-        <bpmn:targetRef>DataObjectReference_1esaxlh</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0u5kq4g" sourceRef="Activity_1u0fik6" targetRef="Gateway_08gq0uy" />
-    <bpmn:sequenceFlow id="Flow_0ti0n89" sourceRef="Activity_1mnv47x" targetRef="Gateway_08gq0uy" />
-    <bpmn:sequenceFlow id="Flow_1o4hqnp" sourceRef="Activity_11h7fua" targetRef="Gateway_08gq0uy" />
-    <bpmn:sequenceFlow id="Flow_0nz2hn4" sourceRef="Activity_0vwo47g" targetRef="Gateway_08gq0uy" />
-    <bpmn:sequenceFlow id="Flow_0cnaxv6" sourceRef="Activity_0ettg97" targetRef="Gateway_08gq0uy" />
-    <bpmn:parallelGateway id="Gateway_1pwvone">
-      <bpmn:incoming>Flow_1ywhfxq</bpmn:incoming>
-      <bpmn:outgoing>Flow_0x25abl</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1hbs1ar</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0l23t6d</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1ca1wyr</bpmn:outgoing>
-      <bpmn:outgoing>Flow_13etpzl</bpmn:outgoing>
-    </bpmn:parallelGateway>
-    <bpmn:sequenceFlow id="Flow_020fp2m" sourceRef="Gateway_08gq0uy" targetRef="Gateway_0vy7lxq" />
-    <bpmn:sequenceFlow id="Flow_1ywhfxq" sourceRef="Event_0mi7quq" targetRef="Gateway_1pwvone" />
-    <bpmn:intermediateThrowEvent id="Event_0mi7quq" name="Mitarbeitern in Systemen anlegen">
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="inputValues" value="token.current" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0uoyrij</bpmn:incoming>
-      <bpmn:outgoing>Flow_1ywhfxq</bpmn:outgoing>
-      <bpmn:property id="Property_0wuw11h" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_0c5ghsq">
-        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0wuw11h</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_12rblzb" messageRef="Message_dQSiwAG5" />
-    </bpmn:intermediateThrowEvent>
-    <bpmn:userTask id="Activity_0n8dh6h" name="Benutzerkonto für neuen Mitarbeiter anlegen">
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="customForm" value="CreateEmployeeAccount" />
-          <camunda:property name="engine.runPostScript" value="return {&#10;    ...token.current,&#10;    &#34;initialData&#34;: dataObjects.DataObjectReference_newEmployeeData&#10;}" />
-          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0tbqr8l</bpmn:incoming>
-      <bpmn:outgoing>Flow_0uoyrij</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:dataObjectReference id="DataObjectReference_1esaxlh" name="Einarbeitungsplan" dataObjectRef="DataObject_091tpqh" />
-    <bpmn:dataObject id="DataObject_091tpqh" />
-    <bpmn:dataObjectReference id="DataObjectReference_BuddyEmployeeSelection" name="Buddy und ausgewählte weitere Mitarbeiter" dataObjectRef="DataObject_0fq51v3" />
-    <bpmn:dataObject id="DataObject_0fq51v3" />
-    <bpmn:sendTask id="Activity_1eyq305" name="Mitarbeiter fragen ob durch den Jobwechsel ein Umzug ansteht" messageRef="Message_Jkc2PIH2">
-      <bpmn:documentation />
-      <bpmn:incoming>Flow_0cnjnkh</bpmn:incoming>
-      <bpmn:outgoing>Flow_0hvkfna</bpmn:outgoing>
-      <bpmn:property id="Property_0jahgm4" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_0sohxcq">
-        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0jahgm4</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-    </bpmn:sendTask>
-    <bpmn:sendTask id="Activity_0auig7p" name="Berechnen, ob Mitarbeiter vor Eintritt Geburtstag hat." messageRef="Message_ugx0EenC">
-      <bpmn:documentation>Hier wird mit einem Puffer von 5 Tagen gerechnet. Wenn also der neue Mitarbeiter gestern Geburtstag hatte, wird die Aktion trozdem ausgelöst.
-
-Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unternommen</bpmn:documentation>
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="payload" value="{&#10;    &#34;first_working_day&#34;:token.current.OnboardingData.first_working_day,&#10;    &#34;birth_date&#34;: token.current.OnboardingData.birth_date&#10;}" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1apdyem</bpmn:incoming>
-      <bpmn:outgoing>Flow_110ti7k</bpmn:outgoing>
-    </bpmn:sendTask>
-    <bpmn:userTask id="Activity_0ve80u6" name="Eckpunkte für ersten Arbeitstag definieren">
-      <bpmn:documentation>Inhalt: 
-- Wo melden am ersten Arbeitstag?
-- Wer ist Ansprechpartner?
-- Wann da sein?
-- Benötigte Unterlagen?</bpmn:documentation>
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="contact_person" label="Ansprechpartner" type="string" defaultValue="Dirk Müller" />
-          <camunda:formField id="begin_of_first_working_day" label="Beginn des ersten Arbeitstages" type="string" defaultValue="08:00 Uhr" />
-          <camunda:formField id="documents_needed_for_first_working_day" label="Folgende Dokumente werden für den erste Arbeitstag benötigt" type="string" defaultValue="Personalausweis" />
-          <camunda:formField id="contact_person_mail" label="E-Mail der Kontaktperson" type="string" defaultValue="dirkmueller@dundermifflin.com" />
-        </camunda:formData>
-        <camunda:properties>
-          <camunda:property name="customForm" value="KeyPointsForFirstWorkingDay" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1aclm6n</bpmn:incoming>
-      <bpmn:outgoing>Flow_10b9tgi</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:association id="Association_1i23230" associationDirection="None" sourceRef="Activity_1u0fik6" targetRef="TextAnnotation_1786vqb" />
+    <bpmn:association id="Association_16n593h" sourceRef="Activity_1mnv47x" targetRef="TextAnnotation_1g7nhah" />
   </bpmn:process>
   <bpmn:escalation id="Escalation_crvS1NUq" name="test" escalationCode="test" />
   <bpmn:error id="Error_E8RuFXba" errorCode="failedToPrepareFirstWorkingDay" camunda:errorMessage="Der Erste Arbeitstag wurde vor der Beendigung der Vorbereitungen erreicht!" />
@@ -520,27 +506,26 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
-        <dc:Bounds x="5" y="520" width="2475" height="1770" />
+        <dc:Bounds x="5" y="520" width="3243" height="2580" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1gp3pkd_di" bpmnElement="Lane_1gp3pkd" isHorizontal="true">
+        <dc:Bounds x="35" y="2110" width="3213" height="730" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1pyr36n_di" bpmnElement="Lane_1pyr36n" isHorizontal="true">
-        <dc:Bounds x="35" y="520" width="2445" height="1770" />
+        <dc:Bounds x="35" y="520" width="3213" height="1590" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_0oullfp_di" bpmnElement="DataObjectReference_newEmployeeData">
-        <dc:Bounds x="522" y="675" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="499" y="638" width="81" height="27" />
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNShape id="Lane_1uyorme_di" bpmnElement="Lane_1uyorme" isHorizontal="true">
+        <dc:Bounds x="35" y="2840" width="3213" height="260" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_OnboardingPhase1">
         <dc:Bounds x="82" y="1122" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="60" y="1170" width="79" height="40" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_025prv9_di" bpmnElement="Gateway_0vfwlrv">
-        <dc:Bounds x="555" y="1115" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1y0a0xb_di" bpmnElement="Event_0scggi2">
         <dc:Bounds x="432" y="1122" width="36" height="36" />
@@ -581,82 +566,8 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
           <dc:Bounds x="1641" y="774" width="58" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0ws6h5b_di" bpmnElement="Gateway_0k0b8gx">
-        <dc:Bounds x="1485" y="1115" width="50" height="50" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_01qbgte_di" bpmnElement="Gateway_0e9psvj">
         <dc:Bounds x="1155" y="705" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1jk89as_di" bpmnElement="Activity_1l0s39s">
-        <dc:Bounds x="1825" y="1100" width="210" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_0jz4lzi" bpmnElement="Event_0iqejj2">
-        <dc:Bounds x="1652" y="1122" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1627" y="1084" width="86" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_05lwk3e_di" bpmnElement="Gateway_0vy7lxq">
-        <dc:Bounds x="2145" y="1115" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_18vvqsr_di" bpmnElement="Event_18vvqsr">
-        <dc:Bounds x="2312" y="1122" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2290" y="1176" width="79" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0egzgp9_di" bpmnElement="Event_1r751sf">
-        <dc:Bounds x="932" y="1232" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="920" y="1275" width="60" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1mgpmjr_di" bpmnElement="Gateway_141wu49">
-        <dc:Bounds x="1035" y="1225" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1050" y="1157" width="79" height="66" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0d8t8rx_di" bpmnElement="Gateway_1v90pt7">
-        <dc:Bounds x="1485" y="1225" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_08undc3_di" bpmnElement="DataObjectReference_necessary_training">
-        <dc:Bounds x="2062" y="1570" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2048" y="1627" width="66" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0ofklws_di" bpmnElement="Activity_0bx4zme" isExpanded="true">
-        <dc:Bounds x="2020" y="2130" width="360" height="130" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0v3vrie_di" bpmnElement="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay">
-        <dc:Bounds x="2282" y="2172" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2261" y="2215" width="79" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0nk2upq_di" bpmnElement="Event_0k4kdml">
-        <dc:Bounds x="2062" y="2172" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2039" y="2215" width="82" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_0e6pm09_di" bpmnElement="Flow_0e6pm09">
-        <di:waypoint x="2098" y="2190" />
-        <di:waypoint x="2282" y="2190" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Activity_0ui5ob5_di" bpmnElement="Activity_1fgzbmu">
-        <dc:Bounds x="1180" y="1320" width="160" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1rsdmhq_di" bpmnElement="SmallAttentionOrganisation">
-        <dc:Bounds x="1180" y="1430" width="160" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0fjat7e_di" bpmnElement="Event_1inu1sx">
-        <dc:Bounds x="892" y="1122" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="894" y="1165" width="33" height="14" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ub674b_di" bpmnElement="FirstWelcomeMessage_Send">
         <dc:Bounds x="1180" y="1100" width="160" height="80" />
@@ -666,66 +577,147 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <dc:Bounds x="1180" y="980" width="160" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_07c5v3g_di" bpmnElement="Gateway_08gq0uy">
-        <dc:Bounds x="1685" y="1805" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0z725at_di" bpmnElement="Activity_11h7fua">
-        <dc:Bounds x="1408" y="1790" width="203" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0oabp93_di" bpmnElement="Activity_0vwo47g">
-        <dc:Bounds x="1408" y="1580" width="197" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0whuenp_di" bpmnElement="Activity_1mnv47x">
-        <dc:Bounds x="1408" y="1680" width="202" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0h0sxg9_di" bpmnElement="Activity_0ettg97">
-        <dc:Bounds x="1408" y="1900" width="200" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_1h01tdo" bpmnElement="Activity_1u0fik6">
-        <dc:Bounds x="1408" y="2000" width="202" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0lxvugj_di" bpmnElement="Gateway_1pwvone">
-        <dc:Bounds x="1225" y="1805" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1rfz31h_di" bpmnElement="Event_0mi7quq">
-        <dc:Bounds x="952" y="1812" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="936" y="1855" width="70" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1ld92wu_di" bpmnElement="Activity_0n8dh6h">
-        <dc:Bounds x="700" y="1790" width="130" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1esaxlh_di" bpmnElement="DataObjectReference_1esaxlh">
-        <dc:Bounds x="2292" y="2015" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2266" y="2072" width="89" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_0243vk8_di" bpmnElement="DataObjectReference_BuddyEmployeeSelection">
-        <dc:Bounds x="2292" y="1865" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2279" y="1922" width="62" height="53" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0h4g76h_di" bpmnElement="Activity_1eyq305">
-        <dc:Bounds x="600" y="690" width="160" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1ddcsys_di" bpmnElement="Activity_0auig7p">
-        <dc:Bounds x="724" y="1210" width="151" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ab0bmi_di" bpmnElement="Activity_0ve80u6">
         <dc:Bounds x="620" y="980" width="160" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0egzgp9_di" bpmnElement="Event_1r751sf">
+        <dc:Bounds x="1197" y="2282" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1185" y="2325" width="60" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1mgpmjr_di" bpmnElement="Gateway_141wu49">
+        <dc:Bounds x="1300" y="2275" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1315" y="2207" width="79" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0d8t8rx_di" bpmnElement="Gateway_1v90pt7">
+        <dc:Bounds x="1750" y="2275" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1rsdmhq_di" bpmnElement="SmallAttentionOrganisation">
+        <dc:Bounds x="1445" y="2380" width="160" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ddcsys_di" bpmnElement="Activity_0auig7p">
+        <dc:Bounds x="964" y="2260" width="151" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1jk89as_di" bpmnElement="Activity_1l0s39s">
+        <dc:Bounds x="2197" y="1100" width="145" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0jz4lzi" bpmnElement="Event_0iqejj2">
+        <dc:Bounds x="1992" y="1122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1967" y="1084" width="86" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0fjat7e_di" bpmnElement="Event_1inu1sx">
+        <dc:Bounds x="862" y="1122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="864" y="1165" width="33" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ld92wu_di" bpmnElement="Activity_0n8dh6h">
+        <dc:Bounds x="620" y="1280" width="160" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0243vk8_di" bpmnElement="DataObjectReference_BuddyEmployeeSelection">
+        <dc:Bounds x="2722" y="1445" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2709" y="1382" width="62" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0whuenp_di" bpmnElement="Activity_1mnv47x">
+        <dc:Bounds x="2159" y="2880" width="202" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0z725at_di" bpmnElement="Activity_11h7fua">
+        <dc:Bounds x="2158" y="2640" width="203" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_091xqq8_di" bpmnElement="Gateway_1ti0aen">
+        <dc:Bounds x="1995" y="2655" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0oullfp_di" bpmnElement="DataObjectReference_newEmployeeData">
+        <dc:Bounds x="282" y="615" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="259" y="578" width="81" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1esaxlh_di" bpmnElement="DataObjectReference_1esaxlh">
+        <dc:Bounds x="2532" y="1445" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2505" y="1421" width="89" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0h4g76h_di" bpmnElement="Activity_1eyq305">
+        <dc:Bounds x="620" y="690" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_07joa3c_di" bpmnElement="Gateway_0vfwlrv">
+        <dc:Bounds x="555" y="1115" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1h01tdo" bpmnElement="Activity_1u0fik6">
+        <dc:Bounds x="2159" y="1690" width="202" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0h0sxg9_di" bpmnElement="Activity_0ettg97">
+        <dc:Bounds x="2160" y="1950" width="200" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_18vvqsr_di" bpmnElement="Event_18vvqsr">
+        <dc:Bounds x="3112" y="1122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3090" y="1176" width="79" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_05lwk3e_di" bpmnElement="Gateway_0vy7lxq">
+        <dc:Bounds x="2985" y="1115" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0wc0exu_di" bpmnElement="Gateway_0wc0exu" isMarkerVisible="true">
+        <dc:Bounds x="2835" y="2655" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ui5ob5_di" bpmnElement="Activity_1fgzbmu">
+        <dc:Bounds x="1445" y="2520" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1rfz31h_di" bpmnElement="Event_0mi7quq">
+        <dc:Bounds x="1902" y="2662" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1885" y="2708" width="70" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ltss0a_di" bpmnElement="Activity_1gk2vew">
+        <dc:Bounds x="2505" y="2375" width="145" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0pc4ve9_di" bpmnElement="Gateway_0k0b8gx">
+        <dc:Bounds x="1750" y="1115" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_16n593h_di" bpmnElement="Association_16n593h">
+        <di:waypoint x="2361" y="2897" />
+        <di:waypoint x="2444" y="2865" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_0ofklws_di" bpmnElement="Activity_0bx4zme" isExpanded="true">
+        <dc:Bounds x="2820" y="2930" width="360" height="130" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0v3vrie_di" bpmnElement="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay">
+        <dc:Bounds x="3082" y="2972" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3061" y="3015" width="79" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0nk2upq_di" bpmnElement="Event_0k4kdml">
+        <dc:Bounds x="2862" y="2972" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2839" y="3015" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0e6pm09_di" bpmnElement="Flow_0e6pm09">
+        <di:waypoint x="2898" y="2990" />
+        <di:waypoint x="3082" y="2990" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0cnjnkh_di" bpmnElement="Flow_0cnjnkh">
         <di:waypoint x="580" y="1115" />
         <di:waypoint x="580" y="730" />
-        <di:waypoint x="600" y="730" />
+        <di:waypoint x="620" y="730" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0alw6fb_di" bpmnElement="Flow_0alw6fb">
         <di:waypoint x="118" y="1140" />
@@ -733,41 +725,24 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0tbqr8l_di" bpmnElement="Flow_0tbqr8l">
         <di:waypoint x="580" y="1165" />
-        <di:waypoint x="580" y="1830" />
-        <di:waypoint x="700" y="1830" />
+        <di:waypoint x="580" y="1320" />
+        <di:waypoint x="620" y="1320" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0579xkg_di" bpmnElement="Flow_0579xkg">
         <di:waypoint x="605" y="1140" />
-        <di:waypoint x="892" y="1140" />
+        <di:waypoint x="862" y="1140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1apdyem_di" bpmnElement="Flow_1apdyem">
         <di:waypoint x="590" y="1155" />
-        <di:waypoint x="590" y="1250" />
-        <di:waypoint x="724" y="1250" />
+        <di:waypoint x="590" y="1200" />
+        <di:waypoint x="890" y="1200" />
+        <di:waypoint x="890" y="2300" />
+        <di:waypoint x="964" y="2300" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1aclm6n_di" bpmnElement="Flow_1aclm6n">
         <di:waypoint x="590" y="1125" />
         <di:waypoint x="590" y="1020" />
         <di:waypoint x="620" y="1020" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0x25abl_di" bpmnElement="Flow_0x25abl">
-        <di:waypoint x="1275" y="1830" />
-        <di:waypoint x="1408" y="1830" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1hbs1ar_di" bpmnElement="Flow_1hbs1ar">
-        <di:waypoint x="1250" y="1805" />
-        <di:waypoint x="1250" y="1720" />
-        <di:waypoint x="1408" y="1720" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0l23t6d_di" bpmnElement="Flow_0l23t6d">
-        <di:waypoint x="1250" y="1855" />
-        <di:waypoint x="1250" y="2040" />
-        <di:waypoint x="1408" y="2040" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1ca1wyr_di" bpmnElement="Flow_1ca1wyr">
-        <di:waypoint x="1250" y="1805" />
-        <di:waypoint x="1250" y="1620" />
-        <di:waypoint x="1408" y="1620" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_153xh25_di" bpmnElement="Flow_153xh25">
         <di:waypoint x="238" y="1140" />
@@ -777,12 +752,8 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="468" y="1140" />
         <di:waypoint x="555" y="1140" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_110ti7k_di" bpmnElement="Flow_110ti7k">
-        <di:waypoint x="875" y="1250" />
-        <di:waypoint x="932" y="1250" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0hvkfna_di" bpmnElement="Flow_0hvkfna">
-        <di:waypoint x="760" y="730" />
+        <di:waypoint x="780" y="730" />
         <di:waypoint x="1155" y="730" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_02pc3pw_di" bpmnElement="Flow_02pc3pw">
@@ -820,45 +791,33 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1yza01d_di" bpmnElement="Flow_1yza01d">
         <di:waypoint x="1805" y="730" />
-        <di:waypoint x="2170" y="730" />
-        <di:waypoint x="2170" y="1115" />
+        <di:waypoint x="3010" y="730" />
+        <di:waypoint x="3010" y="1115" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0b711zh_di" bpmnElement="Flow_0b711zh">
         <di:waypoint x="1180" y="755" />
         <di:waypoint x="1180" y="830" />
         <di:waypoint x="1652" y="830" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1hnmuf0_di" bpmnElement="Flow_1hnmuf0">
-        <di:waypoint x="1085" y="1250" />
-        <di:waypoint x="1485" y="1250" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1254" y="1223" width="23" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_19f4yhv_di" bpmnElement="Flow_19f4yhv">
-        <di:waypoint x="1340" y="1470" />
-        <di:waypoint x="1510" y="1470" />
-        <di:waypoint x="1510" y="1275" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1xwqfij_di" bpmnElement="Flow_1xwqfij">
-        <di:waypoint x="1510" y="1225" />
-        <di:waypoint x="1510" y="1165" />
+        <di:waypoint x="1775" y="2275" />
+        <di:waypoint x="1775" y="1165" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0hrxaxi_di" bpmnElement="Flow_0hrxaxi">
-        <di:waypoint x="928" y="1140" />
+        <di:waypoint x="898" y="1140" />
         <di:waypoint x="1180" y="1140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1wl4ctr_di" bpmnElement="Flow_1wl4ctr">
         <di:waypoint x="1340" y="1140" />
-        <di:waypoint x="1485" y="1140" />
+        <di:waypoint x="1750" y="1140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1sxu1fe_di" bpmnElement="Flow_1sxu1fe">
-        <di:waypoint x="2035" y="1140" />
-        <di:waypoint x="2145" y="1140" />
+        <di:waypoint x="2342" y="1140" />
+        <di:waypoint x="2985" y="1140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1fso8h9_di" bpmnElement="Flow_1fso8h9">
-        <di:waypoint x="2195" y="1140" />
-        <di:waypoint x="2312" y="1140" />
+        <di:waypoint x="3035" y="1140" />
+        <di:waypoint x="3112" y="1140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10b9tgi_di" bpmnElement="Flow_10b9tgi">
         <di:waypoint x="780" y="1020" />
@@ -866,180 +825,184 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_02puo4e_di" bpmnElement="Flow_02puo4e">
         <di:waypoint x="1340" y="1020" />
-        <di:waypoint x="1510" y="1020" />
-        <di:waypoint x="1510" y="1115" />
+        <di:waypoint x="1775" y="1020" />
+        <di:waypoint x="1775" y="1115" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0gpynrx_di" bpmnElement="Flow_0gpynrx">
-        <di:waypoint x="1535" y="1140" />
-        <di:waypoint x="1652" y="1140" />
+        <di:waypoint x="1800" y="1140" />
+        <di:waypoint x="1992" y="1140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0l95km6_di" bpmnElement="Flow_0l95km6">
-        <di:waypoint x="1688" y="1140" />
-        <di:waypoint x="1825" y="1140" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0zgdox5_di" bpmnElement="Flow_0zgdox5">
-        <di:waypoint x="968" y="1250" />
-        <di:waypoint x="1035" y="1250" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_14f8hc7_di" bpmnElement="Flow_14f8hc7">
-        <di:waypoint x="1060" y="1275" />
-        <di:waypoint x="1060" y="1470" />
-        <di:waypoint x="1180" y="1470" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1085" y="1438" width="9" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_13etpzl_di" bpmnElement="Flow_13etpzl">
-        <di:waypoint x="1250" y="1855" />
-        <di:waypoint x="1250" y="1940" />
-        <di:waypoint x="1408" y="1940" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_13falf8_di" bpmnElement="Flow_13falf8">
-        <di:waypoint x="1085" y="1250" />
-        <di:waypoint x="1485" y="1250" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1211" y="1276" width="82" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_00p1fzd_di" bpmnElement="Flow_00p1fzd">
-        <di:waypoint x="1340" y="1360" />
-        <di:waypoint x="1500" y="1360" />
-        <di:waypoint x="1500" y="1265" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0thhn1p_di" bpmnElement="Flow_0thhn1p">
-        <di:waypoint x="1070" y="1265" />
-        <di:waypoint x="1070" y="1360" />
-        <di:waypoint x="1180" y="1360" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1086" y="1315" width="83" height="27" />
-        </bpmndi:BPMNLabel>
+        <di:waypoint x="2028" y="1140" />
+        <di:waypoint x="2197" y="1140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0uoyrij_di" bpmnElement="Flow_0uoyrij">
-        <di:waypoint x="830" y="1830" />
-        <di:waypoint x="952" y="1830" />
+        <di:waypoint x="780" y="1320" />
+        <di:waypoint x="840" y="1320" />
+        <di:waypoint x="840" y="2680" />
+        <di:waypoint x="1902" y="2680" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0u5kq4g_di" bpmnElement="Flow_0u5kq4g">
-        <di:waypoint x="1610" y="2040" />
-        <di:waypoint x="1710" y="2040" />
-        <di:waypoint x="1710" y="1855" />
+      <bpmndi:BPMNEdge id="Flow_110ti7k_di" bpmnElement="Flow_110ti7k">
+        <di:waypoint x="1115" y="2300" />
+        <di:waypoint x="1197" y="2300" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0ti0n89_di" bpmnElement="Flow_0ti0n89">
-        <di:waypoint x="1610" y="1720" />
-        <di:waypoint x="1710" y="1720" />
-        <di:waypoint x="1710" y="1805" />
+      <bpmndi:BPMNEdge id="Flow_0zgdox5_di" bpmnElement="Flow_0zgdox5">
+        <di:waypoint x="1233" y="2300" />
+        <di:waypoint x="1300" y="2300" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1o4hqnp_di" bpmnElement="Flow_1o4hqnp">
-        <di:waypoint x="1611" y="1830" />
-        <di:waypoint x="1685" y="1830" />
+      <bpmndi:BPMNEdge id="Flow_1hnmuf0_di" bpmnElement="Flow_1hnmuf0">
+        <di:waypoint x="1350" y="2300" />
+        <di:waypoint x="1750" y="2300" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1519" y="2273" width="23" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0nz2hn4_di" bpmnElement="Flow_0nz2hn4">
-        <di:waypoint x="1605" y="1620" />
-        <di:waypoint x="1710" y="1620" />
-        <di:waypoint x="1710" y="1805" />
+      <bpmndi:BPMNEdge id="Flow_14f8hc7_di" bpmnElement="Flow_14f8hc7">
+        <di:waypoint x="1345" y="2305" />
+        <di:waypoint x="1345" y="2420" />
+        <di:waypoint x="1445" y="2420" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1365" y="2388" width="9" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0cnaxv6_di" bpmnElement="Flow_0cnaxv6">
-        <di:waypoint x="1608" y="1940" />
-        <di:waypoint x="1710" y="1940" />
-        <di:waypoint x="1710" y="1855" />
+      <bpmndi:BPMNEdge id="Flow_0thhn1p_di" bpmnElement="Flow_0thhn1p">
+        <di:waypoint x="1325" y="2325" />
+        <di:waypoint x="1325" y="2560" />
+        <di:waypoint x="1445" y="2560" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1346" y="2515" width="83" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_020fp2m_di" bpmnElement="Flow_020fp2m">
-        <di:waypoint x="1735" y="1830" />
-        <di:waypoint x="2170" y="1830" />
-        <di:waypoint x="2170" y="1165" />
+      <bpmndi:BPMNEdge id="Flow_19f4yhv_di" bpmnElement="Flow_19f4yhv">
+        <di:waypoint x="1605" y="2420" />
+        <di:waypoint x="1765" y="2420" />
+        <di:waypoint x="1765" y="2315" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1ywhfxq_di" bpmnElement="Flow_1ywhfxq">
-        <di:waypoint x="988" y="1830" />
-        <di:waypoint x="1225" y="1830" />
+      <bpmndi:BPMNEdge id="Flow_00p1fzd_di" bpmnElement="Flow_00p1fzd">
+        <di:waypoint x="1605" y="2560" />
+        <di:waypoint x="1775" y="2560" />
+        <di:waypoint x="1775" y="2325" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_1i23230_di" bpmnElement="Association_1i23230">
-        <di:waypoint x="1470" y="2080" />
-        <di:waypoint x="1030" y="2382" />
+      <bpmndi:BPMNEdge id="Flow_0nh1wp2_di" bpmnElement="Flow_0nh1wp2">
+        <di:waypoint x="2360" y="1990" />
+        <di:waypoint x="2433" y="1990" />
+        <di:waypoint x="2433" y="2415" />
+        <di:waypoint x="2505" y="2415" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1f6pves_di" bpmnElement="Flow_1f6pves">
+        <di:waypoint x="1938" y="2680" />
+        <di:waypoint x="1995" y="2680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10zrf0a_di" bpmnElement="Flow_10zrf0a">
+        <di:waypoint x="2020" y="2705" />
+        <di:waypoint x="2020" y="2920" />
+        <di:waypoint x="2159" y="2920" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zehq1y_di" bpmnElement="Flow_0zehq1y">
+        <di:waypoint x="2045" y="2680" />
+        <di:waypoint x="2158" y="2680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01bx8d7_di" bpmnElement="Flow_01bx8d7">
+        <di:waypoint x="2020" y="2655" />
+        <di:waypoint x="2020" y="1990" />
+        <di:waypoint x="2160" y="1990" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1uq4xji_di" bpmnElement="Flow_1uq4xji">
+        <di:waypoint x="2020" y="2655" />
+        <di:waypoint x="2020" y="1730" />
+        <di:waypoint x="2159" y="1730" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1x760zj_di" bpmnElement="Flow_1x760zj">
+        <di:waypoint x="2361" y="2920" />
+        <di:waypoint x="2860" y="2920" />
+        <di:waypoint x="2860" y="2705" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1istw1t_di" bpmnElement="Flow_1istw1t">
+        <di:waypoint x="2361" y="2680" />
+        <di:waypoint x="2835" y="2680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qf5s0r_di" bpmnElement="Flow_1qf5s0r">
+        <di:waypoint x="2650" y="2415" />
+        <di:waypoint x="2860" y="2415" />
+        <di:waypoint x="2860" y="2655" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0opkukw_di" bpmnElement="Flow_0opkukw">
+        <di:waypoint x="2361" y="1730" />
+        <di:waypoint x="2860" y="1730" />
+        <di:waypoint x="2860" y="2655" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13uzojx_di" bpmnElement="Flow_13uzojx">
+        <di:waypoint x="2885" y="2680" />
+        <di:waypoint x="3010" y="2680" />
+        <di:waypoint x="3010" y="1165" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_1bljbac_di" bpmnElement="Participant_1ejbgs2" isHorizontal="true">
         <dc:Bounds x="1410" y="340" width="300" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_014lva1_di" bpmnElement="Participant_1jytwop" isHorizontal="true">
+        <dc:Bounds x="5" y="100" width="3135" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_0u0utfi_di" bpmnElement="Participant_14tp0lv" isHorizontal="true">
-        <dc:Bounds x="5" y="2370" width="305" height="60" />
+        <dc:Bounds x="5" y="3180" width="305" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0z0q3jc" bpmnElement="Participant_16ahzet" isHorizontal="true">
-        <dc:Bounds x="370" y="2370" width="300" height="60" />
+        <dc:Bounds x="330" y="3180" width="300" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Participant_014lva1_di" bpmnElement="Participant_1jytwop" isHorizontal="true">
-        <dc:Bounds x="5" y="100" width="2235" height="60" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1i23230_di" bpmnElement="Association_1i23230">
+        <di:waypoint x="2236" y="1690" />
+        <di:waypoint x="2178" y="1619" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="TextAnnotation_1g7nhah_di" bpmnElement="TextAnnotation_1g7nhah">
-        <dc:Bounds x="1050" y="1550" width="270" height="55" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_1786vqb_di" bpmnElement="TextAnnotation_1786vqb">
-        <dc:Bounds x="930" y="2370" width="100" height="99" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_02e1mpa_di" bpmnElement="TextAnnotation_02e1mpa">
-        <dc:Bounds x="1840" y="1700" width="100" height="99" />
+        <dc:Bounds x="2410" y="2810" width="270" height="55" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1ndumyw_di" bpmnElement="DataOutputAssociation_1ndumyw">
         <di:waypoint x="100" y="1122" />
-        <di:waypoint x="100" y="705" />
-        <di:waypoint x="522" y="705" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_080jnhl_di" bpmnElement="DataInputAssociation_080jnhl">
-        <di:waypoint x="540" y="725" />
-        <di:waypoint x="540" y="890" />
-        <di:waypoint x="1673" y="890" />
-        <di:waypoint x="1833" y="1101" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_1mfoxow_di" bpmnElement="DataInputAssociation_1mfoxow">
-        <di:waypoint x="2098" y="1584" />
-        <di:waypoint x="2240" y="1495" />
-        <di:waypoint x="2240" y="1170" />
-        <di:waypoint x="2313" y="1146" />
+        <di:waypoint x="100" y="645" />
+        <di:waypoint x="282" y="645" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_12q11cj_di" bpmnElement="DataInputAssociation_12q11cj">
-        <di:waypoint x="540" y="725" />
-        <di:waypoint x="540" y="1070" />
-        <di:waypoint x="790" y="1070" />
-        <di:waypoint x="1180" y="1133" />
+        <di:waypoint x="318" y="661" />
+        <di:waypoint x="540" y="920" />
+        <di:waypoint x="790" y="920" />
+        <di:waypoint x="1181" y="1108" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_02ky4ym_di" bpmnElement="DataInputAssociation_02ky4ym">
-        <di:waypoint x="540" y="725" />
-        <di:waypoint x="540" y="940" />
-        <di:waypoint x="970" y="940" />
-        <di:waypoint x="1180" y="1008" />
+        <di:waypoint x="318" y="659" />
+        <di:waypoint x="540" y="890" />
+        <di:waypoint x="970" y="890" />
+        <di:waypoint x="1180" y="994" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_1n0yww0_di" bpmnElement="DataOutputAssociation_1n0yww0">
-        <di:waypoint x="1605" y="1591" />
-        <di:waypoint x="2062" y="1591" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_10wpraz_di" bpmnElement="DataOutputAssociation_10wpraz">
-        <di:waypoint x="1608" y="1935" />
-        <di:waypoint x="2292" y="1896" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_0flxfol_di" bpmnElement="DataOutputAssociation_0flxfol">
-        <di:waypoint x="1610" y="2040" />
-        <di:waypoint x="2292" y="2040" />
+      <bpmndi:BPMNEdge id="DataInputAssociation_080jnhl_di" bpmnElement="DataInputAssociation_080jnhl">
+        <di:waypoint x="318" y="657" />
+        <di:waypoint x="540" y="860" />
+        <di:waypoint x="1673" y="860" />
+        <di:waypoint x="2197" y="1121" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_0c5ghsq_di" bpmnElement="DataInputAssociation_0c5ghsq">
-        <di:waypoint x="540" y="725" />
-        <di:waypoint x="540" y="1680" />
-        <di:waypoint x="953" y="1824" />
+        <di:waypoint x="300" y="665" />
+        <di:waypoint x="310" y="2640" />
+        <di:waypoint x="1840" y="2640" />
+        <di:waypoint x="1904" y="2671" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_0sohxcq_di" bpmnElement="DataInputAssociation_0sohxcq">
-        <di:waypoint x="558" y="700" />
-        <di:waypoint x="730" y="700" />
-        <di:waypoint x="600" y="700" />
+        <di:waypoint x="318" y="643" />
+        <di:waypoint x="633" y="690" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_1m3ntcv_di" bpmnElement="Association_1m3ntcv">
-        <di:waypoint x="1576" y="1900" />
-        <di:waypoint x="1840" y="1744" />
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0flxfol_di" bpmnElement="DataOutputAssociation_0flxfol">
+        <di:waypoint x="2305" y="1690" />
+        <di:waypoint x="2532" y="1486" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_16n593h_di" bpmnElement="Association_16n593h">
-        <di:waypoint x="1410" y="1684" />
-        <di:waypoint x="1260" y="1605" />
+      <bpmndi:BPMNEdge id="DataInputAssociation_0wjjfe1_di" bpmnElement="DataInputAssociation_0wjjfe1">
+        <di:waypoint x="2568" y="1460" />
+        <di:waypoint x="3115" y="1149" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1gjy8nn_di" bpmnElement="DataInputAssociation_1gjy8nn">
+        <di:waypoint x="2758" y="1455" />
+        <di:waypoint x="3116" y="1152" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ma1iz7_di" bpmnElement="Flow_0ma1iz7">
         <di:waypoint x="1550" y="712" />
@@ -1047,40 +1010,51 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1v87tzq_di" bpmnElement="Flow_1v87tzq">
         <di:waypoint x="220" y="1158" />
-        <di:waypoint x="220" y="2370" />
+        <di:waypoint x="220" y="3180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0yqj6x5_di" bpmnElement="Flow_0yqj6x5">
         <di:waypoint x="450" y="1158" />
-        <di:waypoint x="450" y="2370" />
+        <di:waypoint x="450" y="3180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_11o7jkt_di" bpmnElement="Flow_11o7jkt">
-        <di:waypoint x="1260" y="1100" />
-        <di:waypoint x="1260" y="160" />
+        <di:waypoint x="1340" y="1117" />
+        <di:waypoint x="2060" y="910" />
+        <di:waypoint x="2060" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0k5spiq_di" bpmnElement="Flow_0k5spiq">
-        <di:waypoint x="680" y="690" />
-        <di:waypoint x="680" y="160" />
+        <di:waypoint x="700" y="690" />
+        <di:waypoint x="700" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1jc8t6y_di" bpmnElement="Flow_1jc8t6y">
-        <di:waypoint x="1260" y="980" />
-        <di:waypoint x="1260" y="160" />
+        <di:waypoint x="1340" y="998" />
+        <di:waypoint x="2020" y="810" />
+        <di:waypoint x="2020" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0h9ibuk_di" bpmnElement="Flow_0h9ibuk">
-        <di:waypoint x="1930" y="1100" />
-        <di:waypoint x="1930" y="160" />
+        <di:waypoint x="2302" y="1100" />
+        <di:waypoint x="2302" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10pnagw_di" bpmnElement="Flow_10pnagw">
-        <di:waypoint x="800" y="1210" />
-        <di:waypoint x="800" y="160" />
+        <di:waypoint x="1040" y="2260" />
+        <di:waypoint x="1040" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0qooxkk_di" bpmnElement="Flow_0qooxkk">
-        <di:waypoint x="950" y="160" />
-        <di:waypoint x="950" y="1232" />
+        <di:waypoint x="1070" y="160" />
+        <di:waypoint x="1060" y="2180" />
+        <di:waypoint x="1201" y="2289" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_18w90p7_di" bpmnElement="Flow_18w90p7">
-        <di:waypoint x="970" y="1812" />
-        <di:waypoint x="970" y="160" />
+        <di:waypoint x="1920" y="2662" />
+        <di:waypoint x="1920" y="160" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0a8wyuy_di" bpmnElement="DataOutputAssociation_0a8wyuy">
+        <di:waypoint x="2585" y="2375" />
+        <di:waypoint x="2739" y="1495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1786vqb_di" bpmnElement="TextAnnotation_1786vqb">
+        <dc:Bounds x="2090" y="1520" width="100" height="99" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

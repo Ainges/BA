@@ -5,25 +5,28 @@ import Paragraph from "antd/es/typography/Paragraph";
 import { RowSelectionType } from "antd/es/table/interface";
 import {
   BuddyAndEmployeeSelectionContext,
-  TableDataType,
+  TableDataEmployee,
 } from "../../Pages/BuddyAndEmployeeSelection/BuddyandEmployeeSelectionProvider";
 
-interface EmployeeSelection {
-  selectedEmployees: React.Key[];
-  setSelectedEmployees: React.Dispatch<React.SetStateAction<React.Key[]>>;
-  selectedBuddy: React.Key[];
-}
+// interface EmployeeSelection {
+//   selectedEmployees: React.Key[];
+//   setSelectedEmployees: React.Dispatch<React.SetStateAction<React.Key[]>>;
+//   selectedBuddy: React.Key[];
+// }
 
-const EmployeeList: React.FC<EmployeeSelection> = ({}) => {
+const EmployeeList: React.FC = (props) => {
   // ### Context initialization
   const context = useContext(BuddyAndEmployeeSelectionContext);
   // context State
   const { selectedBuddy, setSelectedBuddy } = context;
   const { selectedEmployees, setSelectedEmployees } = context;
   const { employeeData, setEmployeeData } = context;
-  const { employeeDataWithoutBuddy, setEmployeeDataWithoutBuddy } = context;
+  const {
+    employeeDataFiltered: employeeDataWithoutBuddy,
+    setEmployeeDataFiltered: setEmployeeDataWithoutBuddy,
+  } = context;
 
-  const columns: TableColumnsType<TableDataType> = [
+  const columns: TableColumnsType<TableDataEmployee> = [
     {
       title: "Name",
       dataIndex: "name",
@@ -50,7 +53,7 @@ const EmployeeList: React.FC<EmployeeSelection> = ({}) => {
   ];
 
   // Only Sample Data
-  const employeeArray: TableDataType[] = [
+  const employeeArray: TableDataEmployee[] = [
     {
       key: "1",
       name: "John Brown",
@@ -121,12 +124,15 @@ const EmployeeList: React.FC<EmployeeSelection> = ({}) => {
     selectedRowKeys: selectedEmployees,
 
     // To disable selection of the buddy
-    getCheckboxProps: (record: TableDataType) => ({
+    getCheckboxProps: (record: TableDataEmployee) => ({
       disabled: record.email === selectedBuddy.at(0)?.toString(), // Column configuration not to be checked
       name: record.name,
     }),
 
-    onChange: (selectedRowKeys: React.Key[], selectedRows: TableDataType[]) => {
+    onChange: (
+      selectedRowKeys: React.Key[],
+      selectedRows: TableDataEmployee[]
+    ) => {
       console.log(
         `selectedRowKeys: ${selectedRowKeys}`,
         "In State:",

@@ -16,6 +16,7 @@ import CreateEmployeeAccount from "../Pages/CreateEmployeeAccount/CreateEmployee
 import SelectEquipment from "../Pages/SelectEquipment/SelectEquipment";
 import PrepareEquipment from "../Pages/PrepareEquipment/PrepareEquipment";
 import KeyPointsForFirstWorkingDay from "../Pages/KeyPointsForFirstWorkingDay/KeyPointsForFirstWorkingDay";
+import ScheduleIntroMeetings from "../Pages/ScheduleIntroMeetings/ScheduleIntroMeetings";
 
 export type CustomFormProps = {
   userTask: DataModels.FlowNodeInstances.UserTaskInstance;
@@ -59,6 +60,7 @@ export class CustomFormsRenderer extends React.Component<
   private components: CustomFormsComponentDict = {
     ExampleCustomForm: ExampleCustomForm,
     BuddyAndEmployeeSelection: BuddyAndEmployeeSelection,
+    ScheduleIntroMeetings: ScheduleIntroMeetings,
     CustomizedInductionPlan: CustomizedInductionPlan,
     OrganizeCake: OrganizeCake,
     OrganizeSmallPresent: OrganizeSmallPresent,

@@ -13,7 +13,7 @@ import {
 } from "antd";
 import { CustomFormProps } from "../../DialogRenderer";
 import { EmployeeData } from "../../Components/EmployeeData/EmployeeData";
-import { formatDate } from "../../functions/formatDate";
+import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config/config.json";
@@ -39,7 +39,7 @@ const KeyPointsForFirstWorkingDay: React.FC<CustomFormProps> = (props) => {
     },
     {
       title: "Erster Arbeitstag",
-      data: formatDate(onboardingData.first_working_day),
+      data: formatDateToDEformat(onboardingData.first_working_day),
     },
     {
       title: "Position",
