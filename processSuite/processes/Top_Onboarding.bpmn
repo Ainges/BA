@@ -83,7 +83,6 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="startEventId" value="StartEvent_1" />
-          <camunda:property name="engine.runPreScript" value="return{&#10;    employeeData: dataObjects.DataObjectReference_newEmployeeData,&#10;    &#10;&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1q0vanl</bpmn:incoming>

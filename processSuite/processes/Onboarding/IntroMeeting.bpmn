@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="IntroMeeting_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
+  <bpmn:collaboration id="Collaboration_1cidyxu" name="">
+    <bpmn:participant id="Participant_0px403d" name="IntroMeeting" processRef="IntroMeeting_Process" />
+    <bpmn:textAnnotation id="TextAnnotation_1jgubnm">
+      <bpmn:text>Sollte eigentlich ein manuelle Aufgabe sein, da aber nur eine Benutzeraufgabe direkt zugewiesen werden kann muss diese verwendet werden.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0igozi7" associationDirection="None" sourceRef="Activity_1ggwnmn" targetRef="TextAnnotation_1jgubnm" />
+    <bpmn:association id="Association_0h2kmrh" associationDirection="None" sourceRef="TextAnnotation_1jgubnm" targetRef="Activity_1mtw9sv" />
+  </bpmn:collaboration>
+  <bpmn:process id="IntroMeeting_Process" name="IntroMeeting" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_1xzf0d3" name="Neuer Mitarbeiter">
+        <bpmn:flowNodeRef>StartEvent_IntroMeetingIsNecessary</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0c82ia7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_17v10ab</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0we87wt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1phqazg</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1mtw9sv</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_040gzn3" name="Ausgewählter Mitarbeiter">
+        <bpmn:flowNodeRef>Activity_1ggwnmn</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_IntroMeetingIsNecessary" name="Kennenlerngespräch ist notwendig">
+      <bpmn:outgoing>Flow_0iychhd</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0iychhd" sourceRef="StartEvent_IntroMeetingIsNecessary" targetRef="Event_0c82ia7" />
+    <bpmn:intermediateCatchEvent id="Event_0c82ia7" name="Zeitpunkt für Kennenlerngespräch ist gekommen">
+      <bpmn:incoming>Flow_0iychhd</bpmn:incoming>
+      <bpmn:outgoing>Flow_016k0ro</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_10wbe69" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_016k0ro" sourceRef="Event_0c82ia7" targetRef="Gateway_17v10ab" />
+    <bpmn:parallelGateway id="Gateway_17v10ab">
+      <bpmn:incoming>Flow_016k0ro</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zyaa51</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1xdtb0u</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_0zyaa51" sourceRef="Gateway_17v10ab" targetRef="Activity_1mtw9sv" />
+    <bpmn:sequenceFlow id="Flow_1xdtb0u" sourceRef="Gateway_17v10ab" targetRef="Activity_1ggwnmn" />
+    <bpmn:sequenceFlow id="Flow_0yqxr3m" sourceRef="Activity_1mtw9sv" targetRef="Gateway_0we87wt" />
+    <bpmn:parallelGateway id="Gateway_0we87wt">
+      <bpmn:incoming>Flow_0yqxr3m</bpmn:incoming>
+      <bpmn:incoming>Flow_0oljwy9</bpmn:incoming>
+      <bpmn:outgoing>Flow_0eqflxo</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_0oljwy9" sourceRef="Activity_1ggwnmn" targetRef="Gateway_0we87wt" />
+    <bpmn:endEvent id="Event_1phqazg" name="Kennenlerngespräch erfolgreich durchgeführt">
+      <bpmn:incoming>Flow_0eqflxo</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0eqflxo" sourceRef="Gateway_0we87wt" targetRef="Event_1phqazg" />
+    <bpmn:userTask id="Activity_1ggwnmn" name="Kennenlerngespräch durchführen">
+      <bpmn:incoming>Flow_1xdtb0u</bpmn:incoming>
+      <bpmn:outgoing>Flow_0oljwy9</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_1mtw9sv" name="Kennenlerngespräch durchführen">
+      <bpmn:incoming>Flow_0zyaa51</bpmn:incoming>
+      <bpmn:outgoing>Flow_0yqxr3m</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
+      <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
+        <dc:Bounds x="5" y="4" width="1135" height="606" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_040gzn3_di" bpmnElement="Lane_040gzn3" isHorizontal="true">
+        <dc:Bounds x="35" y="310" width="1105" height="300" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
+        <dc:Bounds x="35" y="4" width="1105" height="306" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_IntroMeetingIsNecessary">
+        <dc:Bounds x="92" y="142" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="65" y="185" width="90" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0vtoy11_di" bpmnElement="Event_0c82ia7">
+        <dc:Bounds x="222" y="142" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="195" y="185" width="90" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1pxpihy_di" bpmnElement="Gateway_17v10ab">
+        <dc:Bounds x="355" y="135" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_17bdju6_di" bpmnElement="Gateway_0we87wt">
+        <dc:Bounds x="715" y="135" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1phqazg_di" bpmnElement="Event_1phqazg">
+        <dc:Bounds x="872" y="142" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="848" y="185" width="84" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lx4suo_di" bpmnElement="Activity_1ggwnmn">
+        <dc:Bounds x="490" y="420" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_104bpha_di" bpmnElement="Activity_1mtw9sv">
+        <dc:Bounds x="490" y="120" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0iychhd_di" bpmnElement="Flow_0iychhd">
+        <di:waypoint x="128" y="160" />
+        <di:waypoint x="222" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_016k0ro_di" bpmnElement="Flow_016k0ro">
+        <di:waypoint x="258" y="160" />
+        <di:waypoint x="355" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zyaa51_di" bpmnElement="Flow_0zyaa51">
+        <di:waypoint x="405" y="160" />
+        <di:waypoint x="490" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xdtb0u_di" bpmnElement="Flow_1xdtb0u">
+        <di:waypoint x="380" y="185" />
+        <di:waypoint x="380" y="460" />
+        <di:waypoint x="490" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yqxr3m_di" bpmnElement="Flow_0yqxr3m">
+        <di:waypoint x="620" y="160" />
+        <di:waypoint x="715" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0oljwy9_di" bpmnElement="Flow_0oljwy9">
+        <di:waypoint x="620" y="460" />
+        <di:waypoint x="740" y="460" />
+        <di:waypoint x="740" y="185" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0eqflxo_di" bpmnElement="Flow_0eqflxo">
+        <di:waypoint x="765" y="160" />
+        <di:waypoint x="872" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0igozi7_di" bpmnElement="Association_0igozi7">
+        <di:waypoint x="620" y="448" />
+        <di:waypoint x="1170" y="342" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0h2kmrh_di" bpmnElement="Association_0h2kmrh">
+        <di:waypoint x="1170" y="273" />
+        <di:waypoint x="620" y="164" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1jgubnm_di" bpmnElement="TextAnnotation_1jgubnm">
+        <dc:Bounds x="1170" y="268" width="189.99208860759495" height="83.54430379746834" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="MultiinstanceUITest_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
+  <bpmn:collaboration id="Collaboration_1cidyxu" name="">
+    <bpmn:participant id="Participant_0px403d" name="MultiinstanceUITest" processRef="MultiinstanceUITest_Process" />
+    <bpmn:textAnnotation id="TextAnnotation_04kdwj4">
+      <bpmn:text></bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1asjmb2" associationDirection="None" sourceRef="Activity_09b3msq" targetRef="TextAnnotation_04kdwj4" />
+  </bpmn:collaboration>
+  <bpmn:process id="MultiinstanceUITest_Process" name="MultiinstanceUITest" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_1xzf0d3" name="Lane">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1197lge</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_09b3msq</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1" name="Start">
+      <bpmn:outgoing>Flow_1ign4gl</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1ign4gl" sourceRef="StartEvent_1" targetRef="Activity_09b3msq" />
+    <bpmn:userTask id="Activity_09b3msq" name="Punkt von Einarbeitungsplan abbarbeiten">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPreScript" value="token.current.inductionPlan" />
+          <camunda:property name="engine.setCorrelationMetadata.description" value="${token.current.title}" />
+          <camunda:property name="customForm" value="GetInductionPlanDone" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ign4gl</bpmn:incoming>
+      <bpmn:outgoing>Flow_075e9zw</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics />
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_075e9zw" sourceRef="Activity_09b3msq" targetRef="Event_1197lge" />
+    <bpmn:endEvent id="Event_1197lge">
+      <bpmn:incoming>Flow_075e9zw</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
+      <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
+        <dc:Bounds x="5" y="4" width="885" height="346" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
+        <dc:Bounds x="35" y="4" width="855" height="346" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="92" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="98" y="195" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_172wp6b_di" bpmnElement="Activity_09b3msq">
+        <dc:Bounds x="380" y="130" width="130" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1197lge_di" bpmnElement="Event_1197lge">
+        <dc:Bounds x="732" y="152" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1ign4gl_di" bpmnElement="Flow_1ign4gl">
+        <di:waypoint x="128" y="170" />
+        <di:waypoint x="380" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_075e9zw_di" bpmnElement="Flow_075e9zw">
+        <di:waypoint x="510" y="170" />
+        <di:waypoint x="732" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1asjmb2_di" bpmnElement="Association_1asjmb2">
+        <di:waypoint x="455" y="130" />
+        <di:waypoint x="496" y="-40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_04kdwj4_di" bpmnElement="TextAnnotation_04kdwj4">
+        <dc:Bounds x="450" y="-70" width="100" height="30" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

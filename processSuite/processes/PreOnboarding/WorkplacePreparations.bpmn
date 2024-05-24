@@ -4,6 +4,10 @@
     <bpmn:participant id="Participant_0px403d" name="ArbeitsplatzVorbereiten" processRef="PrepareWorkingPlaceAndEquipmen_Process" />
     <bpmn:participant id="Participant_1yu60n1" name="PreOnboarding_SCIL" />
     <bpmn:messageFlow id="Flow_0cku051" sourceRef="Event_05mqagl" targetRef="Participant_1yu60n1" />
+    <bpmn:textAnnotation id="TextAnnotation_1d3wi46">
+      <bpmn:text>Hier alles in einer Benutzeraufgabe</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0hbgey9" associationDirection="None" sourceRef="Activity_0a0isqc" targetRef="TextAnnotation_1d3wi46" />
   </bpmn:collaboration>
   <bpmn:process id="PrepareWorkingPlaceAndEquipmen_Process" name="ArbeitsplatzVorbereiten" isExecutable="true">
     <bpmn:laneSet>
@@ -141,6 +145,10 @@
         <dc:Bounds x="-200" y="630" width="600" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0hbgey9_di" bpmnElement="Association_0hbgey9">
+        <di:waypoint x="568" y="70" />
+        <di:waypoint x="589" y="-30" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_00vc4i9_di" bpmnElement="DataOutputAssociation_00vc4i9">
         <di:waypoint x="-86" y="425" />
         <di:waypoint x="103" y="105" />
@@ -157,6 +165,10 @@
         <di:waypoint x="120" y="458" />
         <di:waypoint x="120" y="630" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1d3wi46_di" bpmnElement="TextAnnotation_1d3wi46">
+        <dc:Bounds x="550" y="-100" width="190" height="70" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
