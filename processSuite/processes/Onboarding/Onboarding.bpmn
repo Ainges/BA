@@ -112,7 +112,7 @@
       <bpmn:outgoing>Flow_17mmzoh</bpmn:outgoing>
       <bpmn:property id="Property_1t24vbo" name="__targetRef_placeholder" />
       <bpmn:dataInputAssociation id="DataInputAssociation_0lrys2z">
-        <bpmn:sourceRef>DataObjectReference_1lyx8fw</bpmn:sourceRef>
+        <bpmn:sourceRef>DataObjectReference_InductionPlan</bpmn:sourceRef>
         <bpmn:targetRef>Property_1t24vbo</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:userTask>
@@ -129,7 +129,7 @@
             <camunda:property name="dataSource" value="token.current.inductionPlan" />
           </camunda:properties>
         </bpmn:extensionElements>
-        <bpmn:targetRef>DataObjectReference_1lyx8fw</bpmn:targetRef>
+        <bpmn:targetRef>DataObjectReference_InductionPlan</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_0oldqzf">
         <bpmn:extensionElements>
@@ -137,7 +137,7 @@
             <camunda:property name="dataSource" value="token.current.buddyEmployeeSelection" />
           </camunda:properties>
         </bpmn:extensionElements>
-        <bpmn:targetRef>DataObjectReference_1mj15lw</bpmn:targetRef>
+        <bpmn:targetRef>DataObjectReference_BuddyEmployeeSelection</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:startEvent>
     <bpmn:sendTask id="Activity_0bcy5bx" name="Willkommensnachricht im Namen von HR an neuen Mitarbeiter senden" messageRef="Message_fXdIt8oL">
@@ -178,7 +178,7 @@
       <bpmn:outgoing>Flow_038q9ad</bpmn:outgoing>
       <bpmn:property id="Property_0hm8cze" name="__targetRef_placeholder" />
       <bpmn:dataInputAssociation id="DataInputAssociation_1gkith0">
-        <bpmn:sourceRef>DataObjectReference_1mj15lw</bpmn:sourceRef>
+        <bpmn:sourceRef>DataObjectReference_BuddyEmployeeSelection</bpmn:sourceRef>
         <bpmn:targetRef>Property_0hm8cze</bpmn:targetRef>
       </bpmn:dataInputAssociation>
       <bpmn:multiInstanceLoopCharacteristics />
@@ -220,20 +220,21 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="customForm" value="GetInductionPlanDone" />
+          <camunda:property name="engine.runPreScript" value="return dataObjects.DataObjectReference_InductionPlan.inductionPlan" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0uoi65k</bpmn:incoming>
       <bpmn:outgoing>Flow_0n8p4ux</bpmn:outgoing>
       <bpmn:property id="Property_1njpryq" name="__targetRef_placeholder" />
       <bpmn:dataInputAssociation id="DataInputAssociation_1e5r75a">
-        <bpmn:sourceRef>DataObjectReference_1lyx8fw</bpmn:sourceRef>
+        <bpmn:sourceRef>DataObjectReference_InductionPlan</bpmn:sourceRef>
         <bpmn:targetRef>Property_1njpryq</bpmn:targetRef>
       </bpmn:dataInputAssociation>
       <bpmn:multiInstanceLoopCharacteristics />
     </bpmn:userTask>
-    <bpmn:dataObjectReference id="DataObjectReference_1lyx8fw" name="Einarbeitungsplan" dataObjectRef="DataObject_0j15xoi" />
+    <bpmn:dataObjectReference id="DataObjectReference_InductionPlan" name="Einarbeitungsplan" dataObjectRef="DataObject_0j15xoi" />
     <bpmn:dataObject id="DataObject_0j15xoi" />
-    <bpmn:dataObjectReference id="DataObjectReference_1mj15lw" name="Auswahl an Kollegen inkl. veranschlagte Termine" dataObjectRef="DataObject_0jf4m6y" />
+    <bpmn:dataObjectReference id="DataObjectReference_BuddyEmployeeSelection" name="Auswahl an Kollegen inkl. veranschlagte Termine" dataObjectRef="DataObject_0jf4m6y" />
     <bpmn:dataObject id="DataObject_0jf4m6y" />
     <bpmn:callActivity id="Activity_16dd5jt" name="Kennenlerntermin mit Buddy durchführen">
       <bpmn:incoming>Flow_0v3cg6i</bpmn:incoming>
@@ -344,13 +345,13 @@
       <bpmndi:BPMNShape id="Activity_1mmq4vy_di" bpmnElement="Activity_06oh5rs">
         <dc:Bounds x="1140" y="-370" width="160" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1lyx8fw_di" bpmnElement="DataObjectReference_1lyx8fw">
+      <bpmndi:BPMNShape id="DataObjectReference_1lyx8fw_di" bpmnElement="DataObjectReference_InductionPlan">
         <dc:Bounds x="382" y="-405" width="36" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="356" y="-348" width="89" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1mj15lw_di" bpmnElement="DataObjectReference_1mj15lw">
+      <bpmndi:BPMNShape id="DataObjectReference_1mj15lw_di" bpmnElement="DataObjectReference_BuddyEmployeeSelection">
         <dc:Bounds x="382" y="-195" width="36" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="365" y="-127" width="69" height="53" />
