@@ -287,6 +287,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
         return (
           <DatePicker
             format="DD.MM.YYYY"
+            placeholder="Datum"
             onChange={(date, dateString) => {
               if (date === null) {
                 handleDateChangeEmployees(null, "", record.key);
@@ -309,6 +310,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
       render: (text: Date, record: any) => {
         return (
           <TimePicker
+            placeholder="Uhrzeit"
             format="HH:mm"
             onChange={(time, timeString) => {
               if (time === null) {
@@ -340,6 +342,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
         return (
           <DatePicker
             format="DD.MM.YYYY"
+            placeholder="Datum"
             onChange={(date, dateString) => {
               if (date === null) {
                 handleDateChangeBuddy(null, "", record.key);
@@ -363,6 +366,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
       render: (text: Date, record: any) => {
         return (
           <TimePicker
+            placeholder="Uhrzeit"
             format="HH:mm"
             onChange={(time, timeString) => {
               if (time === null) {
