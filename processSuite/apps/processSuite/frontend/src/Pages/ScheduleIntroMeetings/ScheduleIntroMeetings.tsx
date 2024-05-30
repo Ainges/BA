@@ -18,6 +18,7 @@ import { SendOutlined } from "@ant-design/icons";
 import axios from "axios";
 import config from "../../config/config.json";
 import formatDateToYYYYMMDD from "../../functions/formatDateToYYYYMMDD";
+import moment from "moment";
 
 interface Employee {
   name: string;
@@ -288,6 +289,10 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
           <DatePicker
             format="DD.MM.YYYY"
             placeholder="Datum"
+            disabledDate={(current) => {
+              let customDate = moment().format("YYYY-MM-DD");
+              return current && current < moment(customDate, "YYYY-MM-DD");
+            }}
             onChange={(date, dateString) => {
               if (date === null) {
                 handleDateChangeEmployees(null, "", record.key);
@@ -343,6 +348,10 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
           <DatePicker
             format="DD.MM.YYYY"
             placeholder="Datum"
+            disabledDate={(current) => {
+              let customDate = moment().format("YYYY-MM-DD");
+              return current && current < moment(customDate, "YYYY-MM-DD");
+            }}
             onChange={(date, dateString) => {
               if (date === null) {
                 handleDateChangeBuddy(null, "", record.key);
@@ -412,7 +421,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
             <Card title="Buddy:">
               <Table
                 pagination={{ position: [] }}
-                scroll={{ y: 300 }}
+                scroll={{ y: 150 }}
                 style={{ height: "200px" }}
                 columns={columnsBuddy}
                 dataSource={buddyDataSource}

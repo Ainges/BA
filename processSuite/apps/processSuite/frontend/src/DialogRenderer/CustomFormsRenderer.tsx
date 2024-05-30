@@ -19,6 +19,7 @@ import KeyPointsForFirstWorkingDay from "../Pages/KeyPointsForFirstWorkingDay/Ke
 import ScheduleIntroMeetings from "../Pages/ScheduleIntroMeetings/ScheduleIntroMeetings";
 import GetInductionPlanDone from "../Pages/GetInductionPlanDone/GetInductionPlanDone";
 import ScheduleFirstPerformanceReview from "../Pages/ScheduleFirstPerformanceReview/ScheduleFirstPerformanceReview";
+import DiscussInductionPlan from "../Pages/DiscussInductionPlan/DiscussInductionPlan";
 
 export type CustomFormProps = {
   userTask: DataModels.FlowNodeInstances.UserTaskInstance;
@@ -71,7 +72,8 @@ export class CustomFormsRenderer extends React.Component<
     PrepareEquipment: PrepareEquipment,
     KeyPointsForFirstWorkingDay: KeyPointsForFirstWorkingDay,
     GetInductionPlanDone: GetInductionPlanDone,
-    ScheduleFirstPerformanceReview:ScheduleFirstPerformanceReview,
+    ScheduleFirstPerformanceReview: ScheduleFirstPerformanceReview,
+    DiscussInductionPlan: DiscussInductionPlan,
   };
 
   private customFormService: CustomFormService | null = null;

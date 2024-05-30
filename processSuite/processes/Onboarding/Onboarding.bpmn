@@ -128,6 +128,12 @@
       <bpmn:outgoing>Flow_0s9xent</bpmn:outgoing>
     </bpmn:manualTask>
     <bpmn:userTask id="Activity_04" name="Einarbeitungsplan mit Mitarbeiter besprechen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="customForm" value="DiscussInductionPlan" />
+          <camunda:property name="engine.runPreScript" value="return {&#10;    inductionPlan: dataObjects.DataObjectReference_InductionPlan.inductionPlan, &#10;    OnboardingData: dataObjects.DataObjectReference_onboardingData.OnboardingData&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0wni2gw</bpmn:incoming>
       <bpmn:outgoing>Flow_17mmzoh</bpmn:outgoing>
       <bpmn:property id="Property_1t24vbo" name="__targetRef_placeholder" />
@@ -280,7 +286,7 @@
     <bpmn:dataObject id="DataObject_0jf4m6y" />
     <bpmn:dataObjectReference id="DataObjectReference_onboardingData" name="Daten des neuen Mitarbeiter" dataObjectRef="DataObject_01jy0px" />
     <bpmn:dataObject id="DataObject_01jy0px" />
-    <bpmn:dataObjectReference id="DataObjectReference_FirstPerformanceReview" dataObjectRef="DataObject_1w2zzhw" />
+    <bpmn:dataObjectReference id="DataObjectReference_FirstPerformanceReview" name="Datum erstes Mitarbeitergespräch" dataObjectRef="DataObject_1w2zzhw" />
     <bpmn:dataObject id="DataObject_1w2zzhw" />
     <bpmn:association id="Association_043gqzy" sourceRef="Activity_0bcy5bx" targetRef="TextAnnotation_1j9yyob" />
   </bpmn:process>
@@ -414,6 +420,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataObjectReference_1qrh8f4_di" bpmnElement="DataObjectReference_FirstPerformanceReview">
         <dc:Bounds x="1512" y="185" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1487" y="242" width="86" height="40" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1gb9nec_di" bpmnElement="Flow_1gb9nec">
         <di:waypoint x="-62" y="980" />

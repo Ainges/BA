@@ -9,62 +9,34 @@
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0xxfted</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0qrzku8</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1y1c6nc</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1fm2m2v</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1" name="Start">
       <bpmn:outgoing>Flow_0jnhrlt</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0jnhrlt" sourceRef="StartEvent_1" targetRef="Activity_0xxfted" />
-    <bpmn:sequenceFlow id="Flow_0agj847" sourceRef="Activity_0xxfted" targetRef="Event_1fm2m2v" />
     <bpmn:userTask id="Activity_0xxfted" name="UI">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="ScheduleFirstPerformanceReview" />
-          <camunda:property name="engine.runPreScript" value="return {&#10;  &#34;OnboardingData&#34;: {&#10;    &#34;first_working_day&#34;: &#34;2024-05-16&#34;,&#10;    &#34;hours_per_week&#34;: 120,&#10;    &#34;first_name&#34;: &#34;Max&#34;,&#10;    &#34;last_name&#34;: &#34;Schustermann&#34;,&#10;    &#34;private_email&#34;: &#34;max@schustermann.de&#34;,&#10;    &#34;position&#34;: &#34;HR&#34;,&#10;    &#34;birth_date&#34;: &#34;2000-05-23&#34;,&#10;    &#34;employment_status&#34;: &#34;Vollzeit&#34;,&#10;    &#34;postal_address&#34;: &#34;Musterstraße 12, 12345 Musterstadt&#34;&#10;  }&#10;}" />
+          <camunda:property name="customForm" value="DiscussInductionPlan" />
+          <camunda:property name="engine.runPreScript" value="return {&#10;  &#34;inductionPlan&#34;: [&#10;    {&#10;      &#34;title&#34;: &#34;Aufgabe 1&#34;,&#10;      &#34;description&#34;: &#34;Beschreibung 1&#34;&#10;    },&#10;    {&#10;      &#34;title&#34;: &#34;Aufgabe 2&#34;,&#10;      &#34;description&#34;: &#34;testtesttetestsetetetesttesttetestsetetetesttesttetestsetetetesttesttetestsetetetesttesttetestsetetetesttesttetestsetetetesttesttetestsetetetesttesttetestsetetetesttesttetestsetetetesttesttetestsetete&#34;&#10;    },&#10;    {&#10;      &#34;title&#34;: &#34;Aufgabe 3&#34;,&#10;      &#34;description&#34;: &#34;1&#34;&#10;    },&#10;    {&#10;      &#34;title&#34;: &#34;Aufgabe 4&#34;,&#10;      &#34;description&#34;: &#34;1&#34;&#10;    },&#10;    {&#10;      &#34;title&#34;: &#34;Aufgabe 5&#34;,&#10;      &#34;description&#34;: &#34;1&#34;&#10;    }&#10;    ,&#10;    {&#10;      &#34;title&#34;: &#34;Aufgabe 6&#34;,&#10;      &#34;description&#34;: &#34;1&#34;&#10;    }&#10;    ,&#10;    {&#10;      &#34;title&#34;: &#34;Aufgabe 7&#34;,&#10;      &#34;description&#34;: &#34;1&#34;&#10;    }&#10;    ,&#10;    {&#10;      &#34;title&#34;: &#34;Aufgabe 8&#34;,&#10;      &#34;description&#34;: &#34;1&#34;&#10;    }&#10;  ],&#10;  &#34;OnboardingData&#34;: {&#10;    &#34;first_working_day&#34;: &#34;2024-05-16&#34;,&#10;    &#34;hours_per_week&#34;: 120,&#10;    &#34;first_name&#34;: &#34;Max&#34;,&#10;    &#34;last_name&#34;: &#34;Schustermann&#34;,&#10;    &#34;private_email&#34;: &#34;max@schustermann.de&#34;,&#10;    &#34;position&#34;: &#34;HR&#34;,&#10;    &#34;birth_date&#34;: &#34;2000-05-23&#34;,&#10;    &#34;employment_status&#34;: &#34;Vollzeit&#34;,&#10;    &#34;postal_address&#34;: &#34;Musterstraße 12, 12345 Musterstadt&#34;&#10;  }&#10;&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0jnhrlt</bpmn:incoming>
-      <bpmn:outgoing>Flow_0agj847</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_03ls5cz">
-        <bpmn:extensionElements>
-          <camunda:properties>
-            <camunda:property name="dataSource" value="{&#10;    dateTime: token.current.date + &#34;T&#34; + token.current.time&#10;}" />
-          </camunda:properties>
-        </bpmn:extensionElements>
-        <bpmn:targetRef>DataObjectReference_05atkv2</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
+      <bpmn:outgoing>Flow_01r0389</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:endEvent id="Event_0qrzku8">
-      <bpmn:incoming>Flow_0d5wp5i</bpmn:incoming>
+      <bpmn:incoming>Flow_01r0389</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0lhukiw" sourceRef="Event_1fm2m2v" targetRef="Activity_1y1c6nc" />
-    <bpmn:task id="Activity_1y1c6nc">
-      <bpmn:incoming>Flow_0lhukiw</bpmn:incoming>
-      <bpmn:outgoing>Flow_0d5wp5i</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:sequenceFlow id="Flow_0d5wp5i" sourceRef="Activity_1y1c6nc" targetRef="Event_0qrzku8" />
-    <bpmn:intermediateCatchEvent id="Event_1fm2m2v">
-      <bpmn:incoming>Flow_0agj847</bpmn:incoming>
-      <bpmn:outgoing>Flow_0lhukiw</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0eaaoon">
-        <bpmn:targetRef>DataObjectReference_05atkv2</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_1ruwmzz">
-        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">dataObjects.DataObjectReference_05atkv2.dateTime</bpmn:timeDate>
-      </bpmn:timerEventDefinition>
-    </bpmn:intermediateCatchEvent>
-    <bpmn:dataObjectReference id="DataObjectReference_05atkv2" dataObjectRef="DataObject_0b83g2p" />
-    <bpmn:dataObject id="DataObject_0b83g2p" />
+    <bpmn:sequenceFlow id="Flow_01r0389" sourceRef="Activity_0xxfted" targetRef="Event_0qrzku8" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
-        <dc:Bounds x="5" y="4" width="685" height="316" />
+        <dc:Bounds x="5" y="4" width="485" height="316" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
-        <dc:Bounds x="35" y="4" width="655" height="316" />
+        <dc:Bounds x="35" y="4" width="455" height="316" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="92" y="152" width="36" height="36" />
@@ -76,40 +48,15 @@
         <dc:Bounds x="180" y="130" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0qrzku8_di" bpmnElement="Event_0qrzku8">
-        <dc:Bounds x="592" y="152" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1y1c6nc_di" bpmnElement="Activity_1y1c6nc">
-        <dc:Bounds x="450" y="130" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1i8nsbx_di" bpmnElement="Event_1fm2m2v">
-        <dc:Bounds x="352" y="152" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_05atkv2_di" bpmnElement="DataObjectReference_05atkv2">
-        <dc:Bounds x="302" y="35" width="36" height="50" />
+        <dc:Bounds x="392" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0jnhrlt_di" bpmnElement="Flow_0jnhrlt">
         <di:waypoint x="128" y="170" />
         <di:waypoint x="180" y="170" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0agj847_di" bpmnElement="Flow_0agj847">
+      <bpmndi:BPMNEdge id="Flow_01r0389_di" bpmnElement="Flow_01r0389">
         <di:waypoint x="280" y="170" />
-        <di:waypoint x="352" y="170" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0lhukiw_di" bpmnElement="Flow_0lhukiw">
-        <di:waypoint x="388" y="170" />
-        <di:waypoint x="450" y="170" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0d5wp5i_di" bpmnElement="Flow_0d5wp5i">
-        <di:waypoint x="550" y="170" />
-        <di:waypoint x="592" y="170" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_03ls5cz_di" bpmnElement="DataOutputAssociation_03ls5cz">
-        <di:waypoint x="262" y="130" />
-        <di:waypoint x="302" y="80" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_0eaaoon_di" bpmnElement="DataOutputAssociation_0eaaoon">
-        <di:waypoint x="363" y="154" />
-        <di:waypoint x="331" y="85" />
+        <di:waypoint x="392" y="170" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

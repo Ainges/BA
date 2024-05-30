@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 import { SendOutlined } from "@ant-design/icons";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
 
-interface IinductionPlanElement {
+export interface IinductionPlanElement {
   title: string;
   description: string | undefined;
 }
