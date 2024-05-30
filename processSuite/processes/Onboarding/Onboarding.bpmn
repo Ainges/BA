@@ -128,6 +128,12 @@
       <bpmn:outgoing>Flow_0s9xent</bpmn:outgoing>
     </bpmn:manualTask>
     <bpmn:userTask id="Activity_04" name="Einarbeitungsplan mit Mitarbeiter besprechen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="customForm" value="DiscussInductionPlan" />
+          <camunda:property name="engine.runPreScript" value="return {&#10;    inductionPlan: dataObjects.DataObjectReference_InductionPlan.inductionPlan, &#10;    OnboardingData: dataObjects.DataObjectReference_onboardingData.OnboardingData&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0wni2gw</bpmn:incoming>
       <bpmn:outgoing>Flow_17mmzoh</bpmn:outgoing>
       <bpmn:property id="Property_1t24vbo" name="__targetRef_placeholder" />
