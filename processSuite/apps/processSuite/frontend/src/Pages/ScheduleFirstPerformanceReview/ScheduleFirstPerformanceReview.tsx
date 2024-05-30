@@ -12,13 +12,15 @@ import {
 } from "antd";
 import { CustomFormProps } from "../../DialogRenderer";
 import { useState } from "react";
-import moment from "moment";
+import moment, { Moment } from "moment";
+import formatDateToYYYYMMDD from "../../functions/formatDateToYYYYMMDD";
+import formatStringDDMMYYYYtoDate from "../../functions/formatStringDDMMYYYYtoDate";
 
 const ScheduleFirstPerformanceReview: React.FC<CustomFormProps> = (props) => {
   const token = props.userTask.startToken;
 
-  const employeeData = token.employeeData;
-  const onboardingData = employeeData.OnboardingData;
+  // const employeeData = token.employeeData;
+  const onboardingData = token.OnboardingData;
   const name = onboardingData.first_name + " " + onboardingData.last_name;
 
   const [date, setDate] = useState<string>("");
@@ -87,8 +89,19 @@ const ScheduleFirstPerformanceReview: React.FC<CustomFormProps> = (props) => {
               <Button
                 type="primary"
                 onClick={() => {
+                  //TODO: Format to YYYY-MM-DD HH:mm
+
+                  const dateObject: Date = formatStringDDMMYYYYtoDate(date);
+
+                  console.log("Date: " + date);
+                  console.log("Time: " + time);
+                  console.log("Date Object: " + dateObject);
+                  console.log(
+                    "Date Object formatted: " + formatDateToYYYYMMDD(dateObject)
+                  );
+
                   props.finishUserTask({
-                    date: date,
+                    date: formatDateToYYYYMMDD(dateObject),
                     time: time,
                   });
                 }}

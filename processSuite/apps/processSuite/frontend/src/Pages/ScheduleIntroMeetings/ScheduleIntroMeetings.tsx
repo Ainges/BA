@@ -310,6 +310,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
       render: (text: Date, record: any) => {
         return (
           <TimePicker
+            placeholder="Uhrzeit"
             format="HH:mm"
             onChange={(time, timeString) => {
               if (time === null) {
@@ -365,6 +366,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
       render: (text: Date, record: any) => {
         return (
           <TimePicker
+            placeholder="Uhrzeit"
             format="HH:mm"
             onChange={(time, timeString) => {
               if (time === null) {
