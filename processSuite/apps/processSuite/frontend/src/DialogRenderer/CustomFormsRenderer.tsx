@@ -20,6 +20,8 @@ import ScheduleIntroMeetings from "../Pages/ScheduleIntroMeetings/ScheduleIntroM
 import GetInductionPlanDone from "../Pages/GetInductionPlanDone/GetInductionPlanDone";
 import ScheduleFirstPerformanceReview from "../Pages/ScheduleFirstPerformanceReview/ScheduleFirstPerformanceReview";
 import DiscussInductionPlan from "../Pages/DiscussInductionPlan/DiscussInductionPlan";
+import FirstPerformanceReview_Supervisor from "../Pages/FirstPerformanceReview/FirstPerformanceReview_Supervisor";
+import FirstPerformanceReview_Employee from "../Pages/FirstPerformanceReview/FirstPerformanceReview_Employee";
 
 export type CustomFormProps = {
   userTask: DataModels.FlowNodeInstances.UserTaskInstance;
@@ -74,6 +76,8 @@ export class CustomFormsRenderer extends React.Component<
     GetInductionPlanDone: GetInductionPlanDone,
     ScheduleFirstPerformanceReview: ScheduleFirstPerformanceReview,
     DiscussInductionPlan: DiscussInductionPlan,
+    FirstPerformanceReview_Employee: FirstPerformanceReview_Employee,
+    FirstPerformanceReview_Supervisor: FirstPerformanceReview_Supervisor,
   };
 
   private customFormService: CustomFormService | null = null;

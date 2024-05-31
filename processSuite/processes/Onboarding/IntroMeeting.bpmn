@@ -7,6 +7,10 @@
     </bpmn:textAnnotation>
     <bpmn:association id="Association_0igozi7" associationDirection="None" sourceRef="Activity_1ggwnmn" targetRef="TextAnnotation_1jgubnm" />
     <bpmn:association id="Association_0h2kmrh" associationDirection="None" sourceRef="TextAnnotation_1jgubnm" targetRef="Activity_1mtw9sv" />
+    <bpmn:textAnnotation id="TextAnnotation_1pqhku3">
+      <bpmn:text>token.current.date + ", " + token.current.time</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1rn9580" associationDirection="None" sourceRef="Event_0c82ia7" targetRef="TextAnnotation_1pqhku3" />
   </bpmn:collaboration>
   <bpmn:process id="IntroMeeting_Process" name="IntroMeeting" isExecutable="true">
     <bpmn:laneSet>
@@ -29,7 +33,9 @@
     <bpmn:intermediateCatchEvent id="Event_0c82ia7" name="Zeitpunkt für Kennenlerngespräch ist gekommen">
       <bpmn:incoming>Flow_0iychhd</bpmn:incoming>
       <bpmn:outgoing>Flow_016k0ro</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_10wbe69" />
+      <bpmn:timerEventDefinition id="TimerEventDefinition_10wbe69">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="Flow_016k0ro" sourceRef="Event_0c82ia7" targetRef="Gateway_17v10ab" />
     <bpmn:parallelGateway id="Gateway_17v10ab">
@@ -132,6 +138,14 @@
         <di:waypoint x="765" y="160" />
         <di:waypoint x="872" y="160" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1rn9580_di" bpmnElement="Association_1rn9580">
+        <di:waypoint x="242" y="142" />
+        <di:waypoint x="245" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1jgubnm_di" bpmnElement="TextAnnotation_1jgubnm">
+        <dc:Bounds x="1170" y="268" width="189.99208860759495" height="83.54430379746834" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0igozi7_di" bpmnElement="Association_0igozi7">
         <di:waypoint x="620" y="448" />
         <di:waypoint x="1170" y="342" />
@@ -140,8 +154,8 @@
         <di:waypoint x="1170" y="273" />
         <di:waypoint x="620" y="164" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="TextAnnotation_1jgubnm_di" bpmnElement="TextAnnotation_1jgubnm">
-        <dc:Bounds x="1170" y="268" width="189.99208860759495" height="83.54430379746834" />
+      <bpmndi:BPMNShape id="TextAnnotation_1pqhku3_di" bpmnElement="TextAnnotation_1pqhku3">
+        <dc:Bounds x="200" y="30" width="251" height="70" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
