@@ -2,12 +2,16 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="IntroductoryAppointment_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
     <bpmn:participant id="Participant_0px403d" name="IntroductoryAppointment" processRef="IntroductoryAppointment_Process" />
+    <bpmn:textAnnotation id="TextAnnotation_172i0ev">
+      <bpmn:text>token.current.date + ", "+ token.current.time</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0htkysm" associationDirection="None" sourceRef="Event_Timer_IntroductoryAppointment" targetRef="TextAnnotation_172i0ev" />
   </bpmn:collaboration>
   <bpmn:process id="IntroductoryAppointment_Process" name="IntroductoryAppointment" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1xzf0d3" name="Neuer Mitarbeiter">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_17l9krt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_Timer_IntroductoryAppointment</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1ao9jp2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1e93m8w</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0vn5037</bpmn:flowNodeRef>
@@ -17,8 +21,8 @@
         <bpmn:flowNodeRef>Activity_1lsfg7o</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sequenceFlow id="Flow_1bm3p4g" sourceRef="StartEvent_1" targetRef="Event_17l9krt" />
-    <bpmn:sequenceFlow id="Flow_0zu5xx4" sourceRef="Event_17l9krt" targetRef="Gateway_0vn5037" />
+    <bpmn:sequenceFlow id="Flow_1bm3p4g" sourceRef="StartEvent_1" targetRef="Event_Timer_IntroductoryAppointment" />
+    <bpmn:sequenceFlow id="Flow_0zu5xx4" sourceRef="Event_Timer_IntroductoryAppointment" targetRef="Gateway_0vn5037" />
     <bpmn:sequenceFlow id="Flow_1lmyidk" sourceRef="Activity_1ao9jp2" targetRef="Gateway_0r513ix" />
     <bpmn:sequenceFlow id="Flow_0ipqa19" sourceRef="Gateway_0vn5037" targetRef="Activity_1ao9jp2" />
     <bpmn:sequenceFlow id="Flow_0x67uqe" sourceRef="Gateway_0r513ix" targetRef="Event_1e93m8w" />
@@ -26,10 +30,12 @@
     <bpmn:startEvent id="StartEvent_1" name="Kennenlertermin wurde ausgemacht">
       <bpmn:outgoing>Flow_1bm3p4g</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:intermediateCatchEvent id="Event_17l9krt" name="Zeitpunkt für Kennenlertermin ist gekommen">
+    <bpmn:intermediateCatchEvent id="Event_Timer_IntroductoryAppointment" name="Zeitpunkt für Kennenlertermin ist gekommen">
       <bpmn:incoming>Flow_1bm3p4g</bpmn:incoming>
       <bpmn:outgoing>Flow_0zu5xx4</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_0obubfn" />
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0obubfn">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT3S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:userTask id="Activity_1ao9jp2" name="Kennenlerntermin durchführen">
       <bpmn:incoming>Flow_0ipqa19</bpmn:incoming>
@@ -73,7 +79,7 @@
           <dc:Bounds x="100" y="205" width="81" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1shaj24_di" bpmnElement="Event_17l9krt">
+      <bpmndi:BPMNShape id="Event_1shaj24_di" bpmnElement="Event_Timer_IntroductoryAppointment">
         <dc:Bounds x="292" y="162" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="270" y="205" width="81" height="40" />
@@ -127,6 +133,14 @@
         <di:waypoint x="730" y="420" />
         <di:waypoint x="730" y="205" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0htkysm_di" bpmnElement="Association_0htkysm">
+        <di:waypoint x="303" y="164" />
+        <di:waypoint x="283" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_172i0ev_di" bpmnElement="TextAnnotation_172i0ev">
+        <dc:Bounds x="210" y="50" width="370" height="68" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

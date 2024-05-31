@@ -422,7 +422,7 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
               <Table
                 pagination={{ position: [] }}
                 scroll={{ y: 150 }}
-                style={{ height: "200px" }}
+                style={{ height: "100px" }}
                 columns={columnsBuddy}
                 dataSource={buddyDataSource}
                 size="small"
