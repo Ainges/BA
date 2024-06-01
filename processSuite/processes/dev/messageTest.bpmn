@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="messageTest_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
+  <bpmn:collaboration id="Collaboration_1cidyxu" name="">
+    <bpmn:participant id="Participant_0px403d" name="messageTest" processRef="messageTest_Process" />
+  </bpmn:collaboration>
+  <bpmn:process id="messageTest_Process" name="messageTest" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_1xzf0d3" name="Lane">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0zki1oj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_19p9gzn</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1" name="Start">
+      <bpmn:outgoing>Flow_1ieytbd</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1ieytbd" sourceRef="StartEvent_1" targetRef="Activity_19p9gzn" />
+    <bpmn:sequenceFlow id="Flow_1mfz7w6" sourceRef="Activity_19p9gzn" targetRef="Event_0zki1oj" />
+    <bpmn:endEvent id="Event_0zki1oj">
+      <bpmn:incoming>Flow_1mfz7w6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_19p9gzn" name="Send Results to new Employee">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="module" value="HttpClient" />
+          <camunda:property name="method" value="post" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/onboarding/firstPerformanceReview/sendResultsToNewEmployee&#34;, {&#10;    &#34;companyEmailOfNewEmployee&#34;: &#34;max.mustermann-new@dundermifflin.com&#34;,&#10;        &#34;goals&#34;: &#34;Wichtige Ziele für die Zukunft&#34;,&#10;            &#34;trainings&#34;: &#34;Wichtige Schulungen&#34;,&#10;                &#34;currentTasks&#34;: &#34;Wichtige Aufgaben&#34;,&#10;                    &#34;satisfaction&#34;: 5,&#10;                        &#34;suggestions&#34;: &#34;Wichtige Verbesserungsvorschläge&#34;&#10;}]" />
+          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/onboarding/firstPerformanceReview/sendResultsToNewEmployee" />
+          <camunda:property name="studio.paramBody" value="{&#10;    &#34;companyEmailOfNewEmployee&#34;: &#34;max.mustermann-new@dundermifflin.com&#34;,&#10;        &#34;goals&#34;: &#34;Wichtige Ziele für die Zukunft&#34;,&#10;            &#34;trainings&#34;: &#34;Wichtige Schulungen&#34;,&#10;                &#34;currentTasks&#34;: &#34;Wichtige Aufgaben&#34;,&#10;                    &#34;satisfaction&#34;: 5,&#10;                        &#34;suggestions&#34;: &#34;Wichtige Verbesserungsvorschläge&#34;&#10;}" />
+          <camunda:property name="studio.paramAuthorization" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ieytbd</bpmn:incoming>
+      <bpmn:outgoing>Flow_1mfz7w6</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
+      <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
+        <dc:Bounds x="5" y="4" width="885" height="346" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
+        <dc:Bounds x="35" y="4" width="855" height="346" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="102" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="108" y="205" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0zki1oj_di" bpmnElement="Event_0zki1oj">
+        <dc:Bounds x="772" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0n0r34e_di" bpmnElement="Activity_19p9gzn">
+        <dc:Bounds x="250" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1ieytbd_di" bpmnElement="Flow_1ieytbd">
+        <di:waypoint x="138" y="180" />
+        <di:waypoint x="250" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mfz7w6_di" bpmnElement="Flow_1mfz7w6">
+        <di:waypoint x="350" y="180" />
+        <di:waypoint x="772" y="180" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

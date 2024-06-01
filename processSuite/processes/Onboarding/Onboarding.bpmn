@@ -2,9 +2,7 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Onboarding_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
     <bpmn:participant id="Participant_0px403d" name="Onboarding_Phase2" processRef="Onboarding_Process" />
-    <bpmn:participant id="Participant_0cgswu4" name="SCIL Onboarding_Phase2" />
     <bpmn:participant id="Participant_032ptyr" name="Onboarding_SCIL" />
-    <bpmn:messageFlow id="Flow_0u65bmz" sourceRef="Activity_0bcy5bx" targetRef="Participant_0cgswu4" />
     <bpmn:messageFlow id="Flow_0bit1sb" sourceRef="Event_176thb5" targetRef="Participant_032ptyr" />
     <bpmn:textAnnotation id="TextAnnotation_1j9yyob">
       <bpmn:text>Außerhalb der Prozessgesteuerten Anwendung</bpmn:text>
@@ -42,13 +40,6 @@ Weiterbildungsmaßnahmen</bpmn:text>
         <bpmn:flowNodeRef>Activity_06oh5rs</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_16dd5jt</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_1xhl0ke" name="HR">
-        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0bcy5bx</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1ynic0k</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0394a4i</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_0d5ba9j</bpmn:flowNodeRef>
-      </bpmn:lane>
       <bpmn:lane id="Lane_06igcg2" name="Vorgesetzter">
         <bpmn:flowNodeRef>Activity_01</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_02</bpmn:flowNodeRef>
@@ -63,11 +54,9 @@ Weiterbildungsmaßnahmen</bpmn:text>
         <bpmn:flowNodeRef>Gateway_0if8t2x</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_06i0vwt</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_176thb5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sequenceFlow id="Flow_1gb9nec" sourceRef="StartEvent_1" targetRef="Gateway_0d5ba9j" />
-    <bpmn:sequenceFlow id="Flow_0awje8x" sourceRef="Gateway_0d5ba9j" targetRef="Activity_1fhcx11" />
-    <bpmn:sequenceFlow id="Flow_048pb7s" sourceRef="Gateway_0d5ba9j" targetRef="Activity_0bcy5bx" />
     <bpmn:sequenceFlow id="Flow_188upwf" sourceRef="Activity_1fhcx11" targetRef="Activity_0f1twgj" />
     <bpmn:sequenceFlow id="Flow_1o37sqf" sourceRef="Gateway_1scy8v4" targetRef="Activity_02" />
     <bpmn:sequenceFlow id="Flow_0wni2gw" sourceRef="Gateway_1scy8v4" targetRef="Activity_04" />
@@ -75,8 +64,6 @@ Weiterbildungsmaßnahmen</bpmn:text>
     <bpmn:sequenceFlow id="Flow_17mmzoh" sourceRef="Activity_04" targetRef="Gateway_0hrx094" />
     <bpmn:sequenceFlow id="Flow_0a30yua" sourceRef="Gateway_0hrx094" targetRef="Gateway_0nb8j30" />
     <bpmn:sequenceFlow id="Flow_038q9ad" sourceRef="Activity_1i8na2m" targetRef="Gateway_0ivlp3h" />
-    <bpmn:sequenceFlow id="Flow_02u3yzo" sourceRef="Activity_0bcy5bx" targetRef="Activity_1ynic0k" />
-    <bpmn:sequenceFlow id="Flow_1axd8lf" sourceRef="Activity_1ynic0k" targetRef="Event_0394a4i" />
     <bpmn:sequenceFlow id="Flow_18fje4i" sourceRef="Activity_0f1twgj" targetRef="Activity_1m9gml1" />
     <bpmn:sequenceFlow id="Flow_17xqkm6" sourceRef="Gateway_1scy8v4" targetRef="Activity_01" />
     <bpmn:sequenceFlow id="Flow_13mp125" sourceRef="Activity_01" targetRef="Gateway_0hrx094" />
@@ -134,7 +121,7 @@ Weiterbildungsmaßnahmen</bpmn:text>
       <bpmn:outgoing>Flow_18fje4i</bpmn:outgoing>
     </bpmn:manualTask>
     <bpmn:manualTask id="Activity_1fhcx11" name="Mitarbeiter persönlich begrüßen">
-      <bpmn:incoming>Flow_0awje8x</bpmn:incoming>
+      <bpmn:incoming>Flow_138o4tm</bpmn:incoming>
       <bpmn:outgoing>Flow_188upwf</bpmn:outgoing>
     </bpmn:manualTask>
     <bpmn:sequenceFlow id="Flow_0ldlhgt" sourceRef="Gateway_1p9atc1" targetRef="Activity_FirstPerformanceReview_Supervisor" />
@@ -160,54 +147,6 @@ Weiterbildungsmaßnahmen</bpmn:text>
         <bpmn:targetRef>Property_1t24vbo</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:userTask>
-    <bpmn:startEvent id="StartEvent_1" name="Erster Arbeitstag hat begonnen">
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="engine.runPostScript" value="{&#10;    employeeData: token.current.result.employeeData,&#10;    inductionPlan: token.current.result.inductionPlan,&#10;    buddyEmployeeSelection: token.current.result.buddyEmployeeSelection,&#10;    companyEmailOfNewEmployee: token.current.result.companyEmailOfNewEmployee&#10;}" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:outgoing>Flow_1gb9nec</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0e75ukq">
-        <bpmn:extensionElements>
-          <camunda:properties>
-            <camunda:property name="dataSource" value="token.current.inductionPlan" />
-          </camunda:properties>
-        </bpmn:extensionElements>
-        <bpmn:targetRef>DataObjectReference_InductionPlan</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0oldqzf">
-        <bpmn:extensionElements>
-          <camunda:properties>
-            <camunda:property name="dataSource" value="token.current.buddyEmployeeSelection" />
-          </camunda:properties>
-        </bpmn:extensionElements>
-        <bpmn:targetRef>DataObjectReference_BuddyEmployeeSelection</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1oq6hp7">
-        <bpmn:extensionElements>
-          <camunda:properties>
-            <camunda:property name="dataSource" value="token.current.employeeData" />
-          </camunda:properties>
-        </bpmn:extensionElements>
-        <bpmn:targetRef>DataObjectReference_onboardingData</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0dzy8r2">
-        <bpmn:extensionElements>
-          <camunda:properties>
-            <camunda:property name="dataSource" value="token.current.companyEmailOfNewEmployee" />
-          </camunda:properties>
-        </bpmn:extensionElements>
-        <bpmn:targetRef>DataObjectReference_1m7y5fe</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:startEvent>
-    <bpmn:sendTask id="Activity_0bcy5bx" name="Willkommensnachricht im Namen von HR an neuen Mitarbeiter senden" messageRef="Message_fXdIt8oL">
-      <bpmn:incoming>Flow_048pb7s</bpmn:incoming>
-      <bpmn:outgoing>Flow_02u3yzo</bpmn:outgoing>
-    </bpmn:sendTask>
-    <bpmn:sendTask id="Activity_1ynic0k" name="Weitere Unterlagen wie z.B noch ausstehender Urlaub, Mitarbeiterausweis anfordern / übergeben" messageRef="Message_NpE2fUSO">
-      <bpmn:incoming>Flow_02u3yzo</bpmn:incoming>
-      <bpmn:outgoing>Flow_1axd8lf</bpmn:outgoing>
-    </bpmn:sendTask>
     <bpmn:sequenceFlow id="Flow_1iqxh7b" sourceRef="Gateway_0nb8j30" targetRef="Activity_1i8na2m" />
     <bpmn:sequenceFlow id="Flow_0v3cg6i" sourceRef="Gateway_0nb8j30" targetRef="Activity_16dd5jt" />
     <bpmn:sequenceFlow id="Flow_1jtnojb" sourceRef="Activity_16dd5jt" targetRef="Gateway_0ivlp3h" />
@@ -233,9 +172,6 @@ Weiterbildungsmaßnahmen</bpmn:text>
       <bpmn:incoming>Flow_0tzlqu7</bpmn:incoming>
       <bpmn:outgoing>Flow_16sjxfp</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:endEvent id="Event_0394a4i" name="Willkommensnachricht an Mitarbeiter gesendet">
-      <bpmn:incoming>Flow_1axd8lf</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:callActivity id="Activity_1i8na2m" name="Kennenlertermine mit neuen Kollegen durchführen" calledElement="IntroMeeting_Process">
       <bpmn:extensionElements>
         <camunda:properties>
@@ -288,11 +224,6 @@ Weiterbildungsmaßnahmen</bpmn:text>
       <bpmn:incoming>Flow_1mdcs6w</bpmn:incoming>
       <bpmn:outgoing>Flow_0tzlqu7</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:parallelGateway id="Gateway_0d5ba9j">
-      <bpmn:incoming>Flow_1gb9nec</bpmn:incoming>
-      <bpmn:outgoing>Flow_0awje8x</bpmn:outgoing>
-      <bpmn:outgoing>Flow_048pb7s</bpmn:outgoing>
-    </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="Flow_0n8p4ux" sourceRef="Activity_06oh5rs" targetRef="Gateway_0ivlp3h" />
     <bpmn:sequenceFlow id="Flow_0uoi65k" sourceRef="Gateway_0nb8j30" targetRef="Activity_06oh5rs" />
     <bpmn:userTask id="Activity_06oh5rs" name="Einarbeitungsplan abarbeiten">
@@ -339,18 +270,63 @@ Weiterbildungsmaßnahmen</bpmn:text>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1dd6vtl" sourceRef="Event_176thb5" targetRef="Event_06i0vwt" />
     <bpmn:intermediateThrowEvent id="Event_176thb5" name="Dokumentiere Ergebnisse des Mitarbeitergesprächs">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="inputValues" value="{&#10;    &#34;companyEmailOfNewEmployee&#34;: dataObjects.DataObjectReference_companyEmailOfNewEmployee.companyEmailOfNewEmployee,&#10;&#10;    &#34;goals&#34;: token.current.Activity_FirstPerformanceReview_Supervisor.goals,&#10;    &#34;trainings&#34;: token.current.Activity_FirstPerformanceReview_Supervisor.trainings,&#10;&#10;    &#34;currentTasks&#34;: token.current.Activity_FirstPerformanceReview_Employee.currentTasks,&#10;    &#34;satisfaction&#34;: token.current.Activity_FirstPerformanceReview_Employee.satisfaction,&#10;    &#34;suggestions&#34;: token.current.Activity_FirstPerformanceReview_Employee.suggestions&#10;&#10;    &#10;} " />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_16sjxfp</bpmn:incoming>
       <bpmn:outgoing>Flow_1dd6vtl</bpmn:outgoing>
       <bpmn:property id="Property_02oq414" name="__targetRef_placeholder" />
       <bpmn:dataInputAssociation id="DataInputAssociation_1wryyi0">
-        <bpmn:sourceRef>DataObjectReference_1m7y5fe</bpmn:sourceRef>
+        <bpmn:sourceRef>DataObjectReference_companyEmailOfNewEmployee</bpmn:sourceRef>
         <bpmn:targetRef>Property_02oq414</bpmn:targetRef>
       </bpmn:dataInputAssociation>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0qjrmh9" messageRef="Message_G0drewka" />
     </bpmn:intermediateThrowEvent>
-    <bpmn:dataObjectReference id="DataObjectReference_1m7y5fe" name="Firmenmail des neuen Mitarbeiters" dataObjectRef="DataObject_147oqhn" />
+    <bpmn:dataObjectReference id="DataObjectReference_companyEmailOfNewEmployee" name="Firmenmail des neuen Mitarbeiters" dataObjectRef="DataObject_147oqhn" />
     <bpmn:dataObject id="DataObject_147oqhn" />
-    <bpmn:association id="Association_043gqzy" sourceRef="Activity_0bcy5bx" targetRef="TextAnnotation_1j9yyob" />
+    <bpmn:startEvent id="StartEvent_1" name="Erster Arbeitstag hat begonnen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPostScript" value="{&#10;    employeeData: token.current.result.employeeData,&#10;    inductionPlan: token.current.result.inductionPlan,&#10;    buddyEmployeeSelection: token.current.result.buddyEmployeeSelection,&#10;    companyEmailOfNewEmployee: token.current.result.companyEmailOfNewEmployee&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_138o4tm</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0e75ukq">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="dataSource" value="token.current.inductionPlan" />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:targetRef>DataObjectReference_InductionPlan</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0oldqzf">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="dataSource" value="token.current.buddyEmployeeSelection" />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:targetRef>DataObjectReference_BuddyEmployeeSelection</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1oq6hp7">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="dataSource" value="token.current.employeeData" />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:targetRef>DataObjectReference_onboardingData</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0dzy8r2">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="dataSource" value="{&#10;    &#34;companyEmailOfNewEmployee&#34;: token.current.companyEmailOfNewEmployee&#10;}" />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:targetRef>DataObjectReference_companyEmailOfNewEmployee</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_138o4tm" sourceRef="StartEvent_1" targetRef="Activity_1fhcx11" />
   </bpmn:process>
   <bpmn:message id="Message_fXdIt8oL" name="Message_WelcomeFormHR" />
   <bpmn:message id="Message_NpE2fUSO" name="Message_MoreDocuments" />
@@ -361,14 +337,10 @@ Weiterbildungsmaßnahmen</bpmn:text>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
-        <dc:Bounds x="-170" y="-510" width="2500" height="1730" />
+        <dc:Bounds x="-170" y="-510" width="2500" height="1330" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_06igcg2_di" bpmnElement="Lane_06igcg2" isHorizontal="true">
-        <dc:Bounds x="-140" y="0" width="2470" height="727" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_1xhl0ke_di" bpmnElement="Lane_1xhl0ke" isHorizontal="true">
-        <dc:Bounds x="-140" y="727" width="2470" height="493" />
+        <dc:Bounds x="-140" y="0" width="2470" height="820" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_09nnrvj_di" bpmnElement="Lane_09nnrvj" isHorizontal="true">
@@ -403,29 +375,11 @@ Weiterbildungsmaßnahmen</bpmn:text>
       <bpmndi:BPMNShape id="Activity_09ngt5w_di" bpmnElement="Activity_04">
         <dc:Bounds x="635" y="480" width="160" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
-        <dc:Bounds x="-98" y="962" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-121" y="1005" width="82" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0p97rkk_di" bpmnElement="Activity_0bcy5bx">
-        <dc:Bounds x="300" y="940" width="200" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0x93clk_di" bpmnElement="Activity_1ynic0k">
-        <dc:Bounds x="565" y="940" width="300" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0w842mc_di" bpmnElement="Activity_FirstPerformanceReview_Supervisor">
         <dc:Bounds x="1742" y="380" width="135" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0c93c7r_di" bpmnElement="Gateway_0if8t2x">
         <dc:Bounds x="1925" y="395" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0394a4i_di" bpmnElement="Event_0394a4i">
-        <dc:Bounds x="2012" y="962" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1988" y="1005" width="84" height="53" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0k9m58e_di" bpmnElement="Activity_1i8na2m">
         <dc:Bounds x="1140" y="-140" width="160" height="80" />
@@ -447,9 +401,6 @@ Weiterbildungsmaßnahmen</bpmn:text>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1l2o4v5" bpmnElement="Activity_FirstPerformanceReview_Employee">
         <dc:Bounds x="1722" y="-200" width="135" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_17fy32a_di" bpmnElement="Gateway_0d5ba9j">
-        <dc:Bounds x="-5" y="955" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1mmq4vy_di" bpmnElement="Activity_06oh5rs">
         <dc:Bounds x="1140" y="-370" width="160" height="80" />
@@ -493,25 +444,18 @@ Weiterbildungsmaßnahmen</bpmn:text>
           <dc:Bounds x="2047" y="445" width="86" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1m7y5fe_di" bpmnElement="DataObjectReference_1m7y5fe">
+      <bpmndi:BPMNShape id="DataObjectReference_1m7y5fe_di" bpmnElement="DataObjectReference_companyEmailOfNewEmployee">
         <dc:Bounds x="382" y="25" width="36" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="362" y="82" width="76" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_1gb9nec_di" bpmnElement="Flow_1gb9nec">
-        <di:waypoint x="-62" y="980" />
-        <di:waypoint x="-5" y="980" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0awje8x_di" bpmnElement="Flow_0awje8x">
-        <di:waypoint x="20" y="955" />
-        <di:waypoint x="20" y="420" />
-        <di:waypoint x="80" y="420" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_048pb7s_di" bpmnElement="Flow_048pb7s">
-        <di:waypoint x="45" y="980" />
-        <di:waypoint x="300" y="980" />
-      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="-98" y="402" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-121" y="445" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_188upwf_di" bpmnElement="Flow_188upwf">
         <di:waypoint x="200" y="420" />
         <di:waypoint x="220" y="420" />
@@ -546,14 +490,6 @@ Weiterbildungsmaßnahmen</bpmn:text>
         <di:waypoint x="1300" y="-100" />
         <di:waypoint x="1440" y="-100" />
         <di:waypoint x="1440" y="-135" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_02u3yzo_di" bpmnElement="Flow_02u3yzo">
-        <di:waypoint x="500" y="980" />
-        <di:waypoint x="565" y="980" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1axd8lf_di" bpmnElement="Flow_1axd8lf">
-        <di:waypoint x="865" y="980" />
-        <di:waypoint x="2012" y="980" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_18fje4i_di" bpmnElement="Flow_18fje4i">
         <di:waypoint x="360" y="420" />
@@ -642,14 +578,10 @@ Weiterbildungsmaßnahmen</bpmn:text>
         <di:waypoint x="2108" y="420" />
         <di:waypoint x="2232" y="420" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_043gqzy_di" bpmnElement="Association_043gqzy">
-        <di:waypoint x="400" y="940" />
-        <di:waypoint x="400" y="660" />
+      <bpmndi:BPMNEdge id="Flow_138o4tm_di" bpmnElement="Flow_138o4tm">
+        <di:waypoint x="-62" y="420" />
+        <di:waypoint x="80" y="420" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Participant_1m5mzey_di" bpmnElement="Participant_0cgswu4" isHorizontal="true">
-        <dc:Bounds x="-170" y="1260" width="1880" height="60" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_1tnda7s_di" bpmnElement="Participant_032ptyr" isHorizontal="true">
         <dc:Bounds x="-170" y="-810" width="2500" height="60" />
         <bpmndi:BPMNLabel />
@@ -662,16 +594,6 @@ Weiterbildungsmaßnahmen</bpmn:text>
         <dc:Bounds x="1340" y="-650" width="100" height="98" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_0dzy8r2_di" bpmnElement="DataOutputAssociation_0dzy8r2">
-        <di:waypoint x="-80" y="962" />
-        <di:waypoint x="-80" y="50" />
-        <di:waypoint x="382" y="50" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_1wryyi0_di" bpmnElement="DataInputAssociation_1wryyi0">
-        <di:waypoint x="418" y="50" />
-        <di:waypoint x="2040" y="50" />
-        <di:waypoint x="2088" y="402" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Group_1x3k2ii_di" bpmnElement="Group_1x3k2ii">
         <dc:Bounds x="50" y="160" width="860" height="520" />
         <bpmndi:BPMNLabel>
@@ -699,19 +621,24 @@ Weiterbildungsmaßnahmen</bpmn:text>
         <di:waypoint x="639" y="482" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_0e75ukq_di" bpmnElement="DataOutputAssociation_0e75ukq">
-        <di:waypoint x="-80" y="962" />
+        <di:waypoint x="-80" y="402" />
         <di:waypoint x="-80" y="-380" />
         <di:waypoint x="382" y="-380" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_0oldqzf_di" bpmnElement="DataOutputAssociation_0oldqzf">
-        <di:waypoint x="-80" y="962" />
+        <di:waypoint x="-80" y="402" />
         <di:waypoint x="-80" y="-260" />
         <di:waypoint x="382" y="-265" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1oq6hp7_di" bpmnElement="DataOutputAssociation_1oq6hp7">
-        <di:waypoint x="-80" y="962" />
+        <di:waypoint x="-80" y="402" />
         <di:waypoint x="-80" y="-125" />
         <di:waypoint x="382" y="-125" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0dzy8r2_di" bpmnElement="DataOutputAssociation_0dzy8r2">
+        <di:waypoint x="-80" y="402" />
+        <di:waypoint x="-80" y="50" />
+        <di:waypoint x="382" y="50" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_01tmx6u_di" bpmnElement="DataInputAssociation_01tmx6u">
         <di:waypoint x="418" y="-123" />
@@ -733,6 +660,11 @@ Weiterbildungsmaßnahmen</bpmn:text>
         <di:waypoint x="418" y="-269" />
         <di:waypoint x="1140" y="-228" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1wryyi0_di" bpmnElement="DataInputAssociation_1wryyi0">
+        <di:waypoint x="418" y="50" />
+        <di:waypoint x="2040" y="50" />
+        <di:waypoint x="2088" y="402" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_1na0kz9_di" bpmnElement="Association_1na0kz9">
         <di:waypoint x="1242" y="-370" />
         <di:waypoint x="1344" y="-552" />
@@ -744,10 +676,6 @@ Weiterbildungsmaßnahmen</bpmn:text>
       <bpmndi:BPMNEdge id="Association_1w102vn_di" bpmnElement="Association_1w102vn">
         <di:waypoint x="1857" y="-188" />
         <di:waypoint x="2140" y="-303" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0u65bmz_di" bpmnElement="Flow_0u65bmz">
-        <di:waypoint x="400" y="1020" />
-        <di:waypoint x="400" y="1260" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0bit1sb_di" bpmnElement="Flow_0bit1sb">
         <di:waypoint x="2090" y="402" />

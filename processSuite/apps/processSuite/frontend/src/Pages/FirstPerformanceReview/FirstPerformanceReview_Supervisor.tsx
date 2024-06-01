@@ -51,7 +51,7 @@ const FirstPerformanceReview_Supervisor: React.FC<CustomFormProps> = (
                 <>
                   {" "}
                   <p>
-                    Der Mitarbeiter <strong> {name}</strong> hatte am 
+                    Der Mitarbeiter <strong> {name}</strong> hatte am{" "}
                     <strong>
                       {formatDateToDEformat(firstWorkingDay)}
                     </strong>{" "}
