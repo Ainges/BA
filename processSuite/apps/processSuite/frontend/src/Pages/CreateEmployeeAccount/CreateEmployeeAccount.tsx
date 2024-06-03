@@ -79,6 +79,15 @@ const CreateEmployeeAccount: React.FC<CustomFormProps> = (props) => {
     }
   };
 
+  // chatGPT function for validating input
+  const validateInput = (_: any, value: any) => {
+    const invalidCharacters = /[<>()\[\]\\,;:@\s"]/; // Regex for invalid characters
+    if (invalidCharacters.test(value)) {
+      return Promise.reject("Ungültige Zeichen im E-Mail-Benutzernamen.");
+    }
+    return Promise.resolve();
+  };
+
   const submit = (values: any) => {
     console.log("Values: " + values.email + " " + values.password);
     props.finishUserTask({
@@ -86,6 +95,8 @@ const CreateEmployeeAccount: React.FC<CustomFormProps> = (props) => {
       password: values.password,
     });
   };
+
+  type emailType = {};
 
   return (
     <>
@@ -117,9 +128,13 @@ const CreateEmployeeAccount: React.FC<CustomFormProps> = (props) => {
                     message: "Bitte geben Sie eine E-Mail-Adresse ein!",
                   },
                   { validator: checkEmailAvailability },
+                  { validator: validateInput },
                 ]}
               >
-                <Input addonAfter={"@" + config.domainOfCompany} />
+                <Input
+                  maxLength={32}
+                  addonAfter={"@" + config.domainOfCompany}
+                />
               </Form.Item>
               <Form.Item
                 label="Passwort"
