@@ -250,10 +250,10 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.birthday === "after"</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_14f8hc7" name="ja" sourceRef="Gateway_141wu49" targetRef="SmallAttentionOrganisation">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.result.birthday === "before" || token.current.result.birthday === "on"</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.birthday === "before" || token.current.birthday === "on"</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0thhn1p" name="ja genau am ersten Arbeitstag" sourceRef="Gateway_141wu49" targetRef="Activity_1fgzbmu">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.result.birthday === "on"</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.birthday === "on"</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_19f4yhv" sourceRef="SmallAttentionOrganisation" targetRef="Gateway_1v90pt7" />
     <bpmn:sequenceFlow id="Flow_00p1fzd" sourceRef="Activity_1fgzbmu" targetRef="Gateway_1v90pt7" />
@@ -296,6 +296,9 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0tbqr8l</bpmn:incoming>
       <bpmn:outgoing>Flow_0uoyrij</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_12wicti">
+        <bpmn:targetRef>DataObjectReference_CompanyEmailOfNewEmployee</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:userTask>
     <bpmn:dataObjectReference id="DataObjectReference_newEmployeeData" name="Daten zu neuem Mitarbeiter" dataObjectRef="DataObject_1wriav3" />
     <bpmn:dataObject id="DataObject_1wriav3" />
@@ -355,7 +358,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
     <bpmn:endEvent id="Event_18vvqsr" name="Tag des Eintritts erreicht">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="engine.runPreScript" value="return {&#10;  employeeData: dataObjects.DataObjectReference_newEmployeeData,&#10;  inductionPlan: dataObjects.DataObjectReference_InductionPlan,&#10;  buddyEmployeeSelection: dataObjects.DataObjectReference_BuddyEmployeeSelection&#10;};" />
+          <camunda:property name="engine.runPreScript" value="return {&#10;  employeeData: dataObjects.DataObjectReference_newEmployeeData,&#10;  inductionPlan: dataObjects.DataObjectReference_InductionPlan,&#10;  buddyEmployeeSelection: dataObjects.DataObjectReference_BuddyEmployeeSelection,&#10;  companyEmailOfNewEmployee: dataObjects.DataObjectReference_CompanyEmailOfNewEmployee.email&#10;};" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1fso8h9</bpmn:incoming>
@@ -366,6 +369,10 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmn:dataInputAssociation>
       <bpmn:dataInputAssociation id="DataInputAssociation_1gjy8nn">
         <bpmn:sourceRef>DataObjectReference_BuddyEmployeeSelection</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1vbs5ai</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_0yytx74">
+        <bpmn:sourceRef>DataObjectReference_CompanyEmailOfNewEmployee</bpmn:sourceRef>
         <bpmn:targetRef>Property_1vbs5ai</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:endEvent>
@@ -410,7 +417,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
     <bpmn:intermediateThrowEvent id="Event_0mi7quq" name="Mitarbeitern in Systemen anlegen">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="inputValues" value="token.current" />
+          <camunda:property name="inputValues" value="dataObjects.DataObjectReference_CompanyEmailOfNewEmployee" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0uoyrij</bpmn:incoming>
@@ -418,6 +425,10 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmn:property id="Property_0wuw11h" name="__targetRef_placeholder" />
       <bpmn:dataInputAssociation id="DataInputAssociation_0c5ghsq">
         <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0wuw11h</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_0bp3dw6">
+        <bpmn:sourceRef>DataObjectReference_CompanyEmailOfNewEmployee</bpmn:sourceRef>
         <bpmn:targetRef>Property_0wuw11h</bpmn:targetRef>
       </bpmn:dataInputAssociation>
       <bpmn:messageEventDefinition id="MessageEventDefinition_12rblzb" messageRef="Message_dQSiwAG5" />
@@ -458,7 +469,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
     <bpmn:dataObjectReference id="DataObjectReference_InductionPlan" name="Einarbeitungsplan" dataObjectRef="DataObject_091tpqh" />
     <bpmn:dataObject id="DataObject_091tpqh" />
     <bpmn:sequenceFlow id="Flow_1kg702e" sourceRef="Gateway_1n7xkno" targetRef="Gateway_0vy7lxq">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"></bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" />
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0hlsgic" sourceRef="Activity_1l0s39s" targetRef="Gateway_0vy7lxq" />
     <bpmn:sequenceFlow id="Flow_1n1ormg" sourceRef="Gateway_0wc0exu" targetRef="Gateway_0vy7lxq" />
@@ -469,6 +480,8 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmn:incoming>Flow_0opkukw</bpmn:incoming>
       <bpmn:outgoing>Flow_1n1ormg</bpmn:outgoing>
     </bpmn:parallelGateway>
+    <bpmn:dataObjectReference id="DataObjectReference_CompanyEmailOfNewEmployee" name="Firmendaten des neuen Mitarbeiters" dataObjectRef="DataObject_1vqnb6k" />
+    <bpmn:dataObject id="DataObject_1vqnb6k" />
   </bpmn:process>
   <bpmn:escalation id="Escalation_crvS1NUq" name="test" escalationCode="test" />
   <bpmn:error id="Error_E8RuFXba" errorCode="failedToPrepareFirstWorkingDay" camunda:errorMessage="Der Erste Arbeitstag wurde vor der Beendigung der Vorbereitungen erreicht!" />
@@ -665,20 +678,11 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmndi:BPMNShape id="Activity_0ltss0a_di" bpmnElement="Activity_1gk2vew">
         <dc:Bounds x="2505" y="2375" width="145" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_0243vk8_di" bpmnElement="DataObjectReference_BuddyEmployeeSelection">
-        <dc:Bounds x="2560" y="1445" width="36" height="50" />
+      <bpmndi:BPMNShape id="DataObjectReference_1jjh34c_di" bpmnElement="DataObjectReference_CompanyEmailOfNewEmployee">
+        <dc:Bounds x="1462" y="1295" width="36" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2547" y="1382" width="62" height="53" />
+          <dc:Bounds x="1439" y="1240" width="83" height="40" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1esaxlh_di" bpmnElement="DataObjectReference_InductionPlan">
-        <dc:Bounds x="2242" y="1445" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2215" y="1421" width="89" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1ot2oo7_di" bpmnElement="Gateway_0wc0exu">
-        <dc:Bounds x="2835" y="2655" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ofklws_di" bpmnElement="Activity_0bx4zme" isExpanded="true">
         <dc:Bounds x="2820" y="2930" width="360" height="130" />
@@ -701,6 +705,21 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Gateway_0pc4ve9_di" bpmnElement="Gateway_0k0b8gx">
         <dc:Bounds x="1750" y="1115" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0243vk8_di" bpmnElement="DataObjectReference_BuddyEmployeeSelection">
+        <dc:Bounds x="2560" y="1445" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2547" y="1382" width="62" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1esaxlh_di" bpmnElement="DataObjectReference_InductionPlan">
+        <dc:Bounds x="2242" y="1445" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2215" y="1421" width="89" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1ot2oo7_di" bpmnElement="Gateway_0wc0exu">
+        <dc:Bounds x="2835" y="2655" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0cnjnkh_di" bpmnElement="Flow_0cnjnkh">
         <di:waypoint x="580" y="1115" />
@@ -1038,6 +1057,19 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmndi:BPMNEdge id="Flow_18w90p7_di" bpmnElement="Flow_18w90p7">
         <di:waypoint x="1920" y="2662" />
         <di:waypoint x="1920" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_12wicti_di" bpmnElement="DataOutputAssociation_12wicti">
+        <di:waypoint x="780" y="1320" />
+        <di:waypoint x="1462" y="1320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0yytx74_di" bpmnElement="DataInputAssociation_0yytx74">
+        <di:waypoint x="1498" y="1318" />
+        <di:waypoint x="3112" y="1142" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0bp3dw6_di" bpmnElement="DataInputAssociation_0bp3dw6">
+        <di:waypoint x="1489" y="1345" />
+        <di:waypoint x="1820" y="2270" />
+        <di:waypoint x="1916" y="2663" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

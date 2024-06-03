@@ -7,40 +7,35 @@
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1xzf0d3" name="Lane">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1nnf4wc</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_00hypto</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_19n2prc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_181wl0w</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1" name="Start">
-      <bpmn:outgoing>Flow_0cq73j0</bpmn:outgoing>
-    </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_0cq73j0" sourceRef="StartEvent_1" targetRef="Activity_1nnf4wc" />
-    <bpmn:userTask id="Activity_1nnf4wc" name="test">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="test1" type="string" />
-          <camunda:formField id="test2" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0cq73j0</bpmn:incoming>
-      <bpmn:outgoing>Flow_0pg6q32</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0pg6q32" sourceRef="Activity_1nnf4wc" targetRef="Activity_19n2prc" />
-    <bpmn:endEvent id="Event_00hypto">
-      <bpmn:incoming>Flow_19i08ri</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_19i08ri" sourceRef="Activity_19n2prc" targetRef="Event_00hypto" />
-    <bpmn:userTask id="Activity_19n2prc">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="engine.runPreScript" value="{&#10;    ...token.current,&#10;    &#34;test3&#34;: &#34;test3&#34;}" />
+          <camunda:property name="engine.runPostScript" value="{&#10;  &#34;Activity_FirstPerformanceReview_Employee&#34;: {&#10;    &#34;currentTasks&#34;: &#34;Putzen&#34;,&#10;    &#34;satisfaction&#34;: 2,&#10;    &#34;suggestions&#34;: &#34;Mehr Aufgaben meines Jobprofils&#34;&#10;  },&#10;  &#34;Activity_FirstPerformanceReview_Supervisor&#34;: {&#10;    &#34;goals&#34;: &#34;Mehr Verantwortung übernehmen&#34;,&#10;    &#34;trainings&#34;: &#34;Irgendwas lernen&#34;&#10;  }&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0pg6q32</bpmn:incoming>
-      <bpmn:outgoing>Flow_19i08ri</bpmn:outgoing>
-    </bpmn:userTask>
+      <bpmn:outgoing>Flow_0cq73j0</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0cq73j0" sourceRef="StartEvent_1" targetRef="Event_181wl0w" />
+    <bpmn:endEvent id="Event_00hypto">
+      <bpmn:incoming>Flow_1it7zdf</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1it7zdf" sourceRef="Event_181wl0w" targetRef="Event_00hypto" />
+    <bpmn:intermediateThrowEvent id="Event_181wl0w">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="inputValues" value="{&#10;    currentTasks: token.current.Activity_FirstPerformanceReview_Employee.currentTasks,&#10;    satisfaction: token.current.Activity_FirstPerformanceReview_Employee.satisfaction,&#10;    suggestions: token.current.Activity_FirstPerformanceReview_Employee.suggestions,&#10;&#10;    goals: token.current.Activity_FirstPerformanceReview_Supervisor.goals,&#10;    trainings: token.current.Activity_FirstPerformanceReview_Supervisor.trainings,&#10;&#10;    first_name: token.current.OnboardingData.first_name,&#10;    last_name: token.current.OnboardingData.last_name,&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0cq73j0</bpmn:incoming>
+      <bpmn:outgoing>Flow_1it7zdf</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_14un6kd" messageRef="Message_jdkAc6bl" />
+    </bpmn:intermediateThrowEvent>
   </bpmn:process>
+  <bpmn:message id="Message_jdkAc6bl" name="Message_Send_DocumentFirstPerformanceReviewResults" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
@@ -55,27 +50,19 @@
           <dc:Bounds x="98" y="195" width="24" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1nege75_di" bpmnElement="Activity_1nnf4wc">
-        <dc:Bounds x="180" y="130" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_00hypto_di" bpmnElement="Event_00hypto">
-        <dc:Bounds x="542" y="152" width="36" height="36" />
+        <dc:Bounds x="452" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_16lopeg_di" bpmnElement="Activity_19n2prc">
-        <dc:Bounds x="330" y="130" width="100" height="80" />
+      <bpmndi:BPMNShape id="Event_0ue7uof_di" bpmnElement="Event_181wl0w">
+        <dc:Bounds x="252" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0cq73j0_di" bpmnElement="Flow_0cq73j0">
         <di:waypoint x="128" y="170" />
-        <di:waypoint x="180" y="170" />
+        <di:waypoint x="252" y="170" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0pg6q32_di" bpmnElement="Flow_0pg6q32">
-        <di:waypoint x="280" y="170" />
-        <di:waypoint x="330" y="170" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_19i08ri_di" bpmnElement="Flow_19i08ri">
-        <di:waypoint x="430" y="170" />
-        <di:waypoint x="542" y="170" />
+      <bpmndi:BPMNEdge id="Flow_1it7zdf_di" bpmnElement="Flow_1it7zdf">
+        <di:waypoint x="288" y="170" />
+        <di:waypoint x="452" y="170" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
