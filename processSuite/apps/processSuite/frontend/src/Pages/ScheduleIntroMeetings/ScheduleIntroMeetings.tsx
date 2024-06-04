@@ -10,6 +10,7 @@ import {
   DatePicker,
   TimePicker,
   Space,
+  Alert,
 } from "antd";
 import { CustomFormProps } from "../../DialogRenderer";
 import { Key, useEffect, useState } from "react";
@@ -19,6 +20,7 @@ import axios from "axios";
 import config from "../../config/config.json";
 import formatDateToYYYYMMDD from "../../functions/formatDateToYYYYMMDD";
 import moment from "moment";
+import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
 
 interface Employee {
   name: string;
@@ -402,6 +404,35 @@ const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
         <Row>
           <Col span={1}></Col>
           <Col span={22}>
+            <Alert
+              type="info"
+              showIcon={true}
+              message="Weiterführende Informationen:"
+              description={
+                <>
+                  <p>
+                    Bitte terminieren sie die Kennenlerntermine für den neuen
+                    Mitarbeiter{" "}
+                    <strong>
+                      {token.onboardingData.first_name}{" "}
+                      {token.onboardingData.last_name}
+                    </strong>{" "}
+                    mit den ausgewählten Mitarbeitern und dem Buddy.
+                  </p>
+                  <p>
+                    {" "}
+                    Der erste Arbeitstag ist der{" "}
+                    <strong>
+                      {formatDateToDEformat(
+                        token.onboardingData.first_working_day
+                      )}
+                    </strong>
+                    .
+                  </p>
+                </>
+              }
+            />
+            <Divider />
             <Card title="Ausewählte Mitarbeiter:">
               <Table
                 pagination={{ position: [] }}
