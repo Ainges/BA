@@ -1,10 +1,23 @@
-import { Button, Card, Col, Divider, Flex, Form, Input, Rate, Row } from "antd";
+import {
+  Button,
+  Card,
+  Col,
+  Divider,
+  Flex,
+  Form,
+  Input,
+  Rate,
+  Row,
+  Tooltip,
+} from "antd";
 import { CustomFormProps } from "../../DialogRenderer";
 import TextArea from "antd/es/input/TextArea";
 import { FrownOutlined, MehOutlined, SmileOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 const FirstPerformanceReview_Employee: React.FC<CustomFormProps> = (props) => {
   const [form] = Form.useForm();
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const customIcons: Record<number, React.ReactNode> = {
     1: <FrownOutlined />,
@@ -22,6 +35,12 @@ const FirstPerformanceReview_Employee: React.FC<CustomFormProps> = (props) => {
       suggestions: values.suggestions,
     });
   };
+  // ChatGPT function
+  const onValuesChange = () => {
+    const values = form.getFieldsValue();
+    const hasErrors = Object.keys(values).some((field) => !values[field]);
+    setIsFormValid(!hasErrors);
+  };
 
   return (
     <>
@@ -32,8 +51,23 @@ const FirstPerformanceReview_Employee: React.FC<CustomFormProps> = (props) => {
         <Col span={1}></Col>
         <Col span={22}>
           <Card>
-            <Form form={form} layout="vertical" onFinish={onFinish}>
-              <Form.Item label="Aktuelle Aufgaben" name="currentTasks">
+            <Form
+              form={form}
+              layout="vertical"
+              onFinish={onFinish}
+              onValuesChange={onValuesChange}
+              requiredMark="optional"
+            >
+              <Form.Item
+                label="Aktuelle Aufgaben"
+                name="currentTasks"
+                rules={[
+                  {
+                    required: true,
+                    message: "Bitte geben Sie hier Ihre aktuellen Aufgaben ein",
+                  },
+                ]}
+              >
                 <TextArea
                   maxLength={2000}
                   autoSize={{ minRows: 5, maxRows: 5 }}
@@ -43,15 +77,28 @@ const FirstPerformanceReview_Employee: React.FC<CustomFormProps> = (props) => {
               <Form.Item
                 label="Wie Zufrieden sind Sie aktuell mit ihren Aufgaben?"
                 name="satisfaction"
+                rules={[
+                  {
+                    required: true,
+                    message: "Bitte geben Sie hier Ihre Zufriedenheit an",
+                  },
+                ]}
               >
                 <Rate
-                  defaultValue={3}
+                  defaultValue={0}
                   character={({ index = 0 }) => customIcons[index + 1]}
                 />
               </Form.Item>
               <Form.Item
                 label="Verbesserungsvorschläge / Wünsche"
                 name="suggestions"
+                rules={[
+                  {
+                    required: true,
+                    message:
+                      "Bitte geben Sie hier Verbesserungsvorschläge oder Wünsche ein",
+                  },
+                ]}
               >
                 <TextArea
                   maxLength={2000}
@@ -61,13 +108,16 @@ const FirstPerformanceReview_Employee: React.FC<CustomFormProps> = (props) => {
               </Form.Item>
 
               <Flex justify="center" align="center">
-                <Button
-                  type="primary"
-                  style={{ width: "200px" }}
-                  htmlType="submit"
-                >
-                  Senden
-                </Button>
+                <Tooltip title={ isFormValid? "":"Bitte füllen Sie alle Felder aus"}>
+                  <Button
+                    type="primary"
+                    style={{ width: "200px" }}
+                    htmlType="submit"
+                    disabled={!isFormValid}
+                  >
+                    Senden
+                  </Button>
+                </Tooltip>
               </Flex>
             </Form>
           </Card>

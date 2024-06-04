@@ -18,7 +18,7 @@
     <bpmn:userTask id="Activity_0xxfted" name="UI">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="FirstPerformanceReview_Supervisor" />
+          <camunda:property name="customForm" value="FirstPerformanceReview_Employee" />
           <camunda:property name="engine.runPreScript" value="return (&#10;    {&#10;        &#34;OnboardingData&#34;: {&#10;            &#34;first_working_day&#34;: &#34;2024-05-16&#34;,&#10;            &#34;hours_per_week&#34;: 120,&#10;            &#34;first_name&#34;: &#34;Max&#34;,&#10;            &#34;last_name&#34;: &#34;Schustermann&#34;,&#10;            &#34;private_email&#34;: &#34;max@schustermann.de&#34;,&#10;            &#34;position&#34;: &#34;HR&#34;,&#10;            &#34;birth_date&#34;: &#34;2000-05-23&#34;,&#10;            &#34;employment_status&#34;: &#34;Vollzeit&#34;,&#10;            &#34;postal_address&#34;: &#34;Musterstraße 12, 12345 Musterstadt&#34;&#10;        }&#10;    }&#10;)" />
         </camunda:properties>
       </bpmn:extensionElements>

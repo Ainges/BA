@@ -16,17 +16,6 @@
       <bpmn:text>dataObjects.DataObjectReference_FirstPerformanceReview.dateTime</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_1wmvh17" associationDirection="None" sourceRef="Event_0pjzwl5" targetRef="TextAnnotation_1hkyi1q" />
-    <bpmn:textAnnotation id="TextAnnotation_1w67eqv">
-      <bpmn:text>Mitarbeiter:
-Aktuelle Aufgaben 
-Zufriedenheit
-Verbesserungsvorschläge
-
-Vorgesetzter:
-Ziele definieren
-Weiterbildungsmaßnahmen</bpmn:text>
-    </bpmn:textAnnotation>
-    <bpmn:association id="Association_1w102vn" associationDirection="None" sourceRef="Activity_FirstPerformanceReview_Employee" targetRef="TextAnnotation_1w67eqv" />
   </bpmn:collaboration>
   <bpmn:process id="Onboarding_Process" name="Onboarding_Phase2" isExecutable="true">
     <bpmn:laneSet>
@@ -604,10 +593,6 @@ Weiterbildungsmaßnahmen</bpmn:text>
         <dc:Bounds x="1630" y="-275" width="450" height="30" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_1w67eqv_di" bpmnElement="TextAnnotation_1w67eqv">
-        <dc:Bounds x="2140" y="-340" width="216.98969221835077" height="126.59698025551684" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataInputAssociation_1fdg3yi_di" bpmnElement="DataInputAssociation_1fdg3yi">
         <di:waypoint x="418" y="-110" />
         <di:waypoint x="679" y="180" />
@@ -619,26 +604,6 @@ Weiterbildungsmaßnahmen</bpmn:text>
       <bpmndi:BPMNEdge id="DataInputAssociation_0lrys2z_di" bpmnElement="DataInputAssociation_0lrys2z">
         <di:waypoint x="407" y="-355" />
         <di:waypoint x="639" y="482" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_0e75ukq_di" bpmnElement="DataOutputAssociation_0e75ukq">
-        <di:waypoint x="-80" y="402" />
-        <di:waypoint x="-80" y="-380" />
-        <di:waypoint x="382" y="-380" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_0oldqzf_di" bpmnElement="DataOutputAssociation_0oldqzf">
-        <di:waypoint x="-80" y="402" />
-        <di:waypoint x="-80" y="-260" />
-        <di:waypoint x="382" y="-265" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_1oq6hp7_di" bpmnElement="DataOutputAssociation_1oq6hp7">
-        <di:waypoint x="-80" y="402" />
-        <di:waypoint x="-80" y="-125" />
-        <di:waypoint x="382" y="-125" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_0dzy8r2_di" bpmnElement="DataOutputAssociation_0dzy8r2">
-        <di:waypoint x="-80" y="402" />
-        <di:waypoint x="-80" y="50" />
-        <di:waypoint x="382" y="50" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_01tmx6u_di" bpmnElement="DataInputAssociation_01tmx6u">
         <di:waypoint x="418" y="-123" />
@@ -662,8 +627,28 @@ Weiterbildungsmaßnahmen</bpmn:text>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1wryyi0_di" bpmnElement="DataInputAssociation_1wryyi0">
         <di:waypoint x="418" y="50" />
-        <di:waypoint x="2040" y="50" />
-        <di:waypoint x="2088" y="402" />
+        <di:waypoint x="1970" y="50" />
+        <di:waypoint x="2084" y="403" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0e75ukq_di" bpmnElement="DataOutputAssociation_0e75ukq">
+        <di:waypoint x="-80" y="402" />
+        <di:waypoint x="-80" y="-380" />
+        <di:waypoint x="382" y="-380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0oldqzf_di" bpmnElement="DataOutputAssociation_0oldqzf">
+        <di:waypoint x="-80" y="402" />
+        <di:waypoint x="-80" y="-260" />
+        <di:waypoint x="382" y="-265" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1oq6hp7_di" bpmnElement="DataOutputAssociation_1oq6hp7">
+        <di:waypoint x="-80" y="402" />
+        <di:waypoint x="-80" y="-125" />
+        <di:waypoint x="382" y="-125" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0dzy8r2_di" bpmnElement="DataOutputAssociation_0dzy8r2">
+        <di:waypoint x="-80" y="402" />
+        <di:waypoint x="-80" y="50" />
+        <di:waypoint x="382" y="50" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_1na0kz9_di" bpmnElement="Association_1na0kz9">
         <di:waypoint x="1242" y="-370" />
@@ -672,10 +657,6 @@ Weiterbildungsmaßnahmen</bpmn:text>
       <bpmndi:BPMNEdge id="Association_1wmvh17_di" bpmnElement="Association_1wmvh17">
         <di:waypoint x="1545" y="-170" />
         <di:waypoint x="1658" y="-245" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_1w102vn_di" bpmnElement="Association_1w102vn">
-        <di:waypoint x="1857" y="-188" />
-        <di:waypoint x="2140" y="-303" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0bit1sb_di" bpmnElement="Flow_0bit1sb">
         <di:waypoint x="2090" y="402" />

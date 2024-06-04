@@ -15,11 +15,13 @@ import form from "antd/es/form";
 import TextArea from "antd/es/input/TextArea";
 import { CustomFormProps } from "../../DialogRenderer";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
+import { useState } from "react";
 
 const FirstPerformanceReview_Supervisor: React.FC<CustomFormProps> = (
   props
 ) => {
   const [form] = Form.useForm();
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
@@ -37,6 +39,13 @@ const FirstPerformanceReview_Supervisor: React.FC<CustomFormProps> = (
 
   const firstWorkingDay =
     props.userTask.startToken.OnboardingData.first_working_day;
+
+  // ChatGPT function
+  const onValuesChange = () => {
+    const values = form.getFieldsValue();
+    const hasErrors = Object.keys(values).some((field) => !values[field]);
+    setIsFormValid(!hasErrors);
+  };
   return (
     <>
       <Row>
@@ -52,9 +61,7 @@ const FirstPerformanceReview_Supervisor: React.FC<CustomFormProps> = (
                   {" "}
                   <p>
                     Der Mitarbeiter <strong> {name}</strong> hatte am{" "}
-                    <strong>
-                      {formatDateToDEformat(firstWorkingDay)}
-                    </strong>{" "}
+                    <strong>{formatDateToDEformat(firstWorkingDay)}</strong>{" "}
                     seinen ersten Arbeitstag. Das erste Mitarbeitergespräch dazu
                     ist nun fällig. Bitte füllen Sie zusammen mit dem
                     Mitarbeiter das Formular aus. Der Mitarbeiter hat eine
@@ -67,8 +74,24 @@ const FirstPerformanceReview_Supervisor: React.FC<CustomFormProps> = (
               showIcon
             />
             <Divider />
-            <Form form={form} layout="vertical" onFinish={onFinish}>
-              <Form.Item label="Ziele für die Zukunft" name="goals">
+            <Form
+              form={form}
+              layout="vertical"
+              onFinish={onFinish}
+              onValuesChange={onValuesChange}
+              requiredMark="optional"
+            >
+              <Form.Item
+                label="Ziele für die Zukunft"
+                name="goals"
+                rules={[
+                  {
+                    required: true,
+                    message:
+                      "Es müssen Ziele für die Zukunft definiert werden.",
+                  },
+                ]}
+              >
                 <TextArea
                   maxLength={2000}
                   autoSize={{ minRows: 5, maxRows: 5 }}
@@ -78,6 +101,13 @@ const FirstPerformanceReview_Supervisor: React.FC<CustomFormProps> = (
               <Form.Item
                 label="Schulungen / Mitarbeiterentwicklung"
                 name="trainings"
+                rules={[
+                  {
+                    required: true,
+                    message:
+                      "Es muss eine Art von Mitarbeiterentwicklungsprogramm definiert werden.",
+                  },
+                ]}
               >
                 <TextArea
                   maxLength={2000}
@@ -86,13 +116,18 @@ const FirstPerformanceReview_Supervisor: React.FC<CustomFormProps> = (
                 ></TextArea>
               </Form.Item>
               <Flex justify="center" align="center">
-                <Button
-                  type="primary"
-                  style={{ width: "200px" }}
-                  htmlType="submit"
+                <Tooltip
+                  title={isFormValid ? "" : "Bitte füllen Sie alle Felder aus"}
                 >
-                  Senden
-                </Button>
+                  <Button
+                    type="primary"
+                    style={{ width: "200px" }}
+                    htmlType="submit"
+                    disabled={!isFormValid}
+                  >
+                    Senden
+                  </Button>
+                </Tooltip>
               </Flex>
             </Form>
           </Card>
