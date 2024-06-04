@@ -13,6 +13,7 @@ This is an example Application for a PDA compliant application implemented with 
 - React 
 ### Service Contract Implementation Layer
 - Quarkus Camel (java)
+- Apache ActiveMQ Artemis
 ### Mocked External Systems 
 - S3 (minio)
 - SMTP Server
