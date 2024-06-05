@@ -6,22 +6,6 @@
       <bpmn:text>Sollte ein Eskalationsereignis sein, da es ein fachlicher Fehler ist</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_080djnz" sourceRef="Event_Boundary_FailedToPrepareFirstWorkingDay" targetRef="TextAnnotation_0xdesjf" />
-    <bpmn:textAnnotation id="TextAnnotation_1rpxthv">
-      <bpmn:text>Benötigte Daten:
-- Eintrittsdatum
-- Persönliche Daten: 
-  - Vorname
-  - Nachname 
-  - Geburtstag
-  - Private E-Mail
-  - Art der Anstellung
-  - Position
-  - Adresse
-- Wöchentliche Arbeitsstunden
-- weitere Dokumente
-- ggf. Immatrikulationsbeschscheinigung</bpmn:text>
-    </bpmn:textAnnotation>
-    <bpmn:association id="Association_0gte31q" associationDirection="None" sourceRef="Event_058r1tp" targetRef="TextAnnotation_1rpxthv" />
   </bpmn:collaboration>
   <bpmn:process id="OnboardingTop_Process" name="OnboardingTop2" isExecutable="true">
     <bpmn:laneSet>
@@ -267,10 +251,6 @@
         <dc:Bounds x="500" y="140" width="240" height="40" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_1rpxthv_di" bpmnElement="TextAnnotation_1rpxthv">
-        <dc:Bounds x="-230" y="367" width="230" height="212.85714285714286" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1cl2hgk_di" bpmnElement="DataOutputAssociation_1cl2hgk">
         <di:waypoint x="120" y="222" />
         <di:waypoint x="120" y="50" />
@@ -295,10 +275,6 @@
       <bpmndi:BPMNEdge id="Association_080djnz_di" bpmnElement="Association_080djnz">
         <di:waypoint x="442" y="326" />
         <di:waypoint x="566" y="180" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_0gte31q_di" bpmnElement="Association_0gte31q">
-        <di:waypoint x="102" y="371" />
-        <di:waypoint x="0" y="377" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

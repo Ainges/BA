@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="IntroMeeting_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="IntroMeeting_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
     <bpmn:participant id="Participant_0px403d" name="IntroMeeting" processRef="IntroMeeting_Process" />
     <bpmn:textAnnotation id="TextAnnotation_1jgubnm">
@@ -14,7 +14,7 @@
   </bpmn:collaboration>
   <bpmn:process id="IntroMeeting_Process" name="IntroMeeting" isExecutable="true">
     <bpmn:laneSet>
-      <bpmn:lane id="Lane_1xzf0d3" name="Neuer Mitarbeiter">
+      <bpmn:lane id="Lane_1xzf0d3" name="NeuerMitarbeiter">
         <bpmn:flowNodeRef>StartEvent_IntroMeetingIsNecessary</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0c82ia7</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_17v10ab</bpmn:flowNodeRef>
@@ -22,7 +22,7 @@
         <bpmn:flowNodeRef>Event_1phqazg</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1mtw9sv</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_040gzn3" name="Ausgewählter Mitarbeiter">
+      <bpmn:lane id="Lane_040gzn3" name="AusgewählterMitarbeiter">
         <bpmn:flowNodeRef>Activity_1ggwnmn</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
@@ -57,10 +57,20 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0eqflxo" sourceRef="Gateway_0we87wt" targetRef="Event_1phqazg" />
     <bpmn:userTask id="Activity_1ggwnmn" name="Kennenlerngespräch durchführen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.assignUserIds" value="token.current.email" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1xdtb0u</bpmn:incoming>
       <bpmn:outgoing>Flow_0oljwy9</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="Activity_1mtw9sv" name="Kennenlerngespräch durchführen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.assignUserIds" value="token.current.companyEmailOfNewEmployee" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0zyaa51</bpmn:incoming>
       <bpmn:outgoing>Flow_0yqxr3m</bpmn:outgoing>
     </bpmn:userTask>
@@ -138,12 +148,12 @@
         <di:waypoint x="765" y="160" />
         <di:waypoint x="872" y="160" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_1rn9580_di" bpmnElement="Association_1rn9580">
-        <di:waypoint x="242" y="142" />
-        <di:waypoint x="245" y="100" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="TextAnnotation_1jgubnm_di" bpmnElement="TextAnnotation_1jgubnm">
         <dc:Bounds x="1170" y="268" width="189.99208860759495" height="83.54430379746834" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1pqhku3_di" bpmnElement="TextAnnotation_1pqhku3">
+        <dc:Bounds x="200" y="30" width="251" height="70" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0igozi7_di" bpmnElement="Association_0igozi7">
@@ -154,10 +164,10 @@
         <di:waypoint x="1170" y="273" />
         <di:waypoint x="620" y="164" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="TextAnnotation_1pqhku3_di" bpmnElement="TextAnnotation_1pqhku3">
-        <dc:Bounds x="200" y="30" width="251" height="70" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1rn9580_di" bpmnElement="Association_1rn9580">
+        <di:waypoint x="242" y="142" />
+        <di:waypoint x="245" y="100" />
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

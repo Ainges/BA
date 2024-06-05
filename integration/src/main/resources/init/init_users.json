@@ -93,6 +93,11 @@
       "name": "Lane",
       "type": "String",
       "description": "Für den UI Test Prozess (dev only)."
+    },
+    {
+      "name": "AusgewählterMitarbeiter",
+      "type": "String",
+      "description": "Für die Kennenlerngespräche."
     }
   ]
 }
