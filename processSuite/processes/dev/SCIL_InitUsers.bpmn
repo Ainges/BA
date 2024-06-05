@@ -90,7 +90,7 @@
             <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/api/authority/scope/add/claim&#34;, &#34;token.current&#34;]" />
             <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/api/authority/scope/add/claim" />
             <camunda:property name="studio.paramBody" value="token.current" />
-            <camunda:property name="studio.paramContentType" />
+            <camunda:property name="studio.paramAuthorization" />
           </camunda:properties>
         </bpmn:extensionElements>
         <bpmn:incoming>Flow_15v90d5</bpmn:incoming>
@@ -106,7 +106,7 @@
             <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/api/authority/claim/create&#34;, &#34;token.current&#34;]" />
             <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/api/authority/claim/create" />
             <camunda:property name="studio.paramBody" value="token.current" />
-            <camunda:property name="studio.paramContentType" />
+            <camunda:property name="studio.paramAuthorization" />
           </camunda:properties>
         </bpmn:extensionElements>
         <bpmn:incoming>Flow_0p8xzdx</bpmn:incoming>

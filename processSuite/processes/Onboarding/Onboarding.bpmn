@@ -4,9 +4,6 @@
     <bpmn:participant id="Participant_0px403d" name="Onboarding_Phase2" processRef="Onboarding_Process" />
     <bpmn:participant id="Participant_032ptyr" name="Onboarding_SCIL" />
     <bpmn:messageFlow id="Flow_0bit1sb" sourceRef="Event_176thb5" targetRef="Participant_032ptyr" />
-    <bpmn:textAnnotation id="TextAnnotation_1j9yyob">
-      <bpmn:text>Außerhalb der Prozessgesteuerten Anwendung</bpmn:text>
-    </bpmn:textAnnotation>
     <bpmn:textAnnotation id="TextAnnotation_0iig8nx">
       <bpmn:text>Hier explizites Aufzeigen der schon erledigten Aufgaben im Prozess</bpmn:text>
     </bpmn:textAnnotation>
@@ -19,7 +16,7 @@
   </bpmn:collaboration>
   <bpmn:process id="Onboarding_Process" name="Onboarding_Phase2" isExecutable="true">
     <bpmn:laneSet>
-      <bpmn:lane id="Lane_09nnrvj" name="Neuer Mitarbeiter">
+      <bpmn:lane id="Lane_09nnrvj" name="NeuerMitarbeiter">
         <bpmn:flowNodeRef>Activity_1i8na2m</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0nb8j30</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0ivlp3h</bpmn:flowNodeRef>
@@ -80,6 +77,11 @@
       </bpmn:dataOutputAssociation>
     </bpmn:userTask>
     <bpmn:manualTask id="Activity_02" name="Neuen Mitarbeiter im Team vorstellen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="requiresConfirmation" value="false" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1o37sqf</bpmn:incoming>
       <bpmn:outgoing>Flow_0uf25ad</bpmn:outgoing>
     </bpmn:manualTask>
@@ -102,14 +104,29 @@
     <bpmn:sequenceFlow id="Flow_0s9xent" sourceRef="Activity_1bv6q8t" targetRef="Gateway_0hrx094" />
     <bpmn:sequenceFlow id="Flow_1mb2vh0" sourceRef="Activity_FirstPerformanceReview_Supervisor" targetRef="Gateway_0if8t2x" />
     <bpmn:manualTask id="Activity_1m9gml1" name="Equipment übergeben">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="requiresConfirmation" value="false" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_18fje4i</bpmn:incoming>
       <bpmn:outgoing>Flow_0stv0ez</bpmn:outgoing>
     </bpmn:manualTask>
     <bpmn:manualTask id="Activity_0f1twgj" name="Firmenrundgang durchführen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="requiresConfirmation" value="false" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_188upwf</bpmn:incoming>
       <bpmn:outgoing>Flow_18fje4i</bpmn:outgoing>
     </bpmn:manualTask>
     <bpmn:manualTask id="Activity_1fhcx11" name="Mitarbeiter persönlich begrüßen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="requiresConfirmation" value="false" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_138o4tm</bpmn:incoming>
       <bpmn:outgoing>Flow_188upwf</bpmn:outgoing>
     </bpmn:manualTask>
@@ -118,6 +135,11 @@
     <bpmn:sequenceFlow id="Flow_16sjxfp" sourceRef="Gateway_0if8t2x" targetRef="Event_176thb5" />
     <bpmn:sequenceFlow id="Flow_0tzlqu7" sourceRef="Activity_FirstPerformanceReview_Employee" targetRef="Gateway_0if8t2x" />
     <bpmn:manualTask id="Activity_1bv6q8t" name="Unternehmenswerte / Produkt näher bringen">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="requiresConfirmation" value="false" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_03py6kc</bpmn:incoming>
       <bpmn:outgoing>Flow_0s9xent</bpmn:outgoing>
     </bpmn:manualTask>
@@ -166,6 +188,7 @@
         <camunda:properties>
           <camunda:property name="startEventId" value="StartEvent_IntroMeetingIsNecessary" />
           <camunda:property name="engine.runPreScript" value="return dataObjects.DataObjectReference_BuddyEmployeeSelection.selectedEmployees" />
+          <camunda:property name="payload" value="{&#10;    ...token.current,&#10;    companyEmailOfNewEmployee: dataObjects.DataObjectReference_companyEmailOfNewEmployee.companyEmailOfNewEmployee,&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1iqxh7b</bpmn:incoming>
@@ -208,10 +231,16 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="customForm" value="FirstPerformanceReview_Employee" />
+          <camunda:property name="engine.assignUserIds" value="dataObjects.DataObjectReference_companyEmailOfNewEmployee.companyEmailOfNewEmployee" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1mdcs6w</bpmn:incoming>
       <bpmn:outgoing>Flow_0tzlqu7</bpmn:outgoing>
+      <bpmn:property id="Property_0xb4e1c" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1yqbbvm">
+        <bpmn:sourceRef>DataObjectReference_companyEmailOfNewEmployee</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0xb4e1c</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_0n8p4ux" sourceRef="Activity_06oh5rs" targetRef="Gateway_0ivlp3h" />
     <bpmn:sequenceFlow id="Flow_0uoi65k" sourceRef="Gateway_0nb8j30" targetRef="Activity_06oh5rs" />
@@ -220,6 +249,7 @@
         <camunda:properties>
           <camunda:property name="customForm" value="GetInductionPlanDone" />
           <camunda:property name="engine.runPreScript" value="return dataObjects.DataObjectReference_InductionPlan.inductionPlan" />
+          <camunda:property name="engine.assignUserIds" value="dataObjects.DataObjectReference_companyEmailOfNewEmployee.companyEmailOfNewEmployee" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0uoi65k</bpmn:incoming>
@@ -237,7 +267,7 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="startEventId" value="StartEvent_IntroMeetingIsNecessary" />
-          <camunda:property name="engine.runPreScript" value="return dataObjects.DataObjectReference_BuddyEmployeeSelection.selectedBuddy" />
+          <camunda:property name="engine.runPreScript" value="{&#10;    companyEmailOfNewEmployee: dataObjects.DataObjectReference_companyEmailOfNewEmployee.companyEmailOfNewEmployee,&#10;&#10;    email: dataObjects.DataObjectReference_BuddyEmployeeSelection.selectedBuddy.email,&#10;    date: dataObjects.DataObjectReference_BuddyEmployeeSelection.selectedBuddy.date,&#10;    time: dataObjects.DataObjectReference_BuddyEmployeeSelection.selectedBuddy.time&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0v3cg6i</bpmn:incoming>
@@ -575,14 +605,15 @@
         <dc:Bounds x="-170" y="-810" width="2500" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_1j9yyob_di" bpmnElement="TextAnnotation_1j9yyob">
-        <dc:Bounds x="332" y="590" width="135" height="70" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0iig8nx_di" bpmnElement="TextAnnotation_0iig8nx">
         <dc:Bounds x="1340" y="-650" width="100" height="98" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1yqbbvm_di" bpmnElement="DataInputAssociation_1yqbbvm">
+        <di:waypoint x="418" y="50" />
+        <di:waypoint x="1790" y="50" />
+        <di:waypoint x="1790" y="-120" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Group_1x3k2ii_di" bpmnElement="Group_1x3k2ii">
         <dc:Bounds x="50" y="160" width="860" height="520" />
         <bpmndi:BPMNLabel>
