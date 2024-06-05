@@ -17,7 +17,8 @@ const IntroMeeting_newEmployee: React.FC<CustomFormProps> = (props) => {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:8080/api/canonical/user/byMail/michael.scott@dundermifflin.com"
+        "http://localhost:8080/api/canonical/user/byMail/" +
+          props.userTask.startToken.email
       )
       .then((response) => {
         setEmployee(response.data);
@@ -27,7 +28,9 @@ const IntroMeeting_newEmployee: React.FC<CustomFormProps> = (props) => {
 
   return (
     <>
-      <Divider orientation="center">Kennenlerngespräch</Divider>
+      <Divider orientation="center">
+        Kennenlerngespräch mit Mitarbeiter führen
+      </Divider>
       <Row>
         {" "}
         <Col span={6}></Col>
