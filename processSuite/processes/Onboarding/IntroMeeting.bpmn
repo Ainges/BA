@@ -56,19 +56,21 @@
       <bpmn:incoming>Flow_0eqflxo</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0eqflxo" sourceRef="Gateway_0we87wt" targetRef="Event_1phqazg" />
-    <bpmn:userTask id="Activity_1ggwnmn" name="Kennenlerngespräch durchführen">
+    <bpmn:userTask id="Activity_1ggwnmn" name="Kennenlerngespräch mit neuem Mitarbeiter führen">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="engine.assignUserIds" value="token.current.email" />
+          <camunda:property name="customForm" value="IntroMeeting_selectedEmployee" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1xdtb0u</bpmn:incoming>
       <bpmn:outgoing>Flow_0oljwy9</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1mtw9sv" name="Kennenlerngespräch durchführen">
+    <bpmn:userTask id="Activity_1mtw9sv" name="Kennenlerngespräch mit Mitarbeiter führen">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="engine.assignUserIds" value="token.current.companyEmailOfNewEmployee" />
+          <camunda:property name="customForm" value="IntroMeeting_newEmployee" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0zyaa51</bpmn:incoming>
@@ -113,10 +115,12 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1lx4suo_di" bpmnElement="Activity_1ggwnmn">
-        <dc:Bounds x="490" y="420" width="130" height="80" />
+        <dc:Bounds x="490" y="420" width="150" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_104bpha_di" bpmnElement="Activity_1mtw9sv">
-        <dc:Bounds x="490" y="120" width="130" height="80" />
+        <dc:Bounds x="490" y="120" width="150" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0iychhd_di" bpmnElement="Flow_0iychhd">
         <di:waypoint x="128" y="160" />
@@ -136,11 +140,11 @@
         <di:waypoint x="490" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0yqxr3m_di" bpmnElement="Flow_0yqxr3m">
-        <di:waypoint x="620" y="160" />
+        <di:waypoint x="640" y="160" />
         <di:waypoint x="715" y="160" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0oljwy9_di" bpmnElement="Flow_0oljwy9">
-        <di:waypoint x="620" y="460" />
+        <di:waypoint x="640" y="460" />
         <di:waypoint x="740" y="460" />
         <di:waypoint x="740" y="185" />
       </bpmndi:BPMNEdge>
@@ -157,12 +161,12 @@
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0igozi7_di" bpmnElement="Association_0igozi7">
-        <di:waypoint x="620" y="448" />
+        <di:waypoint x="640" y="445" />
         <di:waypoint x="1170" y="342" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_0h2kmrh_di" bpmnElement="Association_0h2kmrh">
         <di:waypoint x="1170" y="273" />
-        <di:waypoint x="620" y="164" />
+        <di:waypoint x="640" y="168" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_1rn9580_di" bpmnElement="Association_1rn9580">
         <di:waypoint x="242" y="142" />

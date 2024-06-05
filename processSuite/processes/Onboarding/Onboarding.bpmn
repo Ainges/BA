@@ -188,7 +188,7 @@
         <camunda:properties>
           <camunda:property name="startEventId" value="StartEvent_IntroMeetingIsNecessary" />
           <camunda:property name="engine.runPreScript" value="return dataObjects.DataObjectReference_BuddyEmployeeSelection.selectedEmployees" />
-          <camunda:property name="payload" value="{&#10;    ...token.current,&#10;    companyEmailOfNewEmployee: dataObjects.DataObjectReference_companyEmailOfNewEmployee.companyEmailOfNewEmployee,&#10;}" />
+          <camunda:property name="payload" value="{&#10;    ...token.current,&#10;    companyEmailOfNewEmployee: dataObjects.DataObjectReference_companyEmailOfNewEmployee.companyEmailOfNewEmployee,&#10;    onboardingData: dataObjects.DataObjectReference_onboardingData.OnboardingData&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1iqxh7b</bpmn:incoming>
@@ -267,7 +267,7 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="startEventId" value="StartEvent_IntroMeetingIsNecessary" />
-          <camunda:property name="engine.runPreScript" value="{&#10;    companyEmailOfNewEmployee: dataObjects.DataObjectReference_companyEmailOfNewEmployee.companyEmailOfNewEmployee,&#10;&#10;    email: dataObjects.DataObjectReference_BuddyEmployeeSelection.selectedBuddy.email,&#10;    date: dataObjects.DataObjectReference_BuddyEmployeeSelection.selectedBuddy.date,&#10;    time: dataObjects.DataObjectReference_BuddyEmployeeSelection.selectedBuddy.time&#10;}" />
+          <camunda:property name="engine.runPreScript" value="{&#10;    companyEmailOfNewEmployee: dataObjects.DataObjectReference_companyEmailOfNewEmployee.companyEmailOfNewEmployee,&#10;&#10;    email: dataObjects.DataObjectReference_BuddyEmployeeSelection.selectedBuddy.email,&#10;    date: dataObjects.DataObjectReference_BuddyEmployeeSelection.selectedBuddy.date,&#10;    time: dataObjects.DataObjectReference_BuddyEmployeeSelection.selectedBuddy.time,&#10;    onboardingData: dataObjects.DataObjectReference_onboardingData.OnboardingData&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0v3cg6i</bpmn:incoming>

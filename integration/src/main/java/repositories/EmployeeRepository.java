@@ -16,4 +16,8 @@ public class EmployeeRepository implements PanacheRepository<Employee> {
     public boolean isEmailAvailable(String email) {
         return find("email", email).count() == 0;
     }
+
+    public Employee findByEmail(String searchMail) {
+        return find("email", searchMail).firstResult();
+    }
 }

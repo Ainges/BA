@@ -225,6 +225,8 @@ const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
         </div>
       </>
     );
+  } else {
+    return <></>;
   }
 };
 export default BuddyAndEmployeeSelectionContextInjection;

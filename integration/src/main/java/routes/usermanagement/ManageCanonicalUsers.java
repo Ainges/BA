@@ -5,6 +5,7 @@ import jakarta.inject.Inject;
 import org.apache.camel.builder.RouteBuilder;
 import processors.CanonicalDataModel.CheckMailAvailabilityProcessor;
 import processors.CanonicalDataModel.GetAllCanonicalUsersProcessor;
+import processors.CanonicalDataModel.GetCanonicalUserByMailProcessor;
 import processors.CanonicalDataModel.PersistEmployeeProcessor;
 
 @ApplicationScoped
@@ -20,6 +21,9 @@ public class ManageCanonicalUsers extends RouteBuilder {
     @Inject
     CheckMailAvailabilityProcessor checkMailAvailabilityProcessor;
 
+    @Inject
+    GetCanonicalUserByMailProcessor getCanonicalUserByMailProcessor;
+
 
     @Override
     public void configure() throws Exception {
@@ -34,6 +38,10 @@ public class ManageCanonicalUsers extends RouteBuilder {
 
                 .get("checkmail/{email}")
                 .to("direct:checkEmail")
+                .produces("application/json")
+
+                .get("/byMail/{email}")
+                .to("direct:getCanonicalUserByMail")
                 .produces("application/json");
 
 
@@ -49,6 +57,10 @@ public class ManageCanonicalUsers extends RouteBuilder {
         from("direct:checkEmail")
                 .id("check-Email-Route")
                 .process(checkMailAvailabilityProcessor);
+
+        from("direct:getCanonicalUserByMail")
+                .id("get-Canonical-User-By-Mail-Route")
+                .process(getCanonicalUserByMailProcessor);
 
 
     }
