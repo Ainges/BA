@@ -1,5 +1,6 @@
 
 import { DecouplerProps } from "../../Interfaces/Decoupler";
+import ScheduleFirstPerformanceReview from "./ScheduleFirstPerformanceReview";
 
 const ScheduleFirstPerformanceReviewDecoupler: React.FC<DecouplerProps> = (
   props
@@ -13,6 +14,6 @@ const ScheduleFirstPerformanceReviewDecoupler: React.FC<DecouplerProps> = (
     config: props.config,
   };
 
-  return <ScheduleFirstPerformanceReviewDecoupler {...DecouplerProps} />;
+  return <ScheduleFirstPerformanceReview {...DecouplerProps} />;
 };
 export default ScheduleFirstPerformanceReviewDecoupler;

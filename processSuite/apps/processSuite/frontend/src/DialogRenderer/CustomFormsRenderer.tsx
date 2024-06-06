@@ -70,7 +70,7 @@ export class CustomFormsRenderer extends React.Component<
     ScheduleIntroMeetingsDecoupler: ScheduleIntroMeetingsDecoupler,
     CustomizedInductionPlanDecoupler: CustomizedInductionPlanDecoupler,
     OrganizeCakeDecoupler: OrganizeCakeDecoupler,
-    OrganizeSmallPresentDecouplerDecoupler: OrganizeSmallPresentDecoupler,
+    OrganizeSmallPresentDecoupler: OrganizeSmallPresentDecoupler,
     CreateEmployeeAccountDecoupler: CreateEmployeeAccountDecoupler,
     SelectEquipmentDecoupler: SelectEquipmentDecoupler,
     PrepareEquipmentDecoupler: PrepareEquipmentDecoupler,

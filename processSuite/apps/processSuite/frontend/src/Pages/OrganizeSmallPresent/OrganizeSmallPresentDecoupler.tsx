@@ -9,7 +9,7 @@ const OrganizeSmallPresentDecoupler: React.FC<CustomFormProps> = (props) => {
     abortUserTask: props.abortUserTask,
     finishUserTask: props.finishUserTask,
     suspendUserTask: props.suspendUserTask,
-    config: props.config,
+    config: props.config
   };
 
   return <OrganizeSmallPresent {...DecouplerProps} />;

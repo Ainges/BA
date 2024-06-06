@@ -199,7 +199,7 @@
           <camunda:formField id="contact_person_mail" label="E-Mail der Kontaktperson" type="string" defaultValue="dirkmueller@dundermifflin.com" />
         </camunda:formData>
         <camunda:properties>
-          <camunda:property name="customForm" value="KeyPointsForFirstWorkingDay" />
+          <camunda:property name="customForm" value="KeyPointsForFirstWorkingDayDecoupler" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1aclm6n</bpmn:incoming>
@@ -274,7 +274,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
     <bpmn:userTask id="Activity_0n8dh6h" name="Benutzerkonto für neuen Mitarbeiter anlegen">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="CreateEmployeeAccount" />
+          <camunda:property name="customForm" value="CreateEmployeeAccountDecoupler" />
           <camunda:property name="engine.runPostScript" value="return {&#10;    ...token.current,&#10;    &#34;initialData&#34;: dataObjects.DataObjectReference_newEmployeeData&#10;}" />
           <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
         </camunda:properties>
@@ -308,7 +308,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
     <bpmn:userTask id="Activity_1u0fik6" name="Individuellen Einarbeitunsplan erstellen">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="CustomizedInductionPlan" />
+          <camunda:property name="customForm" value="CustomizedInductionPlanDecoupler" />
           <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
         </camunda:properties>
       </bpmn:extensionElements>
@@ -324,7 +324,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
     <bpmn:userTask id="Activity_0ettg97" name="Buddy auswählen &#38; weitere Mitarbeiter für Kennenlerngespräch">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="BuddyAndEmployeeSelection" />
+          <camunda:property name="customForm" value="BuddyAndEmployeeSelectionDecoupler" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_01bx8d7</bpmn:incoming>
@@ -393,7 +393,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
-          <camunda:property name="customForm" value="OrganizeCake" />
+          <camunda:property name="customForm" value="OrganizeCakeDecoupler" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0thhn1p</bpmn:incoming>
@@ -421,7 +421,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
     <bpmn:userTask id="Activity_1gk2vew" name="Kennenlerngespräche terminieren">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="ScheduleIntroMeetings" />
+          <camunda:property name="customForm" value="ScheduleIntroMeetingsDecoupler" />
           <camunda:property name="engine.runPreScript" value="{&#10;    ...token.current,&#10;    onboardingData: dataObjects.DataObjectReference_newEmployeeData.OnboardingData&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
