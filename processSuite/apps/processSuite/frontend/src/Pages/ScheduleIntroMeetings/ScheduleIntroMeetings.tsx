@@ -5,14 +5,9 @@ import {
   Card,
   Table,
   Flex,
-  Button,
-  Tooltip,
-  DatePicker,
-  TimePicker,
-  Space,
-  Alert,
+  Button, DatePicker,
+  TimePicker, Alert
 } from "antd";
-import { CustomFormProps } from "../../DialogRenderer";
 import { Key, useEffect, useState } from "react";
 import styles from "./ScheduleIntroMeetings.module.css";
 import { SendOutlined } from "@ant-design/icons";

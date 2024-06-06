@@ -1,9 +1,6 @@
 import { Button, Card, Col, Divider, Form, Input, Row, Space } from "antd";
-import { CustomFormProps } from "../../DialogRenderer";
 import { EmployeeData } from "../../Components/EmployeeData/EmployeeData";
-import { title } from "process";
 import { useEffect, useState } from "react";
-import { InewEmployeeDataType } from "../../Interfaces/InewEmployeeData";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
 import config from "../../config/config.json";
 import axios from "axios";

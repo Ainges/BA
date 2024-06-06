@@ -6,13 +6,11 @@ import {
   DatePicker,
   Divider,
   Flex,
-  Row,
-  Space,
-  TimePicker,
+  Row, TimePicker
 } from "antd";
 import { CustomFormProps } from "../../DialogRenderer";
 import { useState } from "react";
-import moment, { Moment } from "moment";
+import moment from "moment";
 import formatDateToYYYYMMDD from "../../functions/formatDateToYYYYMMDD";
 import formatStringDDMMYYYYtoDate from "../../functions/formatStringDDMMYYYYtoDate";
 

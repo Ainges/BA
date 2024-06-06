@@ -2,17 +2,8 @@ import {
   Button,
   Flex,
   Modal,
-  Tooltip,
-  DatePicker,
-  TimePicker,
-  Divider,
-  Card,
-  Table,
-  TableColumnsType,
-  Row,
-  Col,
+  Tooltip
 } from "antd";
-import { CustomFormProps } from "../../DialogRenderer";
 import { useContext, useEffect, useState } from "react";
 import SelectBuddy from "../../Components/PreOnboarding_SelectBuddy/SelectBuddy";
 import EmployeeList from "../../Components/EmployeeList/EmployeeList";
@@ -22,8 +13,7 @@ import styles from "./BuddyAndEmployeeSelection.module.css";
 import axios from "axios";
 import config from "../../config/config.json";
 import {
-  BuddyAndEmployeeSelectionContext,
-  TableDataEmployee,
+  BuddyAndEmployeeSelectionContext
 } from "./BuddyandEmployeeSelectionProvider";
 import { DecouplerProps } from "../../Interfaces/Decoupler";
 

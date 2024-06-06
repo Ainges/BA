@@ -2,20 +2,16 @@ import {
   Alert,
   Button,
   Card,
-  Col,
-  Descriptions,
-  Divider,
+  Col, Divider,
   Form,
   FormProps,
   Input,
   List,
   Row,
-  Space,
+  Space
 } from "antd";
-import { CustomFormProps } from "../../DialogRenderer";
 import styles from "./CustomizedInductionPlan.module.css";
 import { EmployeeData } from "../../Components/EmployeeData/EmployeeData";
-import { describe } from "node:test";
 import TextArea from "antd/es/input/TextArea";
 import { useEffect, useState } from "react";
 

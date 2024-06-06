@@ -11,7 +11,6 @@ import {
   Space,
   TimePicker,
 } from "antd";
-import { CustomFormProps } from "../../DialogRenderer";
 import { EmployeeData } from "../../Components/EmployeeData/EmployeeData";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
 import { useEffect, useState } from "react";

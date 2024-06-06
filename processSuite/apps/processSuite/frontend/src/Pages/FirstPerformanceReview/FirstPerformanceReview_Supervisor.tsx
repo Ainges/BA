@@ -3,17 +3,11 @@ import {
   Divider,
   Col,
   Card,
-  Form,
-  Rate,
-  Flex,
+  Form, Flex,
   Button,
-  Alert,
-  Input,
-  Tooltip,
+  Alert, Tooltip
 } from "antd";
-import form from "antd/es/form";
 import TextArea from "antd/es/input/TextArea";
-import { CustomFormProps } from "../../DialogRenderer";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
 import { useState } from "react";
 import { DecouplerProps } from "../../Interfaces/Decoupler";

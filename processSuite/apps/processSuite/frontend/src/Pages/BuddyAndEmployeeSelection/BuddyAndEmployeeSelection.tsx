@@ -1,4 +1,3 @@
-import { CustomFormProps } from "../../DialogRenderer/CustomFormsRenderer";
 import { DecouplerProps } from "../../Interfaces/Decoupler";
 import BuddyAndEmployeeSelectionContextInjection from "./BuddyAndEmployeeSelectionContextInjection";
 import BuddyAndEmployeeSelectionProvider from "./BuddyandEmployeeSelectionProvider";

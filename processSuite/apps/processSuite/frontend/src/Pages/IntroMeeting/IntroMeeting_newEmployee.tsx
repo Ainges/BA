@@ -1,5 +1,4 @@
-import { Alert, Button, Card, Col, Divider, Row } from "antd";
-import { CustomFormProps } from "../../DialogRenderer";
+import { Alert, Button, Col, Divider, Row } from "antd";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { DecouplerProps } from "../../Interfaces/Decoupler";
