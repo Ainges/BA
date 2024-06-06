@@ -1,9 +1,8 @@
-import { abort } from "process";
 import { CustomFormProps } from "../../DialogRenderer";
 import { DecouplerProps } from "../../Interfaces/Decoupler";
-import OrganizeCake from "./OrganizeCake";
+import GetInductionPlanDone from "./GetInductionPlanDone";
 
-const OrganizeCakeDecoupler: React.FC<CustomFormProps> = (props) => {
+const GetInductionPlanDoneDecoupler: React.FC<CustomFormProps> = (props) => {
   const DecouplerProps: DecouplerProps = {
     userTask: props.userTask,
     suspendState: props.suspendState,
@@ -13,6 +12,6 @@ const OrganizeCakeDecoupler: React.FC<CustomFormProps> = (props) => {
     config: props.config,
   };
 
-  return <OrganizeCake {...DecouplerProps} />;
+  return <GetInductionPlanDone {...DecouplerProps} />;
 };
-export default OrganizeCakeDecoupler;
+export default GetInductionPlanDoneDecoupler;

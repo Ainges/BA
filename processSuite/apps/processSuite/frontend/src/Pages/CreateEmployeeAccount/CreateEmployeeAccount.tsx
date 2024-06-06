@@ -7,13 +7,14 @@ import { InewEmployeeDataType } from "../../Interfaces/InewEmployeeData";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
 import config from "../../config/config.json";
 import axios from "axios";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
 type FieldType = {
   email: string;
   password: string;
 };
 
-const CreateEmployeeAccount: React.FC<CustomFormProps> = (props) => {
+const CreateEmployeeAccount: React.FC<DecouplerProps> = (props) => {
   const [newEmployeeData, setNewEmployeeData] = useState<EmployeeData[]>([]);
 
   const [loading, setLoading] = useState(false);

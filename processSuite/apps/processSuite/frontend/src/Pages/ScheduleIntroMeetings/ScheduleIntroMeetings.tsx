@@ -21,6 +21,7 @@ import config from "../../config/config.json";
 import formatDateToYYYYMMDD from "../../functions/formatDateToYYYYMMDD";
 import moment from "moment";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
 interface Employee {
   name: string;
@@ -36,7 +37,7 @@ interface EmployeeDataApi {
   profile_picture_url: string;
 }
 
-const ScheduleIntroMeetings: React.FC<CustomFormProps> = (props) => {
+const ScheduleIntroMeetings: React.FC<DecouplerProps> = (props) => {
   const camelHost = config.camel.host;
   const token = props.userTask.startToken;
 

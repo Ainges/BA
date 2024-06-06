@@ -6,8 +6,10 @@ import { UserTaskResult } from "@5minds/processcube_engine_sdk";
 import { FormState } from "@atlas-engine-contrib/atlas-ui_sdk";
 import Paragraph from "antd/es/typography/Paragraph";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
-const OrganizeSmallPresent: React.FC<CustomFormProps> = (props) => {
+
+const OrganizeSmallPresent: React.FC<DecouplerProps> = (props) => {
   const currentToken = props.userTask.startToken;
 
   const additionalData = [

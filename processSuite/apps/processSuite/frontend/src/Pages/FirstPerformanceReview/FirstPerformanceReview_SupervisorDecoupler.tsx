@@ -1,9 +1,11 @@
 import { abort } from "process";
 import { CustomFormProps } from "../../DialogRenderer";
 import { DecouplerProps } from "../../Interfaces/Decoupler";
-import OrganizeCake from "./OrganizeCake";
+import FirstPerformanceReview_Supervisor from "./FirstPerformanceReview_Supervisor";
 
-const OrganizeCakeDecoupler: React.FC<CustomFormProps> = (props) => {
+const FirstPerformanceReview_SupervisorDecoupler: React.FC<CustomFormProps> = (
+  props
+) => {
   const DecouplerProps: DecouplerProps = {
     userTask: props.userTask,
     suspendState: props.suspendState,
@@ -13,6 +15,6 @@ const OrganizeCakeDecoupler: React.FC<CustomFormProps> = (props) => {
     config: props.config,
   };
 
-  return <OrganizeCake {...DecouplerProps} />;
+  return <FirstPerformanceReview_Supervisor {...DecouplerProps} />;
 };
-export default OrganizeCakeDecoupler;
+export default FirstPerformanceReview_SupervisorDecoupler;

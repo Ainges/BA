@@ -25,6 +25,7 @@ import {
   BuddyAndEmployeeSelectionContext,
   TableDataEmployee,
 } from "./BuddyandEmployeeSelectionProvider";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
 interface EmployeeDTO {
   email: string;
@@ -41,7 +42,7 @@ interface TableDataSelectTime {
   time: Date | null;
 }
 
-const BuddyAndEmployeeSelectionContextInjection: React.FC<CustomFormProps> = (
+const BuddyAndEmployeeSelectionContextInjection: React.FC<DecouplerProps> = (
   props
 ) => {
   // context initialization

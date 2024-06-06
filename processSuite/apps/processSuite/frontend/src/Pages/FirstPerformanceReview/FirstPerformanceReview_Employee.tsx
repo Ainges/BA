@@ -5,17 +5,16 @@ import {
   Divider,
   Flex,
   Form,
-  Input,
   Rate,
   Row,
   Tooltip,
 } from "antd";
-import { CustomFormProps } from "../../DialogRenderer";
 import TextArea from "antd/es/input/TextArea";
 import { FrownOutlined, MehOutlined, SmileOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
-const FirstPerformanceReview_Employee: React.FC<CustomFormProps> = (props) => {
+const FirstPerformanceReview_Employee: React.FC<DecouplerProps> = (props) => {
   const [form] = Form.useForm();
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -108,7 +107,9 @@ const FirstPerformanceReview_Employee: React.FC<CustomFormProps> = (props) => {
               </Form.Item>
 
               <Flex justify="center" align="center">
-                <Tooltip title={ isFormValid? "":"Bitte füllen Sie alle Felder aus"}>
+                <Tooltip
+                  title={isFormValid ? "" : "Bitte füllen Sie alle Felder aus"}
+                >
                   <Button
                     type="primary"
                     style={{ width: "200px" }}
