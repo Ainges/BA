@@ -5,9 +5,7 @@ import {
   Col,
   Divider,
   Flex,
-  Row,
-  Space,
-  Table,
+  Row, Table
 } from "antd";
 import { CustomFormProps } from "../../DialogRenderer";
 import { IinductionPlanElement } from "../CustomizedInductionPlan/CustomizedInductionPlan";

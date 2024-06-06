@@ -2,25 +2,22 @@ import {
   Alert,
   Button,
   Card,
-  Col,
-  Descriptions,
-  Divider,
+  Col, Divider,
   Form,
   FormProps,
   Input,
   List,
   Row,
-  Space,
+  Space
 } from "antd";
-import { CustomFormProps } from "../../DialogRenderer";
 import styles from "./CustomizedInductionPlan.module.css";
 import { EmployeeData } from "../../Components/EmployeeData/EmployeeData";
-import { describe } from "node:test";
 import TextArea from "antd/es/input/TextArea";
 import { useEffect, useState } from "react";
 
 import { SendOutlined } from "@ant-design/icons";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
 export interface IinductionPlanElement {
   title: string;
@@ -37,7 +34,7 @@ interface InewEmployeeDataType {
   };
 }
 
-const CustomizedInductionPlan: React.FC<CustomFormProps> = (props) => {
+const CustomizedInductionPlan: React.FC<DecouplerProps> = (props) => {
   const [newEmployeeData, setNewEmployeeData] = useState<EmployeeData[]>([]);
   const [inductionPlan, setInductionPlan] = useState<IinductionPlanElement[]>(
     []

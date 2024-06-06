@@ -1,13 +1,10 @@
-import { Alert, Card, Col, Divider, Row } from "antd";
-import { CustomFormProps } from "../../DialogRenderer";
-import styles from "./OrganizeSmallPresent.module.css";
+import { Alert } from "antd";
 import OrganizeTask from "../../Components/OrganizeTask/OrganizeTask";
-import { UserTaskResult } from "@5minds/processcube_engine_sdk";
-import { FormState } from "@atlas-engine-contrib/atlas-ui_sdk";
 import Paragraph from "antd/es/typography/Paragraph";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
-const OrganizeSmallPresent: React.FC<CustomFormProps> = (props) => {
+const OrganizeSmallPresent: React.FC<DecouplerProps> = (props) => {
   const currentToken = props.userTask.startToken;
 
   const additionalData = [

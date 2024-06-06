@@ -8,22 +8,22 @@ import {
 
 import { Config } from "../config";
 import { ExampleCustomForm } from "../ExampleCustomForm";
-import BuddyAndEmployeeSelection from "../Pages/BuddyAndEmployeeSelection/BuddyAndEmployeeSelection";
-import CustomizedInductionPlan from "../Pages/CustomizedInductionPlan/CustomizedInductionPlan";
-import OrganizeCake from "../Pages/OrganizeCake/OrganizeCake";
-import OrganizeSmallPresent from "../Pages/OrganizeSmallPresent/OrganizeSmallPresent";
-import CreateEmployeeAccount from "../Pages/CreateEmployeeAccount/CreateEmployeeAccount";
-import SelectEquipment from "../Pages/SelectEquipment/SelectEquipment";
-import PrepareEquipment from "../Pages/PrepareEquipment/PrepareEquipment";
-import KeyPointsForFirstWorkingDay from "../Pages/KeyPointsForFirstWorkingDay/KeyPointsForFirstWorkingDay";
-import ScheduleIntroMeetings from "../Pages/ScheduleIntroMeetings/ScheduleIntroMeetings";
-import GetInductionPlanDone from "../Pages/GetInductionPlanDone/GetInductionPlanDone";
-import ScheduleFirstPerformanceReview from "../Pages/ScheduleFirstPerformanceReview/ScheduleFirstPerformanceReview";
-import DiscussInductionPlan from "../Pages/DiscussInductionPlan/DiscussInductionPlan";
-import FirstPerformanceReview_Supervisor from "../Pages/FirstPerformanceReview/FirstPerformanceReview_Supervisor";
-import FirstPerformanceReview_Employee from "../Pages/FirstPerformanceReview/FirstPerformanceReview_Employee";
-import IntroMeeting_newEmployee from "../Pages/IntroMeeting/IntroMeeting_newEmployee";
-import IntroMeeting_selectedEmployee from "../Pages/IntroMeeting/IntoMeeting_selectedEmployee";
+import OrganizeSmallPresentDecoupler from "../Pages/OrganizeSmallPresent/OrganizeSmallPresentDecoupler";
+import BuddyAndEmployeeSelectionDecoupler from "../Pages/BuddyAndEmployeeSelection/BuddyAndEmployeeSelectionDecoupler";
+import CreateEmployeeAccountDecoupler from "../Pages/CreateEmployeeAccount/CreateEmployeeAccountDecoupler";
+import CustomizedInductionPlanDecoupler from "../Pages/CustomizedInductionPlan/CustomizedInductionPlanDecoupler";
+import DiscussInductionPlanDecoupler from "../Pages/DiscussInductionPlan/DiscussInductionPlanDecoupler";
+import FirstPerformanceReview_EmployeeDecoupler from "../Pages/FirstPerformanceReview/FirstPerformanceReview_EmployeeDecoupler";
+import FirstPerformanceReview_SupervisorDecoupler from "../Pages/FirstPerformanceReview/FirstPerformanceReview_SupervisorDecoupler";
+import GetInductionPlanDoneDecoupler from "../Pages/GetInductionPlanDone/GetInductionPlanDoneDecoupler";
+import IntroMeeting_newEmployeeDecoupler from "../Pages/IntroMeeting/IntroMeeting_newEmployeeDecoupler";
+import IntroMeeting_selectedEmployeeDecoupler from "../Pages/IntroMeeting/IntroMeeting_selectedEmployeeDecoupler";
+import KeyPointsForFirstWorkingDayDecoupler from "../Pages/KeyPointsForFirstWorkingDay/KeyPointsForFirstWorkingDayDecoupler";
+import OrganizeCakeDecoupler from "../Pages/OrganizeCake/OrganizeCakeDecoupler";
+import PrepareEquipmentDecoupler from "../Pages/PrepareEquipment/PrepareEquipmentDecoupler";
+import ScheduleFirstPerformanceReviewDecoupler from "../Pages/ScheduleFirstPerformanceReview/ScheduleFirstPerformanceReviewDecoupler";
+import ScheduleIntroMeetingsDecoupler from "../Pages/ScheduleIntroMeetings/ScheduleIntroMeetingsDecoupler";
+import SelectEquipmentDecoupler from "../Pages/SelectEquipment/SelectEquipmentDecoupler";
 
 export type CustomFormProps = {
   userTask: DataModels.FlowNodeInstances.UserTaskInstance;
@@ -66,22 +66,22 @@ export class CustomFormsRenderer extends React.Component<
 
   private components: CustomFormsComponentDict = {
     ExampleCustomForm: ExampleCustomForm,
-    BuddyAndEmployeeSelection: BuddyAndEmployeeSelection,
-    ScheduleIntroMeetings: ScheduleIntroMeetings,
-    CustomizedInductionPlan: CustomizedInductionPlan,
-    OrganizeCake: OrganizeCake,
-    OrganizeSmallPresent: OrganizeSmallPresent,
-    CreateEmployeeAccount: CreateEmployeeAccount,
-    SelectEquipment: SelectEquipment,
-    PrepareEquipment: PrepareEquipment,
-    KeyPointsForFirstWorkingDay: KeyPointsForFirstWorkingDay,
-    GetInductionPlanDone: GetInductionPlanDone,
-    ScheduleFirstPerformanceReview: ScheduleFirstPerformanceReview,
-    DiscussInductionPlan: DiscussInductionPlan,
-    FirstPerformanceReview_Employee: FirstPerformanceReview_Employee,
-    FirstPerformanceReview_Supervisor: FirstPerformanceReview_Supervisor,
-    IntroMeeting_newEmployee: IntroMeeting_newEmployee,
-    IntroMeeting_selectedEmployee: IntroMeeting_selectedEmployee,
+    BuddyAndEmployeeSelectionDecoupler: BuddyAndEmployeeSelectionDecoupler,
+    ScheduleIntroMeetingsDecoupler: ScheduleIntroMeetingsDecoupler,
+    CustomizedInductionPlanDecoupler: CustomizedInductionPlanDecoupler,
+    OrganizeCakeDecoupler: OrganizeCakeDecoupler,
+    OrganizeSmallPresentDecoupler: OrganizeSmallPresentDecoupler,
+    CreateEmployeeAccountDecoupler: CreateEmployeeAccountDecoupler,
+    SelectEquipmentDecoupler: SelectEquipmentDecoupler,
+    PrepareEquipmentDecoupler: PrepareEquipmentDecoupler,
+    KeyPointsForFirstWorkingDayDecoupler: KeyPointsForFirstWorkingDayDecoupler,
+    GetInductionPlanDoneDecoupler: GetInductionPlanDoneDecoupler,
+    ScheduleFirstPerformanceReviewDecoupler: ScheduleFirstPerformanceReviewDecoupler,
+    DiscussInductionPlanDecoupler: DiscussInductionPlanDecoupler,
+    FirstPerformanceReview_EmployeeDecoupler: FirstPerformanceReview_EmployeeDecoupler,
+    FirstPerformanceReview_SupervisorDecoupler: FirstPerformanceReview_SupervisorDecoupler,
+    IntroMeeting_newEmployeeDecoupler: IntroMeeting_newEmployeeDecoupler,
+    IntroMeeting_selectedEmployeeDecoupler: IntroMeeting_selectedEmployeeDecoupler,
   };
 
   private customFormService: CustomFormService | null = null;

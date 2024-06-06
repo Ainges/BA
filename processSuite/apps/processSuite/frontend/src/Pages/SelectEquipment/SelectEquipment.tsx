@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { CustomFormProps } from "../../DialogRenderer";
 import {
   Row,
   Col,
@@ -14,7 +13,7 @@ import {
 } from "antd";
 import axios from "axios";
 import config from "../../config/config.json";
-import style from "./SelectEquipment.module.css";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
 interface EquipmentData {
   name: string;
@@ -26,7 +25,7 @@ interface ApiData {
   Smartphones: EquipmentData[];
 }
 
-const SelectEquipment: React.FC<CustomFormProps> = (props) => {
+const SelectEquipment: React.FC<DecouplerProps> = (props) => {
   const [laptopForm] = Form.useForm();
   const [smartphoneForm] = Form.useForm();
   const [apiData, setApiData] = React.useState<ApiData | null>(null);

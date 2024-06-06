@@ -56,7 +56,7 @@
     <bpmn:userTask id="Activity_01" name="Tag für erstes Mitarbeitergespräch auswählen">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="ScheduleFirstPerformanceReview" />
+          <camunda:property name="customForm" value="ScheduleFirstPerformanceReviewDecoupler" />
           <camunda:property name="engine.runPreScript" value="return { OnboardingData: dataObjects.DataObjectReference_onboardingData.OnboardingData }" />
         </camunda:properties>
       </bpmn:extensionElements>
@@ -146,7 +146,7 @@
     <bpmn:userTask id="Activity_04" name="Einarbeitungsplan mit Mitarbeiter besprechen">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="DiscussInductionPlan" />
+          <camunda:property name="customForm" value="DiscussInductionPlanDecoupler" />
           <camunda:property name="engine.runPreScript" value="return {&#10;    inductionPlan: dataObjects.DataObjectReference_InductionPlan.inductionPlan, &#10;    OnboardingData: dataObjects.DataObjectReference_onboardingData.OnboardingData&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
@@ -166,7 +166,7 @@
     <bpmn:userTask id="Activity_FirstPerformanceReview_Supervisor" name="Mitarbeitergespräch durchführen">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="FirstPerformanceReview_Supervisor" />
+          <camunda:property name="customForm" value="FirstPerformanceReview_SupervisorDecoupler" />
           <camunda:property name="engine.runPreScript" value="return dataObjects.DataObjectReference_onboardingData" />
         </camunda:properties>
       </bpmn:extensionElements>
@@ -230,7 +230,7 @@
     <bpmn:userTask id="Activity_FirstPerformanceReview_Employee" name="Mitarbeitergespräch durchführen">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="FirstPerformanceReview_Employee" />
+          <camunda:property name="customForm" value="FirstPerformanceReview_EmployeeDecoupler" />
           <camunda:property name="engine.assignUserIds" value="dataObjects.DataObjectReference_companyEmailOfNewEmployee.companyEmailOfNewEmployee" />
         </camunda:properties>
       </bpmn:extensionElements>
@@ -247,7 +247,7 @@
     <bpmn:userTask id="Activity_06oh5rs" name="Einarbeitungsplan abarbeiten">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="GetInductionPlanDone" />
+          <camunda:property name="customForm" value="GetInductionPlanDoneDecoupler" />
           <camunda:property name="engine.runPreScript" value="return dataObjects.DataObjectReference_InductionPlan.inductionPlan" />
           <camunda:property name="engine.assignUserIds" value="dataObjects.DataObjectReference_companyEmailOfNewEmployee.companyEmailOfNewEmployee" />
         </camunda:properties>
@@ -609,11 +609,6 @@
         <dc:Bounds x="1340" y="-650" width="100" height="98" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="DataInputAssociation_1yqbbvm_di" bpmnElement="DataInputAssociation_1yqbbvm">
-        <di:waypoint x="418" y="50" />
-        <di:waypoint x="1790" y="50" />
-        <di:waypoint x="1790" y="-120" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Group_1x3k2ii_di" bpmnElement="Group_1x3k2ii">
         <dc:Bounds x="50" y="160" width="860" height="520" />
         <bpmndi:BPMNLabel>
@@ -647,6 +642,11 @@
       <bpmndi:BPMNEdge id="DataOutputAssociation_1end60u_di" bpmnElement="DataOutputAssociation_1end60u">
         <di:waypoint x="1530" y="-142" />
         <di:waypoint x="1530" y="185" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1yqbbvm_di" bpmnElement="DataInputAssociation_1yqbbvm">
+        <di:waypoint x="418" y="50" />
+        <di:waypoint x="1790" y="50" />
+        <di:waypoint x="1790" y="-120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1e5r75a_di" bpmnElement="DataInputAssociation_1e5r75a">
         <di:waypoint x="418" y="-379" />

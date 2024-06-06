@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { CustomFormProps } from "../../DialogRenderer";
 import { Button, Card, Checkbox, Col, Divider, Row, Space } from "antd";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
-const PrepareEquipment: React.FC<CustomFormProps> = (props) => {
+const PrepareEquipment: React.FC<DecouplerProps> = (props) => {
   const [isLaptopProcured, setIsLaptopProcured] = React.useState(false);
   const [isSmartphoneProcured, setIsSmartphoneProcured] = React.useState(false);
   const [isLaptopPrepared, setIsLaptopPrepared] = React.useState(false);

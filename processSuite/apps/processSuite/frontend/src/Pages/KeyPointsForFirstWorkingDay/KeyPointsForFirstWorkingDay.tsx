@@ -11,15 +11,15 @@ import {
   Space,
   TimePicker,
 } from "antd";
-import { CustomFormProps } from "../../DialogRenderer";
 import { EmployeeData } from "../../Components/EmployeeData/EmployeeData";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config/config.json";
 import dayjs from "dayjs";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
-const KeyPointsForFirstWorkingDay: React.FC<CustomFormProps> = (props) => {
+const KeyPointsForFirstWorkingDay: React.FC<DecouplerProps> = (props) => {
   const [apiData, setApiData] = useState<person[]>([]);
   const [availableContacts, setAvailableContacts] = useState<options[]>([]);
   const [newBulletPoint, setNewBulletPoint] = useState<string>("");

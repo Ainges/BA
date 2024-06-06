@@ -1,7 +1,7 @@
-import { Alert, Button, Card, Col, Divider, Row } from "antd";
-import { CustomFormProps } from "../../DialogRenderer";
+import { Alert, Button, Col, Divider, Row } from "antd";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
 interface IEmployee {
   email: string;
@@ -11,7 +11,7 @@ interface IEmployee {
   profile_picture_url: string;
 }
 
-const IntroMeeting_newEmployee: React.FC<CustomFormProps> = (props) => {
+const IntroMeeting_newEmployee: React.FC<DecouplerProps> = (props) => {
   const [employee, setEmployee] = useState<IEmployee>();
 
   useEffect(() => {

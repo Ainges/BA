@@ -60,7 +60,7 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="engine.assignUserIds" value="token.current.email" />
-          <camunda:property name="customForm" value="IntroMeeting_selectedEmployee" />
+          <camunda:property name="customForm" value="IntroMeeting_selectedEmployeeDecoupler" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1xdtb0u</bpmn:incoming>
@@ -70,7 +70,7 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="engine.assignUserIds" value="token.current.companyEmailOfNewEmployee" />
-          <camunda:property name="customForm" value="IntroMeeting_newEmployee" />
+          <camunda:property name="customForm" value="IntroMeeting_newEmployeeDecoupler" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0zyaa51</bpmn:incoming>

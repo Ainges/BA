@@ -1,11 +1,9 @@
-import { UserTaskResult } from "@5minds/processcube_engine_sdk";
-import { FormState } from "@atlas-engine-contrib/atlas-ui_sdk";
 import OrganizeTask from "../../Components/OrganizeTask/OrganizeTask";
-import { CustomFormProps } from "../../DialogRenderer";
 import Paragraph from "antd/es/typography/Paragraph";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
-const OrganizeCake: React.FC<CustomFormProps> = (props) => {
+const OrganizeCake: React.FC<DecouplerProps> = (props) => {
   const currentToken = props.userTask.startToken;
   return (
     <>

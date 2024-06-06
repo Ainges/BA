@@ -199,7 +199,7 @@
           <camunda:formField id="contact_person_mail" label="E-Mail der Kontaktperson" type="string" defaultValue="dirkmueller@dundermifflin.com" />
         </camunda:formData>
         <camunda:properties>
-          <camunda:property name="customForm" value="KeyPointsForFirstWorkingDay" />
+          <camunda:property name="customForm" value="KeyPointsForFirstWorkingDayDecoupler" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1aclm6n</bpmn:incoming>
@@ -226,7 +226,7 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
-          <camunda:property name="customForm" value="OrganizeSmallPresent" />
+          <camunda:property name="customForm" value="OrganizeSmallPresentDecoupler" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_14f8hc7</bpmn:incoming>
@@ -274,7 +274,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
     <bpmn:userTask id="Activity_0n8dh6h" name="Benutzerkonto für neuen Mitarbeiter anlegen">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="CreateEmployeeAccount" />
+          <camunda:property name="customForm" value="CreateEmployeeAccountDecoupler" />
           <camunda:property name="engine.runPostScript" value="return {&#10;    ...token.current,&#10;    &#34;initialData&#34;: dataObjects.DataObjectReference_newEmployeeData&#10;}" />
           <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
         </camunda:properties>
@@ -308,7 +308,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
     <bpmn:userTask id="Activity_1u0fik6" name="Individuellen Einarbeitunsplan erstellen">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="CustomizedInductionPlan" />
+          <camunda:property name="customForm" value="CustomizedInductionPlanDecoupler" />
           <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
         </camunda:properties>
       </bpmn:extensionElements>
@@ -324,7 +324,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
     <bpmn:userTask id="Activity_0ettg97" name="Buddy auswählen &#38; weitere Mitarbeiter für Kennenlerngespräch">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="BuddyAndEmployeeSelection" />
+          <camunda:property name="customForm" value="BuddyAndEmployeeSelectionDecoupler" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_01bx8d7</bpmn:incoming>
@@ -393,7 +393,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
-          <camunda:property name="customForm" value="OrganizeCake" />
+          <camunda:property name="customForm" value="OrganizeCakeDecoupler" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0thhn1p</bpmn:incoming>
@@ -421,7 +421,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
     <bpmn:userTask id="Activity_1gk2vew" name="Kennenlerngespräche terminieren">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="customForm" value="ScheduleIntroMeetings" />
+          <camunda:property name="customForm" value="ScheduleIntroMeetingsDecoupler" />
           <camunda:property name="engine.runPreScript" value="{&#10;    ...token.current,&#10;    onboardingData: dataObjects.DataObjectReference_newEmployeeData.OnboardingData&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
@@ -680,10 +680,6 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmndi:BPMNShape id="Activity_0ltss0a_di" bpmnElement="Activity_1gk2vew">
         <dc:Bounds x="2505" y="2375" width="145" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1jk89as_di" bpmnElement="Activity_1l0s39s">
-        <dc:Bounds x="2168" y="1100" width="183" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ofklws_di" bpmnElement="Activity_0bx4zme" isExpanded="true">
         <dc:Bounds x="2820" y="2930" width="360" height="130" />
       </bpmndi:BPMNShape>
@@ -726,6 +722,10 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1439" y="1240" width="83" height="40" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1jk89as_di" bpmnElement="Activity_1l0s39s">
+        <dc:Bounds x="2168" y="1100" width="183" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0cnjnkh_di" bpmnElement="Flow_0cnjnkh">
         <di:waypoint x="580" y="1115" />
@@ -985,12 +985,6 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="970" y="890" />
         <di:waypoint x="1180" y="994" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_080jnhl_di" bpmnElement="DataInputAssociation_080jnhl">
-        <di:waypoint x="318" y="657" />
-        <di:waypoint x="540" y="860" />
-        <di:waypoint x="1673" y="860" />
-        <di:waypoint x="2168" y="1119" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_12wicti_di" bpmnElement="DataOutputAssociation_12wicti">
         <di:waypoint x="780" y="1320" />
         <di:waypoint x="1462" y="1320" />
@@ -1035,6 +1029,12 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmndi:BPMNEdge id="DataOutputAssociation_0a8wyuy_di" bpmnElement="DataOutputAssociation_0a8wyuy">
         <di:waypoint x="2578" y="2375" />
         <di:waypoint x="2581" y="1495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_080jnhl_di" bpmnElement="DataInputAssociation_080jnhl">
+        <di:waypoint x="318" y="657" />
+        <di:waypoint x="540" y="860" />
+        <di:waypoint x="1673" y="860" />
+        <di:waypoint x="2168" y="1119" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_1i23230_di" bpmnElement="Association_1i23230">
         <di:waypoint x="2236" y="1690" />

@@ -1,8 +1,8 @@
 import { Button, Card, Col, Divider, Row } from "antd";
-import { CustomFormProps } from "../../DialogRenderer";
 import Meta from "antd/es/card/Meta";
+import { DecouplerProps } from "../../Interfaces/Decoupler";
 
-const GetInductionPlanDone: React.FC<CustomFormProps> = (props) => {
+const GetInductionPlanDone: React.FC<DecouplerProps> = (props) => {
   return (
     <>
       <Row>
