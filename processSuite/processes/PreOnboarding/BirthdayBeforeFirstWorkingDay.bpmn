@@ -2,6 +2,9 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="BirthdayBeforeFirstWorkingDay_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
     <bpmn:participant id="Participant_0px403d" name="BirthdayBeforeFirstWorkingDay" processRef="BirthdayBeforeFirstWorkingDay_Process" />
+    <bpmn:participant id="Participant_1h6u0j0" name="PreOnboarding_SCIL" />
+    <bpmn:messageFlow id="Flow_0h1xydo" name="Paramter" sourceRef="Activity_0auig7p" targetRef="Participant_1h6u0j0" />
+    <bpmn:messageFlow id="Flow_0y6mo1v" name="Ergebnis" sourceRef="Participant_1h6u0j0" targetRef="Event_1r751sf" />
   </bpmn:collaboration>
   <bpmn:process id="BirthdayBeforeFirstWorkingDay_Process" name="BirthdayBeforeFirstWorkingDay" isExecutable="true">
     <bpmn:laneSet>
@@ -101,7 +104,7 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmndi:BPMNShape id="Event_0egzgp9_di" bpmnElement="Event_1r751sf">
         <dc:Bounds x="217" y="12" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="205" y="55" width="60" height="27" />
+          <dc:Bounds x="205" y="-25.5" width="60" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1mgpmjr_di" bpmnElement="Gateway_141wu49">
@@ -183,6 +186,24 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmndi:BPMNEdge id="Flow_1avaz0k_di" bpmnElement="Flow_1avaz0k">
         <di:waypoint x="-172" y="30" />
         <di:waypoint x="-16" y="30" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_0455vt6_di" bpmnElement="Participant_1h6u0j0" isHorizontal="true">
+        <dc:Bounds x="-300" y="480" width="1408" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0h1xydo_di" bpmnElement="Flow_0h1xydo">
+        <di:waypoint x="60" y="70" />
+        <di:waypoint x="60" y="480" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="7" y="272" width="46" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0y6mo1v_di" bpmnElement="Flow_0y6mo1v">
+        <di:waypoint x="235" y="480" />
+        <di:waypoint x="235" y="48" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="248" y="272" width="44" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
