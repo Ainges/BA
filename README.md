@@ -22,4 +22,23 @@ The Services are containerised with Docker
 
 # Getting Started
 
+## Requirements
+
+The application needs the following dependencies installed in developer mode because not everything is dockerized yet. In production, it is possible to run all services in containers and have them managed by an orchestrator like Kubernetes.
+
+- 5minds Studio 1.17 (https://processcube.5minds.de/)
+- Docker 26
+- Java SDK 21
+- .Net 6
+- Node.js 18
+- Apache Maven (Can also substitute it with the .mvnw wrapper from Quarkus)
+
+
+## Starting the Application
+
+- cd into `/processSuite/apps/processSuite/frontend` and run `npm install` (only on first startup needed)
+- cd into `/processSuite/` and run `docker compose up`
+- As soon as the Containers are build and running the process Modells can be redeployed.
+  - Connect to running Engine in 5minds Studio: `Connections` (<img src="https://github.com/Ainges/BA/assets/81434615/64497420-f9bb-487d-ad6a-d5c5808f4f57" width="25" height="25">)
+  - Add Connection (+) -> `http://localhost:8000`
 
