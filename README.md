@@ -41,4 +41,13 @@ The application needs the following dependencies installed in developer mode bec
 - As soon as the Containers are build and running the process Modells can be redeployed.
   - Connect to running Engine in 5minds Studio: `Connections` (<img src="https://github.com/Ainges/BA/assets/81434615/64497420-f9bb-487d-ad6a-d5c5808f4f57" width="25" height="25">)
   - Add Connection (+) -> `http://localhost:8000`
+  - Navigate to Explorer <img src="(https://github.com/Ainges/BA/assets/81434615/51ac595f-0d66-44bc-a35c-4e6a5d3888a8)" width="25" height="25">
+  - Open `/processSuite/processes/`
+  - Deploy Solution (Deploys all process modells) `Run` -> `Deploy Solution` -> `Deploy Solution`
+- Start the Quarkus / Java Project: cd into `/integration/`
+- run `mvn quarkus:dev`
+
+The Integration Component will initialize some Sample Users inside the 5minds Engine as well as in its own Datamodell.
+The Logic behind this is also implemented in a process modell, which can be found in `/processSuite/processes/dev` 
+
 
