@@ -23,6 +23,9 @@
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1" name="Mitarbeiter muss informiert werden">
       <bpmn:outgoing>Flow_1b001o1</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_093bccf">
+        <bpmn:targetRef>DataObjectReference_newEmployeeData</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:startEvent>
     <bpmn:sendTask id="Activity_1su6gvg" name="Nachricht mit defininierten Eckpunkten an Mitarbeiter senden" messageRef="Message_09wrc5j">
       <bpmn:extensionElements>
@@ -33,6 +36,10 @@
       <bpmn:incoming>Flow_1p7g20a</bpmn:incoming>
       <bpmn:outgoing>Flow_1jbqltj</bpmn:outgoing>
       <bpmn:property id="Property_1c02cu2" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0a1hrsz">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1c02cu2</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:userTask id="Activity_0krkkdp" name="Eckpunkte für ersten Arbeitstag definieren">
       <bpmn:documentation>Inhalt: 
@@ -70,14 +77,13 @@
     <bpmn:sequenceFlow id="Flow_0l771zn" sourceRef="Activity_054yujr" targetRef="Event_177vyml" />
     <bpmn:sendTask id="FirstWelcomeMessage_Send" name="Willkommensnachricht an Mitarbeiter senden" messageRef="Message_LKtkj70V">
       <bpmn:documentation>Sehr wichtig zur Mitarbeiterbindung um im Geächnis zu bleiben und einem nicht nicht erscheinen am Ersten Arbeitstag entgegen zu wirken.</bpmn:documentation>
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="engine.runPostScript" value="{&#10;    token&#10;}" />
-        </camunda:properties>
-      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0eik56f</bpmn:incoming>
       <bpmn:outgoing>Flow_0y1d0sp</bpmn:outgoing>
       <bpmn:property id="Property_1je67im" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0hbqmoh">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1je67im</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:parallelGateway id="Gateway_0gqr3il">
       <bpmn:incoming>Flow_1jbqltj</bpmn:incoming>
@@ -105,6 +111,8 @@
     <bpmn:endEvent id="Event_177vyml" name="Mitarbeiter erfolgreich informiert">
       <bpmn:incoming>Flow_0l771zn</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:dataObjectReference id="DataObjectReference_newEmployeeData" name="Daten zu neuem Mitarbeiter" dataObjectRef="DataObject_1klm0yw" />
+    <bpmn:dataObject id="DataObject_1klm0yw" />
   </bpmn:process>
   <bpmn:message id="Message_09wrc5j" name="Message_Send_InfoForFirstWorkingDay" />
   <bpmn:message id="Message_LKtkj70V" name="Message_Send_FirstWelcomeMessage" />
@@ -112,10 +120,10 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
-        <dc:Bounds x="5" y="4" width="1685" height="506" />
+        <dc:Bounds x="5" y="4" width="1445" height="506" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
-        <dc:Bounds x="35" y="4" width="1655" height="506" />
+        <dc:Bounds x="35" y="4" width="1415" height="506" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0h54pdn" bpmnElement="StartEvent_1">
@@ -155,6 +163,12 @@
         <dc:Bounds x="1342" y="232" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1334" y="275" width="53" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0oullfp_di" bpmnElement="DataObjectReference_newEmployeeData">
+        <dc:Bounds x="252" y="45" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="229" y="8" width="81" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1b001o1_di" bpmnElement="Flow_1b001o1">
@@ -198,7 +212,7 @@
         <di:waypoint x="1342" y="250" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_01vvuz4_di" bpmnElement="Participant_1w6b5uj" isHorizontal="true">
-        <dc:Bounds x="5" y="570" width="1685" height="60" />
+        <dc:Bounds x="5" y="570" width="1445" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1s9r254_di" bpmnElement="Flow_1s9r254">
@@ -212,6 +226,18 @@
       <bpmndi:BPMNEdge id="Flow_100fn2e_di" bpmnElement="Flow_100fn2e">
         <di:waypoint x="1130" y="290" />
         <di:waypoint x="1130" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0hbqmoh_di" bpmnElement="DataInputAssociation_0hbqmoh">
+        <di:waypoint x="283" y="95" />
+        <di:waypoint x="375" y="271" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0a1hrsz_di" bpmnElement="DataInputAssociation_0a1hrsz">
+        <di:waypoint x="288" y="75" />
+        <di:waypoint x="601" y="158" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_093bccf_di" bpmnElement="DataOutputAssociation_093bccf">
+        <di:waypoint x="179" y="234" />
+        <di:waypoint x="257" y="95" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
