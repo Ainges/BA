@@ -131,6 +131,7 @@
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
         <dc:Bounds x="5" y="4" width="1185" height="896" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1m9we0s_di" bpmnElement="Lane_1m9we0s" isHorizontal="true">
         <dc:Bounds x="35" y="660" width="1155" height="240" />

@@ -1,11 +1,11 @@
-version: "3.5"
+# version: "3.5"
 services:
   nginx:
     image: nginx:bookworm
     volumes:
       - ../nginx/config:/etc/nginx/conf.d/default.conf
 
-    restart: always
+    restart: unless-stopped
     ports:
       # - 11560:11560 # Authority
       - 8000:8000 # Engine
@@ -17,7 +17,7 @@ services:
     image: ghcr.io/ainges/processcube_authority:2024-1
     depends_on:
       - db_authority
-    restart: always
+    restart: unless-stopped
     environment:
       ONFIG_PATH: /etc/authority/config/config.json
       # UPE_SEED_PATH: /etc/authority/config/upeSeedingData.json
