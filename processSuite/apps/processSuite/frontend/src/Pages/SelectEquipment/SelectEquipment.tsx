@@ -145,15 +145,16 @@ const SelectEquipment: React.FC<DecouplerProps> = (props) => {
         <Col span={1}></Col>
         <Col span={22}>
           <Card>
-            <Space style={{ width: 100 }}>
-              <Button
-                type="primary"
-                onClick={handleSubmit}
-                disabled={isSubmitDisabled}
-              >
-                Senden
-              </Button>
-            </Space>
+            {/* <Space style={{ width: "100px" }}> */}
+            <Button
+              type="primary"
+              onClick={handleSubmit}
+              disabled={isSubmitDisabled}
+              block
+            >
+              Senden
+            </Button>
+            {/* </Space> */}
           </Card>
         </Col>
         <Col span={1}></Col>

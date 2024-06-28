@@ -12,7 +12,6 @@
       <bpmn:lane id="Lane_1xzf0d3" name="Vorgesetzter">
         <bpmn:flowNodeRef>Event_000tj1f</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1y3blpl</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0mv9xcj</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_00g90w4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0vx3t9l</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_01mh05k</bpmn:flowNodeRef>
@@ -20,16 +19,15 @@
         <bpmn:flowNodeRef>Event_0tw4j54</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0bfl7nt</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_Boundary_FailedToPrepareFirstWorkingDay</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0mv9xcj</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1m9we0s" name="Admin">
         <bpmn:flowNodeRef>Activity_1r5zr3t</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sequenceFlow id="Flow_1qzy0yp" sourceRef="Activity_1y3blpl" targetRef="Gateway_0vx3t9l" />
-    <bpmn:sequenceFlow id="Flow_1q0vanl" sourceRef="Event_0mv9xcj" targetRef="Activity_00g90w4" />
+    <bpmn:sequenceFlow id="Flow_1qzy0yp" sourceRef="Activity_1y3blpl" targetRef="Event_0mv9xcj" />
     <bpmn:sequenceFlow id="Flow_1l71nox" sourceRef="Activity_00g90w4" targetRef="Event_0tw4j54" />
     <bpmn:sequenceFlow id="Flow_1cck4sn" sourceRef="Event_Boundary_FailedToPrepareFirstWorkingDay" targetRef="Activity_1r5zr3t" />
-    <bpmn:sequenceFlow id="Flow_0gqjk37" sourceRef="Gateway_0vx3t9l" targetRef="Event_0mv9xcj" />
     <bpmn:sequenceFlow id="Flow_157f7ur" sourceRef="Activity_1r5zr3t" targetRef="Gateway_0vx3t9l" />
     <bpmn:sequenceFlow id="Flow_0i9c70o" sourceRef="Gateway_01mh05k" targetRef="Activity_1y3blpl">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" />
@@ -56,20 +54,13 @@
         <bpmn:targetRef>Property_0rp02fk</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:callActivity>
-    <bpmn:intermediateCatchEvent id="Event_0mv9xcj" name="Erster Arbeitstag ">
-      <bpmn:incoming>Flow_0gqjk37</bpmn:incoming>
-      <bpmn:outgoing>Flow_1q0vanl</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_0ml90g9">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10S</bpmn:timeDuration>
-      </bpmn:timerEventDefinition>
-    </bpmn:intermediateCatchEvent>
     <bpmn:callActivity id="Activity_00g90w4" name="Aufgaben der ersten Arbeitswoche" calledElement="Onboarding_Process">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="startEventId" value="StartEvent_1" />
         </camunda:properties>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1q0vanl</bpmn:incoming>
+      <bpmn:incoming>Flow_1yqsom9</bpmn:incoming>
       <bpmn:outgoing>Flow_1l71nox</bpmn:outgoing>
       <bpmn:property id="Property_0vqyvsi" name="__targetRef_placeholder" />
       <bpmn:dataInputAssociation id="DataInputAssociation_12h3i7g">
@@ -78,9 +69,9 @@
       </bpmn:dataInputAssociation>
     </bpmn:callActivity>
     <bpmn:exclusiveGateway id="Gateway_0vx3t9l">
-      <bpmn:incoming>Flow_1qzy0yp</bpmn:incoming>
       <bpmn:incoming>Flow_157f7ur</bpmn:incoming>
-      <bpmn:outgoing>Flow_0gqjk37</bpmn:outgoing>
+      <bpmn:incoming>Flow_1rcp2d5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1yqsom9</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:boundaryEvent id="Event_Boundary_FailedToPrepareFirstWorkingDay" attachedToRef="Activity_1y3blpl">
       <bpmn:outgoing>Flow_1cck4sn</bpmn:outgoing>
@@ -119,6 +110,17 @@
     <bpmn:endEvent id="Event_0tw4j54" name="Mitarbeiter wurde erfolgreich geonboarded">
       <bpmn:incoming>Flow_1l71nox</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1yqsom9" sourceRef="Gateway_0vx3t9l" targetRef="Activity_00g90w4">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:intermediateCatchEvent id="Event_0mv9xcj" name="Erster Arbeitstag ">
+      <bpmn:incoming>Flow_1qzy0yp</bpmn:incoming>
+      <bpmn:outgoing>Flow_1rcp2d5</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0ml90g9">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_1rcp2d5" sourceRef="Event_0mv9xcj" targetRef="Gateway_0vx3t9l" />
   </bpmn:process>
   <bpmn:escalation id="Escalation_94tue9vH" name="test" escalationCode="test" />
   <bpmn:escalation id="Escalation_tGv3yfxn" name="test" escalationCode="test" />
@@ -150,12 +152,6 @@
       <bpmndi:BPMNShape id="Activity_1tbt1e1_di" bpmnElement="Activity_1y3blpl">
         <dc:Bounds x="330" y="260" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1jt8d0u_di" bpmnElement="Event_0mv9xcj">
-        <dc:Bounds x="732" y="282" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="709" y="325" width="82" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1cijamd_di" bpmnElement="Activity_00g90w4">
         <dc:Bounds x="820" y="260" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -178,6 +174,12 @@
         <dc:Bounds x="102" y="352" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="84" y="395" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1jt8d0u_di" bpmnElement="Event_0mv9xcj">
+        <dc:Bounds x="522" y="282" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="499" y="325" width="82" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1ernyfu_di" bpmnElement="Activity_0bfl7nt" isExpanded="true">
@@ -210,11 +212,7 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1qzy0yp_di" bpmnElement="Flow_1qzy0yp">
         <di:waypoint x="430" y="300" />
-        <di:waypoint x="635" y="300" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1q0vanl_di" bpmnElement="Flow_1q0vanl">
-        <di:waypoint x="768" y="300" />
-        <di:waypoint x="820" y="300" />
+        <di:waypoint x="522" y="300" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1l71nox_di" bpmnElement="Flow_1l71nox">
         <di:waypoint x="920" y="300" />
@@ -224,10 +222,6 @@
         <di:waypoint x="430" y="358" />
         <di:waypoint x="430" y="770" />
         <di:waypoint x="452" y="770" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0gqjk37_di" bpmnElement="Flow_0gqjk37">
-        <di:waypoint x="685" y="300" />
-        <di:waypoint x="732" y="300" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_157f7ur_di" bpmnElement="Flow_157f7ur">
         <di:waypoint x="627" y="770" />
@@ -247,6 +241,14 @@
         <di:waypoint x="138" y="370" />
         <di:waypoint x="210" y="370" />
         <di:waypoint x="210" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yqsom9_di" bpmnElement="Flow_1yqsom9">
+        <di:waypoint x="685" y="300" />
+        <di:waypoint x="820" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rcp2d5_di" bpmnElement="Flow_1rcp2d5">
+        <di:waypoint x="558" y="300" />
+        <di:waypoint x="635" y="300" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="TextAnnotation_0xdesjf_di" bpmnElement="TextAnnotation_0xdesjf">
         <dc:Bounds x="500" y="140" width="240" height="40" />

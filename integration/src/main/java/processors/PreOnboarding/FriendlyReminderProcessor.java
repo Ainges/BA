@@ -4,6 +4,7 @@ import CDI.PlaceholderSubstitutor;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.json.Json;
+import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import org.apache.camel.Exchange;
@@ -55,55 +56,68 @@ public class FriendlyReminderProcessor implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
 
-        String message = exchange.getMessage().getBody(String.class);
-        logger.info("Got in FriendlyReminderProcessor: " + message);
+        try {
+            String message = exchange.getMessage().getBody(String.class);
+            logger.info("Got in FriendlyReminderProcessor: " + message);
 
-        // Parse the message as json
-        JsonReader jsonReader = Json.createReader(new StringReader(message));
-        JsonObject jsonObject = jsonReader.readObject();
+            // Parse the message as json
+            JsonReader jsonReader = Json.createReader(new StringReader(message));
+            JsonObject jsonObject = jsonReader.readObject();
 
-        // Extract Data form Message
-        String last_name = jsonObject.getString("last_name");
-        String begin_of_first_working_day = jsonObject.getString("begin_of_first_working_day");
-        String contact_person = jsonObject.getString("contact_person");
-        String documents_needed_for_first_working_day = jsonObject.getString("documents_needed_for_first_working_day");
-        String private_email = jsonObject.getString("private_email");
-        String raw_first_working_day = jsonObject.getString("first_working_day");
-        String contact_person_mail = jsonObject.getString("contact_person_mail");
+            // Extract Data form Message
+            String last_name = jsonObject.getString("last_name");
+            String begin_of_first_working_day = jsonObject.getString("begin_of_first_working_day");
+            String contact_person = jsonObject.getString("contact_person");
 
-        // Format the date
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate first_working_day_asDate = LocalDate.parse(raw_first_working_day, inputFormatter);
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            JsonArray documents_needed_for_first_working_dayJSONArray = jsonObject.getJsonArray("documents_needed_for_first_working_day");
+            StringBuilder documents_needed_for_first_working_dayBuilder = new StringBuilder();
+            for (int i = 0; i < documents_needed_for_first_working_dayJSONArray.size(); i++) {
+                documents_needed_for_first_working_dayBuilder.append("<li>").append(documents_needed_for_first_working_dayJSONArray.getString(i)).append("</li>");
+            }
+            String documents_needed_for_first_working_day = documents_needed_for_first_working_dayBuilder.toString();
 
-        // final date String
-        String first_working_day = first_working_day_asDate.format(outputFormatter);
+            String private_email = jsonObject.getString("private_email");
+            String raw_first_working_day = jsonObject.getString("first_working_day");
+            String contact_person_mail = jsonObject.getString("contact_person_mail");
 
-        HashMap<String, String> ValueMap = new HashMap<>();
+            // Format the date
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate first_working_day_asDate = LocalDate.parse(raw_first_working_day, inputFormatter);
+            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-        ValueMap.put("last_name", last_name);
-        ValueMap.put("begin_of_first_working_day", begin_of_first_working_day);
-        ValueMap.put("contact_person", contact_person);
-        ValueMap.put("documents_needed_for_first_working_day", "<li>"+documents_needed_for_first_working_day+"</li>");
-        ValueMap.put("private_email", private_email);
-        ValueMap.put("first_working_day", first_working_day);
-        ValueMap.put("contact_person_mail", contact_person_mail);
-        ValueMap.put("company_name", company_name);
-        ValueMap.put("company_address", company_address);
+            // final date String
+            String first_working_day = first_working_day_asDate.format(outputFormatter);
 
-        String input = new String(Files.readAllBytes(Paths.get("src/main/resources/mailTemplates/FriendlyReminder.html")));
+            HashMap<String, String> ValueMap = new HashMap<>();
 
-        String output = placeholderSubstitutor.substituteAll(input, ValueMap);
+            ValueMap.put("last_name", last_name);
+            ValueMap.put("begin_of_first_working_day", begin_of_first_working_day + " Uhr");
+            ValueMap.put("contact_person", contact_person);
+            ValueMap.put("documents_needed_for_first_working_day", documents_needed_for_first_working_day);
+            ValueMap.put("private_email", private_email);
+            ValueMap.put("first_working_day", first_working_day);
+            ValueMap.put("contact_person_mail", contact_person_mail);
+            ValueMap.put("company_name", company_name);
+            ValueMap.put("company_address", company_address);
 
-        Map<String, Object> headers = new HashMap<String, Object>();
-        headers.put("From", company_onboarding_email);
-        headers.put("To", private_email);
-        headers.put("Subject", "Bald geht es los! |" + company_name);
-        headers.put("Content-Type", "text/html; charset=utf-8");
+            String input = new String(Files.readAllBytes(Paths.get("src/main/resources/mailTemplates/FriendlyReminder.html")));
 
-        exchange.getMessage().setHeaders(headers);
-        exchange.getMessage().setBody(output);
+            String output = placeholderSubstitutor.substituteAll(input, ValueMap);
 
+            Map<String, Object> headers = new HashMap<String, Object>();
+            headers.put("From", company_onboarding_email);
+            headers.put("To", private_email);
+            headers.put("Subject", "Bald geht es los! |" + company_name);
+            headers.put("Content-Type", "text/html; charset=utf-8");
+
+            headers.put("CamelHttpResponseCode", 200);
+
+            exchange.getMessage().setHeaders(headers);
+            exchange.getMessage().setBody(output);
+        }
+        catch (Exception e){
+            logger.error("Error in FriendlyReminderProcessor: " + e.getMessage());
+        }
 
     }
 }

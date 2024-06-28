@@ -154,11 +154,11 @@ const CreateEmployeeAccount: React.FC<DecouplerProps> = (props) => {
               >
                 <Input.Password />
               </Form.Item>
-              <Space direction="horizontal">
-                <Button type="primary" htmlType="submit">
+              {/* <Space direction="horizontal"> */}
+                <Button type="primary" htmlType="submit" block>
                   Senden
                 </Button>
-              </Space>
+              {/* </Space> */}
             </Form>
           </Card>
         </Col>

@@ -145,10 +145,10 @@
         <dc:Bounds x="-200" y="630" width="600" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_1d3wi46_di" bpmnElement="TextAnnotation_1d3wi46">
-        <dc:Bounds x="550" y="-100" width="190" height="70" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0hbgey9_di" bpmnElement="Association_0hbgey9">
+        <di:waypoint x="576" y="150" />
+        <di:waypoint x="605" y="220" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_00vc4i9_di" bpmnElement="DataOutputAssociation_00vc4i9">
         <di:waypoint x="-86" y="425" />
         <di:waypoint x="103" y="105" />
@@ -161,14 +161,14 @@
         <di:waypoint x="131" y="105" />
         <di:waypoint x="263" y="400" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_0hbgey9_di" bpmnElement="Association_0hbgey9">
-        <di:waypoint x="568" y="70" />
-        <di:waypoint x="589" y="-30" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0cku051_di" bpmnElement="Flow_0cku051">
         <di:waypoint x="120" y="458" />
         <di:waypoint x="120" y="630" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1d3wi46_di" bpmnElement="TextAnnotation_1d3wi46">
+        <dc:Bounds x="570" y="220" width="220" height="30" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

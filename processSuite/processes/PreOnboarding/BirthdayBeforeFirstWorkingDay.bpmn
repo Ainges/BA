@@ -43,10 +43,16 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="payload" value="{&#10;    &#34;first_working_day&#34;:token.current.OnboardingData.first_working_day,&#10;    &#34;birth_date&#34;: token.current.OnboardingData.birth_date&#10;}" />
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_newEmployeeData" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1avaz0k</bpmn:incoming>
       <bpmn:outgoing>Flow_110ti7k</bpmn:outgoing>
+      <bpmn:property id="Property_0emmpi4" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_15kfpcq">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0emmpi4</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:sequenceFlow id="Flow_110ti7k" sourceRef="Activity_0auig7p" targetRef="Event_1r751sf" />
     <bpmn:sequenceFlow id="Flow_0zgdox5" sourceRef="Event_1r751sf" targetRef="Gateway_141wu49" />
@@ -74,6 +80,11 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0thhn1p</bpmn:incoming>
       <bpmn:outgoing>Flow_00p1fzd</bpmn:outgoing>
+      <bpmn:property id="Property_1wzugyb" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1dssrk9">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1wzugyb</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:userTask>
     <bpmn:userTask id="SmallAttentionOrganisation" name="Aufmerksamkeit Organisieren und zukommen lassen">
       <bpmn:extensionElements>
@@ -84,11 +95,21 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_14f8hc7</bpmn:incoming>
       <bpmn:outgoing>Flow_19f4yhv</bpmn:outgoing>
+      <bpmn:property id="Property_0aasr3k" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_01p3ybo">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0aasr3k</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:userTask>
     <bpmn:startEvent id="Event_1swf8d0" name="Geburtstagsfrage muss geklärt werden">
       <bpmn:outgoing>Flow_1avaz0k</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1u4yecs">
+        <bpmn:targetRef>DataObjectReference_newEmployeeData</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_1avaz0k" sourceRef="Event_1swf8d0" targetRef="Activity_0auig7p" />
+    <bpmn:dataObjectReference id="DataObjectReference_newEmployeeData" name="Daten zu neuem Mitarbeiter" dataObjectRef="DataObject_1jtl0qt" />
+    <bpmn:dataObject id="DataObject_1jtl0qt" />
   </bpmn:process>
   <bpmn:message id="Message_YMfNr6OO" name="Message_Receive_BirthdayCalculation" />
   <bpmn:message id="Message_ugx0EenC" name="Message_Send_BirthdayCalculation" />
@@ -136,6 +157,12 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <dc:Bounds x="-208" y="12" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="-232" y="55" width="85" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_11otp61_di" bpmnElement="DataObjectReference_newEmployeeData">
+        <dc:Bounds x="42" y="-325" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="19" y="-362.5" width="81" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_110ti7k_di" bpmnElement="Flow_110ti7k">
@@ -202,8 +229,26 @@ Sollte der Geburstag aber schon einen Monat zurück liegen, wird nichts mehr unt
         <di:waypoint x="235" y="480" />
         <di:waypoint x="235" y="48" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="248" y="272" width="44" height="14" />
+          <dc:Bounds x="248" y="223" width="44" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1u4yecs_di" bpmnElement="DataOutputAssociation_1u4yecs">
+        <di:waypoint x="-179" y="16" />
+        <di:waypoint x="43" y="-275" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_15kfpcq_di" bpmnElement="DataInputAssociation_15kfpcq">
+        <di:waypoint x="60" y="-275" />
+        <di:waypoint x="60" y="-10" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_01p3ybo_di" bpmnElement="DataInputAssociation_01p3ybo">
+        <di:waypoint x="78" y="-293" />
+        <di:waypoint x="471" y="-148" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1dssrk9_di" bpmnElement="DataInputAssociation_1dssrk9">
+        <di:waypoint x="78" y="-284" />
+        <di:waypoint x="160" y="-210" />
+        <di:waypoint x="160" y="180" />
+        <di:waypoint x="470" y="180" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

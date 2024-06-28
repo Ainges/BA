@@ -40,6 +40,10 @@
         <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
         <bpmn:targetRef>Property_1c02cu2</bpmn:targetRef>
       </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_0y42q31">
+        <bpmn:sourceRef>DataObjectReference_FirstWorkingDayInfo</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1c02cu2</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:userTask id="Activity_0krkkdp" name="Eckpunkte für ersten Arbeitstag definieren">
       <bpmn:documentation>Inhalt: 
@@ -60,6 +64,9 @@
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1u4g4ip</bpmn:incoming>
       <bpmn:outgoing>Flow_1p7g20a</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0kmwznv">
+        <bpmn:targetRef>DataObjectReference_FirstWorkingDayInfo</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:userTask>
     <bpmn:parallelGateway id="Gateway_1p2w7h2">
       <bpmn:incoming>Flow_1b001o1</bpmn:incoming>
@@ -101,18 +108,24 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="payload" value="token.current" />
-          <camunda:property name="engine.runPreScript" value="return {&#10;  &#34;newEmployeeData&#34;:dataObjects.DataObjectReference_newEmployeeData,&#10;  &#34;InfoForFirstWorkingDay_send&#34;: token.current.InfoForFirstWorkingDay_send&#10;};" />
+          <camunda:property name="engine.runPreScript" value="return {&#10;  &#34;newEmployeeData&#34;:dataObjects.DataObjectReference_newEmployeeData,&#10;  &#34;InfoForFirstWorkingDay_send&#34;: dataObjects.DataObjectReference_FirstWorkingDayInfo&#10;};" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_17315wo</bpmn:incoming>
       <bpmn:outgoing>Flow_0l771zn</bpmn:outgoing>
       <bpmn:property id="Property_0xawc3u" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_03fov3n">
+        <bpmn:sourceRef>DataObjectReference_FirstWorkingDayInfo</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0xawc3u</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:endEvent id="Event_177vyml" name="Mitarbeiter erfolgreich informiert">
       <bpmn:incoming>Flow_0l771zn</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:dataObjectReference id="DataObjectReference_newEmployeeData" name="Daten zu neuem Mitarbeiter" dataObjectRef="DataObject_1klm0yw" />
     <bpmn:dataObject id="DataObject_1klm0yw" />
+    <bpmn:dataObjectReference id="DataObjectReference_FirstWorkingDayInfo" name="Eckpunkte für ersten Arbeitstag" dataObjectRef="DataObject_0bdc46v" />
+    <bpmn:dataObject id="DataObject_0bdc46v" />
   </bpmn:process>
   <bpmn:message id="Message_09wrc5j" name="Message_Send_InfoForFirstWorkingDay" />
   <bpmn:message id="Message_LKtkj70V" name="Message_Send_FirstWelcomeMessage" />
@@ -171,6 +184,12 @@
           <dc:Bounds x="229" y="8" width="81" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0jsy41n_di" bpmnElement="DataObjectReference_FirstWorkingDayInfo">
+        <dc:Bounds x="662" y="45" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="639" y="15" width="83" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1b001o1_di" bpmnElement="Flow_1b001o1">
         <di:waypoint x="188" y="250" />
         <di:waypoint x="265" y="250" />
@@ -215,6 +234,18 @@
         <dc:Bounds x="5" y="570" width="1445" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_093bccf_di" bpmnElement="DataOutputAssociation_093bccf">
+        <di:waypoint x="179" y="234" />
+        <di:waypoint x="257" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0a1hrsz_di" bpmnElement="DataInputAssociation_0a1hrsz">
+        <di:waypoint x="288" y="75" />
+        <di:waypoint x="601" y="158" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0hbqmoh_di" bpmnElement="DataInputAssociation_0hbqmoh">
+        <di:waypoint x="283" y="95" />
+        <di:waypoint x="375" y="271" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1s9r254_di" bpmnElement="Flow_1s9r254">
         <di:waypoint x="450" y="350" />
         <di:waypoint x="450" y="570" />
@@ -227,17 +258,17 @@
         <di:waypoint x="1130" y="290" />
         <di:waypoint x="1130" y="570" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_0hbqmoh_di" bpmnElement="DataInputAssociation_0hbqmoh">
-        <di:waypoint x="283" y="95" />
-        <di:waypoint x="375" y="271" />
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0kmwznv_di" bpmnElement="DataOutputAssociation_0kmwznv">
+        <di:waypoint x="524" y="151" />
+        <di:waypoint x="662" y="78" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_0a1hrsz_di" bpmnElement="DataInputAssociation_0a1hrsz">
-        <di:waypoint x="288" y="75" />
-        <di:waypoint x="601" y="158" />
+      <bpmndi:BPMNEdge id="DataInputAssociation_0y42q31_di" bpmnElement="DataInputAssociation_0y42q31">
+        <di:waypoint x="680" y="95" />
+        <di:waypoint x="680" y="150" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_093bccf_di" bpmnElement="DataOutputAssociation_093bccf">
-        <di:waypoint x="179" y="234" />
-        <di:waypoint x="257" y="95" />
+      <bpmndi:BPMNEdge id="DataInputAssociation_03fov3n_di" bpmnElement="DataInputAssociation_03fov3n">
+        <di:waypoint x="698" y="76" />
+        <di:waypoint x="1100" y="210" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
