@@ -7,6 +7,7 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,9 @@ import java.time.format.DateTimeFormatter;
 public class CalculateBrithdayProcessor implements Processor {
 
     Logger logger = LoggerFactory.getLogger(CalculateBrithdayProcessor.class);
+
+    @ConfigProperty(name = "data.company.birthdayBufferInDays")
+    int birthdayBufferInDays;
 
     @Override
     public void process(Exchange exchange) throws Exception {
@@ -44,8 +48,8 @@ public class CalculateBrithdayProcessor implements Processor {
         LocalDate first_working_day_date = LocalDate.parse(first_working_day, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate birth_date_date = LocalDate.parse(birth_date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-        // The Reason for the minusDays(5) is explained in the process.
-        LocalDate today_with_buffer = LocalDate.now().minusDays(5);
+        // Check appöication.properties for explanation
+        LocalDate today_with_buffer = LocalDate.now().minusDays(birthdayBufferInDays);
 
         LocalDate nextBirthday = birth_date_date.withYear(today_with_buffer.getYear());
         JSONObject response = new JSONObject();

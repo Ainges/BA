@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
     <bpmn:participant id="Participant_0px403d" name="MovingRequest" processRef="MovingRequest_Process" />
     <bpmn:participant id="Participant_0z4wotw" name="PreOnboarding_SCIL" />
-    <bpmn:participant id="Participant_19hm2ud" name="Wohnungssuche Prozess" />
+    <bpmn:participant id="Participant_19hm2ud" name="Umzugshilfe Prozess" />
     <bpmn:messageFlow id="Flow_1otrrzx" name="Nachfrage an Mitarbeiter" sourceRef="Activity_1eyq305" targetRef="Participant_0z4wotw" />
     <bpmn:messageFlow id="Flow_1e3y5ml" name="Antwort von Mitarbeiter" sourceRef="Participant_0z4wotw" targetRef="Event_17whont" />
     <bpmn:messageFlow id="Flow_1wlzpcg" name="Informieren" sourceRef="Event_1d8bbu9" targetRef="Participant_19hm2ud" />
@@ -60,7 +60,7 @@
     <bpmn:sequenceFlow id="Flow_0b711zh" sourceRef="Gateway_0e9psvj" targetRef="Event_1cannnv" />
     <bpmn:sequenceFlow id="Flow_0hvkfna" sourceRef="Activity_1eyq305" targetRef="Gateway_0e9psvj" />
     <bpmn:sendTask id="Activity_1eyq305" name="Mitarbeiter fragen ob durch den Jobwechsel ein Umzug ansteht" messageRef="Message_Jkc2PIH2">
-      <bpmn:documentation></bpmn:documentation>
+      <bpmn:documentation />
       <bpmn:incoming>Flow_10gbzn5</bpmn:incoming>
       <bpmn:outgoing>Flow_0hvkfna</bpmn:outgoing>
       <bpmn:property id="Property_0jahgm4" name="__targetRef_placeholder" />
@@ -220,6 +220,14 @@
         <dc:Bounds x="980" y="710" width="780" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataInputAssociation_02k7uab_di" bpmnElement="DataInputAssociation_02k7uab">
+        <di:waypoint x="398" y="207" />
+        <di:waypoint x="489" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1citl91_di" bpmnElement="DataOutputAssociation_1citl91">
+        <di:waypoint x="281" y="316" />
+        <di:waypoint x="365" y="215" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1otrrzx_di" bpmnElement="Flow_1otrrzx">
         <di:waypoint x="500" y="370" />
         <di:waypoint x="500" y="710" />
@@ -240,14 +248,6 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1122" y="544" width="56" height="14" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_02k7uab_di" bpmnElement="DataInputAssociation_02k7uab">
-        <di:waypoint x="398" y="207" />
-        <di:waypoint x="489" y="290" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_1citl91_di" bpmnElement="DataOutputAssociation_1citl91">
-        <di:waypoint x="281" y="316" />
-        <di:waypoint x="365" y="215" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

@@ -147,7 +147,7 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="customForm" value="DiscussInductionPlanDecoupler" />
-          <camunda:property name="engine.runPreScript" value="return {&#10;    inductionPlan: dataObjects.DataObjectReference_InductionPlan.inductionPlan, &#10;    OnboardingData: dataObjects.DataObjectReference_onboardingData.OnboardingData&#10;}" />
+          <camunda:property name="engine.runPreScript" value="return {&#10;    inductionPlan: dataObjects.DataObjectReference_InductionPlan, &#10;    OnboardingData: dataObjects.DataObjectReference_onboardingData.OnboardingData&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0wni2gw</bpmn:incoming>
@@ -212,7 +212,7 @@
       <bpmn:incoming>Flow_0n8p4ux</bpmn:incoming>
       <bpmn:outgoing>Flow_1pin1b8</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:intermediateCatchEvent id="Event_0pjzwl5" name="Tag für erstes Mitarbeitergespräch erreicht">
+    <bpmn:intermediateCatchEvent id="Event_0pjzwl5" name="Tag für erstes Mitarbeiter-gespräch erreicht">
       <bpmn:incoming>Flow_1pin1b8</bpmn:incoming>
       <bpmn:outgoing>Flow_0jwxzpn</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1end60u">
@@ -248,7 +248,7 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="customForm" value="GetInductionPlanDoneDecoupler" />
-          <camunda:property name="engine.runPreScript" value="return dataObjects.DataObjectReference_InductionPlan.inductionPlan" />
+          <camunda:property name="engine.runPreScript" value="return dataObjects.DataObjectReference_InductionPlan" />
           <camunda:property name="engine.assignUserIds" value="dataObjects.DataObjectReference_companyEmailOfNewEmployee.companyEmailOfNewEmployee" />
         </camunda:properties>
       </bpmn:extensionElements>
@@ -412,7 +412,7 @@
       <bpmndi:BPMNShape id="BPMNShape_0p5up4d" bpmnElement="Event_0pjzwl5">
         <dc:Bounds x="1512" y="-178" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1487" y="-228" width="86" height="40" />
+          <dc:Bounds x="1488" y="-228" width="85" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0wfqpk4_di" bpmnElement="Gateway_1p9atc1">
