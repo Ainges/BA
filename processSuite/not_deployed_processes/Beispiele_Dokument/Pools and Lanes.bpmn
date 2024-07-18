@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Pools_and_Lanes_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
+  <bpmn:collaboration id="Collaboration_1cidyxu" name="">
+    <bpmn:participant id="Participant_0px403d" name="Pool" processRef="Pools_and_Lanes_Process" />
+    <bpmn:participant id="Participant_0zeuulg" name="Pool 2" processRef="Process_0di4s74" />
+  </bpmn:collaboration>
+  <bpmn:process id="Pools_and_Lanes_Process" name="Pool" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_0mopp6t" name="Lane 1" />
+      <bpmn:lane id="Lane_13yr7ku" name="Lane 2" />
+    </bpmn:laneSet>
+  </bpmn:process>
+  <bpmn:process id="Process_0di4s74" name="Pool 2" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_03d5twd">
+      <bpmn:lane id="Lane_1p74g03" name="Lane 3" />
+    </bpmn:laneSet>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
+      <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
+        <dc:Bounds x="5" y="120" width="885" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0mopp6t_di" bpmnElement="Lane_0mopp6t" isHorizontal="true">
+        <dc:Bounds x="35" y="120" width="855" height="130" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_13yr7ku_di" bpmnElement="Lane_13yr7ku" isHorizontal="true">
+        <dc:Bounds x="35" y="250" width="855" height="120" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_0zeuulg_di" bpmnElement="Participant_0zeuulg" isHorizontal="true">
+        <dc:Bounds x="5" y="420" width="885" height="170" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1p74g03_di" bpmnElement="Lane_1p74g03" isHorizontal="true">
+        <dc:Bounds x="35" y="420" width="855" height="170" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
