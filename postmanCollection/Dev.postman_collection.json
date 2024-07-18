@@ -1,0 +1,596 @@
+{
+	"info": {
+		"_postman_id": "e4b9aebb-2404-4fb6-b43b-3e292b63906b",
+		"name": "Dev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21018324"
+	},
+	"item": [
+		{
+			"name": "Camel",
+			"item": [
+				{
+					"name": "Camel REST Create Authority User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user1@test.de\",\n    \"password\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/authority/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authority",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Came Create Canonical User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"peterlustig@test.de\",\n    \"password\": \"test\",\n    \"first_name\": \"Peter\",\n    \"last_name\": \"Lustig\",\n    \"position\": \"Comedian\",\n    \"private_email\": \"private_peterLustig@test,de\",\n    \"birth_date\":\"2000-12-24\",\n    \"employment_status\": \"Vollzeit\",\n    \"postal_address\": \"Löwenzahnweg 1, 12345 Musterstadt\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/canonical/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"canonical",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Camel Create Claim",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Vorgesetzter\",\n    \"type\": \"String\",\n    \"description\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/authority/claim/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authority",
+								"claim",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Birthday Calculation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_working_day\":\"02-05-2024\",\n    \"birth_date\": \"02-05-2000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/onboarding/preonboarding/BirthdayCalculation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"onboarding",
+								"preonboarding",
+								"BirthdayCalculation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check availability of Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/canonical/user/checkmail/jim.halpert@dundermifflin.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"canonical",
+								"user",
+								"checkmail",
+								"jim.halpert@dundermifflin.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Available Equipment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/onboarding/preonboarding/AvailableEquipment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"onboarding",
+								"preonboarding",
+								"AvailableEquipment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/canonical/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"canonical",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/canonical/user/byMail/michael.scott@dundermifflin.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"canonical",
+								"user",
+								"byMail",
+								"michael.scott@dundermifflin.com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authority Direct Call",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6ImF0K2p3dCIsImtpZCI6ImdZMUwwclRMVTlKSWRVRC1lRF84UU5ER09raFdNSVBnVU02RWwtOFl1clEifQ.eyJ1cGVfX2Nhbl9tYW5hZ2VfdXNlcnMiOnRydWUsImp0aSI6ImZjS3d6Uzl2bHk0OUlVdXd2VTMzZCIsInN1YiI6ImNhbWVsIiwiaWF0IjoxNzE1Mjc1ODY1LCJleHAiOjE3MTUyNzk0NjUsInNjb3BlIjoidXBlX2FkbWluIiwiY2xpZW50X2lkIjoiY2FtZWwiLCJpc3MiOiJodHRwOi8vYXV0aG9yaXR5OjExNTYwLyIsImF1ZCI6ImNhbWVsIn0.TcuNcx8ejOKtnmpl3inzFJ13mowYnAuDn0eFttwaRa_lUk-ePClAee-ypJHo_6PLFRBf_G9-bwiF3IFZuMk6EYfETcfGwCV8K0w__1m9Tgau6fBK_XLkwXO-FXU7Eqoe-jPDqDX9LxVd-BQAYKjpxYE_ZZ-ZWsSeyT6767XVhxeRSsMaflh7l7EIgdCxZqgQ-MSTG8mbLSc-ILGQjYoW07RQEfPV95QfpQKxQWXPuNa0HUBFkHOCV2xiBS4An1t2t530TaMJl0pFOWXymBCYCGlmgobtYsE9zdxXIFusEbkDMBehiDDGJF1KamATNUEZWYB-UgEL-Nh201T5b94D0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"Test.User@5Minds.de\",\n    \"password\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://authority:11560/acr/username_password/admin/user/email/create",
+							"protocol": "http",
+							"host": [
+								"authority"
+							],
+							"port": "11560",
+							"path": [
+								"acr",
+								"username_password",
+								"admin",
+								"user",
+								"email",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Claim",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6ImF0K2p3dCIsImtpZCI6ImdZMUwwclRMVTlKSWRVRC1lRF84UU5ER09raFdNSVBnVU02RWwtOFl1clEifQ.eyJ1cGVfX2Nhbl9tYW5hZ2VfdXNlcnMiOnRydWUsImp0aSI6ImZjS3d6Uzl2bHk0OUlVdXd2VTMzZCIsInN1YiI6ImNhbWVsIiwiaWF0IjoxNzE1Mjc1ODY1LCJleHAiOjE3MTUyNzk0NjUsInNjb3BlIjoidXBlX2FkbWluIiwiY2xpZW50X2lkIjoiY2FtZWwiLCJpc3MiOiJodHRwOi8vYXV0aG9yaXR5OjExNTYwLyIsImF1ZCI6ImNhbWVsIn0.TcuNcx8ejOKtnmpl3inzFJ13mowYnAuDn0eFttwaRa_lUk-ePClAee-ypJHo_6PLFRBf_G9-bwiF3IFZuMk6EYfETcfGwCV8K0w__1m9Tgau6fBK_XLkwXO-FXU7Eqoe-jPDqDX9LxVd-BQAYKjpxYE_ZZ-ZWsSeyT6767XVhxeRSsMaflh7l7EIgdCxZqgQ-MSTG8mbLSc-ILGQjYoW07RQEfPV95QfpQKxQWXPuNa0HUBFkHOCV2xiBS4An1t2t530TaMJl0pFOWXymBCYCGlmgobtYsE9zdxXIFusEbkDMBehiDDGJF1KamATNUEZWYB-UgEL-Nh201T5b94D0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"NeuerMitarbeiter\",\n    \"type\": \"String\",\n    \"description\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://authority:11560/acr/username_password/admin/claim/create",
+							"protocol": "http",
+							"host": [
+								"authority"
+							],
+							"port": "11560",
+							"path": [
+								"acr",
+								"username_password",
+								"admin",
+								"claim",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Claim to Scope",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6ImF0K2p3dCIsImtpZCI6ImdZMUwwclRMVTlKSWRVRC1lRF84UU5ER09raFdNSVBnVU02RWwtOFl1clEifQ.eyJ1cGVfX2Nhbl9tYW5hZ2VfdXNlcnMiOnRydWUsImp0aSI6ImZjS3d6Uzl2bHk0OUlVdXd2VTMzZCIsInN1YiI6ImNhbWVsIiwiaWF0IjoxNzE1Mjc1ODY1LCJleHAiOjE3MTUyNzk0NjUsInNjb3BlIjoidXBlX2FkbWluIiwiY2xpZW50X2lkIjoiY2FtZWwiLCJpc3MiOiJodHRwOi8vYXV0aG9yaXR5OjExNTYwLyIsImF1ZCI6ImNhbWVsIn0.TcuNcx8ejOKtnmpl3inzFJ13mowYnAuDn0eFttwaRa_lUk-ePClAee-ypJHo_6PLFRBf_G9-bwiF3IFZuMk6EYfETcfGwCV8K0w__1m9Tgau6fBK_XLkwXO-FXU7Eqoe-jPDqDX9LxVd-BQAYKjpxYE_ZZ-ZWsSeyT6767XVhxeRSsMaflh7l7EIgdCxZqgQ-MSTG8mbLSc-ILGQjYoW07RQEfPV95QfpQKxQWXPuNa0HUBFkHOCV2xiBS4An1t2t530TaMJl0pFOWXymBCYCGlmgobtYsE9zdxXIFusEbkDMBehiDDGJF1KamATNUEZWYB-UgEL-Nh201T5b94D0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"claimName\": \"NeuerMitarbeiter\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://authority:11560/acr/username_password/admin/scope/engine_read/add/claim",
+							"protocol": "http",
+							"host": [
+								"authority"
+							],
+							"port": "11560",
+							"path": [
+								"acr",
+								"username_password",
+								"admin",
+								"scope",
+								"engine_read",
+								"add",
+								"claim"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add User to Scope",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6ImF0K2p3dCIsImtpZCI6InhkeUxYZmNyR0Fpb1NPX2g1Y2xvMnhUM1NxeV9xLW9INnc4RmRVZXZheHcifQ.eyJ1cGVfX2Nhbl9tYW5hZ2VfdXNlcnMiOnRydWUsImp0aSI6IjhXOGk5VmFmeWxDV0JBSkk5OEc3eCIsInN1YiI6ImNhbWVsIiwiaWF0IjoxNzE1NTkwOTc0LCJleHAiOjE3MTU1OTQ1NzQsInNjb3BlIjoidXBlX2FkbWluIiwiY2xpZW50X2lkIjoiY2FtZWwiLCJpc3MiOiJodHRwOi8vYXV0aG9yaXR5OjExNTYwLyIsImF1ZCI6ImNhbWVsIn0.h94sD5ETWMsg6FgZce5JrqKXbgXPH_b0smvSXFMfF3e3zDD_lcybOgMiCHl8aeXve94Dx0eCs5AbAvHnttGTgFYXlvNfvG6T5ET-VdZN1txSJy-pxiy1b5ZdHamqOYkZO_L6P2JOm6eis9VBE-GhzGRhW7hyYoo2mYHmDjSDh_EhdQowzw2gymX_b6rW7htGtZxnQ5bBpRuV4SeeBSoY75LbAlAu2Oeqdh54MkkDIkIXemZrJ-GJlfV7_Z2Vk20D448vq3UNiltkH6PUUrMMSh_1VJxZvBR5exqVv8_eVPWVjCeeSziqIyceK9pS6mBE8YWfTthr-42EfvkniFB4vw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"scopeName\": \"engine_read\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://authority:11560/acr/username_password/admin/user/jim.halpert@dundermifflin.com/add/scope",
+							"protocol": "http",
+							"host": [
+								"authority"
+							],
+							"port": "11560",
+							"path": [
+								"acr",
+								"username_password",
+								"admin",
+								"user",
+								"jim.halpert@dundermifflin.com",
+								"add",
+								"scope"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "test",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"peterlustig@test.de\",\n    \"password\": \"test\",\n    \"first_name\": \"Peter\",\n    \"last_name\": \"Lustig\",\n    \"position\": \"Comedian\",\n    \"private_email\": \"private_peterLustig@test,de\",\n    \"birth_date\":\"2000-12-24\",\n    \"employment_status\": \"Vollzeit\",\n    \"postal_address\": \"Löwenzahnweg 1, 12345 Musterstadt\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/canonical/user/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"canonical",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Init one user with SCIL Process",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ZHVtbXlfdG9rZW4=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"peterlustig@test.de\",\n    \"password\": \"test\",\n    \"first_name\": \"Peter\",\n    \"last_name\": \"Lustig\",\n    \"position\": \"Comedian\",\n    \"private_email\": \"private_peterLustig@test,de\",\n    \"birth_date\":\"2000-12-24\",\n    \"employment_status\": \"Vollzeit\",\n    \"postal_address\": \"Löwenzahnweg 1, 12345 Musterstadt\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/atlas_engine/api/v1/messages/init_users/trigger",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"atlas_engine",
+						"api",
+						"v1",
+						"messages",
+						"init_users",
+						"trigger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Init Users with SCIL Process",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ZHVtbXlfdG9rZW4=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"email\": \"michael.scott@dundermifflin.com\",\n        \"password\": \"test\",\n        \"first_name\": \"Michael\",\n        \"last_name\": \"Scott\",\n        \"position\": \"Regionalleiter\",\n        \"private_email\": \"michael.scott@private.com\",\n        \"birth_date\": \"1967-03-15\",\n        \"employment_status\": \"Vollzeit\",\n        \"postal_address\": \"123 Dunder Mifflin St, Scranton, PA 18501\"\n    },\n    {\n        \"email\": \"jim.halpert@dundermifflin.com\",\n        \"password\": \"test\",\n        \"first_name\": \"Jim\",\n        \"last_name\": \"Halpert\",\n        \"position\": \"Vertriebsmitarbeiter\",\n        \"private_email\": \"jim.halpert@private.com\",\n        \"birth_date\": \"1978-10-01\",\n        \"employment_status\": \"Vollzeit\",\n        \"postal_address\": \"84 Market St, Scranton, PA 18508\"\n    },\n    {\n        \"email\": \"pam.beesly@dundermifflin.com\",\n        \"password\": \"test\",\n        \"first_name\": \"Pam\",\n        \"last_name\": \"Beesly\",\n        \"position\": \"Empfangsmitarbeiterin\",\n        \"private_email\": \"pam.beesly@private.com\",\n        \"birth_date\": \"1981-11-24\",\n        \"employment_status\": \"Vollzeit\",\n        \"postal_address\": \"15 Park Ave, Scranton, PA 18509\"\n    },\n    {\n        \"email\": \"dwight.schrute@dundermifflin.com\",\n        \"password\": \"test\",\n        \"first_name\": \"Dwight\",\n        \"last_name\": \"Schrute\",\n        \"position\": \"Assistent des Regionalleiters\",\n        \"private_email\": \"dwight.schrute@private.com\",\n        \"birth_date\": \"1976-02-25\",\n        \"employment_status\": \"Vollzeit\",\n        \"postal_address\": \"57 Paper St, Scranton, PA 18510\"\n    },\n    {\n        \"email\": \"angela.martin@dundermifflin.com\",\n        \"password\": \"test\",\n        \"first_name\": \"Angela\",\n        \"last_name\": \"Martin\",\n        \"position\": \"Leiterin des Partyplanungsausschusses\",\n        \"private_email\": \"angela.martin@private.com\",\n        \"birth_date\": \"1979-09-07\",\n        \"employment_status\": \"Vollzeit\",\n        \"postal_address\": \"39 Cherry Ln, Scranton, PA 18512\"\n    },\n    {\n        \"email\": \"stanley.hudson@dundermifflin.com\",\n        \"password\": \"test\",\n        \"first_name\": \"Stanley\",\n        \"last_name\": \"Hudson\",\n        \"position\": \"Vertriebsmitarbeiter\",\n        \"private_email\": \"stanley.hudson@private.com\",\n        \"birth_date\": \"1958-02-19\",\n        \"employment_status\": \"Vollzeit\",\n        \"postal_address\": \"22 Franklin St, Scranton, PA 18514\"\n    },\n    {\n        \"email\": \"phyllis.vance@dundermifflin.com\",\n        \"password\": \"test\",\n        \"first_name\": \"Phyllis\",\n        \"last_name\": \"Vance\",\n        \"position\": \"Vertriebsmitarbeiterin\",\n        \"private_email\": \"phyllis.vance@private.com\",\n        \"birth_date\": \"1964-07-31\",\n        \"employment_status\": \"Vollzeit\",\n        \"postal_address\": \"66 Oak St, Scranton, PA 18516\"\n    }\n]\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/atlas_engine/api/v1/messages/init_users/trigger",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"atlas_engine",
+						"api",
+						"v1",
+						"messages",
+						"init_users",
+						"trigger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test InformNewUserAboutAccount",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"max.mustermann@dundermifflin.com\",\n  \"password\": \"test123123\",\n  \"OnboardingData\": {\n    \"first_working_day\": \"2024-05-16\",\n    \"hours_per_week\": 40,\n    \"first_name\": \"Max\",\n    \"last_name\": \"Mustermann\",\n    \"private_email\": \"max@mustermann.de\",\n    \"position\": \"HR\",\n    \"birth_date\": \"2000-05-23\",\n    \"employment_status\": \"Vollzeit\",\n    \"postal_address\": \"Musterstraße 12, 12345 Musterstadt\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/onboarding/preonboarding/InformNewUserAboutAccount",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"onboarding",
+						"preonboarding",
+						"InformNewUserAboutAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://authority:11560/acr/username_password/admin/scope/create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6ImF0K2p3dCIsImtpZCI6IkItT0NoZXItTE5odlpzTWstNGhRSVVtSDJodHd0aUU4ZVYzcmFBT284aHMifQ.eyJ1cGVfX2Nhbl9tYW5hZ2VfdXNlcnMiOnRydWUsImp0aSI6ImZPS1E1ZXh2bHo2TU00ckZFSmFIRiIsInN1YiI6ImNhbWVsIiwiaWF0IjoxNzE2MTM5ODY2LCJleHAiOjE3MTYxNDM0NjYsInNjb3BlIjoidXBlX2FkbWluIiwiY2xpZW50X2lkIjoiY2FtZWwiLCJpc3MiOiJodHRwOi8vYXV0aG9yaXR5OjExNTYwLyIsImF1ZCI6ImNhbWVsIn0.XbNMU5V924dCxJVkHVDXBscivncH8KYSi7cqLgFKCgv7Ew3miVnNdVFYKZDPImrj64QsH2I1C7Zul065n-vlkM9iePjGkP4QiofqIjE1jIhlnoQS2Qe1svZlVu7OcJj_VcJMDMK1HP1Q82bmZcIdPq-TIkhAP1l08KRYXo25qdt5G9ZTubulECPmToJsNjGDWLrL0jY-5lRWpG8mOrUQ8l_9BiTmdqLv-ySlCwDQAXnt4YWzOQ5dPYkrQbENR-ocD51dzKylJCzrmjLieaVjpibwsi6EU6De0ld0zWrJaSqtK1K1mkhvipjIC4wJMJvQzlTDzoPrDN3xHTS6jZexRA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"test_scope\",\n    \"claimNames\": [\"Admin\", \"Vorgesetzter\", \"Mitarbeiter\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://authority:11560/acr/username_password/admin/scope/create",
+					"protocol": "http",
+					"host": [
+						"authority"
+					],
+					"port": "11560",
+					"path": [
+						"acr",
+						"username_password",
+						"admin",
+						"scope",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

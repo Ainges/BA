@@ -1,0 +1,53 @@
+{
+	"info": {
+		"_postman_id": "cc381a9b-3f79-4fca-a009-a731d1cbb344",
+		"name": "OnboardingTop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21018324"
+	},
+	"item": [
+		{
+			"name": "Start New Onboarding Process",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ZHVtbXlfdG9rZW4=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"first_working_day\": \"2024-06-16\",\n\"hours_per_week\":40,\n\"first_name\": \"Max\",\n\"last_name\": \"Mustermann\",\n\"private_email\": \"max@mustermann.de\",\n\"position\": \"HR\",\n\"birth_date\": \"2000-06-10\",\n\"employment_status\": \"Vollzeit\",\n\"postal_address\": \"Musterstraße 12, 12345 Musterstadt\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/atlas_engine/api/v1/messages/employeeHasSignedContract/trigger",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"atlas_engine",
+						"api",
+						"v1",
+						"messages",
+						"employeeHasSignedContract",
+						"trigger"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
