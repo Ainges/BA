@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="EscalationTest_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
+  <bpmn:collaboration id="Collaboration_1cidyxu" name="">
+    <bpmn:participant id="Participant_0px403d" name="EscalationTest" processRef="EscalationTest_Process" />
+  </bpmn:collaboration>
+  <bpmn:process id="EscalationTest_Process" name="EscalationTest" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_1xzf0d3" name="Lane">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1v3qyxg</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0j2y7y7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_08ur2pk</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1dx6bf0</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1" name="Start">
+      <bpmn:outgoing>Flow_0di1923</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0di1923" sourceRef="StartEvent_1" targetRef="Activity_0j2y7y7" />
+    <bpmn:endEvent id="Event_1v3qyxg">
+      <bpmn:incoming>Flow_1ymviwv</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1ymviwv" sourceRef="Activity_0j2y7y7" targetRef="Event_1v3qyxg" />
+    <bpmn:callActivity id="Activity_0j2y7y7" name="test" calledElement="EscalationTestInternal_Process">
+      <bpmn:incoming>Flow_0di1923</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ymviwv</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_08ur2pk">
+      <bpmn:incoming>Flow_07ue16d</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_07ue16d" sourceRef="Event_1dx6bf0" targetRef="Event_08ur2pk" />
+    <bpmn:boundaryEvent id="Event_1dx6bf0" name="Test" attachedToRef="Activity_0j2y7y7">
+      <bpmn:outgoing>Flow_07ue16d</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_0cntk9c" escalationRef="Escalation_eBxaTSNi" />
+    </bpmn:boundaryEvent>
+  </bpmn:process>
+  <bpmn:escalation id="Escalation_cmUI6UuY" name="test" escalationCode="test" />
+  <bpmn:error id="Error_jJKWUuiP" errorCode="test" camunda:errorMessage="test" />
+  <bpmn:escalation id="Escalation_eBxaTSNi" name="test" escalationCode="test" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
+      <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
+        <dc:Bounds x="5" y="4" width="885" height="346" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
+        <dc:Bounds x="35" y="4" width="855" height="346" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="92" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="98" y="195" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1v3qyxg_di" bpmnElement="Event_1v3qyxg">
+        <dc:Bounds x="332" y="152" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16o0bz3_di" bpmnElement="Activity_0j2y7y7">
+        <dc:Bounds x="180" y="130" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08ur2pk_di" bpmnElement="Event_08ur2pk">
+        <dc:Bounds x="352" y="272" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_01ou5gg_di" bpmnElement="Event_1dx6bf0">
+        <dc:Bounds x="262" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="309" y="213" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0di1923_di" bpmnElement="Flow_0di1923">
+        <di:waypoint x="128" y="170" />
+        <di:waypoint x="180" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ymviwv_di" bpmnElement="Flow_1ymviwv">
+        <di:waypoint x="280" y="170" />
+        <di:waypoint x="332" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07ue16d_di" bpmnElement="Flow_07ue16d">
+        <di:waypoint x="280" y="228" />
+        <di:waypoint x="280" y="290" />
+        <di:waypoint x="352" y="290" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

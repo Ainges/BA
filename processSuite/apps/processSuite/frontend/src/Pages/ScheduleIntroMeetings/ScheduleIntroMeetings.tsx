@@ -429,7 +429,7 @@ const ScheduleIntroMeetings: React.FC<DecouplerProps> = (props) => {
               }
             />
             <Divider />
-            <Card title="Ausewählte Mitarbeiter:">
+            <Card title="Ausgewählte Mitarbeiter:">
               <Table
                 pagination={{ position: [] }}
                 scroll={{ y: 300 }}

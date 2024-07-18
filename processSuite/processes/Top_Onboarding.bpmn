@@ -18,8 +18,8 @@
         <bpmn:flowNodeRef>Event_058r1tp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0tw4j54</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0bfl7nt</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_Boundary_FailedToPrepareFirstWorkingDay</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0mv9xcj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_Boundary_FailedToPrepareFirstWorkingDay</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1m9we0s" name="Admin">
         <bpmn:flowNodeRef>Activity_1r5zr3t</bpmn:flowNodeRef>
@@ -73,10 +73,6 @@
       <bpmn:incoming>Flow_1rcp2d5</bpmn:incoming>
       <bpmn:outgoing>Flow_1yqsom9</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:boundaryEvent id="Event_Boundary_FailedToPrepareFirstWorkingDay" attachedToRef="Activity_1y3blpl">
-      <bpmn:outgoing>Flow_1cck4sn</bpmn:outgoing>
-      <bpmn:errorEventDefinition id="ErrorEventDefinition_18rvp6g" errorRef="Error_XHZ93uIl" />
-    </bpmn:boundaryEvent>
     <bpmn:exclusiveGateway id="Gateway_01mh05k">
       <bpmn:incoming>Flow_06sqbhh</bpmn:incoming>
       <bpmn:incoming>Flow_1906lmk</bpmn:incoming>
@@ -111,7 +107,7 @@
       <bpmn:incoming>Flow_1l71nox</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1yqsom9" sourceRef="Gateway_0vx3t9l" targetRef="Activity_00g90w4">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"></bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" />
     </bpmn:sequenceFlow>
     <bpmn:intermediateCatchEvent id="Event_0mv9xcj" name="Erster Arbeitstag ">
       <bpmn:incoming>Flow_1qzy0yp</bpmn:incoming>
@@ -121,6 +117,10 @@
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="Flow_1rcp2d5" sourceRef="Event_0mv9xcj" targetRef="Gateway_0vx3t9l" />
+    <bpmn:boundaryEvent id="Event_Boundary_FailedToPrepareFirstWorkingDay" attachedToRef="Activity_1y3blpl">
+      <bpmn:outgoing>Flow_1cck4sn</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_1ns5kkf" />
+    </bpmn:boundaryEvent>
   </bpmn:process>
   <bpmn:escalation id="Escalation_94tue9vH" name="test" escalationCode="test" />
   <bpmn:escalation id="Escalation_tGv3yfxn" name="test" escalationCode="test" />
@@ -129,6 +129,7 @@
   <bpmn:message id="Message_0FYJvnR1" name="employeeHasSignedContract" />
   <bpmn:message id="Message_My9XZpF8" name="test" />
   <bpmn:message id="Message_FRvQUuhH" name="Message_termination" />
+  <bpmn:escalation id="Escalation_BUNhsc99" name="Der Erste Arbeitstag wurde vor der Beendigung der Vorbereitungen erreicht!" escalationCode="failedToPrepareFirstWorkingDay" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
@@ -176,12 +177,6 @@
           <dc:Bounds x="84" y="395" width="73" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1jt8d0u_di" bpmnElement="Event_0mv9xcj">
-        <dc:Bounds x="522" y="282" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="499" y="325" width="82" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1ernyfu_di" bpmnElement="Activity_0bfl7nt" isExpanded="true">
         <dc:Bounds x="730" y="440" width="300" height="200" />
       </bpmndi:BPMNShape>
@@ -207,7 +202,13 @@
           <dc:Bounds x="1008" y="325" width="85" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0fnjykj_di" bpmnElement="Event_Boundary_FailedToPrepareFirstWorkingDay">
+      <bpmndi:BPMNShape id="Event_1jt8d0u_di" bpmnElement="Event_0mv9xcj">
+        <dc:Bounds x="522" y="282" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="499" y="325" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1vzufyj_di" bpmnElement="Event_Boundary_FailedToPrepareFirstWorkingDay">
         <dc:Bounds x="412" y="322" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1qzy0yp_di" bpmnElement="Flow_1qzy0yp">
