@@ -96,10 +96,6 @@
       <bpmn:outgoing>Flow_17sm5la</bpmn:outgoing>
     </bpmn:callActivity>
     <bpmn:subProcess id="Activity_0bx4zme" triggeredByEvent="true">
-      <bpmn:endEvent id="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay" name="Vorbereitung nicht vollständig abgeschlossen">
-        <bpmn:incoming>Flow_0e6pm09</bpmn:incoming>
-        <bpmn:errorEventDefinition id="ErrorEventDefinition_11fepio" errorRef="Error_E8RuFXba" />
-      </bpmn:endEvent>
       <bpmn:sequenceFlow id="Flow_0e6pm09" sourceRef="Event_0k4kdml" targetRef="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay" />
       <bpmn:startEvent id="Event_0k4kdml" name="Erster Arbeitstag erreicht">
         <bpmn:outgoing>Flow_0e6pm09</bpmn:outgoing>
@@ -107,6 +103,10 @@
           <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5S</bpmn:timeDuration>
         </bpmn:timerEventDefinition>
       </bpmn:startEvent>
+      <bpmn:endEvent id="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay" name="Vorbereitung nicht vollständig abgeschlossen">
+        <bpmn:incoming>Flow_0e6pm09</bpmn:incoming>
+        <bpmn:errorEventDefinition id="ErrorEventDefinition_0sbs9t3" errorRef="Error_40q6LFt7" />
+      </bpmn:endEvent>
     </bpmn:subProcess>
     <bpmn:callActivity id="Activity_0bdyjls" name="Abklären, ob Wohnungssuche ansteht." calledElement="MovingRequest_Process">
       <bpmn:extensionElements>
@@ -159,7 +159,7 @@
     <bpmn:endEvent id="Event_18vvqsr" name="Tag des Eintritts erreicht">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="engine.runPreScript" value="return {&#10;  employeeData: dataObjects.DataObjectReference_newEmployeeData,&#10;  inductionPlan: dataObjects.DataObjectReference_InductionPlan.inductionPlan,&#10;  buddyEmployeeSelection: dataObjects.DataObjectReference_BuddyEmployeeSelection.buddyEmployeeSelection,&#10;  companyEmailOfNewEmployee: dataObjects.DataObjectReference_CompanyEmailOfNewEmployee.email&#10;};" />
+          <camunda:property name="engine.runPreScript" value="return {&#10;  employeeData: dataObjects.DataObjectReference_newEmployeeData,&#10;  inductionPlan: dataObjects.DataObjectReference_InductionPlan.inductionPlan,&#10;  buddyEmployeeSelection: dataObjects.DataObjectReference_BuddyEmployeeSelection.buddyEmployeeSelection,&#10;  companyEmailOfNewEmployee: dataObjects.DataObjectReference_CompanyEmailOfNewEmployee.companyEmailOfNewEmployee&#10;};" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1oztpc0</bpmn:incoming>
@@ -215,6 +215,8 @@
   <bpmn:message id="Message_ugx0EenC" name="Message_Send_BirthdayCalculation" />
   <bpmn:message id="Message_YMfNr6OO" name="Message_Receive_BirthdayCalculation" />
   <bpmn:message id="Message_dQSiwAG5" name="Message_CreateEmployee" />
+  <bpmn:escalation id="Escalation_EvsJx7Ox" name="Der Erste Arbeitstag wurde vor der Beendigung der Vorbereitungen erreicht!" escalationCode="failedToPrepareFirstWorkingDay" />
+  <bpmn:error id="Error_40q6LFt7" errorCode="failedToPrepareFirstWorkingDay" camunda:errorMessage="Der Erste Arbeitstag wurde vor der Beendigung der Vorbereitungen erreicht!" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
@@ -262,16 +264,16 @@
       <bpmndi:BPMNShape id="Activity_0ofklws_di" bpmnElement="Activity_0bx4zme" isExpanded="true">
         <dc:Bounds x="1160" y="1130" width="290" height="130" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0v3vrie_di" bpmnElement="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay">
-        <dc:Bounds x="1352" y="1172" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1331" y="1215" width="79" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0nk2upq_di" bpmnElement="Event_0k4kdml">
         <dc:Bounds x="1202" y="1172" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1179" y="1215" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1p4eush_di" bpmnElement="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay">
+        <dc:Bounds x="1352" y="1172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1331" y="1215" width="79" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0e6pm09_di" bpmnElement="Flow_0e6pm09">
