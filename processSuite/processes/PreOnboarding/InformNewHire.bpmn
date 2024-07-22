@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="InformNewHire_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
-    <bpmn:participant id="Participant_0px403d" name="InformNewHire" processRef="InformNewHire_Process" />
+    <bpmn:participant id="Participant_0px403d" name="Informationsprozess" processRef="InformNewHire_Process" />
     <bpmn:participant id="Participant_1w6b5uj" name="PreOnboarding_SCIL" />
     <bpmn:messageFlow id="Flow_1s9r254" sourceRef="FirstWelcomeMessage_Send" targetRef="Participant_1w6b5uj" />
     <bpmn:messageFlow id="Flow_0xz7y27" sourceRef="Activity_1su6gvg" targetRef="Participant_1w6b5uj" />
     <bpmn:messageFlow id="Flow_100fn2e" sourceRef="Activity_054yujr" targetRef="Participant_1w6b5uj" />
   </bpmn:collaboration>
-  <bpmn:process id="InformNewHire_Process" name="InformNewHire" isExecutable="true">
+  <bpmn:process id="InformNewHire_Process" name="Informationsprozess" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1xzf0d3" name="Vorgesetzter">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
@@ -134,6 +134,7 @@
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
         <dc:Bounds x="5" y="4" width="1445" height="506" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
         <dc:Bounds x="35" y="4" width="1415" height="506" />
@@ -242,9 +243,21 @@
         <di:waypoint x="288" y="75" />
         <di:waypoint x="601" y="158" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0y42q31_di" bpmnElement="DataInputAssociation_0y42q31">
+        <di:waypoint x="680" y="95" />
+        <di:waypoint x="680" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0kmwznv_di" bpmnElement="DataOutputAssociation_0kmwznv">
+        <di:waypoint x="524" y="151" />
+        <di:waypoint x="662" y="78" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_0hbqmoh_di" bpmnElement="DataInputAssociation_0hbqmoh">
         <di:waypoint x="283" y="95" />
         <di:waypoint x="375" y="271" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_03fov3n_di" bpmnElement="DataInputAssociation_03fov3n">
+        <di:waypoint x="698" y="76" />
+        <di:waypoint x="1100" y="210" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1s9r254_di" bpmnElement="Flow_1s9r254">
         <di:waypoint x="450" y="350" />
@@ -257,18 +270,6 @@
       <bpmndi:BPMNEdge id="Flow_100fn2e_di" bpmnElement="Flow_100fn2e">
         <di:waypoint x="1130" y="290" />
         <di:waypoint x="1130" y="570" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_0kmwznv_di" bpmnElement="DataOutputAssociation_0kmwznv">
-        <di:waypoint x="524" y="151" />
-        <di:waypoint x="662" y="78" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_0y42q31_di" bpmnElement="DataInputAssociation_0y42q31">
-        <di:waypoint x="680" y="95" />
-        <di:waypoint x="680" y="150" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_03fov3n_di" bpmnElement="DataInputAssociation_03fov3n">
-        <di:waypoint x="698" y="76" />
-        <di:waypoint x="1100" y="210" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

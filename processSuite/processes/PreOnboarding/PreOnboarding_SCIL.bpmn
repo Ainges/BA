@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="PreOnboarding_SCIL_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1o8eewd">
-    <bpmn:participant id="Participant_1tetnf2" name="SCIL" processRef="Preonboarding_SCIL" />
+    <bpmn:participant id="Participant_1tetnf2" name="PreOnboarding_SCIL" processRef="Preonboarding_SCIL" />
   </bpmn:collaboration>
-  <bpmn:process id="Preonboarding_SCIL" name="SCIL" isExecutable="true">
+  <bpmn:process id="Preonboarding_SCIL" name="PreOnboarding_SCIL" isExecutable="true">
     <bpmn:serviceTask id="Activity_0xyob35" name="Bei Mitarbeiter per Mail nachfragen">
       <bpmn:documentation>token.current must be an Object like:
 {
@@ -208,7 +208,8 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1o8eewd">
       <bpmndi:BPMNShape id="Participant_0q78rhp_di" bpmnElement="Participant_1tetnf2" isHorizontal="true">
-        <dc:Bounds x="-350" y="-180" width="2075" height="1480" />
+        <dc:Bounds x="-150" y="0" width="970" height="1230" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0tqk6p4_di" bpmnElement="Activity_0xyob35">
         <dc:Bounds x="75" y="30" width="160" height="80" />
