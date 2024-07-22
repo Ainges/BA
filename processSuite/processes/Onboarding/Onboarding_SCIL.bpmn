@@ -7,17 +7,15 @@
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1xzf0d3">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0pwtsfa</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1rdl4kb</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0pwtsfa</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1" name="Start">
       <bpmn:outgoing>Flow_1f8ta62</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0rncmmt" messageRef="Message_VSlMAo9W" />
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_1f8ta62" sourceRef="StartEvent_1" targetRef="Activity_1rdl4kb" />
-    <bpmn:sequenceFlow id="Flow_0enuh9q" sourceRef="Activity_1rdl4kb" targetRef="Event_0pwtsfa" />
-    <bpmn:serviceTask id="Activity_1rdl4kb" name="Ergebnisse dem Mitarbeiter per E-Mail zur Dokumentation zukommen lassen">
+    <bpmn:serviceTask id="Activity_1rdl4kb" name="Ergebnisse dem Mitarbeiter, per E-Mail, zur Dokumentation, zukommen lassen">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="module" value="HttpClient" />
@@ -34,36 +32,38 @@
     <bpmn:endEvent id="Event_0pwtsfa">
       <bpmn:incoming>Flow_0enuh9q</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1f8ta62" sourceRef="StartEvent_1" targetRef="Activity_1rdl4kb" />
+    <bpmn:sequenceFlow id="Flow_0enuh9q" sourceRef="Activity_1rdl4kb" targetRef="Event_0pwtsfa" />
   </bpmn:process>
   <bpmn:message id="Message_VSlMAo9W" name="Message_Send_DocumentFirstPerformanceReviewResults" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
-        <dc:Bounds x="5" y="4" width="975" height="356" />
+        <dc:Bounds x="5" y="4" width="605" height="276" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
-        <dc:Bounds x="35" y="4" width="945" height="356" />
+        <dc:Bounds x="35" y="4" width="575" height="276" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1lmbr19_di" bpmnElement="StartEvent_1">
-        <dc:Bounds x="92" y="152" width="36" height="36" />
+        <dc:Bounds x="82" y="132" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="98" y="195" width="24" height="14" />
+          <dc:Bounds x="88" y="175" width="24" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0xge9on_di" bpmnElement="Activity_1rdl4kb">
-        <dc:Bounds x="180" y="130" width="260" height="80" />
+        <dc:Bounds x="170" y="110" width="260" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0pwtsfa_di" bpmnElement="Event_0pwtsfa">
-        <dc:Bounds x="512" y="152" width="36" height="36" />
+        <dc:Bounds x="502" y="132" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1f8ta62_di" bpmnElement="Flow_1f8ta62">
-        <di:waypoint x="128" y="170" />
-        <di:waypoint x="180" y="170" />
+        <di:waypoint x="118" y="150" />
+        <di:waypoint x="170" y="150" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0enuh9q_di" bpmnElement="Flow_0enuh9q">
-        <di:waypoint x="440" y="170" />
-        <di:waypoint x="512" y="170" />
+        <di:waypoint x="430" y="150" />
+        <di:waypoint x="502" y="150" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

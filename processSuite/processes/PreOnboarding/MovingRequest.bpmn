@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="MovingRequest_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
-    <bpmn:participant id="Participant_0px403d" name="MovingRequest" processRef="MovingRequest_Process" />
+    <bpmn:participant id="Participant_0px403d" name="Umzugsprozess" processRef="MovingRequest_Process" />
     <bpmn:participant id="Participant_0z4wotw" name="PreOnboarding_SCIL" />
     <bpmn:participant id="Participant_19hm2ud" name="Umzugshilfe Prozess" />
     <bpmn:messageFlow id="Flow_1otrrzx" name="Nachfrage an Mitarbeiter" sourceRef="Activity_1eyq305" targetRef="Participant_0z4wotw" />
     <bpmn:messageFlow id="Flow_1e3y5ml" name="Antwort von Mitarbeiter" sourceRef="Participant_0z4wotw" targetRef="Event_17whont" />
     <bpmn:messageFlow id="Flow_1wlzpcg" name="Informieren" sourceRef="Event_1d8bbu9" targetRef="Participant_19hm2ud" />
   </bpmn:collaboration>
-  <bpmn:process id="MovingRequest_Process" name="MovingRequest" isExecutable="true">
+  <bpmn:process id="MovingRequest_Process" name="Umzugsprozess" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1xzf0d3" name="Vorgesetzter">
         <bpmn:flowNodeRef>Event_17whont</bpmn:flowNodeRef>
@@ -101,6 +101,7 @@
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
         <dc:Bounds x="130" y="20" width="1630" height="630" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1xzf0d3_di" bpmnElement="Lane_1xzf0d3" isHorizontal="true">
         <dc:Bounds x="160" y="20" width="1600" height="630" />

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="OnboardingTop_Definition" targetNamespace="http://bpmn.io/schema/bpmn" exporter="5Minds Studio" exporterVersion="1">
   <bpmn:collaboration id="Collaboration_1cidyxu" name="">
-    <bpmn:participant id="Participant_0px403d" name="OnboardingTop2" processRef="OnboardingTop_Process" />
+    <bpmn:participant id="Participant_0px403d" name="OnboardingTop" processRef="OnboardingTop_Process" />
     <bpmn:textAnnotation id="TextAnnotation_0xdesjf">
       <bpmn:text>Sollte ein Eskalationsereignis sein, da es ein fachlicher Fehler ist</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_080djnz" sourceRef="Event_Boundary_FailedToPrepareFirstWorkingDay" targetRef="TextAnnotation_0xdesjf" />
   </bpmn:collaboration>
-  <bpmn:process id="OnboardingTop_Process" name="OnboardingTop2" isExecutable="true">
+  <bpmn:process id="OnboardingTop_Process" name="OnboardingTop" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1xzf0d3" name="Vorgesetzter">
         <bpmn:flowNodeRef>Event_000tj1f</bpmn:flowNodeRef>

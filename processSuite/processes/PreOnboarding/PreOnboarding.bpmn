@@ -47,7 +47,7 @@
     <bpmn:sequenceFlow id="Flow_1ylqsjw" sourceRef="Activity_1gn8x76" targetRef="Gateway_0k0b8gx" />
     <bpmn:sequenceFlow id="Flow_1lnimuu" sourceRef="Gateway_0vfwlrv" targetRef="Activity_0bdyjls" />
     <bpmn:sequenceFlow id="Flow_0hufq2d" sourceRef="Activity_0bdyjls" targetRef="Gateway_0k0b8gx" />
-    <bpmn:callActivity id="Activity_03t4iu4" name="Neuen Mitarbeiter informieren" calledElement="InformNewHire_Process">
+    <bpmn:callActivity id="Activity_03t4iu4" name="Informationsprozess" calledElement="InformNewHire_Process">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="startEventId" value="StartEvent_1" />
@@ -86,7 +86,7 @@
         <bpmn:targetRef>DataObjectReference_newEmployeeData</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:startEvent>
-    <bpmn:callActivity id="Activity_1shjl2y" name="Geburtstag vor erstem Arbeitstag klären" calledElement="BirthdayBeforeFirstWorkingDay_Process">
+    <bpmn:callActivity id="Activity_1shjl2y" name="Geburstagsprozess" calledElement="BirthdayBeforeFirstWorkingDay_Process">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="startEventId" value="Event_1swf8d0" />
@@ -108,7 +108,7 @@
         <bpmn:errorEventDefinition id="ErrorEventDefinition_0sbs9t3" errorRef="Error_40q6LFt7" />
       </bpmn:endEvent>
     </bpmn:subProcess>
-    <bpmn:callActivity id="Activity_0bdyjls" name="Abklären, ob Wohnungssuche ansteht." calledElement="MovingRequest_Process">
+    <bpmn:callActivity id="Activity_0bdyjls" name="Umzugsprozess" calledElement="MovingRequest_Process">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="startEventId" value="Event_0llki7y" />
@@ -117,7 +117,7 @@
       <bpmn:incoming>Flow_1lnimuu</bpmn:incoming>
       <bpmn:outgoing>Flow_0hufq2d</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:callActivity id="Activity_1gn8x76" name="Interne Tätigkeiten" calledElement="InternalTasksForPreOnboarding_Process">
+    <bpmn:callActivity id="Activity_1gn8x76" name="Interner Prozess" calledElement="InternalTasksForPreOnboarding_Process">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="startEventId" value="StartEvent_1" />
@@ -233,6 +233,7 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0bx7xnw_di" bpmnElement="Activity_03t4iu4">
         <dc:Bounds x="720" y="815" width="180" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0pc4ve9_di" bpmnElement="Gateway_0k0b8gx">
         <dc:Bounds x="985" y="905" width="50" height="50" />
@@ -260,6 +261,7 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1b8rd9h_di" bpmnElement="Activity_1shjl2y">
         <dc:Bounds x="720" y="1100" width="180" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ofklws_di" bpmnElement="Activity_0bx4zme" isExpanded="true">
         <dc:Bounds x="1160" y="1130" width="290" height="130" />
@@ -282,9 +284,11 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_0w3hvig_di" bpmnElement="Activity_0bdyjls">
         <dc:Bounds x="720" y="965" width="180" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1tmjytc_di" bpmnElement="Activity_1gn8x76">
         <dc:Bounds x="720" y="686" width="180" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_18vvqsr_di" bpmnElement="Event_18vvqsr">
         <dc:Bounds x="1462" y="912" width="36" height="36" />

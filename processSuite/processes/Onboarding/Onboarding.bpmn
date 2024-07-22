@@ -4,9 +4,6 @@
     <bpmn:participant id="Participant_0px403d" name="Onboarding_Phase2" processRef="Onboarding_Process" />
     <bpmn:participant id="Participant_032ptyr" name="Onboarding_SCIL" />
     <bpmn:messageFlow id="Flow_0bit1sb" sourceRef="Event_176thb5" targetRef="Participant_032ptyr" />
-    <bpmn:textAnnotation id="TextAnnotation_0iig8nx">
-      <bpmn:text>Hier explizites Aufzeigen der schon erledigten Aufgaben im Prozess</bpmn:text>
-    </bpmn:textAnnotation>
     <bpmn:group id="Group_1x3k2ii" categoryValueRef="CategoryValue_1ugzhwn" />
     <bpmn:textAnnotation id="TextAnnotation_1hkyi1q">
       <bpmn:text>dataObjects.DataObjectReference_FirstPerformanceReview.dateTime</bpmn:text>
@@ -576,15 +573,7 @@
         <di:waypoint x="1770" y="-319" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_1tnda7s_di" bpmnElement="Participant_032ptyr" isHorizontal="true">
-        <dc:Bounds x="-170" y="-810" width="2500" height="60" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Association_01gdoi6_di" bpmnElement="Association_01gdoi6">
-        <di:waypoint x="1437" y="-247" />
-        <di:waypoint x="1504" y="-415" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="TextAnnotation_0iig8nx_di" bpmnElement="TextAnnotation_0iig8nx">
-        <dc:Bounds x="1340" y="-650" width="100" height="98" />
+        <dc:Bounds x="-170" y="-630" width="2820" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Group_1x3k2ii_di" bpmnElement="Group_1x3k2ii">
@@ -595,6 +584,10 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1hkyi1q_di" bpmnElement="TextAnnotation_1hkyi1q">
         <dc:Bounds x="1770" y="-340" width="450" height="30" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0wayr5p_di" bpmnElement="TextAnnotation_0wayr5p">
+        <dc:Bounds x="1470" y="-470" width="259.99583024462567" height="54.85544848035582" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataInputAssociation_1fdg3yi_di" bpmnElement="DataInputAssociation_1fdg3yi">
@@ -665,16 +658,14 @@
         <di:waypoint x="418" y="-133" />
         <di:waypoint x="1230" y="-267" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_01gdoi6_di" bpmnElement="Association_01gdoi6">
+        <di:waypoint x="1437" y="-247" />
+        <di:waypoint x="1504" y="-415" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0bit1sb_di" bpmnElement="Flow_0bit1sb">
         <di:waypoint x="2410" y="402" />
-        <di:waypoint x="2410" y="-174" />
-        <di:waypoint x="2260" y="-174" />
-        <di:waypoint x="2260" y="-750" />
+        <di:waypoint x="2410" y="-570" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="TextAnnotation_0wayr5p_di" bpmnElement="TextAnnotation_0wayr5p">
-        <dc:Bounds x="1470" y="-470" width="259.99583024462567" height="54.85544848035582" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
