@@ -78,14 +78,30 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="customForm" value="BuddyAndEmployeeSelectionDecoupler" />
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_CompanyEmailOfNewEmployee" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0ca0dko</bpmn:incoming>
       <bpmn:outgoing>Flow_0ohw0tv</bpmn:outgoing>
+      <bpmn:property id="Property_1t21wz2" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1lnfnkd">
+        <bpmn:sourceRef>DataObjectReference_CompanyEmailOfNewEmployee</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1t21wz2</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:userTask>
     <bpmn:manualTask id="Activity_0mm4mnu" name="Wilkommensgeschenk vorbereiten">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_CompanyEmailOfNewEmployee" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0vbnoho</bpmn:incoming>
       <bpmn:outgoing>Flow_1eypgfl</bpmn:outgoing>
+      <bpmn:property id="Property_189sdpb" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1y8lu8i">
+        <bpmn:sourceRef>DataObjectReference_CompanyEmailOfNewEmployee</bpmn:sourceRef>
+        <bpmn:targetRef>Property_189sdpb</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:manualTask>
     <bpmn:parallelGateway id="Gateway_18ldnmm">
       <bpmn:incoming>Flow_08opoil</bpmn:incoming>
@@ -100,10 +116,16 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="startEventId" value="StartEvent_1" />
+          <camunda:property name="engine.runPreScript" value="dataObjects.DataObjectReference_CompanyEmailOfNewEmployee" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1bc0337</bpmn:incoming>
       <bpmn:outgoing>Flow_1rnee21</bpmn:outgoing>
+      <bpmn:property id="Property_06sfx77" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1ezo71f">
+        <bpmn:sourceRef>DataObjectReference_CompanyEmailOfNewEmployee</bpmn:sourceRef>
+        <bpmn:targetRef>Property_06sfx77</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:callActivity>
     <bpmn:userTask id="Activity_1xhgpxc" name="Individuellen Einarbeitunsplan erstellen">
       <bpmn:extensionElements>
@@ -200,6 +222,11 @@
       <bpmn:incoming>Flow_0yv14lq</bpmn:incoming>
       <bpmn:outgoing>Flow_0n2cfff</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_05mgc1a">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="dataSource" value="{&#10;    ...dataObjects.DataObjectReference_CompanyEmailOfNewEmployee,&#10;    &#34;email&#34;: token.current.email&#10;}" />
+          </camunda:properties>
+        </bpmn:extensionElements>
         <bpmn:targetRef>DataObjectReference_CompanyEmailOfNewEmployee</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:userTask>
@@ -234,12 +261,15 @@
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1i1xrl8">
         <bpmn:targetRef>DataObjectReference_CompanyEmailOfNewEmployee</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0buiimz" messageRef="Message_AWLHvAPe" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0buiimz" messageRef="Message_sGA9Lv27" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:intermediateCatchEvent id="Event_04vvevp" name="Es kann kein automatisches anlegen des Benutzerkontos erfolgen">
+    <bpmn:intermediateCatchEvent id="Event_04vvevp" name="Es kann KEINE automatisches anlegen des Benutzerkontos erfolgen">
       <bpmn:incoming>Flow_1u9n7a8</bpmn:incoming>
       <bpmn:outgoing>Flow_0f6yi64</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0tvrwow" messageRef="Message_vr2lbqCe" />
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0kwfzvw">
+        <bpmn:targetRef>DataObjectReference_CompanyEmailOfNewEmployee</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0tvrwow" messageRef="Message_a1CwHc53" />
     </bpmn:intermediateCatchEvent>
     <bpmn:intermediateCatchEvent id="Event_0ts326r" name="5min">
       <bpmn:incoming>Flow_1vrih51</bpmn:incoming>
@@ -253,6 +283,10 @@
   <bpmn:message id="Message_7BKS3o9H" name="Message_CreateEmployeeAuto" />
   <bpmn:message id="Message_AWLHvAPe" name="Message_Receive_MailisAvailable" />
   <bpmn:message id="Message_vr2lbqCe" name="Message_Receive_MailisNotAvailable" />
+  <bpmn:message id="Message_kBd2wxgE" />
+  <bpmn:message id="Message_ZaudzUUh" name="Message_Receive_MailisNotAvailable" />
+  <bpmn:message id="Message_sGA9Lv27" name="Message_Receive_UserCreationAuto" />
+  <bpmn:message id="Message_a1CwHc53" name="Message_Receive_UserCreationManuel" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cidyxu">
       <bpmndi:BPMNShape id="Participant_0px403d_di" bpmnElement="Participant_0px403d" isHorizontal="true">
@@ -480,18 +514,17 @@
         <dc:Bounds x="5" y="350" width="2025" height="60" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="BPMNEdge_10u5m6d" bpmnElement="Association_0auuz6h">
-        <di:waypoint x="1351" y="-600" />
-        <di:waypoint x="1258" y="-671" />
+      <bpmndi:BPMNShape id="BPMNShape_1y9edgz" bpmnElement="TextAnnotation_1qr2377">
+        <dc:Bounds x="1190" y="-770" width="100" height="99" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0yr7cnv_di" bpmnElement="DataOutputAssociation_0yr7cnv">
+        <di:waypoint x="160" y="-542" />
+        <di:waypoint x="158" y="-245" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_0kzn28z" bpmnElement="DataInputAssociation_0eajxvl">
-        <di:waypoint x="1036" y="-965" />
-        <di:waypoint x="973" y="-578" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_0906sdk_di" bpmnElement="DataInputAssociation_0906sdk">
-        <di:waypoint x="178" y="-220" />
-        <di:waypoint x="920" y="-220" />
-        <di:waypoint x="967" y="-542" />
+      <bpmndi:BPMNEdge id="DataInputAssociation_1hw78ne_di" bpmnElement="DataInputAssociation_1hw78ne">
+        <di:waypoint x="170" y="-245" />
+        <di:waypoint x="274" y="-543" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_0ftv6pg" bpmnElement="DataOutputAssociation_1isgkvn">
         <di:waypoint x="1380" y="-600" />
@@ -520,22 +553,36 @@
         <di:waypoint x="1656" y="-290" />
         <di:waypoint x="1656" y="-765" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_0yr7cnv_di" bpmnElement="DataOutputAssociation_0yr7cnv">
-        <di:waypoint x="160" y="-542" />
-        <di:waypoint x="158" y="-245" />
+      <bpmndi:BPMNEdge id="BPMNEdge_0kzn28z" bpmnElement="DataInputAssociation_0eajxvl">
+        <di:waypoint x="1036" y="-965" />
+        <di:waypoint x="973" y="-578" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0906sdk_di" bpmnElement="DataInputAssociation_0906sdk">
+        <di:waypoint x="178" y="-220" />
+        <di:waypoint x="920" y="-220" />
+        <di:waypoint x="967" y="-542" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_1puri7d" bpmnElement="DataOutputAssociation_05mgc1a">
         <di:waypoint x="820" y="-600" />
         <di:waypoint x="1022" y="-975" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1i1xrl8_di" bpmnElement="DataOutputAssociation_1i1xrl8">
+        <di:waypoint x="557" y="-406" />
+        <di:waypoint x="710" y="-470" />
+        <di:waypoint x="710" y="-995" />
+        <di:waypoint x="1022" y="-995" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0kwfzvw_di" bpmnElement="DataOutputAssociation_0kwfzvw">
+        <di:waypoint x="554" y="-572" />
+        <di:waypoint x="1022" y="-973" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_10u5m6d" bpmnElement="Association_0auuz6h">
+        <di:waypoint x="1351" y="-600" />
+        <di:waypoint x="1258" y="-671" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_147kvq8_di" bpmnElement="Flow_147kvq8">
         <di:waypoint x="970" y="-542" />
         <di:waypoint x="970" y="350" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_1hw78ne_di" bpmnElement="DataInputAssociation_1hw78ne">
-        <di:waypoint x="163" y="-245" />
-        <di:waypoint x="190" y="-520" />
-        <di:waypoint x="264" y="-553" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1wd1kw2_di" bpmnElement="Flow_1wd1kw2">
         <di:waypoint x="540" y="350" />
@@ -545,17 +592,18 @@
         <di:waypoint x="280" y="-542" />
         <di:waypoint x="280" y="350" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_1i1xrl8_di" bpmnElement="DataOutputAssociation_1i1xrl8">
-        <di:waypoint x="549" y="-415" />
-        <di:waypoint x="580" y="-470" />
-        <di:waypoint x="710" y="-470" />
-        <di:waypoint x="710" y="-995" />
-        <di:waypoint x="1022" y="-995" />
+      <bpmndi:BPMNEdge id="DataInputAssociation_1lnfnkd_di" bpmnElement="DataInputAssociation_1lnfnkd">
+        <di:waypoint x="1052" y="-965" />
+        <di:waypoint x="1286" y="-479" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="BPMNShape_1y9edgz" bpmnElement="TextAnnotation_1qr2377">
-        <dc:Bounds x="1190" y="-770" width="100" height="99" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1y8lu8i_di" bpmnElement="DataInputAssociation_1y8lu8i">
+        <di:waypoint x="1048" y="-965" />
+        <di:waypoint x="1287" y="-180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1ezo71f_di" bpmnElement="DataInputAssociation_1ezo71f">
+        <di:waypoint x="1046" y="-965" />
+        <di:waypoint x="1305" y="60" />
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
