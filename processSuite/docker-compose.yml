@@ -85,7 +85,7 @@ services:
     #   - 3000:3000
 
   artemis:
-    image: apache/activemq-artemis:latest
+    image: apache/activemq-artemis:2.33.0
     ports:
       - "8161:8161" # Web Console
       - "61616:61616" # AMQP
