@@ -33,7 +33,7 @@ public class GetAllCanonicalUsersProcessor implements Processor {
     @Inject
     ProfilePicturePathRepository profilePicturePathRepository;
 
-    @ConfigProperty(name = "minio.url")
+    @ConfigProperty(name = "minio.external.url")
     private String profile_picture_url_prefix;
 
     Logger logger = LoggerFactory.getLogger(GetAllCanonicalUsersProcessor.class);

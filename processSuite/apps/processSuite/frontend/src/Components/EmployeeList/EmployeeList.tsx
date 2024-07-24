@@ -8,12 +8,6 @@ import {
   TableDataEmployee,
 } from "../../Pages/BuddyAndEmployeeSelection/BuddyandEmployeeSelectionProvider";
 
-// interface EmployeeSelection {
-//   selectedEmployees: React.Key[];
-//   setSelectedEmployees: React.Dispatch<React.SetStateAction<React.Key[]>>;
-//   selectedBuddy: React.Key[];
-// }
-
 const EmployeeList: React.FC = (props) => {
   // ### Context initialization
   const context = useContext(BuddyAndEmployeeSelectionContext);
