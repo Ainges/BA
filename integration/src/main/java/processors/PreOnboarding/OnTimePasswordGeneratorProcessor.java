@@ -41,7 +41,7 @@ public class OnTimePasswordGeneratorProcessor implements Processor {
     public void process(Exchange exchange) throws Exception {
 
         // Generate one_time_password and store it in header
-        int lengthOfOneTimePassword = 5;
+        int lengthOfOneTimePassword = 8;
         String one_time_password = generateOneTimePassword(lengthOfOneTimePassword);
         logger.info("One-time password generated: " + one_time_password);
         exchange.getMessage().setHeader("one_time_password", one_time_password);

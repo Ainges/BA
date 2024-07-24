@@ -6,6 +6,7 @@ import org.apache.camel.ExchangePattern;
 import org.apache.camel.Message;
 import org.apache.camel.builder.RouteBuilder;
 import org.eclipse.microprofile.config.ConfigProvider;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import processors.PreOnboarding.IsMovingNecessaryRequestProcessor;
@@ -24,8 +25,8 @@ public class PreOnboardingMovingRequestRoute extends RouteBuilder {
     @Inject
     ValidateOneTimePasswordProcessor validateOneTimePasswordProcessor;
 
-
-    String bearerToken = ConfigProvider.getConfig().getValue("engine.bearer", String.class);
+    @ConfigProperty (name = "engine.bearer")
+    String bearerToken;
 
     Logger logger = LoggerFactory.getLogger(PreOnboardingMovingRequestRoute.class);
 

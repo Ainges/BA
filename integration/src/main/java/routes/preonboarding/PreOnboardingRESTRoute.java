@@ -59,6 +59,12 @@ public class PreOnboardingRESTRoute extends RouteBuilder {
                 .post("InformNewUserAboutAccount")
                 .consumes("application/json")
                 .to("direct:InformNewUserAboutAccountToBroker")
+
+                .post("TryAutoUserCreation")
+                .consumes("application/json")
+                .to("direct:TryAutoUserCreationToBroker")
+
+
         ;
 
 
