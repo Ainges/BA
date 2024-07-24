@@ -1,4 +1,4 @@
-import { Button, Card, Col, Divider, Form, Input, Row, Space } from "antd";
+import { Alert, Button, Card, Col, Divider, Form, Input, Row, Space } from "antd";
 import { EmployeeData } from "../../Components/EmployeeData/EmployeeData";
 import { useEffect, useState } from "react";
 import { formatDateToDEformat } from "../../functions/formatDateToDEformat";
@@ -90,7 +90,6 @@ const CreateEmployeeAccount: React.FC<DecouplerProps> = (props) => {
     console.log("Values: " + values.email + " " + values.password);
     props.finishUserTask({
       email: values.email + "@" + config.domainOfCompany,
-      password: values.password,
     });
   };
 
@@ -112,14 +111,14 @@ const CreateEmployeeAccount: React.FC<DecouplerProps> = (props) => {
               style={{ maxWidth: 600 }}
               onFinish={submit}
             >
+              <Alert type="info" message="E-Mailadresse" description="Es konnte keine E-Mailadresse automatisch für den neuen Mitarbeiter erstellt werden. Bitte vergeben Sie eine E-Mailadrese. " showIcon></Alert>
+              <br />
               <Form.Item
                 label="Email"
                 name="email"
                 hasFeedback
                 validateDebounce={300}
-                initialValue={
-                  first_name.toLowerCase() + "." + last_name.toLowerCase()
-                }
+        
                 rules={[
                   {
                     required: true,
@@ -127,6 +126,7 @@ const CreateEmployeeAccount: React.FC<DecouplerProps> = (props) => {
                   },
                   { validator: checkEmailAvailability },
                   { validator: validateInput },
+                  
                 ]}
               >
                 <Input
@@ -134,7 +134,7 @@ const CreateEmployeeAccount: React.FC<DecouplerProps> = (props) => {
                   addonAfter={"@" + config.domainOfCompany}
                 />
               </Form.Item>
-              <Form.Item
+              {/* <Form.Item
                 label="Passwort"
                 name="password"
                 hasFeedback
@@ -153,7 +153,7 @@ const CreateEmployeeAccount: React.FC<DecouplerProps> = (props) => {
                 ]}
               >
                 <Input.Password />
-              </Form.Item>
+              </Form.Item> */}
               {/* <Space direction="horizontal"> */}
                 <Button type="primary" htmlType="submit" block>
                   Senden

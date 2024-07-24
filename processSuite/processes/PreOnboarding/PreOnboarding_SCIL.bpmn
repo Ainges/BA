@@ -224,7 +224,7 @@
     <bpmn:endEvent id="Event_0mx8755" name="Nutzer muss manuell angelegt werden">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="engine.runPreScript" value="&#34;password&#34;:token.current.password,&#10;    &#34;initialData&#34;: dataObjects.DataObjectReference_newEmployeeData" />
+          <camunda:property name="engine.runPreScript" value="{&#10;    &#34;password&#34;: token.current.password,&#10;    &#34;initialData&#34;: dataObjects.DataObjectReference_newEmployeeData&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1ceohll</bpmn:incoming>
@@ -550,10 +550,6 @@
         <di:waypoint x="120" y="800" />
         <di:waypoint x="322" y="768" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_1nqyskc_di" bpmnElement="DataInputAssociation_1nqyskc">
-        <di:waypoint x="358" y="786" />
-        <di:waypoint x="472" y="884" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_16ht8dt_di" bpmnElement="DataOutputAssociation_16ht8dt">
         <di:waypoint x="235" y="894" />
         <di:waypoint x="502" y="807" />
@@ -561,6 +557,10 @@
       <bpmndi:BPMNEdge id="DataInputAssociation_0ure8ji_di" bpmnElement="DataInputAssociation_0ure8ji">
         <di:waypoint x="538" y="812" />
         <di:waypoint x="690" y="910" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1nqyskc_di" bpmnElement="DataInputAssociation_1nqyskc">
+        <di:waypoint x="358" y="786" />
+        <di:waypoint x="472" y="884" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
