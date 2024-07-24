@@ -12,6 +12,7 @@ public class InitUsersRoute extends RouteBuilder {
     @ConfigProperty(name = "engine.bearer")
     String bearerToken;
 
+
     @Inject
     InitProfilePicturesProcessor initProfilePicturesProcessor;
 
@@ -30,7 +31,7 @@ public class InitUsersRoute extends RouteBuilder {
                 .setHeader("Content-Type", constant("application/json"))
                 .setHeader("CamelHttpMethod", constant("POST"))
                 .setHeader("Authorization", constant("Bearer " + bearerToken))
-                .to("http://localhost:8000/atlas_engine/api/v1/messages/init_users/trigger")
+                .to("http://{{engine.host}}:{{engine.port}}/atlas_engine/api/v1/messages/init_users/trigger")
                 .log("Process started...")
                 ;
 

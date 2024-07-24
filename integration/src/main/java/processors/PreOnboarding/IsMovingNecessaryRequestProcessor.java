@@ -31,11 +31,11 @@ import java.util.Map;
 @ApplicationScoped
 public class IsMovingNecessaryRequestProcessor implements Processor {
 
-    @ConfigProperty(name = "camel.host")
-    String camelHost;
+    @ConfigProperty(name = "camel.external.host")
+    String camelExternalHost;
 
-    @ConfigProperty(name = "camel.port")
-    String camelPort;
+    @ConfigProperty(name = "camel.external.port")
+    String camelExternalPort;
 
     @ConfigProperty(name = "data.company.onboarding.email")
     String company_onboarding_email;
@@ -73,8 +73,8 @@ public class IsMovingNecessaryRequestProcessor implements Processor {
         valuesMap.put("first_name", first_name);
         valuesMap.put("last_name", last_name);
         valuesMap.put("one_time_password", one_time_password);
-        valuesMap.put("camel_host", camelHost);
-        valuesMap.put("camel_port", camelPort);
+        valuesMap.put("camel_host", camelExternalHost);
+        valuesMap.put("camel_port", camelExternalPort);
 
         String output = placeholderSubstitutor.substituteAll(input, valuesMap);
 

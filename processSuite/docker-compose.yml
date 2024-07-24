@@ -134,3 +134,18 @@ services:
       POSTGRES_DB: authority
     ports:
       - "5433:5432"
+
+  integration:
+    image: ghcr.io/ainges/ba-integration:0.7
+    container_name: integration
+    ports:
+      - "8080:8080"
+    environment:
+      QUARKUS_PROFILE: prod
+    depends_on:
+      - postgres
+      - minio
+      - artemis
+      - smtp4dev
+      - engine
+      - authority

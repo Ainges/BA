@@ -80,7 +80,7 @@ public class PreOnboardingMovingRequestRoute extends RouteBuilder {
                                     "}");
 
                 })
-                .toD("http://localhost:8000/atlas_engine/api/v1/messages/Message_ResponseForMove/trigger?bridgeEndpoint=true")
+                .toD("http://{{engine.host}}:{{engine.port}}/atlas_engine/api/v1/messages/Message_ResponseForMove/trigger?bridgeEndpoint=true")
                 .log("Process informed!");
 
 
@@ -109,7 +109,7 @@ public class PreOnboardingMovingRequestRoute extends RouteBuilder {
 
                 })
 
-                .to("http://localhost:8000/atlas_engine/api/v1/messages/Message_ResponseForMove/trigger?bridgeEndpoint=true")
+                .to("http://{{engine.host}}:{{engine.port}}/atlas_engine/api/v1/messages/Message_ResponseForMove/trigger?bridgeEndpoint=true")
                 .log("Process informed!");
 
 

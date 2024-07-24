@@ -38,7 +38,7 @@ public class SCIL_OnboardingTop extends RouteBuilder {
 
                 })
                 // BridgeEndpoint is set to true because this option tells Camel that it should ignore the URI in the incoming message and use the URI configured on the endpoint instead.
-                .toD("http://localhost:8000/atlas_engine/api/v1/messages/employeeHasSignedContract/trigger?bridgeEndpoint=true");
+                .toD("http://{{engine.host}}:{{engine.port}}/atlas_engine/api/v1/messages/employeeHasSignedContract/trigger?bridgeEndpoint=true");
 
     }
 }
