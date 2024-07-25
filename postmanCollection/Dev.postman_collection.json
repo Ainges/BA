@@ -199,7 +199,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "GetCanoncialUserByMail",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -587,6 +587,265 @@
 						"admin",
 						"scope",
 						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test S3 Get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:9000/profilepictures/AngelaMartin.png",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"profilepictures",
+						"AngelaMartin.png"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test S3 Put",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"test\":\"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/profilepictures/test/test.json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"profilepictures",
+						"test",
+						"test.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/employee/picture/toby.flenderson%40dundermifflin.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"picture",
+						"toby.flenderson%40dundermifflin.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Picture form minio test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/minio/picture",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"minio",
+						"picture"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authority REST Create Authority User",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "upe_admin",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "camel",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "camel",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://localhost:11560/token",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "authority",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test4@test.de\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:11560/acr/username_password/admin/user/email/create/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "11560",
+					"path": [
+						"acr",
+						"username_password",
+						"admin",
+						"user",
+						"email",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "request Token from Authority",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "camel",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "camel",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "upe_admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:11560/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "11560",
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEST Get User from Authority",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@test.de\",\n    \"password\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:11560/acr/username_password/admin/user/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "11560",
+					"path": [
+						"acr",
+						"username_password",
+						"admin",
+						"user",
+						"admin"
 					]
 				}
 			},

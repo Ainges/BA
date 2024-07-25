@@ -16,7 +16,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"firstWorkingDay\": \"27-03-2025\",\n\"hours_per_week\":40,\n\"first_name\": \"Max\",\n\"last_name\": \"Mustermann\",\n\"private_email\": \"max@mustermann.de\",\n\"position\": \"HR\",\n\"birth_date\": \"24-12-2000\",\n\"employment_status\": \"Vollzeit\",\n\"postal_address\": \"Musterstraße 12, 12345 Musterstadt\"\n}",
+					"raw": "{\n\"first_working_day\": \"2024-08-01\",\n\"hours_per_week\":40,\n\"first_name\": \"Max\",\n\"last_name\": \"Mustermann\",\n\"private_email\": \"max@mustermann.de\",\n\"position\": \"HR\",\n\"birth_date\": \"2000-08-01\",\n\"employment_status\": \"Vollzeit\",\n\"postal_address\": \"Musterstraße 12, 12345 Musterstadt\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -49,7 +49,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"private_email\": \"peter@lustig.de\",\n    \"first_name\": \"Peter\",\n    \"last_name\": \"Lustig\"\n}",
+					"raw": "{\n\"first_working_day\": \"2024-12-01\",\n\"hours_per_week\":20,\n\"first_name\": \"Peter\",\n\"last_name\": \"Lustig\",\n\"private_email\": \"peter@lustig.de\",\n\"position\": \"Product Management\",\n\"birth_date\": \"2003-10-12\",\n\"employment_status\": \"Teilzeit\",\n\"postal_address\": \"Hauptstraße 45, 67890 Beispielstadt\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -82,7 +82,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"susie@sorglos.de\",\n    \"firstName\": \"Susie\",\n    \"lastName\": \"Sorlglos\"\n}",
+					"raw": "{\n\"first_working_day\": \"2024-08-20\",\n\"hours_per_week\":40,\n\"first_name\": \"Susie\",\n\"last_name\": \"Sorglos\",\n\"private_email\": \"susie@sorglos.de\",\n\"position\": \"Software Development\",\n\"birth_date\": \"1986-12-24\",\n\"employment_status\": \"Vollzeit\",\n\"postal_address\": \"Gartenweg 8, 54321 Testdorf\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
