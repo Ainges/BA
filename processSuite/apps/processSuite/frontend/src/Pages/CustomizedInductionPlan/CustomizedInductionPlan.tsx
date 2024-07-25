@@ -30,6 +30,7 @@ interface InewEmployeeDataType {
     last_name: string;
     first_working_day: string;
     employment_status: string;
+    position: string;
     hours_per_week: string;
   };
 }
@@ -82,6 +83,10 @@ const CustomizedInductionPlan: React.FC<DecouplerProps> = (props) => {
       {
         title: "Anstellungsart",
         data: currentToken.OnboardingData.employment_status,
+      },
+      {
+        title: "Position",
+        data: currentToken.OnboardingData.position,
       },
       {
         title: "Vereinbarte Arbeitszeit pro Woche",

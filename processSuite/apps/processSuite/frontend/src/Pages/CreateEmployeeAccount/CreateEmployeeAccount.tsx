@@ -118,7 +118,7 @@ const CreateEmployeeAccount: React.FC<DecouplerProps> = (props) => {
                 name="email"
                 hasFeedback
                 validateDebounce={300}
-        
+
                 rules={[
                   {
                     required: true,
@@ -132,6 +132,7 @@ const CreateEmployeeAccount: React.FC<DecouplerProps> = (props) => {
                 <Input
                   maxLength={32}
                   addonAfter={"@" + config.domainOfCompany}
+                  onInput={e => (e.target as HTMLInputElement).value = (e.target as HTMLInputElement).value.toLowerCase()}
                 />
               </Form.Item>
               {/* <Form.Item
