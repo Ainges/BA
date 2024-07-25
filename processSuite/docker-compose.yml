@@ -85,7 +85,7 @@ services:
     #   - 3000:3000
 
   artemis:
-    image: apache/activemq-artemis:latest
+    image: apache/activemq-artemis:2.33.0
     ports:
       - "8161:8161" # Web Console
       - "61616:61616" # AMQP
@@ -135,17 +135,17 @@ services:
     ports:
       - "5433:5432"
 
-  integration:
-    image: ghcr.io/ainges/ba-integration:0.7
-    container_name: integration
-    ports:
-      - "8080:8080"
-    environment:
-      QUARKUS_PROFILE: prod
-    depends_on:
-      - postgres
-      - minio
-      - artemis
-      - smtp4dev
-      - engine
-      - authority
+#  integration:
+#    image: ghcr.io/ainges/ba-integration:0.7
+#    container_name: integration
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      QUARKUS_PROFILE: prod
+#    depends_on:
+#      - postgres
+#      - minio
+#      - artemis
+#      - smtp4dev
+#      - engine
+#      - authority

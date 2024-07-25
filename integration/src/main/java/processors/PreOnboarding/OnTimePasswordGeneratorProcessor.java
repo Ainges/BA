@@ -1,5 +1,6 @@
 package processors.PreOnboarding;
 
+import CDI.OneTimePasswordGenerator;
 import DTO.IsMovingRequestNecessaryDTO;
 import Entities.OneTimePasswordEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,6 +36,9 @@ public class OnTimePasswordGeneratorProcessor implements Processor {
     @Inject
     OneTimePasswordEntityRepository oneTimePasswordEntityRepository;
 
+    @Inject
+    OneTimePasswordGenerator oneTimePasswordGenerator;
+
     Logger logger = LoggerFactory.getLogger(OnTimePasswordGeneratorProcessor.class);
 
     @Override
@@ -42,7 +46,7 @@ public class OnTimePasswordGeneratorProcessor implements Processor {
 
         // Generate one_time_password and store it in header
         int lengthOfOneTimePassword = 5;
-        String one_time_password = generateOneTimePassword(lengthOfOneTimePassword);
+        String one_time_password = oneTimePasswordGenerator.generateOneTimePassword(lengthOfOneTimePassword);
         logger.info("One-time password generated: " + one_time_password);
         exchange.getMessage().setHeader("one_time_password", one_time_password);
 
@@ -58,27 +62,7 @@ public class OnTimePasswordGeneratorProcessor implements Processor {
 
     }
 
-    /**
-     * Found in: https://stackoverflow.com/questions/7111651/how-to-generate-a-secure-random-alphanumeric-string-in-java-efficiently
-     *
-     * @param lenght the length of one_time_password of the one-time password
-     * @return a one-time password
-     */
-    public String generateOneTimePassword(int lenght) throws NoSuchAlgorithmException {
 
-        final String chrs = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-        final SecureRandom secureRandom = SecureRandom.getInstanceStrong();
-
-        final String one_time_password = secureRandom
-                .ints(lenght, 0, chrs.length()) // 9 is the lengthOfone_time_password of the string you want
-                .mapToObj(i -> chrs.charAt(i))
-                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
-                .toString();
-
-        return one_time_password;
-
-    }
 
     @Transactional
     public void insertOneTimePasswordIntoDatabase(String one_time_password, String first_name, String last_name) {

@@ -149,25 +149,46 @@
     </bpmn:intermediateThrowEvent>
     <bpmn:sequenceFlow id="Flow_0e0irpe" sourceRef="Event_CreateUser" targetRef="Activity_1npxvqx" />
     <bpmn:sequenceFlow id="Flow_1mrgeg9" sourceRef="Activity_1npxvqx" targetRef="Event_12hli62" />
+    <bpmn:sequenceFlow id="Flow_0kc8hp1" sourceRef="Event_InformAboutAccount" targetRef="Activity_0jwzcfm" />
+    <bpmn:sequenceFlow id="Flow_0wd672s" sourceRef="Activity_0jwzcfm" targetRef="Event_1sj9qdt" />
+    <bpmn:startEvent id="Event_0locror" name="Nutzer soll automatisch angelegt werden">
+      <bpmn:outgoing>Flow_03arm5i</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0v0eebi">
+        <bpmn:targetRef>DataObjectReference_newEmployeeData</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0o056vj" messageRef="Message_VpJ2z0zL" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_03arm5i" sourceRef="Event_0locror" targetRef="Activity_18lqkn3" />
+    <bpmn:serviceTask id="Activity_18lqkn3" name="Prüfen, ob standard E-Mailadresse noch verfügbar">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="module" value="HttpClient" />
+          <camunda:property name="method" value="post" />
+          <camunda:property name="params" value="[&#34;http://host.docker.internal:8080/onboarding/preonboarding/TryAutoUserCreation&#34;, &#34;dataObjects.DataObjectReference_newEmployeeData&#34;]" />
+          <camunda:property name="studio.paramUrl" value="http://host.docker.internal:8080/onboarding/preonboarding/TryAutoUserCreation" />
+          <camunda:property name="studio.paramBody" value="dataObjects.DataObjectReference_newEmployeeData" />
+          <camunda:property name="engine.runPostScript" value="{&#10;    &#34;email&#34;: token.current.result.email,&#10;    &#34;password&#34;: token.current.result.password,&#10;    &#34;isEmailAvailable&#34;: token.current.result.isEmailAvailable&#10;}" />
+          <camunda:property name="studio.paramContentType" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_03arm5i</bpmn:incoming>
+      <bpmn:outgoing>Flow_1x13s40</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_16ht8dt">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="dataSource" value="{&#10;    &#34;email&#34;: token.current.email,&#10;    &#34;password&#34;: token.current.password,&#10;    &#34;initialData&#34;: dataObjects.DataObjectReference_newEmployeeData&#10;}" />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:targetRef>DataObjectReference_CompanyEmailOfNewEmployee</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
     <bpmn:endEvent id="Event_12hli62">
       <bpmn:incoming>Flow_1mrgeg9</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:callActivity id="Activity_1npxvqx" name="Nutzer anlegen" calledElement="SCIL_CreateUser_Process">
-      <bpmn:extensionElements>
-        <camunda:properties>
-          <camunda:property name="startEventId" value="StartEvent_1" />
-          <camunda:property name="payload" value="{&#10;    &#34;email&#34;: token.current.email,&#10;    &#34;password&#34;: token.current.password,&#10;    &#34;first_name&#34;: token.current.initialData.OnboardingData.first_name,&#10;    &#34;last_name&#34;: token.current.initialData.OnboardingData.last_name,&#10;    &#34;position&#34;: token.current.initialData.OnboardingData.position,&#10;    &#34;private_email&#34;: token.current.initialData.OnboardingData.private_email,&#10;    &#34;birth_date&#34;: token.current.initialData.OnboardingData.birth_date,&#10;    &#34;employment_status&#34;: token.current.initialData.OnboardingData.employment_status,&#10;    &#34;postal_address&#34;: token.current.initialData.OnboardingData.postal_address,&#10;}" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0e0irpe</bpmn:incoming>
-      <bpmn:outgoing>Flow_1mrgeg9</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:startEvent id="Event_CreateUser" name="Nutzer muss angelegt werden">
+    <bpmn:startEvent id="Event_CreateUser" name="Nutzer muss manuell angelegt werden">
       <bpmn:outgoing>Flow_0e0irpe</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_17mxcd5" messageRef="Message_gAuZhg6K" />
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_0kc8hp1" sourceRef="Event_InformAboutAccount" targetRef="Activity_0jwzcfm" />
-    <bpmn:sequenceFlow id="Flow_0wd672s" sourceRef="Activity_0jwzcfm" targetRef="Event_1sj9qdt" />
     <bpmn:endEvent id="Event_1sj9qdt">
       <bpmn:incoming>Flow_0wd672s</bpmn:incoming>
     </bpmn:endEvent>
@@ -189,6 +210,72 @@
       <bpmn:incoming>Flow_0kc8hp1</bpmn:incoming>
       <bpmn:outgoing>Flow_0wd672s</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:callActivity id="Activity_1npxvqx" name="Nutzer anlegen" calledElement="SCIL_CreateUser_Process">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="startEventId" value="StartEvent_1" />
+          <camunda:property name="payload" value="{&#10;    &#34;email&#34;: token.current.email,&#10;    &#34;password&#34;: token.current.password,&#10;    &#34;first_name&#34;: token.current.initialData.OnboardingData.first_name,&#10;    &#34;last_name&#34;: token.current.initialData.OnboardingData.last_name,&#10;    &#34;position&#34;: token.current.initialData.OnboardingData.position,&#10;    &#34;private_email&#34;: token.current.initialData.OnboardingData.private_email,&#10;    &#34;birth_date&#34;: token.current.initialData.OnboardingData.birth_date,&#10;    &#34;employment_status&#34;: token.current.initialData.OnboardingData.employment_status,&#10;    &#34;postal_address&#34;: token.current.initialData.OnboardingData.postal_address,&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0e0irpe</bpmn:incoming>
+      <bpmn:outgoing>Flow_1mrgeg9</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_0i95v6f" sourceRef="Activity_1dtqw7t" targetRef="Event_1285ayp" />
+    <bpmn:endEvent id="Event_0mx8755" name="Nutzer muss manuell angelegt werden">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="engine.runPreScript" value="{&#10;    &#34;password&#34;: token.current.password,&#10;    &#34;initialData&#34;: dataObjects.DataObjectReference_newEmployeeData&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ceohll</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0skvjie" messageRef="Message_jQyfdjin" />
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_1285ayp" name="Benutzer automatisch angelegt">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="inputValues" value="dataObjects.DataObjectReference_CompanyEmailOfNewEmployee" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0i95v6f</bpmn:incoming>
+      <bpmn:property id="Property_0mlpvkt" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0ure8ji">
+        <bpmn:sourceRef>DataObjectReference_CompanyEmailOfNewEmployee</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0mlpvkt</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_04o39wt" messageRef="Message_HuD7HsWe" />
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_1kxzaf3" name="Verfügbar?">
+      <bpmn:incoming>Flow_1x13s40</bpmn:incoming>
+      <bpmn:outgoing>Flow_1elrb86</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1ceohll</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1x13s40" sourceRef="Activity_18lqkn3" targetRef="Gateway_1kxzaf3" />
+    <bpmn:sequenceFlow id="Flow_1elrb86" name="ja" sourceRef="Gateway_1kxzaf3" targetRef="Activity_1dtqw7t">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.isEmailAvailable === true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1ceohll" name="nein" sourceRef="Gateway_1kxzaf3" targetRef="Event_0mx8755">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.isEmailAvailable === false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:callActivity id="Activity_1dtqw7t" name="Nutzer anlegen" calledElement="SCIL_CreateUser_Process">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="startEventId" value="StartEvent_1" />
+          <camunda:property name="payload" value="{&#10;    &#34;email&#34;: token.current.email,&#10;    &#34;password&#34;: token.current.password,&#10;    &#34;first_name&#34;: token.current.initialData.OnboardingData.first_name,&#10;    &#34;last_name&#34;: token.current.initialData.OnboardingData.last_name,&#10;    &#34;position&#34;: token.current.initialData.OnboardingData.position,&#10;    &#34;private_email&#34;: token.current.initialData.OnboardingData.private_email,&#10;    &#34;birth_date&#34;: token.current.initialData.OnboardingData.birth_date,&#10;    &#34;employment_status&#34;: token.current.initialData.OnboardingData.employment_status,&#10;    &#34;postal_address&#34;: token.current.initialData.OnboardingData.postal_address,&#10;}" />
+          <camunda:property name="engine.runPreScript" value="{&#10;    &#34;email&#34;:token.current.email,&#10;    &#34;password&#34;:token.current.password,&#10;    &#34;initialData&#34;: dataObjects.DataObjectReference_newEmployeeData&#10;}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1elrb86</bpmn:incoming>
+      <bpmn:outgoing>Flow_0i95v6f</bpmn:outgoing>
+      <bpmn:property id="Property_1lpnt5i" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1nqyskc">
+        <bpmn:sourceRef>DataObjectReference_newEmployeeData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1lpnt5i</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:callActivity>
+    <bpmn:dataObjectReference id="DataObjectReference_newEmployeeData" name="Daten zu neuem Mitarbeiter" dataObjectRef="DataObject_0174h0w" />
+    <bpmn:dataObject id="DataObject_0174h0w" />
+    <bpmn:dataObjectReference id="DataObjectReference_CompanyEmailOfNewEmployee" name="Firmendaten des neuen Mitarbeiters" dataObjectRef="DataObject_10vy5s1" />
+    <bpmn:dataObject id="DataObject_10vy5s1" />
   </bpmn:process>
   <bpmn:message id="Message_fqaaQpdU" name="Message_Send_IsMoveNecessary" />
   <bpmn:message id="Message_oPx4KAVx" name="Message_Receive_IsMoveNecessary" />
@@ -205,10 +292,19 @@
   <bpmn:message id="Message_enwXihYL" name="Message_Receive_BirthdayCalculation" />
   <bpmn:message id="Message_gAuZhg6K" name="Message_CreateEmployee" />
   <bpmn:message id="Message_5E4M6g1A" name="Message_InformNewUserAboutAccount" />
+  <bpmn:message id="Message_LPsM3uwS" name="Message_Receive_MailisAvailable" />
+  <bpmn:message id="Message_rjGOoujH" name="Message_Receive_MailisNotAvailable" />
+  <bpmn:message id="Message_OIdEQDAR" name="Message_Send_UserCreationAuto" />
+  <bpmn:message id="Message_aww38uVn" name="Message_Send_UserCreationManuel" />
+  <bpmn:message id="Message_VpJ2z0zL" name="Message_CreateEmployeeAuto" />
+  <bpmn:message id="Message_ChRlzSTo" name="Message_MailisNotAvailable" />
+  <bpmn:message id="Message_RteiqfVs" name="Message_MailisAvailable" />
+  <bpmn:message id="Message_jQyfdjin" name="Message_Receive_UserCreationManuel" />
+  <bpmn:message id="Message_HuD7HsWe" name="Message_Receive_UserCreationAuto" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1o8eewd">
       <bpmndi:BPMNShape id="Participant_0q78rhp_di" bpmnElement="Participant_1tetnf2" isHorizontal="true">
-        <dc:Bounds x="-150" y="0" width="970" height="1230" />
+        <dc:Bounds x="-150" y="0" width="1090" height="1440" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0tqk6p4_di" bpmnElement="Activity_0xyob35">
@@ -296,29 +392,71 @@
           <dc:Bounds x="666" y="735" width="78" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_12hli62_di" bpmnElement="Event_12hli62">
-        <dc:Bounds x="687" y="912" width="36" height="36" />
+      <bpmndi:BPMNShape id="Event_1dry3i9_di" bpmnElement="Event_0locror">
+        <dc:Bounds x="-33" y="902" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-56" y="945" width="82" height="40" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1y2m5fm_di" bpmnElement="Activity_1npxvqx">
-        <dc:Bounds x="75" y="890" width="155" height="80" />
+      <bpmndi:BPMNShape id="Activity_1irejb0_di" bpmnElement="Activity_18lqkn3">
+        <dc:Bounds x="75" y="880" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_12hli62_di" bpmnElement="Event_12hli62">
+        <dc:Bounds x="687" y="1122" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_07s88es_di" bpmnElement="Event_CreateUser">
-        <dc:Bounds x="-33" y="912" width="36" height="36" />
+        <dc:Bounds x="-33" y="1122" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-56" y="955" width="82" height="27" />
+          <dc:Bounds x="-57" y="1165" width="84" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1sj9qdt_di" bpmnElement="Event_1sj9qdt">
-        <dc:Bounds x="687" y="1082" width="36" height="36" />
+        <dc:Bounds x="687" y="1292" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_08s772o_di" bpmnElement="Event_InformAboutAccount">
-        <dc:Bounds x="-33" y="1082" width="36" height="36" />
+        <dc:Bounds x="-33" y="1292" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-58" y="1125" width="86" height="80" />
+          <dc:Bounds x="-58" y="1335" width="86" height="80" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1ni18m5_di" bpmnElement="Activity_0jwzcfm">
-        <dc:Bounds x="80" y="1060" width="150" height="80" />
+        <dc:Bounds x="80" y="1270" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1y2m5fm_di" bpmnElement="Activity_1npxvqx">
+        <dc:Bounds x="77" y="1100" width="155" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_17r2o0i_di" bpmnElement="Event_0mx8755">
+        <dc:Bounds x="687" y="1012" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="663" y="1055" width="84" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0qshlra_di" bpmnElement="Event_1285ayp">
+        <dc:Bounds x="687" y="902" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="675" y="945" width="60" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1kxzaf3_di" bpmnElement="Gateway_1kxzaf3" isMarkerVisible="true">
+        <dc:Bounds x="315" y="895" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="313" y="873" width="54" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0harmzq_di" bpmnElement="Activity_1dtqw7t">
+        <dc:Bounds x="470" y="880" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0r3dspy_di" bpmnElement="DataObjectReference_newEmployeeData">
+        <dc:Bounds x="322" y="745" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="300" y="802" width="81" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0npbmen" bpmnElement="DataObjectReference_CompanyEmailOfNewEmployee">
+        <dc:Bounds x="502" y="775" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="478" y="725" width="83" height="40" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1diyb40_di" bpmnElement="Flow_1diyb40">
         <di:waypoint x="3" y="70" />
@@ -365,20 +503,64 @@
         <di:waypoint x="687" y="710" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0e0irpe_di" bpmnElement="Flow_0e0irpe">
-        <di:waypoint x="3" y="930" />
-        <di:waypoint x="75" y="930" />
+        <di:waypoint x="3" y="1140" />
+        <di:waypoint x="77" y="1140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1mrgeg9_di" bpmnElement="Flow_1mrgeg9">
-        <di:waypoint x="230" y="930" />
-        <di:waypoint x="687" y="930" />
+        <di:waypoint x="232" y="1140" />
+        <di:waypoint x="687" y="1140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0kc8hp1_di" bpmnElement="Flow_0kc8hp1">
-        <di:waypoint x="3" y="1100" />
-        <di:waypoint x="80" y="1100" />
+        <di:waypoint x="3" y="1310" />
+        <di:waypoint x="80" y="1310" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0wd672s_di" bpmnElement="Flow_0wd672s">
-        <di:waypoint x="230" y="1100" />
-        <di:waypoint x="687" y="1100" />
+        <di:waypoint x="230" y="1310" />
+        <di:waypoint x="687" y="1310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03arm5i_di" bpmnElement="Flow_03arm5i">
+        <di:waypoint x="3" y="920" />
+        <di:waypoint x="75" y="920" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0i95v6f_di" bpmnElement="Flow_0i95v6f">
+        <di:waypoint x="570" y="920" />
+        <di:waypoint x="687" y="920" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1x13s40_di" bpmnElement="Flow_1x13s40">
+        <di:waypoint x="235" y="920" />
+        <di:waypoint x="315" y="920" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1elrb86_di" bpmnElement="Flow_1elrb86">
+        <di:waypoint x="365" y="920" />
+        <di:waypoint x="470" y="920" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="369" y="902" width="9" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ceohll_di" bpmnElement="Flow_1ceohll">
+        <di:waypoint x="340" y="945" />
+        <di:waypoint x="340" y="1030" />
+        <di:waypoint x="687" y="1030" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="345" y="953" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0v0eebi_di" bpmnElement="DataOutputAssociation_0v0eebi">
+        <di:waypoint x="-2" y="908" />
+        <di:waypoint x="120" y="800" />
+        <di:waypoint x="322" y="768" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_16ht8dt_di" bpmnElement="DataOutputAssociation_16ht8dt">
+        <di:waypoint x="235" y="894" />
+        <di:waypoint x="502" y="807" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0ure8ji_di" bpmnElement="DataInputAssociation_0ure8ji">
+        <di:waypoint x="538" y="812" />
+        <di:waypoint x="690" y="910" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1nqyskc_di" bpmnElement="DataInputAssociation_1nqyskc">
+        <di:waypoint x="358" y="786" />
+        <di:waypoint x="472" y="884" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
