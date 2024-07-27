@@ -62,3 +62,15 @@ It is recommended to import the Postman Collection "OnboardingTop PDA" found in 
   "employment_status": "Vollzeit",
   "postal_address": "Musterstraße 12, 12345 Musterstadt"
 }
+```
+
+### Monitoring the Process Execution
+
+1. Start 5minds Studio.
+2. Connect Studio to the engine: 
+   - In the "Connections" tab, click the plus sign and enter the engine URL (`http://localhost:8080`).
+3. The engine you just entered should now be listed under "Connected Engines" alongside the Studio internal engine.
+4. Select the newly created instance and expand it if necessary.
+5. All process instances are listed under "Process Instances."
+6. By clicking the folder icon in the row of the respective instance, you can trace the process flow.
+
