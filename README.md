@@ -77,3 +77,13 @@ It is recommended to import the Postman Collection "OnboardingTop PDA" found in 
 ### Monitoring E-Mail
 The emails that are created during the process can be accessed via http://localhost:3300. This is necessary at the latest during the relocation process, as the process flow comes to a standstill here until a selection has been made.
 
+### Note
+
+The time events all have a short duration entered to test the application. How to achieve a real configuration is noted in each documentation field.
+
+
+
+
+
+
+
