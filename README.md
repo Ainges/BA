@@ -74,3 +74,6 @@ It is recommended to import the Postman Collection "OnboardingTop PDA" found in 
 5. All process instances are listed under "Process Instances."
 6. By clicking the folder icon in the row of the respective instance, you can trace the process flow.
 
+### Monitoring E-Mail
+The emails that are created during the process can be accessed via http://localhost:3300. This is necessary at the latest during the relocation process, as the process flow comes to a standstill here until a selection has been made.
+
