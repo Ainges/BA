@@ -85,6 +85,11 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_08nxuj9" sourceRef="Event_1cannnv" targetRef="Event_0aeund9" />
     <bpmn:intermediateCatchEvent id="Event_1cannnv" name="14 Tage vor Eintritt">
+      <bpmn:documentation>Richtiges Datum:
+- Date
+dataObjects.DataObjectReference_newEmployeeData.OnboardingData.first_working_day - 14
+
+-&gt; Danach noch yyyy-mm-dd formatieren</bpmn:documentation>
       <bpmn:incoming>Flow_0b711zh</bpmn:incoming>
       <bpmn:outgoing>Flow_08nxuj9</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_1ir7347">

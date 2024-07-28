@@ -110,6 +110,9 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" />
     </bpmn:sequenceFlow>
     <bpmn:intermediateCatchEvent id="Event_0mv9xcj" name="Erster Arbeitstag ">
+      <bpmn:documentation>Richtiges Datum:
+- Date
+dataObject.OnboardingData.first.working.day</bpmn:documentation>
       <bpmn:incoming>Flow_1qzy0yp</bpmn:incoming>
       <bpmn:outgoing>Flow_1rcp2d5</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_0ml90g9">

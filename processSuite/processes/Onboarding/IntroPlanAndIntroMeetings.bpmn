@@ -71,6 +71,14 @@
         </bpmn:extensionElements>
         <bpmn:targetRef>DataObjectReference_onboardingData</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_148b4rc">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="dataSource" value="token.current.first_performance_review" />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:targetRef>DataObjectReference_FirstPerformanceReview</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:startEvent>
     <bpmn:parallelGateway id="Gateway_15n6k88">
       <bpmn:incoming>Flow_1kybyy2</bpmn:incoming>
@@ -169,7 +177,12 @@
     <bpmn:subProcess id="Activity_1wyfuu4" triggeredByEvent="true">
       <bpmn:startEvent id="Event_0gnhofo" name="Tag für erstes Mitarbeiter-gespräch erreicht">
         <bpmn:outgoing>Flow_1ezxujr</bpmn:outgoing>
-        <bpmn:timerEventDefinition id="TimerEventDefinition_15j5x46" />
+        <bpmn:dataOutputAssociation id="DataOutputAssociation_1grwsc7">
+          <bpmn:targetRef>DataObjectReference_FirstPerformanceReview</bpmn:targetRef>
+        </bpmn:dataOutputAssociation>
+        <bpmn:timerEventDefinition id="TimerEventDefinition_15j5x46">
+          <bpmn:timeDate xsi:type="bpmn:tFormalExpression">dataObjects.DataObjectReference_FirstPerformanceReview.dateTime</bpmn:timeDate>
+        </bpmn:timerEventDefinition>
       </bpmn:startEvent>
       <bpmn:sequenceFlow id="Flow_1ezxujr" sourceRef="Event_0gnhofo" targetRef="Event_1lm1q66" />
       <bpmn:endEvent id="Event_1lm1q66" name="Aufgaben nicht rechtzeitig abgeschlossen">
@@ -177,6 +190,8 @@
         <bpmn:errorEventDefinition id="ErrorEventDefinition_16y4bo2" errorRef="Error_9F0bvKLH" />
       </bpmn:endEvent>
     </bpmn:subProcess>
+    <bpmn:dataObjectReference id="DataObjectReference_FirstPerformanceReview" name="Datum erstes Mitarbeitergespräch" dataObjectRef="DataObject_0wz8f8a" />
+    <bpmn:dataObject id="DataObject_0wz8f8a" />
   </bpmn:process>
   <bpmn:escalation id="Escalation_K7PfrpTv" name="Die Aufgaben wurden nicht rechtzeitig abgeschlossen!" escalationCode="NotCompletetedBeforeFirstWorkingDay" />
   <bpmn:error id="Error_9F0bvKLH" errorCode="failedtoCompleteTasksBeforeFirstPerformanceReview" camunda:errorMessage="Es wurden nicht alle Aufgaben vor dem ersten Mitarbeitergespräch erledigt" />
@@ -193,7 +208,7 @@
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="167" y="552" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="140" y="593" width="89" height="53" />
+          <dc:Bounds x="67.5" y="543" width="89" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_190wx8c_di" bpmnElement="Gateway_15n6k88">
@@ -226,7 +241,7 @@
       <bpmndi:BPMNShape id="DataObjectReference_1lyx8fw_di" bpmnElement="DataObjectReference_InductionPlan">
         <dc:Bounds x="242" y="-175" width="36" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="215" y="-199" width="89" height="14" />
+          <dc:Bounds x="215" y="-117" width="89" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0k9m58e_di" bpmnElement="Activity_1i8na2m">
@@ -250,6 +265,12 @@
       <bpmndi:BPMNShape id="Activity_1mmq4vy_di" bpmnElement="Activity_06oh5rs">
         <dc:Bounds x="465" y="430" width="160" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1qrh8f4_di" bpmnElement="DataObjectReference_FirstPerformanceReview">
+        <dc:Bounds x="167" y="845" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="142" y="902" width="86" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1lckxs3_di" bpmnElement="Activity_1wyfuu4" isExpanded="true">
         <dc:Bounds x="560" y="830" width="350" height="140" />
       </bpmndi:BPMNShape>
@@ -268,6 +289,10 @@
       <bpmndi:BPMNEdge id="Flow_1ezxujr_di" bpmnElement="Flow_1ezxujr">
         <di:waypoint x="636" y="890" />
         <di:waypoint x="792" y="890" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1grwsc7_di" bpmnElement="DataOutputAssociation_1grwsc7">
+        <di:waypoint x="600" y="889" />
+        <di:waypoint x="203" y="871" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1kybyy2_di" bpmnElement="Flow_1kybyy2">
         <di:waypoint x="203" y="570" />
@@ -323,10 +348,10 @@
           <dc:Bounds x="359" y="703" width="21" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_1dvex9h_di" bpmnElement="Association_1dvex9h">
-        <di:waypoint x="683" y="288" />
-        <di:waypoint x="575" y="430" />
-      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0iig8nx_di" bpmnElement="TextAnnotation_0iig8nx">
+        <dc:Bounds x="670" y="190" width="100" height="98" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1afnhcb_di" bpmnElement="DataOutputAssociation_1afnhcb">
         <di:waypoint x="185" y="552" />
         <di:waypoint x="185" y="-150" />
@@ -381,10 +406,14 @@
         <di:waypoint x="545" y="-50" />
         <di:waypoint x="545" y="430" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="TextAnnotation_0iig8nx_di" bpmnElement="TextAnnotation_0iig8nx">
-        <dc:Bounds x="670" y="190" width="100" height="98" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1dvex9h_di" bpmnElement="Association_1dvex9h">
+        <di:waypoint x="683" y="288" />
+        <di:waypoint x="575" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_148b4rc_di" bpmnElement="DataOutputAssociation_148b4rc">
+        <di:waypoint x="185" y="588" />
+        <di:waypoint x="187" y="845" />
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

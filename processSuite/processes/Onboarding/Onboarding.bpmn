@@ -5,9 +5,6 @@
     <bpmn:participant id="Participant_032ptyr" name="Onboarding_SCIL" />
     <bpmn:messageFlow id="Flow_0bit1sb" sourceRef="Event_176thb5" targetRef="Participant_032ptyr" />
     <bpmn:group id="Group_1x3k2ii" categoryValueRef="CategoryValue_1ugzhwn" />
-    <bpmn:textAnnotation id="TextAnnotation_1hkyi1q">
-      <bpmn:text>dataObjects.DataObjectReference_FirstPerformanceReview.dateTime</bpmn:text>
-    </bpmn:textAnnotation>
     <bpmn:textAnnotation id="TextAnnotation_0wayr5p">
       <bpmn:text>Auch hier sollte eigentlich ein Eskalationsereignis stehen, da es ein fachlicher Fehler ist</bpmn:text>
     </bpmn:textAnnotation>
@@ -270,6 +267,9 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_0qjrmh9" messageRef="Message_G0drewka" />
     </bpmn:intermediateThrowEvent>
     <bpmn:intermediateCatchEvent id="Event_0pjzwl5" name="Tag für erstes Mitarbeiter-gespräch erreicht">
+      <bpmn:documentation>Richtiges Datum:
+- Date
+dataObjects.DataObjectReference_FirstPerformanceReview.dateTime</bpmn:documentation>
       <bpmn:incoming>Flow_0d7ssow</bpmn:incoming>
       <bpmn:outgoing>Flow_0jwxzpn</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1hpr0e7">
@@ -288,7 +288,7 @@
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property name="startEventId" value="StartEvent_1" />
-          <camunda:property name="payload" value="{&#10;    &#34;inductionPlan&#34; : dataObjects.DataObjectReference_InductionPlan,&#10;    &#34;buddyEmployeeSelection&#34; : dataObjects.DataObjectReference_BuddyEmployeeSelection,&#10;    &#34;companyEmailOfNewEmployee&#34; : dataObjects.DataObjectReference_companyEmailOfNewEmployee,&#10;    &#34;onboardingData&#34; : dataObjects.DataObjectReference_onboardingData&#10;}" />
+          <camunda:property name="payload" value="{&#10;    &#34;inductionPlan&#34; : dataObjects.DataObjectReference_InductionPlan,&#10;    &#34;buddyEmployeeSelection&#34; : dataObjects.DataObjectReference_BuddyEmployeeSelection,&#10;    &#34;companyEmailOfNewEmployee&#34; : dataObjects.DataObjectReference_companyEmailOfNewEmployee,&#10;    &#34;onboardingData&#34; : dataObjects.DataObjectReference_onboardingData,&#10;    &#34;first_performance_review&#34;: dataObjects.DataObjectReference_FirstPerformanceReview&#10;}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0a30yua</bpmn:incoming>
@@ -322,7 +322,6 @@
       <bpmn:outgoing>Flow_187nqlv</bpmn:outgoing>
       <bpmn:errorEventDefinition id="ErrorEventDefinition_08hdcem" errorRef="Error_a6P9Cn9O" />
     </bpmn:boundaryEvent>
-    <bpmn:association id="Association_1wmvh17" associationDirection="None" sourceRef="Event_0pjzwl5" targetRef="TextAnnotation_1hkyi1q" />
   </bpmn:process>
   <bpmn:message id="Message_fXdIt8oL" name="Message_WelcomeFormHR" />
   <bpmn:message id="Message_NpE2fUSO" name="Message_MoreDocuments" />
@@ -568,10 +567,6 @@
         <di:waypoint x="1820" y="120" />
         <di:waypoint x="1820" y="-245" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_1wmvh17_di" bpmnElement="Association_1wmvh17">
-        <di:waypoint x="1696" y="-279" />
-        <di:waypoint x="1770" y="-319" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_1tnda7s_di" bpmnElement="Participant_032ptyr" isHorizontal="true">
         <dc:Bounds x="-170" y="-630" width="2820" height="60" />
         <bpmndi:BPMNLabel />
@@ -581,10 +576,6 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="440" y="167" width="82" height="14" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_1hkyi1q_di" bpmnElement="TextAnnotation_1hkyi1q">
-        <dc:Bounds x="1770" y="-340" width="450" height="30" />
-        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0wayr5p_di" bpmnElement="TextAnnotation_0wayr5p">
         <dc:Bounds x="1470" y="-470" width="259.99583024462567" height="54.85544848035582" />
