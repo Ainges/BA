@@ -43,3 +43,21 @@ nb-configuration.xml
 /.quarkus/cli/plugins/
 
 /dev/minio/.minio*
+/dev/minio/data/.minio.sys/tmp/db1566e1-ce03-474f-b203-7f006dd8b69c
+/dev/minio/data/test/sdcard.jpg/29ba276e-2b7a-4dbd-8219-694b46b7541f/part.1
+/dev/minio/data/.minio.sys/tmp/.trash/0f1df888-6a5e-428e-9820-807309fc0973/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/1f1f06dd-1816-416b-bf96-12a4da14a77a/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/4d9d628d-0d97-4930-a6cd-30348c55d8dc/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/28ee022d-09b5-43e7-bea4-12fb945e4e34/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/38fc8fa7-8ff9-4b54-9ae1-547641dca6a0/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/43f7bd0b-1cfb-44b1-8ab8-743c6d4f7483/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/52d5daba-3c55-4e8f-ae63-ac11fd1eec99/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/4262bcf1-58a0-478d-8f21-9f2634c6b452/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/8539a4d4-45a1-424c-b942-a25d5da6d0ad/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/12105d80-c3e2-49a8-bc8e-e9bc55f9015c/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/22797769-b617-4cc9-b753-4472422c38e8/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/b7a226be-f54c-4e2d-a113-e6fd55411141/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/c32f9000-863a-4793-9179-37fb350c9234/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/d67dbdc5-b5d8-4939-8b65-7c6ca50a4299/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/dfc83bd0-61d6-426e-bf6b-f8a441c3e1c2/xl.meta.bkp
+/dev/minio/data/.minio.sys/tmp/.trash/ff1e94db-3986-4cf3-8442-1b0279c8f952/xl.meta.bkp

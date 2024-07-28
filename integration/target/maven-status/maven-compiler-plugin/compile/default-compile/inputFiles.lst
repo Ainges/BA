@@ -1,3 +1,4 @@
+/Users/hubertus/Developer/BA/integration/src/main/java/CDI/OneTimePasswordGenerator.java
 /Users/hubertus/Developer/BA/integration/src/main/java/CDI/PlaceholderSubstitutor.java
 /Users/hubertus/Developer/BA/integration/src/main/java/CDI/TokenManagerAuthority.java
 /Users/hubertus/Developer/BA/integration/src/main/java/DTO/AuthorityTokenResponseDTO.java
@@ -38,6 +39,7 @@
 /Users/hubertus/Developer/BA/integration/src/main/java/processors/CanonicalDataModel/PersistEmployeeProcessor.java
 /Users/hubertus/Developer/BA/integration/src/main/java/processors/Onboarding/FirstPerformanceReviewResultsToNewEmployeeProcessor.java
 /Users/hubertus/Developer/BA/integration/src/main/java/processors/PreOnboarding/CalculateBrithdayProcessor.java
+/Users/hubertus/Developer/BA/integration/src/main/java/processors/PreOnboarding/CraftEmailFromNameProcessor.java
 /Users/hubertus/Developer/BA/integration/src/main/java/processors/PreOnboarding/FirstWelcomeMessageProcessor.java
 /Users/hubertus/Developer/BA/integration/src/main/java/processors/PreOnboarding/FriendlyReminderProcessor.java
 /Users/hubertus/Developer/BA/integration/src/main/java/processors/PreOnboarding/InfoForFirstWorkingDayProcessor.java
@@ -61,6 +63,7 @@
 /Users/hubertus/Developer/BA/integration/src/main/java/routes/preonboarding/PreOnboardingInformNewUserAboutAccount.java
 /Users/hubertus/Developer/BA/integration/src/main/java/routes/preonboarding/PreOnboardingMovingRequestRoute.java
 /Users/hubertus/Developer/BA/integration/src/main/java/routes/preonboarding/PreOnboardingRESTRoute.java
+/Users/hubertus/Developer/BA/integration/src/main/java/routes/preonboarding/PreOnboardingTryAutoUserCreationRoute.java
 /Users/hubertus/Developer/BA/integration/src/main/java/routes/usermanagement/InitUsersRoute.java
 /Users/hubertus/Developer/BA/integration/src/main/java/routes/usermanagement/ManageAuthorityUserRoutes.java
 /Users/hubertus/Developer/BA/integration/src/main/java/routes/usermanagement/ManageCanonicalUsers.java
