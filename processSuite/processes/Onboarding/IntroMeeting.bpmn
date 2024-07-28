@@ -7,10 +7,6 @@
     </bpmn:textAnnotation>
     <bpmn:association id="Association_0igozi7" associationDirection="None" sourceRef="Activity_1ggwnmn" targetRef="TextAnnotation_1jgubnm" />
     <bpmn:association id="Association_0h2kmrh" associationDirection="None" sourceRef="TextAnnotation_1jgubnm" targetRef="Activity_1mtw9sv" />
-    <bpmn:textAnnotation id="TextAnnotation_1pqhku3">
-      <bpmn:text>token.current.date + ", " + token.current.time</bpmn:text>
-    </bpmn:textAnnotation>
-    <bpmn:association id="Association_0x4sbaj" associationDirection="None" sourceRef="TextAnnotation_1pqhku3" targetRef="Event_0c82ia7" />
   </bpmn:collaboration>
   <bpmn:process id="IntroMeeting_Process" name="IntroMeeting" isExecutable="true">
     <bpmn:laneSet>
@@ -31,6 +27,10 @@
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0iychhd" sourceRef="StartEvent_IntroMeetingIsNecessary" targetRef="Event_0c82ia7" />
     <bpmn:intermediateCatchEvent id="Event_0c82ia7" name="Zeitpunkt für Kennenlerngespräch ist gekommen">
+      <bpmn:documentation>Richtiges Datum:
+- Date
+
+token.current.date + "," + token.current.time</bpmn:documentation>
       <bpmn:incoming>Flow_0iychhd</bpmn:incoming>
       <bpmn:outgoing>Flow_016k0ro</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_10wbe69">
@@ -152,16 +152,8 @@
         <di:waypoint x="765" y="160" />
         <di:waypoint x="872" y="160" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_0x4sbaj_di" bpmnElement="Association_0x4sbaj">
-        <di:waypoint x="313" y="-30" />
-        <di:waypoint x="246" y="143" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="TextAnnotation_1jgubnm_di" bpmnElement="TextAnnotation_1jgubnm">
         <dc:Bounds x="1170" y="404" width="190" height="84" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_1pqhku3_di" bpmnElement="TextAnnotation_1pqhku3">
-        <dc:Bounds x="200" y="-100" width="251" height="70" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0igozi7_di" bpmnElement="Association_0igozi7">

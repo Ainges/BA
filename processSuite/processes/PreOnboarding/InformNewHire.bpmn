@@ -98,6 +98,11 @@
       <bpmn:outgoing>Flow_16fy31z</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:intermediateCatchEvent id="Event_1p0tl68" name="3 Tage vor Eintritt">
+      <bpmn:documentation>Richtiges Datum:
+- Date
+dataObjects.DataObjectReference_newEmployeeData.OnboardingData.first_working_day -3
+
+-&gt; Danach noch yyyy-mm-dd formatieren</bpmn:documentation>
       <bpmn:incoming>Flow_16fy31z</bpmn:incoming>
       <bpmn:outgoing>Flow_17315wo</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_0uv6zjl">

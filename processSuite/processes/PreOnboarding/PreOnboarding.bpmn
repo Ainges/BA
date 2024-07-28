@@ -100,9 +100,12 @@
     <bpmn:subProcess id="Activity_0bx4zme" triggeredByEvent="true">
       <bpmn:sequenceFlow id="Flow_0e6pm09" sourceRef="Event_0k4kdml" targetRef="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay" />
       <bpmn:startEvent id="Event_0k4kdml" name="Erster Arbeitstag erreicht">
+        <bpmn:documentation>Richtiges Datum:
+- Date
+dataObjects.DataObjectReference_newEmployeeData.OnboardingData.first_working_day</bpmn:documentation>
         <bpmn:outgoing>Flow_0e6pm09</bpmn:outgoing>
         <bpmn:timerEventDefinition id="TimerEventDefinition_0ymcygb">
-          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5S</bpmn:timeDuration>
+          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1D</bpmn:timeDuration>
         </bpmn:timerEventDefinition>
       </bpmn:startEvent>
       <bpmn:endEvent id="Event_Escalation_Throwing_FailedToPrepareFirstWorkingDay" name="Vorbereitung nicht vollständig abgeschlossen">

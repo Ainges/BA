@@ -13,7 +13,7 @@
         <bpmn:flowNodeRef>Event_1y70pfo</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:startEvent id="StartEvent_1" name="Start">
+    <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0e569vy</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0e569vy" sourceRef="StartEvent_1" targetRef="Activity_1m5o42w" />
