@@ -90,6 +90,11 @@ services:
       - "8161:8161" # Web Console
       - "61616:61616" # AMQP
       - "5672:5672" # MQTT
+    healthcheck:
+      test: ["CMD-SHELL", "curl -k -f https://localhost:8161/"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
     # volumes:
     #   - "../artemis/broker.xml:/var/lib/artemis-instance/etc/broker.xml"
 
@@ -135,17 +140,17 @@ services:
     ports:
       - "5433:5432"
 
-#  integration:
-#    image: ghcr.io/ainges/ba-integration:0.7
-#    container_name: integration
-#    ports:
-#      - "8080:8080"
-#    environment:
-#      QUARKUS_PROFILE: prod
-#    depends_on:
-#      - postgres
-#      - minio
-#      - artemis
-#      - smtp4dev
-#      - engine
-#      - authority
+  integration:
+    image: ghcr.io/ainges/ba-integration:1.0
+    container_name: integration
+    ports:
+      - "8080:8080"
+    environment:
+      QUARKUS_PROFILE: prod
+    depends_on:
+      - postgres
+      - minio
+      - artemis
+      - smtp4dev
+      - engine
+      - authority
