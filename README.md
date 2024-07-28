@@ -27,6 +27,20 @@ Even though the entire application runs in Docker, these prerequisites must be m
   - `npm install` in `./processSuite/apps/processSuite/frontend`
 - Start the application by running: `docker compose up --build` in `./processSuite`
 
+### Initializing Profile Pictures for Created Users
+To display profile pictures for the sample users, MinIO needs to be configured first:
+
+1. Access MinIO at [http://localhost:9001](http://localhost:9001) with the following credentials:
+   - Username: `admin123456`
+   - Password: `admin123456`
+2. Navigate to Buckets > Create Bucket
+3. Create a bucket named `profilepictures`.
+4. Select the bucket and set the Access Policy to Public.
+5. In the Object Browser menu, select `profilepictures`.
+6. Click on the upload button (top right) > `Upload file`.
+7. Choose and upload all images from `./integration/config/minio`.
+
+
 ## Usage
 The 5minds Portal is available at: `http://localhost:8082`. 
 The backend initializes some users at the start. To easily go through the process, you can log in with the following credentials:
@@ -78,6 +92,8 @@ The emails that are created during the process can be accessed via http://localh
 - The time events all have a short duration entered to test the application. How to achieve a real configuration is noted in each documentation field.
 - To ensure that the current process models are executed, you can open the path `./processSuite/processes` in the 5minds Studio and redeploy all process models to the engine via `Run > Deploy Solution`.
 - Despite the note in the docker compose file that the integration service should wait for ActiveMQ Artemis and the engine, it can occasionally start too quickly and fail to reach the engine or ActiveMQ Artemis. This results in the initial users not being created. To fix this, simply restart the container while the other services are already running.
+
+
 
 
 
