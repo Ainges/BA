@@ -8,7 +8,6 @@
 
 
 ## Prerequisites
-
 To run the application, the following prerequisites must be met:
 - Docker Desktop version 4.29.0 or higher
 - DNS redirection of "authority" to 127.0.0.1
@@ -22,7 +21,6 @@ The DNS redirection can be easily achieved by adding an entry to the host file o
 Even though the entire application runs in Docker, these prerequisites must be met because a Docker image is not hosted in a container registry and will be built upon first start.
 
 ## Installation and Starting the Application
-
 - `git clone https://github.com/Ainges/BA`
 - Navigate to `./processSuite`
 - Install the Node.js packages:
@@ -30,7 +28,6 @@ Even though the entire application runs in Docker, these prerequisites must be m
 - Start the application by running: `docker compose up --build` in `./processSuite`
 
 ## Usage
-
 The 5minds Portal is available at: `http://localhost:8082`. 
 The backend initializes some users at the start. To easily go through the process, you can log in with the following credentials:
 - Username: `admin`
@@ -65,7 +62,6 @@ It is recommended to import the Postman Collection "OnboardingTop PDA" found in 
 ```
 
 ### Monitoring the Process Execution
-
 1. Start 5minds Studio.
 2. Connect Studio to the engine: 
    - In the "Connections" tab, click the plus sign and enter the engine URL (`http://localhost:8080`).
@@ -77,9 +73,12 @@ It is recommended to import the Postman Collection "OnboardingTop PDA" found in 
 ### Monitoring E-Mail
 The emails that are created during the process can be accessed via http://localhost:3300. This is necessary at the latest during the relocation process, as the process flow comes to a standstill here until a selection has been made.
 
-### Note
 
-The time events all have a short duration entered to test the application. How to achieve a real configuration is noted in each documentation field.
+### Final Note
+- The time events all have a short duration entered to test the application. How to achieve a real configuration is noted in each documentation field.
+- To ensure that the current process models are executed, you can open the path `./processSuite/processes` in the 5minds Studio and redeploy all process models to the engine via `Run > Deploy Solution`.
+- Despite the note in the docker compose file that the integration service should wait for ActiveMQ Artemis and the engine, it can occasionally start too quickly and fail to reach the engine or ActiveMQ Artemis. This results in the initial users not being created. To fix this, simply restart the container while the other services are already running.
+
 
 
 
