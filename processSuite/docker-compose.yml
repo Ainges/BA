@@ -142,7 +142,7 @@ services:
       - "5433:5432"
 
   integration:
-    image: ghcr.io/ainges/ba-integration:1.0
+    image: ghcr.io/ainges/ba-integration:1.2
     container_name: integration
     ports:
       - "8080:8080"
