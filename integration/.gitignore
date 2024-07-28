@@ -42,5 +42,4 @@ nb-configuration.xml
 # Plugin directory
 /.quarkus/cli/plugins/
 
-# Development Services
-dev/minio
+/dev/minio/.minio*
