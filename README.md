@@ -40,6 +40,8 @@ To display profile pictures for the sample users, MinIO needs to be configured f
 6. Click on the upload button (top right) > `Upload file`.
 7. Choose and upload all images from `./integration/config/minio`.
 
+However, this is only necessary once. By using volumes, the configuration survives a deletion of the container.
+
 
 ## Usage
 The 5minds Portal is available at: `http://localhost:8082`. 
